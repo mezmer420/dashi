@@ -38,7 +38,7 @@ require("./slash-register")(true)
 
 const prefix = ""
 
-// welc, cons, anno, vot, self, cour, semi, gove, mee6, imag, vide, argu, game, role, funq, hydr, vtts, mtts, ctts
+// welc, cons, anno, vot, self, cour, semi, gove, mee6, imag, vide, argu, game, role, funq, hydr, vtts, mtts, ctts, dtts
 // const blacklistedchannel = [
 //     "964361642668343376",
 //     "939675214600605757",
@@ -58,7 +58,8 @@ const prefix = ""
 //     "955689401688682526",
 //     "947301903186944020",
 //     "951345913627021354",
-//     "955599561869639710"
+//     "955599561869639710", 
+//     "975235909861654538"
 // ]
 
 const welc = "964361642668343376"
@@ -378,6 +379,16 @@ client.on("messageCreate", async message =>{
         await sleep(Math.floor(Math.random() * 1000) + 1001)
         message.channel.send("i like turtles")
     }
+    
+    const reddit = "r/"
+
+    if(message.content.startsWith(reddit)){
+        client.commands.get("reddit").execute(message, reddit)
+    }
+
+    if(message.content == "hold up"){
+        client.commands.get("holup").execute(message)
+    }
 
     if(message.content == "hold up"){
         client.commands.get("holup").execute(message)
@@ -435,10 +446,6 @@ client.on("messageCreate", async message =>{
         client.dialects.get("vcashdialect").execute(message, sleep)
     }
 
-    if(command == "yyes"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-    
     // mezmer
     if(message.content == "ecks dee"){
         client.dialects.get("mezmerdialect").execute(message, sleep)
@@ -537,6 +544,10 @@ client.on("messageCreate", async message =>{
     }
 
     if(command == "ifusayso"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(message.content == "la mao"){
         client.dialects.get("deltadialect").execute(message, sleep)
     }
 
