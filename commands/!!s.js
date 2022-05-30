@@ -40,6 +40,15 @@ module.exports = {
                     }
                     else {
                         message.channel.send(`${messagetosend}`)
+                        // message.channel.send(`${messagetosend}`).then(sentMessage =>{
+                        //     sentMessage.react("1️⃣")
+                        //     sentMessage.react("2️⃣")
+                        //     sentMessage.react("3️⃣")
+                        //     sentMessage.react("4️⃣")
+                        //     sentMessage.react("5️⃣")
+                        //     sentMessage.react("6️⃣")
+                        //     sentMessage.react("7️⃣")
+                        // })
                         message.delete()
                     }
                     break
