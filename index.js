@@ -451,18 +451,6 @@ client.on("messageCreate", async message =>{
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(command == "qwert"){
-        message.channel.send("tset").then(sentMessage =>{
-            sentMessage.react("1️⃣")
-            sentMessage.react("2️⃣")
-            sentMessage.react("3️⃣")
-            sentMessage.react("4️⃣")
-            sentMessage.react("5️⃣")
-            sentMessage.react("6️⃣")
-            sentMessage.react("7️⃣")
-        })
-    }
-
     if(command == "rainbow dash"){
         message.channel.sendTyping()
         await sleep(Math.floor(Math.random() * 1000) + 1001)
@@ -1435,6 +1423,18 @@ client.on("messageCreate", async message =>{
 
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
+
+    if(command == "qwert"){
+        message.channel.send("tset").then(sentMessage =>{
+            sentMessage.react("1️⃣")
+            sentMessage.react("2️⃣")
+            sentMessage.react("3️⃣")
+            sentMessage.react("4️⃣")
+            sentMessage.react("5️⃣")
+            sentMessage.react("6️⃣")
+            sentMessage.react("7️⃣")
+        })
+    }
 
     if(command == "!bad"){
         message.channel.sendTyping()
