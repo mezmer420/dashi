@@ -54,7 +54,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         else {
             const randomvalue = Math.floor(Math.random() * 100)
 
-            if(randomvalue >= 90){
+            if(randomvalue >= 30){
                 robCooldown.create({
                     id: interaction.member.id,
                     // expiry: new Date().getTime() + (150000 * 2),
@@ -77,7 +77,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 // console.log(randomvalue)
             }
         
-            else if(10 <= randomvalue && randomvalue < 90){
+            else if(20 <= randomvalue && randomvalue < 30){
                 const coins_fined = (Math.round(getUser.wallet * 0.1))
         
                 const newrobberWallet = getUser.wallet - coins_fined
@@ -168,7 +168,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 // console.log(randomvalue)
             }
 
-            else if(randomvalue < 10){
+            else if(randomvalue < 20){
                 const coins_robbed = (Math.round(memberWallet.wallet * 0.1))
         
                 const newrobberWallet = getUser.wallet + coins_robbed
