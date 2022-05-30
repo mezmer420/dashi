@@ -10,7 +10,7 @@ const client = new Discord.Client({
             // url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }],
     },
-    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES"],
+    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES"],
     // intents: [
     //     "GUILDS",
     //     "GUILD_MEMBERS",
@@ -29,7 +29,8 @@ const client = new Discord.Client({
     //     "DIRECT_MESSAGE_TYPING",
     //     "GUILD_SCHEDULED_EVENTS",
     // ],
-    partials: ["CHANNEL"]
+    partials: ["USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION"]
+    // partials: ["USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "GUILD_SCHEDULED_EVENT"]
 });
 
 const config = require("./config.json")
@@ -186,6 +187,224 @@ client.on("guildMemberAdd", member =>{
 //     member.send(`You left Eoic Gamer Server. Maybe you were kicked, banned, or left on your own accord. If you left on your own accord, please provide feedback right here in this DM as to why you did so.`)
 // })
 
+client.on('messageReactionAdd', async (reaction, user) => {
+	// When a reaction is received, check if the structure is partial
+	if(reaction.partial){
+		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		try {
+			await reaction.fetch()
+		} catch (error) {
+			console.error('Something went wrong when fetching the message:', error)
+			// Return as `reaction.message.author` may be undefined/null
+			return
+		}
+	}
+    else {
+        if(user.bot) return
+        if(reaction.message.channel.id == "964361642668343376"){
+            if(reaction.emoji.name == "✅"){
+                const eoicrole = reaction.message.guild.roles.cache.find(r => r.id == "957872601550716929")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(eoicrole)
+                // console.log(`${user.username} verified`)
+    
+                // console.log(`${eoicrole.name}, ${member}, test`)
+    
+                // if(member.roles.has(eoicrole)){
+                //     console.log("has eoic gamer")
+                // }
+                // else {
+                //     console.log("doesn't have eoic gamer")
+                // }
+            }
+        }
+
+        else if(reaction.message.channel.id == "963930001303015495"){
+            if(reaction.emoji.name == "1️⃣"){
+                const weeb = reaction.message.guild.roles.cache.find(r => r.id == "956642101653827674")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(weeb)
+                // console.log(`${user.username} got ${weeb.name}`)
+            }
+
+            else if(reaction.emoji.name == "2️⃣"){
+                const procrastinator = reaction.message.guild.roles.cache.find(r => r.id == "953099131797270588")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(procrastinator)
+                // console.log(`${user.username} got ${procrastinator.name}`)
+            }
+
+            else if(reaction.emoji.name == "3️⃣"){
+                const gordon = reaction.message.guild.roles.cache.find(r => r.id == "952349639426854973")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(gordon)
+                // console.log(`${user.username} got ${gordon.name}`)
+            }
+
+            else if(reaction.emoji.name == "4️⃣"){
+                const funque = reaction.message.guild.roles.cache.find(r => r.id == "963928836356051025")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(funque)
+                // console.log(`${user.username} got ${funque.name}`)
+            }
+
+            else if(reaction.emoji.name == "5️⃣"){
+                const streams = reaction.message.guild.roles.cache.find(r => r.id == "963933396227219497")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(streams)
+                // console.log(`${user.username} got ${streams.name}`)
+            }
+
+            else if(reaction.emoji.name == "6️⃣"){
+                const innoc = reaction.message.guild.roles.cache.find(r => r.id == "964556786105475092")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(innoc)
+                // console.log(`${user.username} got ${innoc.name}`)
+            }
+
+            else if(reaction.emoji.name == "7️⃣"){
+                const nerd = reaction.message.guild.roles.cache.find(r => r.id == "969432438516375603")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.add(nerd)
+                // console.log(`${user.username} got ${nerd.name}`)
+            }
+        }
+    }
+
+	// Now the message has been cached and is fully available
+	// console.log(`${reaction.message.author.username}'s message "${reaction.message.content}" gained a reaction!`)
+    // const member = reaction.message.guild.members.get(user.id)
+	// The reaction is now also fully available and the properties will be reflected accurately:
+	// console.log(`${reaction.count} user(s) have given the same reaction to this message!`)
+})
+
+client.on('messageReactionRemove', async (reaction, user) => {
+    if(reaction.partial){
+		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		try {
+			await reaction.fetch()
+		} catch (error) {
+			console.error('Something went wrong when fetching the message:', error)
+			// Return as `reaction.message.author` may be undefined/null
+			return
+		}
+	}
+
+    else {
+        if(user.bot) return
+        if(reaction.message.channel.id == "963930001303015495"){
+            if(reaction.emoji.name == "1️⃣"){
+                const weeb = reaction.message.guild.roles.cache.find(r => r.id == "956642101653827674")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(weeb)
+                // console.log(`${user.username} removed ${weeb.name}`)
+            }
+    
+            else if(reaction.emoji.name == "2️⃣"){
+                const procrastinator = reaction.message.guild.roles.cache.find(r => r.id == "953099131797270588")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(procrastinator)
+                // console.log(`${user.username} removed ${procrastinator.name}`)
+            }
+    
+            else if(reaction.emoji.name == "3️⃣"){
+                const gordon = reaction.message.guild.roles.cache.find(r => r.id == "952349639426854973")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(gordon)
+                // console.log(`${user.username} removed ${gordon.name}`)
+            }
+    
+            else if(reaction.emoji.name == "4️⃣"){
+                const funque = reaction.message.guild.roles.cache.find(r => r.id == "963928836356051025")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(funque)
+                // console.log(`${user.username} removed ${funque.name}`)
+            }
+    
+            else if(reaction.emoji.name == "5️⃣"){
+                const streams = reaction.message.guild.roles.cache.find(r => r.id == "963933396227219497")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(streams)
+                // console.log(`${user.username} removed ${streams.name}`)
+            }
+    
+            else if(reaction.emoji.name == "6️⃣"){
+                const innoc = reaction.message.guild.roles.cache.find(r => r.id == "964556786105475092")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(innoc)
+                // console.log(`${user.username} removed ${innoc.name}`)
+            }
+    
+            else if(reaction.emoji.name == "7️⃣"){
+                const nerd = reaction.message.guild.roles.cache.find(r => r.id == "969432438516375603")
+                const {guild} = reaction.message
+                const member = guild.members.cache.find(member => member.id == user.id)
+    
+                // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
+    
+                member.roles.remove(nerd)
+                // console.log(`${user.username} removed ${nerd.name}`)
+            }
+        }
+    }
+})
+
 // slash commands
 client.on("interactionCreate", async interaction => {
     await interaction.deferReply()
@@ -231,6 +450,18 @@ client.on("messageCreate", async message =>{
 
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
+
+    if(command == "qwert"){
+        message.channel.send("tset").then(sentMessage =>{
+            sentMessage.react("1️⃣")
+            sentMessage.react("2️⃣")
+            sentMessage.react("3️⃣")
+            sentMessage.react("4️⃣")
+            sentMessage.react("5️⃣")
+            sentMessage.react("6️⃣")
+            sentMessage.react("7️⃣")
+        })
+    }
 
     if(command == "rainbow dash"){
         message.channel.sendTyping()

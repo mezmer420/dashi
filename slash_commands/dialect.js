@@ -16,7 +16,7 @@ module.exports.run = async (client, interaction, options) => {
         const vcashEmbed = new MessageEmbed()
         .setColor("#FFA500")
         .setTitle("vcash dialect")
-        .addField("`ballsL\n\nel mao\n\nkL\n\nle mao\n\npeeL\n\ntoyota\n\ntoyot\n\nxt\n\nyyes`\n—————", "<@762133129209053244>")
+        .addField("`ballsL\n\nel mao\n\nkL\n\nle mao\n\npeeL\n\ntoyota\n\ntoyot\n\nxt`\n—————", "<@762133129209053244>")
         return interaction.editReply({
             embeds: [vcashEmbed]
         })
@@ -56,7 +56,7 @@ module.exports.run = async (client, interaction, options) => {
         const deltaEmbed = new MessageEmbed()
         .setColor("PURPLE")
         .setTitle("delta airlines dialect")
-        .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nmediumL\n\nr\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
+        .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nmediumL\n\nr\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
         return interaction.editReply({
             embeds: [deltaEmbed]
         })
