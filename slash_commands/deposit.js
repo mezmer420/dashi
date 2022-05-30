@@ -10,11 +10,11 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The amount to deposit"))
 
 module.exports.run = async (client, interaction, options, Economy) => {
-    const amount = options.getInteger("amount")
+    let amount = options.getInteger("amount")
 
     if(amount < 1 || amount > 5000) return interaction.editReply({content: "Invalid amount; must be between 1 and 5000, inclusive"})
 
-    const getUser = await Economy.findOne({where: {id: interaction.member.id}})
+    let getUser = await Economy.findOne({where: {id: interaction.member.id}})
     if(!getUser) {
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }

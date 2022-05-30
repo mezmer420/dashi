@@ -7,7 +7,7 @@ module.exports.data = new SlashCommandBuilder()
 
 module.exports.run = async (client, interaction, options, Economy) => {
 
-    const getUser = await Economy.findOne({where: {id: interaction.member.id}})
+    let getUser = await Economy.findOne({where: {id: interaction.member.id}})
     if(!getUser) {
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }

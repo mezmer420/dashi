@@ -12,21 +12,21 @@ module.exports.data = new SlashCommandBuilder()
 
 module.exports.run = async (client, interaction, options, Economy, workCooldown, begCooldown, robCooldown) => {
     // if(interaction.member.id == "527285622809952256"){
-    const member = options.getMember("user")
-    const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
-    const robcooldownTime = getrobCooldown?.expiry
+    let member = options.getMember("user")
+    let getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
+    let robcooldownTime = getrobCooldown?.expiry
     if(getrobCooldown && robcooldownTime > new Date().getTime()) {
         return interaction.editReply({content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`})
     } else if (getrobCooldown) {
         robCooldown.destroy({where: {id: interaction.member.id, command: "rob"}})
     }
 
-    const getUser = await Economy.findOne({where: {id: interaction.member.id}})
+    let getUser = await Economy.findOne({where: {id: interaction.member.id}})
     if(!getUser) {
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
-    const memberWallet = await Economy.findOne({where: {id: member.id}})
+    let memberWallet = await Economy.findOne({where: {id: member.id}})
 
     if(!memberWallet) {
         memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})

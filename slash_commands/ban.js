@@ -13,11 +13,11 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true))
 
 module.exports.run = (client, interaction, options) => {
-    const permissions = interaction.member.permissions
+    let permissions = interaction.member.permissions
     if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({content: `lol did you just try to ban **${member.displayName}**`})
     
-    const member = options.getMember("user")
-    const reason = options.getString("reason")
+    let member = options.getMember("user")
+    let reason = options.getString("reason")
 
     member.ban({reason: reason}).then(() => {
         interaction.editReply({content: `**${member.displayName}** was successfully banned for **${reason}**!`})

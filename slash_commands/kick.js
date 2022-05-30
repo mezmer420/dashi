@@ -12,11 +12,11 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("Reason the user is being kicked").setRequired(true))
 
 module.exports.run = (client, interaction, options) => {
-    const permissions = interaction.member.permissions
+    let permissions = interaction.member.permissions
     if(!permissions.has("KICK_MEMBERS")) return interaction.editReply({content: `lol did you just try to ban **${member.displayName}**`})
     
-    const member = options.getMember("user")
-    const reason = options.getString("reason")
+    let member = options.getMember("user")
+    let reason = options.getString("reason")
 
     member.kick(reason).then(() => {
         interaction.editReply({content: `**${member.displayName}** was successfully kicked for **${reason}**!`})

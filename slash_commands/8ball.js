@@ -16,10 +16,10 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The question you want to ask the magic 8ball"))
 
 module.exports.run = (client, interaction, options) => {
-    const inquiry = options.getString("question")
+    let inquiry = options.getString("question")
 
-    const responsevalues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    const response = RandArray(responsevalues)
+    let responsevalues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    let response = RandArray(responsevalues)
 
     if(response == "1"){
         const Embed = new MessageEmbed()

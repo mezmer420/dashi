@@ -10,11 +10,11 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true))
 
 module.exports.run = (client, interaction, options) => {
-    const permissions = interaction.member.permissions
+    let permissions = interaction.member.permissions
     if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({content: "you don't have sufficient perms!"})
     
     if(interaction.channel.id == "965054741480636496" || interaction.channel.id == "950196454880866314" || interaction.channel.id == "955948174894325782"){
-        const member = options.getMember("user")
+        let member = options.getMember("user")
 
                           //      vcash                                       mezmer                                       mee6                                      carl                                   vcashcar                                     hydra
         if(member.user.id == "762133129209053244" || member.user.id == "527285622809952256" || member.user.id == "159985870458322944" || member.user.id == "235148962103951360" || member.user.id == "975952163090071553" || member.user.id == "547905866255433758"){

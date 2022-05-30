@@ -12,8 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Gives a random ball")
 
 module.exports.run = async (client, interaction) => {
-    const balls = ["Basketball", "Football", "Baseball", "Golf Ball", "Osteoporosis", "Cattywampus", "Laboratory"]
-    const randomball = RandArray(balls)
+    let balls = ["Basketball", "Football", "Baseball", "Golf Ball", "Osteoporosis", "Cattywampus", "Laboratory"]
+    let randomball = RandArray(balls)
 
     if(randomball == "Basketball"){
         const Embed = new MessageEmbed()

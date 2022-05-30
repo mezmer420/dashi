@@ -64,8 +64,8 @@ module.exports.run = (client, interaction, options) => {
     const choice9 = options.getString("9th")
     const choice10 = options.getString("10th")
 
-    const responsevalues = [choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, choice10]
-    const response = RandArray(responsevalues)
+    let responsevalues = [choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, choice10]
+    let response = RandArray(responsevalues)
 
     if(response == choice1){
         return interaction.editReply({

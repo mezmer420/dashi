@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("User to view the dialect of"))
 
 module.exports.run = async (client, interaction, options) => {
-    const member = options.getMember("user")
+    let member = options.getMember("user")
 
     if(member.id == "762133129209053244"){
         const vcashEmbed = new MessageEmbed()

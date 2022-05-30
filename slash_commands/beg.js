@@ -6,16 +6,16 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Beg for Dashcoins; cooldown 30 sec")
 
 module.exports.run = async (client, interaction, options, Economy, workCooldown, begCooldown, robCooldown) => {
-    const member = interaction.member
-    const getbegCooldown = await begCooldown.findOne({where: {id: member.id, command: "beg"}})
-    const begcooldownTime = getbegCooldown?.expiry
+    let member = interaction.member
+    let getbegCooldown = await begCooldown.findOne({where: {id: member.id, command: "beg"}})
+    let begcooldownTime = getbegCooldown?.expiry
     if(getbegCooldown && begcooldownTime > new Date().getTime()) {
         return interaction.editReply({content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`})
     } else if (getbegCooldown) {
         begCooldown.destroy({where: {id: member.id, command: "beg"}})
     }
 
-    const getUser = await Economy.findOne({where: {id: member.id}})
+    let getUser = await Economy.findOne({where: {id: member.id}})
     if(!getUser) {
         getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }

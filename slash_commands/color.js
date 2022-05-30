@@ -12,8 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Gives a random color")
 
 module.exports.run = async (client, interaction) => {
-    const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "purple", "cyan", "magenta"]
-    const randomcolor = RandArray(colors)
+    let colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "purple", "cyan", "magenta"]
+    let randomcolor = RandArray(colors)
 
     if(randomcolor == "red"){
         return interaction.editReply({

@@ -15,10 +15,10 @@ module.exports.data = new SlashCommandBuilder()
 
 module.exports.run = async (client, interaction, options, Economy) => {
     if(interaction.member.id == "527285622809952256" || interaction.member.id == "842775855632744478"){
-        const amount = options.getInteger("amount")
-        const member = options.getMember("user")
+        let amount = options.getInteger("amount")
+        let member = options.getMember("user")
     
-        const getUser = await Economy.findOne({where: {id: interaction.member.id}})
+        let getUser = await Economy.findOne({where: {id: interaction.member.id}})
         if(!getUser) {
             getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
         }
