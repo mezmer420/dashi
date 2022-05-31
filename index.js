@@ -164,10 +164,10 @@ const {Economy, workCooldown, begCooldown, robCooldown} = require("./database")
 
 const {commands} = require("./slash-register")
 
-// client.on("typingStart", async (channel, user) => {
-//     if(channel.type == "DM") return
-//     console.log(`${user?.username} is typing in ${channel?.name}`)
-// })
+client.on("typingStart", async (channel, user) => {
+    if(channel.type == "DM") return
+    console.log(`${user?.username} is typing in ${channel?.name}`)
+})
 
 client.on("messageCreate", async message =>{
     if(message.channel.type == "DM"){
@@ -1522,17 +1522,7 @@ client.on("messageCreate", message =>{
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(command == "!spamspedy"){
-        if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
-        message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-
-    if(command == "!stopspamspedy"){
+    if(command == "!spamspedy" || command == "!stopspamspedy"){
         if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
         message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
         .then(msg => {
@@ -1562,17 +1552,7 @@ client.on("messageCreate", message =>{
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(command == "!cock"){
-        if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
-        message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-
-    if(command == "!stopcock"){
+    if(command == "!cock" || command == "!stopcock"){
         if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
         message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
         .then(msg => {
