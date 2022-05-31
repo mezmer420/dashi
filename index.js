@@ -133,10 +133,10 @@ function sleep(ms) {
 }
 
 client.on("ready", async () => {
-    await Economy.sync().then(console.log("Economy synced"))
-    await workCooldown.sync().then(console.log("workCooldown synced"))
-    await begCooldown.sync().then(console.log("begCooldown synced"))
-    await robCooldown.sync().then(console.log("robCooldown synced"))
+    await Economy.sync()
+    await workCooldown.sync()
+    await begCooldown.sync()
+    await robCooldown.sync().then(console.log("Synced"))
 
     const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
     if (!dashiuser){
@@ -164,10 +164,10 @@ const {Economy, workCooldown, begCooldown, robCooldown} = require("./database")
 
 const {commands} = require("./slash-register")
 
-client.on("typingStart", async (channel, user) => {
-    if(channel.type == "DM") return
-    console.log(`${user?.username} is typing in ${channel?.name}`)
-})
+// client.on("typingStart", async (channel, user) => {
+//     if(channel.type == "DM") return
+//     console.log(`${user?.username} is typing in ${channel?.name}`)
+// })
 
 client.on("messageCreate", async message =>{
     if(message.channel.type == "DM"){
@@ -453,25 +453,25 @@ client.on("messageCreate", async message =>{
 
     if(command == "rainbow dash"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("best pony")
     }
 
     if(command == "ding"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("dong")
     }
         
     if(message.content == "dad"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("is gone")
     }
 
     if(message.content == "mom"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("?? what's that")
     }
         
@@ -482,7 +482,7 @@ client.on("messageCreate", async message =>{
         }
         else {
             message.channel.sendTyping()
-            await sleep(Math.floor(Math.random() * 1000) + 1001)
+            await sleep(Math.floor(Math.random() * 0) + 1001)
             message.channel.send("because why")
         }
     }
@@ -527,13 +527,13 @@ client.on("messageCreate", async message =>{
 
     if(command == "kk"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("lack care (x2)")
     }
     
     if(command == "deez"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("nutz")
     }
 
@@ -551,13 +551,13 @@ client.on("messageCreate", async message =>{
 
     if(command == "😮"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("why 😮")
     }
 
     if(command == "boner"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("what you get from going to your favorite site")
     }
 
@@ -589,13 +589,13 @@ client.on("messageCreate", async message =>{
 
     if(message.content == "i like turtles"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("i like trains")
     }
 
     if(message.content == "i like trains"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("i like turtles")
     }
     
@@ -627,10 +627,22 @@ client.on("messageCreate", async message =>{
 
     if(command == "yuri"){
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("vcashy waifu")
     }
-    
+
+// egghead dashi
+    const alot = ["alot"]
+    for (var i = 0; i < alot.length; i++) {
+        const index = message.content.indexOf(alot[i])
+        if (index !== -1) {
+            message.channel.sendTyping()
+            await sleep(Math.floor(Math.random() * 0) + 1001)
+            message.reply("a lot*")
+            break
+        }
+    }
+
 // dialects
     // vcash
     if(command == "ballsl"){
@@ -1365,7 +1377,7 @@ client.on("messageCreate", async message =>{
         if (index !== -1) {
             // add one to include the space
             message.channel.sendTyping()
-            await sleep(Math.floor(Math.random() * 1000) + 1001)
+            await sleep(Math.floor(Math.random() * 0) + 1001)
             message.channel.send("obsessed with d")
             break
         }
@@ -1419,12 +1431,13 @@ client.on("messageCreate", message =>{
 
 // commands for mezmer420
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "qwert"){
+        if(message.author.id !== "527285622809952256") return
         message.channel.send("tset").then(sentMessage =>{
             sentMessage.react("1️⃣")
             sentMessage.react("2️⃣")
@@ -1437,8 +1450,9 @@ client.on("messageCreate", async message =>{
     }
 
     if(command == "!bad"){
+        if(message.author.id !== "527285622809952256") return
         message.channel.sendTyping()
-        await sleep(Math.floor(Math.random() * 1000) + 1001)
+        await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("sowwy")
     }
 })
@@ -1616,9 +1630,6 @@ client.on("messageCreate", message =>{
     if(message.author.id == "973731082136592454"){
     if(!message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
-    const command = args.shift().toLowerCase()
-
     if(command == "shut"){
         message.reply("language")
     }
@@ -1689,18 +1700,15 @@ client.on("messageCreate", message =>{
 
 // bad language response from anywhere in message
 // client.on("messageCreate", message =>{
-
-//     const args = message.content.slice(prefix.length).split(/ +/)
-//     const command = args.shift().toLowerCase()
-
-//     const badWord = ["fucking", "fuck", "bitch", "damn"]
-
+//     if(message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 //     if(message.author.id == "956345939130482750") return
+
+//     const badWord = ["fuck", "bitch", "damn", "shit"]
+
 //     for (var i = 0; i < badWord.length; i++) {
 //         const index = message.content.indexOf(badWord[i])
 //         if (index !== -1) {
-
-//             message.reply("language")
+//             message.reply("language!")
 //             break
 //         }
 //     }

@@ -18,8 +18,8 @@ module.exports.data = new SlashCommandBuilder()
 module.exports.run = (client, interaction, options) => {
     let inquiry = options.getString("question")
 
-    let responsevalues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    let response = RandArray(responsevalues)
+    const responsevalues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    const response = RandArray(responsevalues)
 
     if(response == "1"){
         const Embed = new MessageEmbed()
