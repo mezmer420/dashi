@@ -4,7 +4,7 @@ module.exports = {
     execute(message, sleep){
         async function goodnight() {
             message.channel.sendTyping()
-            await sleep(Math.floor(Math.random() * 1000) + 1001)
+            await sleep(Math.floor(Math.random() * 0) + 1001)
             message.channel.send("goodnight 😴 🛌 💤 🌛 don't let the bed bugs bite")
         }
         goodnight()
