@@ -26,6 +26,6 @@ module.exports.run = (client, interaction, options) => {
     const randomnumber = getRandomIntInclusive(num1, num2)
 
     interaction.editReply({ 
-        content: `**${randomnumber}** (from ${num1} to ${num2})`
+        content: `From ${num1} to ${num2}, I choose... **${randomnumber}**`
     })
 }
