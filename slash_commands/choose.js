@@ -69,61 +69,61 @@ module.exports.run = (client, interaction, options) => {
 
     if(response == choice1){
         return interaction.editReply({
-            content: `${choice1}`
+            content: `I choose... **${choice1}**!`
         })
     }
 
     else if(response == choice2){
         return interaction.editReply({
-            content: `${choice2}`
+            content: `I choose... **${choice2}**!`
         })
     }
 
     else if(response == choice3){
         return interaction.editReply({
-            content: `${choice3}`
+            content: `I choose... **${choice3}**!`
         })
     }
 
     else if(response == choice4){
         return interaction.editReply({
-            content: `${choice4}`
+            content: `I choose... **${choice4}**!`
         })
     }
 
     else if(response == choice5){
         return interaction.editReply({
-            content: `${choice5}`
+            content: `I choose... **${choice5}**!`
         })
     }
 
     else if(response == choice6){
         return interaction.editReply({
-            content: `${choice6}`
+            content: `I choose... **${choice6}**!`
         })
     }
 
     else if(response == choice7){
         return interaction.editReply({
-            content: `${choice7}`
+            content: `I choose... **${choice7}**!`
         })
     }
 
     else if(response == choice8){
         return interaction.editReply({
-            content: `${choice8}`
+            content: `I choose... **${choice8}**!`
         })
     }
 
     else if(response == choice9){
         return interaction.editReply({
-            content: `${choice9}`
+            content: `I choose... **${choice9}**!`
         })
     }
 
     else if(response == choice10){
         return interaction.editReply({
-            content: `${choice10}`
+            content: `I choose... **${choice10}**!`
         })
     }
 }
