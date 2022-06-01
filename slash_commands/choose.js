@@ -52,7 +52,7 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The 10th thing to choose from"))
 
 
-module.exports.run = (client, interaction, options) => {
+module.exports.run = async (client, interaction, options) => {
     const choice1 = options.getString("1st")
     const choice2 = options.getString("2nd")
     const choice3 = options.getString("3rd")
@@ -68,61 +68,61 @@ module.exports.run = (client, interaction, options) => {
     const response = RandArray(responsevalues)
 
     if(response == choice1){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice1}**`
         })
     }
 
     else if(response == choice2){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice2}**`
         })
     }
 
     else if(response == choice3){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice3}**`
         })
     }
 
     else if(response == choice4){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice4}**`
         })
     }
 
     else if(response == choice5){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice5}**`
         })
     }
 
     else if(response == choice6){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice6}**`
         })
     }
 
     else if(response == choice7){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice7}**`
         })
     }
 
     else if(response == choice8){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice8}**`
         })
     }
 
     else if(response == choice9){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice9}**`
         })
     }
 
     else if(response == choice10){
-        return interaction.editReply({
+        await interaction.editReply({
             content: `I choose... **${choice10}**`
         })
     }

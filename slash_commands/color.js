@@ -16,61 +16,61 @@ module.exports.run = async (client, interaction) => {
     const randomcolor = RandArray(colors)
 
     if(randomcolor == "red"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "red"
         })
     }
 
     else if(randomcolor == "orange"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "orange"
         })
     }
 
     else if(randomcolor == "yellow"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "yellow"
         })
     }
 
     else if(randomcolor == "green"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "green"
         })
     }
 
     else if(randomcolor == "blue"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "blue"
         })
     }
 
     else if(randomcolor == "indigo"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "indigo"
         })
     }
 
     else if(randomcolor == "violet"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "violet"
         })
     }
 
     else if(randomcolor == "purple"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "purple"
         })
     }
 
     else if(randomcolor == "cyan"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "cyan"
         })
     }
 
     else if(randomcolor == "magenta"){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "magenta"
         })
     }

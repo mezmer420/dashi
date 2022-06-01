@@ -21,19 +21,19 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     }
 
     if(getUser.wallet >= 1000 && getUser.bank < 1000){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao"
         })
     }
 
     else if(getUser.wallet < 1000 && getUser.bank >= 1000){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your bank; what are you doing begging lmao"
         })
     }
 
     else if(getUser.wallet >= 1000 && getUser.bank >= 1000){
-        return interaction.editReply({
+        await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao"
         })
     }
@@ -52,7 +52,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 command: "beg"
             })
         
-            return interaction.editReply({
+            await interaction.editReply({
                 content: `You recieved **${coins_earned}** Dashcoins:tm:!`
             })
         }
@@ -68,7 +68,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 command: "beg"
             })
         
-            return interaction.editReply({
+            await interaction.editReply({
                 content: `Woah, was that MrBeast? You recieved **${coins_earned}** Dashcoins:tm:!`
             })
         }
@@ -80,7 +80,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 command: "beg"
             })
         
-            return interaction.editReply({
+            await interaction.editReply({
                 content: "Unfortunately, nobody donated you anything. Better luck next time."
             })
         }

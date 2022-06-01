@@ -21,7 +21,7 @@ module.exports.run = async (client, interaction) => {
         .setTitle("Basketball")
         .setDescription("shoot hoops")
         .setImage("https://artwork.espncdn.com/categories/cd70a58e-a830-330c-93ed-52360b51b632/1x1Feature/1440_201903062023.jpg")
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [Embed]
         })
     }
@@ -32,7 +32,7 @@ module.exports.run = async (client, interaction) => {
         .setTitle("Football")
         .setDescription("throw it even though called football")
         .setImage("https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/utepathletics.com/images/2021/6/24/DSC04844.jpg")
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [Embed]
         })
     }
@@ -43,7 +43,7 @@ module.exports.run = async (client, interaction) => {
         .setTitle("Baseball")
         .setDescription("hit with stick or something")
         .setImage("https://i.kym-cdn.com/entries/icons/original/000/018/603/Baseball_(crop).jpg")
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [Embed]
         })
     }
@@ -54,7 +54,7 @@ module.exports.run = async (client, interaction) => {
         .setTitle("Golf Ball")
         .setDescription("swing at it to try to get in hole")
         .setImage("https://golf.com/wp-content/uploads/2021/01/CallawayChromeSoftX20JonRahm.jpg")
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [Embed]
         })
     }

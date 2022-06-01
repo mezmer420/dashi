@@ -38,6 +38,7 @@ const config = require("./config.json")
 require("./slash-register")(true)
 
 const prefix = ""
+// const args = message.content.slice(prefix.length).split(/ +/)
 
 // welc, cons, anno, vot, self, cour, semi, gove, mee6, imag, vide, argu, game, role, funq, hydr, vtts, mtts, ctts, dtts
 // const blacklistedchannel = [
@@ -446,9 +447,9 @@ client.on("interactionCreate", async interaction => {
 
 // general responses for everyone
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "rainbow dash"){
@@ -842,10 +843,16 @@ client.on("messageCreate", async message =>{
 
 // general commands for everyone
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
+
+    const emojifyWord = "!emojify"
+
+    if(command == "!emojify"){
+        client.commands.get("!emojify").execute(message, emojifyWord)
+    }
 
     if(command == "!servers"){
         client.commands.get("!servers").execute(client, message)
@@ -854,9 +861,9 @@ client.on("messageCreate", message =>{
 
 // pony embeds (only i can use)
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
     
     if(command == "!twilight"){
@@ -1015,9 +1022,9 @@ client.on("messageCreate", message =>{
 
 // waifu (yuri) embeds (only vcash and i can use)
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!waifu"){
@@ -1368,7 +1375,7 @@ client.on("messageCreate", message =>{
 
 // obsessed with d
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     const ddd = ["ddd"]
 
@@ -1386,9 +1393,9 @@ client.on("messageCreate", async message =>{
 
 // commands for government
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!france"){
@@ -1398,9 +1405,9 @@ client.on("messageCreate", message =>{
 
 // if non-government tries to use @everyone or @here
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "@everyone"){
@@ -1416,7 +1423,7 @@ client.on("messageCreate", message =>{
 
 // say anything (only i can use), can be used in any channel
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot) return
+    if(message.channel.type == "DM" || message.author.bot) return
 
     const sayWord = "!!s"
 
@@ -1431,9 +1438,9 @@ client.on("messageCreate", message =>{
 
 // commands for mezmer420
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || !message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "qwert"){
@@ -1461,7 +1468,7 @@ client.on("messageCreate", async message =>{
 client.on("messageCreate", async message => {
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(message.author.id == "527285622809952256"){
@@ -1473,7 +1480,7 @@ client.on("messageCreate", async message => {
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!spamvcash" || command == "!stopspamvcash"){
@@ -1491,7 +1498,7 @@ client.on("messageCreate", message =>{
 client.on("messageCreate", async message => {
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(message.author.id == "527285622809952256"){
@@ -1503,7 +1510,7 @@ client.on("messageCreate", async message => {
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!spam422" || command == "!stopspam422"){
@@ -1521,7 +1528,7 @@ client.on("messageCreate", message =>{
 client.on("messageCreate", async message => {
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
@@ -1533,7 +1540,7 @@ client.on("messageCreate", async message => {
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!spamspedy" || command == "!stopspamspedy"){
@@ -1551,7 +1558,7 @@ client.on("messageCreate", message =>{
 client.on("messageCreate", async message => {
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
@@ -1563,7 +1570,7 @@ client.on("messageCreate", async message => {
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
 
-    const args = message.content.slice(prefix.length).split(/ +/)
+    const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
     if(command == "!cock" || command == "!stopcock"){
@@ -1580,9 +1587,9 @@ client.on("messageCreate", message =>{
 // commands for mezmer420 and vcash
 // client.on("messageCreate", message =>{
 //     if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244") {
-//     if(!message.content.startsWith(prefix) || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+//     if(message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-//     const args = message.content.slice(prefix.length).split(/ +/)
+//     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
     
@@ -1592,9 +1599,9 @@ client.on("messageCreate", message =>{
 // commands for boomer bot
 // client.on("messageCreate", message =>{
 //     if(message.author.id == "969084144141344788") {
-//     if(!message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+//     if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-//     const args = message.content.slice(prefix.length).split(/ +/)
+//     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
 //     if(command == "how"){
@@ -1628,7 +1635,7 @@ client.on("messageCreate", message =>{
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
     if(message.author.id == "973731082136592454"){
-    if(!message.content.startsWith(prefix) || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     if(command == "shut"){
         message.reply("language")
@@ -1639,7 +1646,7 @@ client.on("messageCreate", message =>{
 // respond to everything someone says
 // client.on("messageCreate", message =>{
 //     if(message.author.id == "idofvictim") {
-//     if(!message.content.startsWith(prefix) || message.author.bot) return
+//     if(message.author.bot) return
 
 
 // }
@@ -1660,7 +1667,7 @@ client.on("messageCreate", message =>{
 
 // client.on("messageCreate", message =>{
 
-//     const args = message.content.slice(prefix.length).split(/ +/)
+//     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
 //     if(command == "i'm" || command == "im"){
@@ -1680,7 +1687,7 @@ client.on("messageCreate", message =>{
 // dad bot anywhere in message
 // client.on("messageCreate", message =>{
 
-//     const args = message.content.slice(prefix.length).split(/ +/)
+//     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
 //     const imWord = ["i'm", "I'm", "i'M", "I'M", "im", "Im", "iM", "IM"]
@@ -1716,9 +1723,9 @@ client.on("messageCreate", message =>{
 
 // dm winner
 // client.on("messageCreate", message =>{
-//     if(!message.content.startsWith(prefix) || message.author.bot || message.author.id == "762133129209053244") return
+//     if(message.author.bot || message.author.id == "762133129209053244") return
 
-//     const args = message.content.slice(prefix.length).split(/ +/)
+//     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
 //     if(command == "idecay"){

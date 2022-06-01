@@ -44,7 +44,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
     .setColor("GREEN")
     .setThumbnail(member.user.avatarURL())
 
-    return interaction.editReply({
+    await interaction.editReply({
         embeds: [embed]
     })
 }

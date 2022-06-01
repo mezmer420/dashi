@@ -9,7 +9,7 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The user to manage")
     .setRequired(true))
 
-module.exports.run = (client, interaction, options) => {
+module.exports.run = async (client, interaction, options) => {
     let permissions = interaction.member.permissions
     if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({content: "you don't have sufficient perms!"})
     
@@ -41,7 +41,7 @@ module.exports.run = (client, interaction, options) => {
                     .setCustomId(`kick-${member.id}`)]
             )
         
-            return interaction.editReply({
+            await interaction.editReply({
                 embeds: [embed],
                 components: [row]
             })

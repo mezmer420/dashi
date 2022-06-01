@@ -4,8 +4,8 @@ module.exports.data = new SlashCommandBuilder()
 .setName("ping")
 .setDescription('Says "Pong!"')
 
-module.exports.run = (client, interaction) => {
-    interaction.editReply({ 
+module.exports.run = async (client, interaction) => {
+    await interaction.editReply({ 
         content: "Pong!"
     })
 }

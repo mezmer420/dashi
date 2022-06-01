@@ -10,7 +10,7 @@ module.exports.run = async (client, interaction) => {
     .setColor("#9BDBF5")
     .setTitle("speedychoc dialect")
     .addField("`e`\n—————", "<@691727350051635262> x <@826841451945787412> ")
-    return interaction.editReply({
+    await interaction.editReply({
         embeds: [speedychocEmbed]
     }) 
 }

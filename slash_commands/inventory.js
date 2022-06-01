@@ -23,7 +23,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -35,7 +35,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -47,7 +47,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -59,7 +59,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -71,7 +71,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -83,7 +83,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -95,7 +95,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -107,7 +107,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -119,7 +119,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -131,7 +131,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -143,7 +143,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -155,7 +155,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -167,7 +167,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -179,7 +179,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -191,7 +191,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -203,7 +203,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -215,7 +215,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -227,7 +227,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -239,7 +239,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -251,7 +251,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -263,7 +263,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -275,7 +275,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -287,7 +287,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -299,7 +299,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -311,7 +311,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -323,7 +323,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -335,7 +335,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -347,7 +347,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -359,7 +359,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -371,7 +371,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -383,7 +383,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }
@@ -395,7 +395,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     
-        return interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }

@@ -22,7 +22,7 @@ module.exports.run = async (client, interaction, options) => {
 
     user.send(message)
 
-    return interaction.editReply({
+    await interaction.editReply({
         content: `**${message}** successsfully sent to **${user}**! (this message will autodelete)`
     })
     .then(interaction => {

@@ -51,7 +51,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             })
         }
     
-        return interaction.editReply({
+        await interaction.editReply({
             content: `You earned **${coins_earned}** Dashcoins:tm:!`
         })
     }
@@ -81,7 +81,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             })
         }
     
-        return interaction.editReply({
+        await interaction.editReply({
             content: "Unfortunately, you had a bad day and couldn't work."
         })
     }
