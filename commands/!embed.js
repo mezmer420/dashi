@@ -8,8 +8,8 @@ module.exports = {
             message.delete()
             const Embed = new MessageEmbed()
             .setColor("#9BDBF5")
-            .setTitle("General Update")
-            .addField("New feature: simulated typing\nCertain responses are now delayed and utilize the `GUILD_MESSAGE_TYPING` intent to simulate me typing!", "ask <@527285622809952256> questions regarding me")
+            .setTitle("Case #4 — IN RECESS")
+            .addField("choc versus rock", "Punishment Appeal")
             return message.channel.send({
                 embeds: [Embed]
             })
