@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("User to view the avatar of"))
 
 module.exports.run = (client, interaction, options) => {
-    constmember = options.getMember("user")
+    const member = options.getMember("user")
     let avatar = member.displayAvatarURL({dynamic: true, size: 4096})
 
     const embed = new MessageEmbed()
