@@ -16,12 +16,20 @@ for(const file of commandFiles){
     client.commands.set(command.name, command)
 }
 
-client.embeds = new Discord.Collection()
-const embedFiles = fs.readdirSync("./embeds/").filter(file => file.endsWith(".js"))
-for(const file of embedFiles){
-    const embed = require(`./embeds/${file}`)
+client.carembeds = new Discord.Collection()
+const carembedFiles = fs.readdirSync("./embeds/car_embeds/").filter(file => file.endsWith(".js"))
+for(const file of carembedFiles){
+    const carembed = require(`./embeds/car_embeds/${file}`)
 
-    client.embeds.set(embed.name, embed)
+    client.carembeds.set(carembed.name, carembed)
+}
+
+client.yuriembeds = new Discord.Collection()
+const yuriembedFiles = fs.readdirSync("./embeds/yuri_embeds/").filter(file => file.endsWith(".js"))
+for(const file of yuriembedFiles){
+    const yuriembed = require(`./embeds/yuri_embeds/${file}`)
+
+    client.yuriembeds.set(yuriembed.name, yuriembed)
 }
 
 client.once("ready", () => {
@@ -61,7 +69,7 @@ client.on("messageCreate", message =>{
 
 })
 
-// !car embed command for everyone
+// !car command for everyone
 client.on("messageCreate", message =>{
 
     const args = message.content.slice(prefix.length).split(/ +/)
@@ -75,11 +83,11 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring1"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("toyotacamry").execute(message, Discord)
+        client.carembeds.get("toyotacamry").execute(message, Discord)
     }
     if(command == "!toyotacamry"){
         if(message.author.id == "762133129209053244"){
-            client.embeds.get("toyotacamry").execute(message, Discord)
+            client.carembeds.get("toyotacamry").execute(message, Discord)
         }
         else {
             message.reply("only vcash can use that command! (for debugging purposes obviously)")
@@ -89,11 +97,191 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring2"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("supra").execute(message, Discord)
+        client.carembeds.get("supra").execute(message, Discord)
     }
     if(command == "!supra"){
         if(message.author.id == "762133129209053244"){
-            client.embeds.get("supra").execute(message, Discord)
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+})
+
+// !yuri command for everyone
+client.on("messageCreate", message =>{
+
+    const args = message.content.slice(prefix.length).split(/ +/)
+    const command = args.shift().toLowerCase()
+    
+    if(command == "!yuri"){
+        client.commands.get("!yuri").execute(message, RandArray)
+    }
+    
+    
+    if(message.content == "randomstring1"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("toyotacamry").execute(message, Discord)
+    }
+    if(command == "!toyotacamry"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("toyotacamry").execute(message, Discord)
         }
         else {
             message.reply("only vcash can use that command! (for debugging purposes obviously)")
@@ -103,11 +291,165 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring2"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("supra").execute(message, Discord)
+        client.carembeds.get("supra").execute(message, Discord)
     }
     if(command == "!supra"){
         if(message.author.id == "762133129209053244"){
-            client.embeds.get("supra").execute(message, Discord)
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
+        }
+        else {
+            message.reply("only vcash can use that command! (for debugging purposes obviously)")
+        }
+    }
+
+    if(message.content == "randomstring3"){
+        if(!message.author.bot) return
+        message.delete()
+        client.carembeds.get("supra").execute(message, Discord)
+    }
+    if(command == "!supra"){
+        if(message.author.id == "762133129209053244"){
+            client.carembeds.get("supra").execute(message, Discord)
         }
         else {
             message.reply("only vcash can use that command! (for debugging purposes obviously)")
@@ -116,7 +458,7 @@ client.on("messageCreate", message =>{
 })
 
 
-// !dog embed command for everyone
+// !dog carembed command for everyone
 client.on("messageCreate", message =>{
 
     const args = message.content.slice(prefix.length).split(/ +/)
@@ -242,7 +584,7 @@ client.login(config.token)
 
 
 
-// !dog embed command for everyone
+// !dog carembed command for everyone
 client.on("messageCreate", message =>{
 
     const args = message.content.slice(prefix.length).split(/ +/)
@@ -255,11 +597,11 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring1"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("englishbulldog").execute(message, Discord)
+        client.carembeds.get("englishbulldog").execute(message, Discord)
     }
     if(command == "!englishbulldog"){
         if(message.author.id == "826841451945787412"){
-            client.embeds.get("englishbulldog").execute(message, Discord)
+            client.carembeds.get("englishbulldog").execute(message, Discord)
         }
         else {
             message.reply("only choc can use that command")
@@ -269,11 +611,11 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring2"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("dog2").execute(message, Discord)
+        client.carembeds.get("dog2").execute(message, Discord)
     }
     if(command == "!dog2"){
         if(message.author.id == "826841451945787412"){
-            client.embeds.get("dog2").execute(message, Discord)
+            client.carembeds.get("dog2").execute(message, Discord)
         }
         else {
             message.reply("only choc can use that command")
@@ -283,11 +625,11 @@ client.on("messageCreate", message =>{
     if(message.content == "randomstring3"){
         if(!message.author.bot) return
         message.delete()
-        client.embeds.get("dog3").execute(message, Discord)
+        client.carembeds.get("dog3").execute(message, Discord)
     }
     if(command == "!dog3"){
         if(message.author.id == "826841451945787412"){
-            client.embeds.get("dog3").execute(message, Discord)
+            client.carembeds.get("dog3").execute(message, Discord)
         }
         else {
             message.reply("only choc can use that command")

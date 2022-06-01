@@ -31,7 +31,7 @@ const client = new Discord.Client({
     // ],
     partials: ["USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION"]
     // partials: ["USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "GUILD_SCHEDULED_EVENT"]
-});
+})
 
 const config = require("./config.json")
 
@@ -1030,7 +1030,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri1").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri1"){
+    if(command == "!waifu1"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri1").execute(message, Discord)
         }
@@ -1047,7 +1047,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri2").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri2"){
+    if(command == "!waifu2"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri2").execute(message, Discord)
         }
@@ -1064,7 +1064,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri3").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri3"){
+    if(command == "!waifu3"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri3").execute(message, Discord)
         }
@@ -1081,7 +1081,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri4").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri4"){
+    if(command == "!waifu4"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri4").execute(message, Discord)
         }
@@ -1098,7 +1098,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri5").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri5"){
+    if(command == "!waifu5"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri5").execute(message, Discord)
         }
@@ -1115,7 +1115,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri6").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri6"){
+    if(command == "!waifu6"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri6").execute(message, Discord)
         }
@@ -1132,7 +1132,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri7").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri7"){
+    if(command == "!waifu7"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri7").execute(message, Discord)
         }
@@ -1149,7 +1149,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri8").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri8"){
+    if(command == "!waifu8"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri8").execute(message, Discord)
         }
@@ -1166,7 +1166,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri9").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri9"){
+    if(command == "!waifu9"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri9").execute(message, Discord)
         }
@@ -1183,7 +1183,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri10").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri10"){
+    if(command == "!waifu10"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri10").execute(message, Discord)
         }
@@ -1200,7 +1200,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri11").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri11"){
+    if(command == "!waifu11"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri11").execute(message, Discord)
         }
@@ -1217,7 +1217,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri12").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri12"){
+    if(command == "!waifu12"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri12").execute(message, Discord)
         }
@@ -1234,7 +1234,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri13").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri13"){
+    if(command == "!waifu13"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri13").execute(message, Discord)
         }
@@ -1251,7 +1251,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri14").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri14"){
+    if(command == "!waifu14"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri14").execute(message, Discord)
         }
@@ -1268,7 +1268,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri15").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri15"){
+    if(command == "!waifu15"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri15").execute(message, Discord)
         }
@@ -1285,7 +1285,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri16").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri16"){
+    if(command == "!waifu16"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri16").execute(message, Discord)
         }
@@ -1302,7 +1302,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri17").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri17"){
+    if(command == "!waifu17"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri17").execute(message, Discord)
         }
@@ -1319,7 +1319,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri18").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri18"){
+    if(command == "!waifu18"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri18").execute(message, Discord)
         }
@@ -1336,7 +1336,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri19").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri19"){
+    if(command == "!waifu19"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri19").execute(message, Discord)
         }
@@ -1353,7 +1353,7 @@ client.on("messageCreate", message =>{
         client.yuriembeds.get("Yuri20").execute(message, Discord)
         message.delete()
     }
-    if(command == "!yuri20"){
+    if(command == "!waifu20"){
         if(message.author.id == "527285622809952256"){
             client.yuriembeds.get("Yuri20").execute(message, Discord)
         }
@@ -1424,9 +1424,9 @@ client.on("messageCreate", message =>{
         client.commands.get("!!s").execute(message, sayWord)
     }
 
-    // if(message.content.startsWith("!embed")){
-    //     client.commands.get("!embed").execute(message)
-    // }
+    if(message.content.startsWith("!embed")){
+        client.commands.get("!embed").execute(message)
+    }
 })
 
 // commands for mezmer420

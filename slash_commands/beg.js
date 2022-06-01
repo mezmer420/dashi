@@ -20,25 +20,25 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
-    if(getUser.wallet >= 100 && getUser.bank < 100){
+    if(getUser.wallet >= 1000 && getUser.bank < 1000){
         return interaction.editReply({
-            content: "bruh you have over 100 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao"
+            content: "bruh you have over 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao"
         })
     }
 
-    else if(getUser.wallet < 100 && getUser.bank >= 100){
+    else if(getUser.wallet < 1000 && getUser.bank >= 1000){
         return interaction.editReply({
-            content: "bruh you have over 100 Dashcoins:tm: in your bank; what are you doing begging lmao"
+            content: "bruh you have over 1000 Dashcoins:tm: in your bank; what are you doing begging lmao"
         })
     }
 
-    else if(getUser.wallet >= 100 && getUser.bank >= 100){
+    else if(getUser.wallet >= 1000 && getUser.bank >= 1000){
         return interaction.editReply({
-            content: "bruh you have over 100 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao"
+            content: "bruh you have over 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao"
         })
     }
 
-    else if(getUser.wallet < 100 && getUser.bank < 100){
+    else if(getUser.wallet < 1000 && getUser.bank < 1000){
         const randomvalue = Math.floor(Math.random() * 100)
 
         if(randomvalue >= 20){

@@ -9,7 +9,7 @@ function RandArray(array){
 
 module.exports.data = new SlashCommandBuilder()
 .setName("choose")
-.setDescription("Dashi will choose something for you")
+.setDescription("I will choose something for you")
 .addStringOption(option => option
     .setName("1st")
     .setRequired(true)
