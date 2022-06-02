@@ -849,7 +849,6 @@ client.on("messageCreate", message =>{
     const command = args.shift().toLowerCase()
 
     const emojifyWord = "!emojify"
-
     if(command == "!emojify"){
         client.commands.get("!emojify").execute(message, emojifyWord)
     }
@@ -1464,19 +1463,19 @@ client.on("messageCreate", async message =>{
     }
 })
 
-// spam vcash (only i can use)
+// spam vcash (only i and choc can use)
 client.on("messageCreate", async message => {
     if(message.channel.type == "DM") return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(message.author.id == "527285622809952256"){
+    if(message.author.id == "527285622809952256" || message.author.id == "826841451945787412"){
         client.commands.get("!spamvcash").execute(message, command)
 }
 })
 
-// response to non-me who try to use spamvcash commands
+// response to non-me-or-choc who try to use spamvcash commands
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
 
@@ -1484,8 +1483,8 @@ client.on("messageCreate", message =>{
     const command = args.shift().toLowerCase()
 
     if(command == "!spamvcash" || command == "!stopspamvcash"){
-        if(message.author.id == "527285622809952256") return
-        message.reply("only mezmer420 can use that command! (these messages will autodelete)")
+        if(message.author.id == "527285622809952256" || message.author.id == "826841451945787412") return
+        message.reply("only mezmer420 and choc can use that command! (these messages will autodelete)")
         .then(msg => {
             setTimeout(() => message.delete(), 6000)
             setTimeout(() => msg.delete(), 6000)
@@ -1637,8 +1636,25 @@ client.on("messageCreate", message =>{
     if(message.author.id == "973731082136592454"){
     if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
-    if(command == "shut"){
-        message.reply("language")
+    const args = message.content.split(/ +/)
+    const command = args.shift().toLowerCase()
+
+    // if(command == "shut"){
+    //     message.reply("language")
+    // }
+
+    // if(command == "oki"){
+    //     message.reply("uwu owo")
+    // }
+
+    const badWord = ["fuck", "bitch", "damn", "shit"]
+
+    for (var i = 0; i < badWord.length; i++) {
+        const index = message.content.indexOf(badWord[i])
+        if (index !== -1) {
+            message.reply("language!")
+            break
+        }
     }
 }
 })
