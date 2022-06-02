@@ -1,6 +1,6 @@
 module.exports = {
     name: "!spamvcash",
-    description: "spam vcash script, only i can use",
+    description: "spam vcash script, only i and choc can use",
     execute(message, command){
         if(message.channel.id == "945527434655187006"){
             switch (message.content) {
