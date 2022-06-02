@@ -16,7 +16,7 @@ module.exports.run = async (client, interaction, options) => {
         const vcashEmbed = new MessageEmbed()
         .setColor("#FFA500")
         .setTitle("vcash dialect")
-        .addField("`ballsL\n\nel mao\n\nkL\n\nle mao\n\npeeL\n\ntoyota\n\ntoyot\n\nxt`\n—————", "<@762133129209053244>")
+        .addField("`ballsL\n\nel mao\n\nle mao\n\ntoyota\n\ntoyot\n\nxt`\n—————", "<@762133129209053244>")
         await interaction.editReply({
             embeds: [vcashEmbed]
         })
@@ -26,7 +26,7 @@ module.exports.run = async (client, interaction, options) => {
         const mezmerEmbed = new MessageEmbed()
         .setColor("#0096FF")
         .setTitle("mezmer dialect")
-        .addField("`ecks dee\n\nhmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nomegaL\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
+        .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nomegaL\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
         await interaction.editReply({
             embeds: [mezmerEmbed]
         })
@@ -56,7 +56,7 @@ module.exports.run = async (client, interaction, options) => {
         const deltaEmbed = new MessageEmbed()
         .setColor("PURPLE")
         .setTitle("delta airlines dialect")
-        .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nmediumL\n\nr\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
+        .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nmediumL\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
         await interaction.editReply({
             embeds: [deltaEmbed]
         })
