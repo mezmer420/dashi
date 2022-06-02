@@ -89,36 +89,20 @@ const hydr = "955689401688682526"
 
 const fs = require("fs")
 
-client.commands = new Discord.Collection()
-const commandFiles = fs.readdirSync("./commands/").filter(file => file.endsWith(".js"))
-for(const file of commandFiles){
-    const command = require(`./commands/${file}`)
+client.responses = new Discord.Collection()
+const responseFiles = fs.readdirSync("./responses/general/").filter(file => file.endsWith(".js"))
+for(const file of responseFiles){
+    const response = require(`./responses/general/${file}`)
 
-    client.commands.set(command.name, command)
+    client.responses.set(response.name, response)
 }
 
 client.dialects = new Discord.Collection()
-const dialectFiles = fs.readdirSync("./dialects/").filter(file => file.endsWith(".js"))
+const dialectFiles = fs.readdirSync("./responses/dialects/").filter(file => file.endsWith(".js"))
 for(const file of dialectFiles){
-    const dialect = require(`./dialects/${file}`)
+    const dialect = require(`./responses/dialects/${file}`)
 
     client.dialects.set(dialect.name, dialect)
-}
-
-client.ponyembeds = new Discord.Collection()
-const ponyembedFiles = fs.readdirSync("./embeds/pony_embeds/").filter(file => file.endsWith(".js"))
-for(const file of ponyembedFiles){
-    const ponyembed = require(`./embeds/pony_embeds/${file}`)
-
-    client.ponyembeds.set(ponyembed.name, ponyembed)
-}
-
-client.yuriembeds = new Discord.Collection()
-const yuriembedFiles = fs.readdirSync("./embeds/yuri_embeds/").filter(file => file.endsWith(".js"))
-for(const file of yuriembedFiles){
-    const yuriembed = require(`./embeds/yuri_embeds/${file}`)
-
-    client.yuriembeds.set(yuriembed.name, yuriembed)
 }
 
 // random picker function
@@ -134,10 +118,15 @@ function sleep(ms) {
 }
 
 client.on("ready", async () => {
+    let handler = require("./command-handler")
+    if (handler.default) handler = handler.default
+
+    handler(client)
+
     await Economy.sync()
     await workCooldown.sync()
     await begCooldown.sync()
-    await robCooldown.sync().then(console.log("Synced"))
+    await robCooldown.sync().then(console.log("Database synced"))
 
     const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
     if (!dashiuser){
@@ -158,7 +147,6 @@ client.on("ready", async () => {
     // await Economy.destroy({where: {id: "762133129209053244"}})
     // const getUser = await Economy.findOne({where: {id: "826841451945787412"}})
     // console.log(getUser)
-
 })
 
 const {Economy, workCooldown, begCooldown, robCooldown} = require("./database")
@@ -479,7 +467,7 @@ client.on("messageCreate", async message =>{
     if(command == "why"){
         if(message.author.id == "527285622809952256") return
         if(!message.content.startsWith("why not")){
-            client.commands.get("saywhynot").execute(message, sleep)
+            client.responses.get("saywhynot").execute(message, sleep)
         }
         else {
             message.channel.sendTyping()
@@ -489,15 +477,15 @@ client.on("messageCreate", async message =>{
     }
 
     if(command == "igues"){
-        client.commands.get("sayuncertaintydetected").execute(message, sleep)
+        client.responses.get("sayuncertaintydetected").execute(message, sleep)
     }
 
     if(command == "iges"){
-        client.commands.get("sayuncertaintydetected").execute(message, sleep)
+        client.responses.get("sayuncertaintydetected").execute(message, sleep)
     }
 
     if(command == "igs"){
-        client.commands.get("sayuncertaintydetected").execute(message, sleep)
+        client.responses.get("sayuncertaintydetected").execute(message, sleep)
     }
 
     if(command == "rick"){
@@ -505,25 +493,25 @@ client.on("messageCreate", async message =>{
     }
     
     if(message.content == "bruh"){
-        client.commands.get("saymoment").execute(message, sleep)
+        client.responses.get("saymoment").execute(message, sleep)
     }
 
     if(command == "bruh"){
         if(message.content == "bruh") return
-        client.commands.get("saybruhmoment").execute(message, sleep)
+        client.responses.get("saybruhmoment").execute(message, sleep)
     }
 
     if(message.content == "mug"){
-        client.commands.get("saymoment").execute(message, sleep)
+        client.responses.get("saymoment").execute(message, sleep)
     }
 
     if(command == "mug"){
         if(message.content == "mug") return
-        client.commands.get("saymugmoment").execute(message, sleep)
+        client.responses.get("saymugmoment").execute(message, sleep)
     }
     
     if(command == "k"){
-        client.commands.get("saylackcare").execute(message, sleep)
+        client.responses.get("saylackcare").execute(message, sleep)
     }
 
     if(command == "kk"){
@@ -539,15 +527,15 @@ client.on("messageCreate", async message =>{
     }
 
     if(command == "caught"){
-        client.commands.get("caught").execute(message, sleep)
+        client.responses.get("caught").execute(message, sleep)
     }
 
     if(command == "goodnight"){
-        client.commands.get("saygoodnight").execute(message, sleep)
+        client.responses.get("saygoodnight").execute(message, sleep)
     }
     
     if(command == "silly"){
-        client.commands.get("silly").execute(message, sleep)
+        client.responses.get("silly").execute(message, sleep)
     }
 
     if(command == "😮"){
@@ -561,14 +549,6 @@ client.on("messageCreate", async message =>{
         await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("what you get from going to your favorite site")
     }
-
-    if(command == "!good"){
-        client.commands.get("!good").execute(message, sleep)
-    }
-
-    // if(command == "!dashi"){
-    //     message.channel.send("e")
-    // }
 
     if(command == "olc"){
         if(message.channel.id == "939674946953682976" || message.channel.id == "970859343849349160"){
@@ -603,27 +583,27 @@ client.on("messageCreate", async message =>{
     const reddit = "r/"
 
     if(message.content.startsWith(reddit)){
-        client.commands.get("reddit").execute(message, reddit)
+        client.responses.get("reddit").execute(message, reddit)
     }
 
     if(message.content == "hold up"){
-        client.commands.get("holup").execute(message)
+        client.responses.get("holup").execute(message)
     }
 
     if(message.content == "hold up"){
-        client.commands.get("holup").execute(message)
+        client.responses.get("holup").execute(message)
     }
 
     if(message.content == "hol up"){
-        client.commands.get("holup").execute(message)
+        client.responses.get("holup").execute(message)
     }
 
     if(message.content == "holdup"){
-        client.commands.get("holup").execute(message)
+        client.responses.get("holup").execute(message)
     }
 
     if(message.content == "holup"){
-        client.commands.get("holup").execute(message)
+        client.responses.get("holup").execute(message)
     }
 
     if(command == "yuri"){
@@ -643,731 +623,63 @@ client.on("messageCreate", async message =>{
             break
         }
     }
-
-// dialects
-    // vcash
-    if(command == "ballsl"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(message.content == "el mao"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "kl"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(message.content == "le mao"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "peel"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "toyota"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "toyot"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "xt"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    // mezmer
-    if(message.content == "ecks dee"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "hmok"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "idecay"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "ifusaiso"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(message.content == "le mayo"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "obsessed"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "omegal"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzer"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzr"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzerooni"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzeroni"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    // choc
-    if(command == "ifusaso"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "perty"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "ys"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "yss"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    //choc x spedy
-    if(command == "e"){
-        client.dialects.get("speedychocdialect").execute(message, sleep)
-    }
-
-    // speedy
-    if(command == "emoyi"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    if(command == "gf"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    if(command == "ues"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    // delta
-    if(command == "bigfunni"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "bigl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "bihl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "cockl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "ifusayso"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(message.content == "la mao"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "mediuml"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "megal"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "r"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "shut"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "tinyl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeeees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yews"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeews"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    // garrett
-    // if(command == "yo"){
-    //     client.dialects.get("garrettdialect").execute(message, sleep)
-    // }
-
-    // if(command == "dude"){
-    //     client.dialects.get("garrettdialect").execute(message, sleep)
-    // }
-    
-    // if(command == "funko"){
-    //     client.dialects.get("garrettdialect").execute(message, sleep)
-    // }
-
-    // if(command == "nft"){
-    //     client.dialects.get("garrettdialect").execute(message, sleep)
-    // }
 })
 
-// general commands for everyone
-client.on("messageCreate", message =>{
+// dialects
+client.on("messageCreate", message => {
     if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
-    const emojifyWord = "!emojify"
-    if(command == "!emojify"){
-        client.commands.get("!emojify").execute(message, emojifyWord)
-    }
+    const vcashdialect = ["ballsl", "el mao", "toyota", "toyot", "xt"]
+    const mezmerdialect = ["ecks dee", "hmok", "idecay", "ifusaiso", "obsessed", "omegal", "wowzer", "wowzr", "wowzerooni", "wowzeroni"]
+    const chocdialect = ["ifusaso", "perty", "ys", "yss"]
+    // const speedychocdialect = ["e"]
+    const speedydialect = ["emoyi", "gf", "ues"]
+    const deltadialect = ["bigfunni", "bigl", "cockl", "ifusayso", "la mao", "mediuml", "shut", "tinyl", "yees", "yeees", "yeeees", "yews", "yeews"]
 
-    if(command == "!servers"){
-        client.commands.get("!servers").execute(client, message)
-    }
-})
-
-// pony embeds (only i can use)
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-    
-    if(command == "!twilight"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("TwilightSparkle").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
+    for (var i = 0; i < vcashdialect.length; i++) {
+        const index = message.content.toLowerCase().indexOf(vcashdialect[i])
+        if (index !== -1) {
+            client.dialects.get("vcashdialect").execute(message, sleep)
+            break
         }
     }
 
-    if(command == "!rainbow"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("RainbowDash").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!aj"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("Applejack").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
+    for (var i = 0; i < mezmerdialect.length; i++) {
+        const index = message.content.toLowerCase().indexOf(mezmerdialect[i])
+        if (index !== -1) {
+            client.dialects.get("mezmerdialect").execute(message, sleep)
+            break
         }
     }
 
-    if(command == "!fluttershy"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("Fluttershy").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!rarity"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("Rarity").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
+    for (var i = 0; i < chocdialect.length; i++) {
+        const index = message.content.toLowerCase().indexOf(chocdialect[i])
+        if (index !== -1) {
+            client.dialects.get("chocdialect").execute(message, sleep)
+            break
         }
     }
 
-    if(command == "!pinkie"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("PinkiePie").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
+    if(command == "e"){
+        client.dialects.get("speedychocdialect").execute(message, sleep)
+    }
+
+    for (var i = 0; i < speedydialect.length; i++) {
+        const index = message.content.toLowerCase().indexOf(speedydialect[i])
+        if (index !== -1) {
+            client.dialects.get("speedydialect").execute(message, sleep)
+            break
         }
     }
 
-    if(command == "!celestia"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("PrincessCelestia").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!luna"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("PrincessLuna").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!cadance"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("PrincessCadance").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!starlight"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("StarlightGlimmer").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!sweetie"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("SweetieBelle").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!scootaloo"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("Scootaloo").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!applebloom"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("AppleBloom").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!shining"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("ShiningArmor").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!derpy"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("DerpyHooves").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!bigmac"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("BigMacintosh").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-
-    if(command == "!trixie"){
-        if(message.author.id == "527285622809952256"){
-            client.ponyembeds.get("Trixie").execute(message, Discord)
-        }
-        else {
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-    }
-})
-
-// waifu (yuri) embeds (only vcash and i can use)
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!waifu"){
-        client.commands.get("!waifu").execute(message, RandArray)
-    }
-
-
-    if(message.content == "q59u1enq8f"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri1").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu1"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri1").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "v5276j5lc5"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri2").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu2"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri2").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "h36qc00td7"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri3").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu3"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri3").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "l5rhtpoq7f"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri4").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu4"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri4").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "msgbefh79t"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri5").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu5"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri5").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "9p32ifvhwd"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri6").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu6"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri6").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "ubkw47qr1p"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri7").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu7"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri7").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "pupedixq5e"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri8").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu8"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri8").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "xjlcnmp71w"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri9").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu9"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri9").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "ow9yz77ral"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri10").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu10"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri10").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "3849o45dwt"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri11").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu11"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri11").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "e0nf688kip"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri12").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu12"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri12").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "0wwayn2ajj"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri13").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu13"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri13").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "3b5g3ty49b"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri14").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu14"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri14").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "j1an3w3zrk"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri15").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu15"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri15").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "doqhes3gj5"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri16").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu16"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri16").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "kcn4vronhr"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri17").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu17"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri17").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "cdezma2ron"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri18").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu18"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri18").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "fvyltdc89n"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri19").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu19"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri19").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
-        }
-    }
-
-    if(message.content == "3geu76bpo0"){
-        if(!message.author.bot) return
-        client.yuriembeds.get("Yuri20").execute(message, Discord)
-        message.delete()
-    }
-    if(command == "!waifu20"){
-        if(message.author.id == "527285622809952256"){
-            client.yuriembeds.get("Yuri20").execute(message, Discord)
-        }
-        else if(message.author.id == "762133129209053244"){
-            message.reply("only mezmer420 can use that command! (for debugging purposes obviously)")
-        }
-        else {
-            message.reply("bruh just use <@432610292342587392>'s $waifu commmand")
+    for (var i = 0; i < deltadialect.length; i++) {
+        const index = message.content.toLowerCase().indexOf(deltadialect[i])
+        if (index !== -1) {
+            client.dialects.get("deltadialect").execute(message, sleep)
+            break
         }
     }
 })
@@ -1390,21 +702,9 @@ client.on("messageCreate", async message =>{
     }
 })
 
-// commands for government
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!france"){
-        client.commands.get("!france").execute(message)
-    }
-})
-
 // if non-government tries to use @everyone or @here
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == funq || message.channel.id == hydr) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
@@ -1420,27 +720,53 @@ client.on("messageCreate", message =>{
     }
 })
 
-// say anything (only i can use), can be used in any channel
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.author.bot) return
-
-    const sayWord = "!!s"
-
-    if(message.content.startsWith(sayWord)){
-        client.commands.get("!!s").execute(message, sayWord)
-    }
-
-    if(message.content.startsWith("!embed")){
-        client.commands.get("!embed").execute(message)
-    }
-})
-
 // commands for mezmer420
 client.on("messageCreate", async message =>{
     if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
+
+    if(command == "!s"){
+        const sayWord = "!s"
+
+        if(message.author.id == "527285622809952256"){
+            for (var i = 0; i < sayWord.length; i++) {
+                const index = message.content.indexOf(sayWord[i])
+                if (index !== -1) {
+                    // add one to include the space
+                    const messagetosend = message.content.slice(index + sayWord[i].length + 1)
+                    const empty = ""
+                    if(messagetosend == empty){
+                        message.reply('specify what you want me to say! command format is "!s [message]"')
+                    }
+                    else {
+                        message.channel.send(`${messagetosend}`)
+                        // message.channel.send(`${messagetosend}`).then(sentMessage =>{
+                        //     sentMessage.react("1️⃣")
+                        //     sentMessage.react("2️⃣")
+                        //     sentMessage.react("3️⃣")
+                        //     sentMessage.react("4️⃣")
+                        //     sentMessage.react("5️⃣")
+                        //     sentMessage.react("6️⃣")
+                        //     sentMessage.react("7️⃣")
+                        // })
+                        message.delete()
+                    }
+                    break
+                }
+            }
+        }
+
+        else {
+            message.reply("only mezmer420 can use that command! (these messages will autodelete)")
+            .then(msg => {
+              setTimeout(() => message.delete(), 6000)
+              setTimeout(() => msg.delete(), 6000)
+            })
+            .catch()
+        }
+    }
 
     if(command == "qwert"){
         if(message.author.id !== "527285622809952256") return
@@ -1462,138 +788,6 @@ client.on("messageCreate", async message =>{
         message.channel.send("sowwy")
     }
 })
-
-// spam vcash (only i and choc can use)
-client.on("messageCreate", async message => {
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(message.author.id == "527285622809952256" || message.author.id == "826841451945787412"){
-        client.commands.get("!spamvcash").execute(message, command)
-}
-})
-
-// response to non-me-or-choc who try to use spamvcash commands
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!spamvcash" || command == "!stopspamvcash"){
-        if(message.author.id == "527285622809952256" || message.author.id == "826841451945787412") return
-        message.reply("only mezmer420 and choc can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-})
-
-// spam mezmer422 (only i can use)
-client.on("messageCreate", async message => {
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(message.author.id == "527285622809952256"){
-        client.commands.get("!spam422").execute(message, command)
-}
-})
-
-// response to non-me who try to use spam422 commands
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!spam422" || command == "!stopspam422"){
-        if(message.author.id == "527285622809952256") return
-        message.reply("only mezmer420 can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-})
-
-// spam speedy (me and vcash can use)
-client.on("messageCreate", async message => {
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
-        client.commands.get("!spamspedy").execute(message, command)
-}
-})
-
-// response to non-me-or-vcash who try to use spamspedy commands
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!spamspedy" || command == "!stopspamspedy"){
-        if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
-        message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-})
-
-// spam choc (me and vcash can use)
-client.on("messageCreate", async message => {
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
-        client.commands.get("!cock").execute(message, command)
-}
-})
-
-// response to non-me-or-vcash who try to use spamchoc commands
-client.on("messageCreate", message =>{
-    if(message.channel.type == "DM") return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    if(command == "!cock" || command == "!stopcock"){
-        if(message.author.id == "527285622809952256" || message.author.id =="762133129209053244") return
-        message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
-        .then(msg => {
-            setTimeout(() => message.delete(), 6000)
-            setTimeout(() => msg.delete(), 6000)
-        })
-        .catch()
-    }
-})
-
-// commands for mezmer420 and vcash
-// client.on("messageCreate", message =>{
-//     if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244") {
-//     if(message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
-
-//     const args = message.content.split(/ +/)
-//     const command = args.shift().toLowerCase()
-
-    
-// }
-// })
 
 // commands for boomer bot
 // client.on("messageCreate", message =>{
@@ -1659,15 +853,6 @@ client.on("messageCreate", message =>{
 }
 })
 
-// respond to everything someone says
-// client.on("messageCreate", message =>{
-//     if(message.author.id == "idofvictim") {
-//     if(message.author.bot) return
-
-
-// }
-// })
-
 // respond to people with @france role
 // client.on("messageCreate", message =>{
 //     if(message.channel.type == "DM") return
@@ -1677,9 +862,8 @@ client.on("messageCreate", message =>{
 // }
 // })
 
-
 // dad bot
-// const imWord = ["i'm", "I'm", "i'M", "I'M", "im", "Im", "iM", "IM"]
+// const imWord = ["i'm", "im"]
 
 // client.on("messageCreate", message =>{
 
@@ -1689,7 +873,7 @@ client.on("messageCreate", message =>{
 //     if(command == "i'm" || command == "im"){
 //     if(message.author.id == "956345939130482750") return
 //     for (var i = 0; i < imWord.length; i++) {
-//         const index = message.content.indexOf(imWord[i])
+//         const index = message.content.toLowerCase().indexOf(imWord[i])
 //         if (index !== -1) {
 //             // add one to include the space
 //             const name = message.content.slice(index + imWord[i].length + 1)
@@ -1706,11 +890,11 @@ client.on("messageCreate", message =>{
 //     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
 
-//     const imWord = ["i'm", "I'm", "i'M", "I'M", "im", "Im", "iM", "IM"]
+//     const imWord = ["i'm", "im"]
 
 //     if(message.author.id == "956345939130482750") return
 //     for (var i = 0; i < imWord.length; i++) {
-//         const index = message.content.indexOf(imWord[i])
+//         const index = message.content.toLowerCase().indexOf(imWord[i])
 //         if (index !== -1) {
 //             // add one to include the space
 //             const name = message.content.slice(index + imWord[i].length + 1)
@@ -1729,7 +913,7 @@ client.on("messageCreate", message =>{
 //     const badWord = ["fuck", "bitch", "damn", "shit"]
 
 //     for (var i = 0; i < badWord.length; i++) {
-//         const index = message.content.indexOf(badWord[i])
+//         const index = message.content.toLowerCase().indexOf(badWord[i])
 //         if (index !== -1) {
 //             message.reply("language!")
 //             break
