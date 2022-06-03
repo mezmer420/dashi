@@ -593,7 +593,7 @@ client.on("messageCreate", async message =>{
 // egghead dashi
     const alot = ["alot"]
     for (var i = 0; i < alot.length; i++) {
-        const index = message.content.indexOf(alot[i])
+        const index = message.content.toLowerCase().indexOf(alot[i])
         if (index !== -1) {
             message.channel.sendTyping()
             await sleep(Math.floor(Math.random() * 0) + 1001)
@@ -610,7 +610,7 @@ client.on("messageCreate", async message =>{
     const ddd = ["ddd"]
 
     for (var i = 0; i < ddd.length; i++) {
-        const index = message.content.indexOf(ddd[i])
+        const index = message.content.toLowerCase().indexOf(ddd[i])
         if (index !== -1) {
             // add one to include the space
             message.channel.sendTyping()
@@ -723,7 +723,7 @@ client.on("messageCreate", message =>{
     const badWord = ["fuck", "bitch", "damn", "shit"]
 
     for (var i = 0; i < badWord.length; i++) {
-        const index = message.content.indexOf(badWord[i])
+        const index = message.content.toLowerCase().indexOf(badWord[i])
         if (index !== -1) {
             message.reply("language!")
             break
