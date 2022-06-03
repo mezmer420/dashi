@@ -26,7 +26,7 @@ module.exports.run = async (client, interaction, options) => {
         const mezmerEmbed = new MessageEmbed()
         .setColor("#0096FF")
         .setTitle("mezmer dialect")
-        .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nomegaL\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
+        .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc\n\noolc\n\nomegaL\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
         await interaction.editReply({
             embeds: [mezmerEmbed]
         })

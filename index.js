@@ -5,7 +5,7 @@ const client = new Discord.Client({
         status: "online",
         afk: false,
         activities: [{
-            name: "everything you say",
+            name: "to everything you say",
             type: "LISTENING"
             // url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }],
@@ -37,10 +37,7 @@ const config = require("./config.json")
 
 require("./slash-register")(true)
 
-const prefix = ""
-// const args = message.content.slice(prefix.length).split(/ +/)
-
-// welc, cons, anno, vot, self, cour, semi, gove, mee6, imag, vide, argu, game, role, funq, hydr, vtts, mtts, ctts, dtts
+// welc, cons, anno, vot, self, cour, semi, gove, mee6, spec, imag, vide, argu, game, poli, role, funq, lear, fran, hydr, vtts, mtts, ctts
 // const blacklistedchannel = [
 //     "964361642668343376",
 //     "939675214600605757",
@@ -51,17 +48,22 @@ const prefix = ""
 //     "965054741480636496",
 //     "950196454880866314",
 //     "955948174894325782",
+//     "980961535826473033",
+
 //     "948675276466958336",
 //     "950419717779238993",
 //     "951655268884820068",
 //     "940786577808969738",
+//     "981347603167981609",
 //     "949118223805210674",
 //     "964714582402826280",
+//     "981647726129319976",
+//     "973334244178919504",
 //     "955689401688682526",
+
 //     "947301903186944020",
 //     "951345913627021354",
-//     "955599561869639710", 
-//     "975235909861654538"
+//     "955599561869639710"
 // ]
 
 const welc = "964361642668343376"
@@ -73,18 +75,21 @@ const cour = "939675256765939863"
 const semi = "965054741480636496"
 const gove = "950196454880866314"
 const mee6 = "955948174894325782"
+const spec = "980961535826473033"
 
 const vtts = "947301903186944020"
 const mtts = "951345913627021354"
 const ctts = "955599561869639710"
-const dtts = "975235909861654538"
 
 const imag = "948675276466958336"
 const vide = "950419717779238993"
 const argu = "951655268884820068"
 const game = "940786577808969738"
+const poli = "981347603167981609"
 const role = "949118223805210674"
 const funq = "964714582402826280"
+const lear = "981647726129319976"
+const fran = "973334244178919504"
 const hydr = "955689401688682526"
 
 const fs = require("fs")
@@ -95,14 +100,6 @@ for(const file of responseFiles){
     const response = require(`./responses/general/${file}`)
 
     client.responses.set(response.name, response)
-}
-
-client.dialects = new Discord.Collection()
-const dialectFiles = fs.readdirSync("./responses/dialects/").filter(file => file.endsWith(".js"))
-for(const file of dialectFiles){
-    const dialect = require(`./responses/dialects/${file}`)
-
-    client.dialects.set(dialect.name, dialect)
 }
 
 // random picker function
@@ -118,10 +115,13 @@ function sleep(ms) {
 }
 
 client.on("ready", async () => {
-    let handler = require("./command-handler")
-    if (handler.default) handler = handler.default
+    let commandhandler = require("./command-handler")
+    if (commandhandler.default) commandhandler = commandhandler.default
+    commandhandler(client)
 
-    handler(client)
+    let dialecthandler = require("./dialect-handler")
+    if (dialecthandler.default) dialecthandler = dialecthandler.default
+    dialecthandler(client)
 
     await Economy.sync()
     await workCooldown.sync()
@@ -171,10 +171,6 @@ client.on("messageCreate", async message =>{
 client.on("guildMemberAdd", member =>{
     member.send(`${member.user.username}, welcome to Eoic Gamer Server!`)
 })
-
-// client.on("guildMemberRemove", member =>{
-//     member.send(`You left Eoic Gamer Server. Maybe you were kicked, banned, or left on your own accord. If you left on your own accord, please provide feedback right here in this DM as to why you did so.`)
-// })
 
 client.on('messageReactionAdd', async (reaction, user) => {
 	// When a reaction is received, check if the structure is partial
@@ -435,7 +431,7 @@ client.on("interactionCreate", async interaction => {
 
 // general responses for everyone
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
@@ -550,24 +546,6 @@ client.on("messageCreate", async message =>{
         message.channel.send("what you get from going to your favorite site")
     }
 
-    if(command == "olc"){
-        if(message.channel.id == "939674946953682976" || message.channel.id == "970859343849349160"){
-            client.dialects.get("mezmerdialect").execute(message, sleep)
-        }
-        else {
-            message.channel.send("https://imgur.com/a/Mif7suH")
-        }
-    }
-
-    if(command == "oolc"){
-        if(message.channel.id == "939674946953682976" || message.channel.id == "970859343849349160"){
-            client.dialects.get("mezmerdialect").execute(message, sleep)
-        }
-        else {
-        message.channel.send("https://imgur.com/a/LnykHHZ")
-        }
-    }
-
     if(message.content == "i like turtles"){
         message.channel.sendTyping()
         await sleep(Math.floor(Math.random() * 0) + 1001)
@@ -625,183 +603,9 @@ client.on("messageCreate", async message =>{
     }
 })
 
-// dialects
-client.on("messageCreate", message => {
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
-
-    const args = message.content.split(/ +/)
-    const command = args.shift().toLowerCase()
-
-    // vcash
-    if(command == "ballsl"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(message.content == "el mao"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(message.content == "le mao"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "toyota"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "toyot"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    if(command == "xt"){
-        client.dialects.get("vcashdialect").execute(message, sleep)
-    }
-
-    // mezmer
-    if(command == "hmok"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "idecay"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "ifusaiso"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(message.content == "le mayo"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "obsessed"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "omegal"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzer"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzr"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzerooni"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    if(command == "wowzeroni"){
-        client.dialects.get("mezmerdialect").execute(message, sleep)
-    }
-
-    // choc
-    if(command == "ifusaso"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "perty"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "ys"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    if(command == "yss"){
-        client.dialects.get("chocdialect").execute(message, sleep)
-    }
-
-    //choc x spedy
-    if(command == "e"){
-        client.dialects.get("speedychocdialect").execute(message, sleep)
-    }
-
-    // speedy
-    if(command == "emoyi"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    if(command == "gf"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    if(command == "ues"){
-        client.dialects.get("speedydialect").execute(message, sleep)
-    }
-
-    // delta
-    if(command == "bigfunni"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "bigl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "bihl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "cockl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "ifusayso"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(message.content == "la mao"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "mediuml"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "megal"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "r"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "shut"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "tinyl"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeeees"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yews"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-
-    if(command == "yeews"){
-        client.dialects.get("deltadialect").execute(message, sleep)
-    }
-})
-
 // obsessed with d
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
 
     const ddd = ["ddd"]
 
@@ -819,69 +623,29 @@ client.on("messageCreate", async message =>{
 
 // if non-government tries to use @everyone or @here
 client.on("messageCreate", message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.author.id == "762133129209053244" || message.author.id == "527285622809952256" || message.author.id == "826841451945787412") return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(command == "@everyone"){
-        if(message.author.id == "762133129209053244" || message.author.id == "527285622809952256" || message.author.id == "826841451945787412") return
-            message.reply("only governmental officials can ping everyone idot!")
-    }
+    const ping = ["@everyone", "@here"]
 
-    if(command == "@here"){
-        if(message.author.id == "762133129209053244" || message.author.id == "527285622809952256" || message.author.id == "826841451945787412") return
-            message.reply("only governmental officials can ping here idot!")
+    for (var i = 0; i < ping.length; i++) {
+        const index = message.content.toLowerCase().indexOf(ping[i])
+        if (index !== -1) {
+            message.reply("only governmental officials can use that ping idot!")
+            break
+        }
     }
 })
 
 // commands for mezmer420
 client.on("messageCreate", async message =>{
-    if(message.channel.type == "DM" || message.author.bot || message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.type == "DM" || message.author.bot) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
-
-    if(command == "!s"){
-        const sayWord = "!s"
-
-        if(message.author.id == "527285622809952256"){
-            for (var i = 0; i < sayWord.length; i++) {
-                const index = message.content.indexOf(sayWord[i])
-                if (index !== -1) {
-                    // add one to include the space
-                    const messagetosend = message.content.slice(index + sayWord[i].length + 1)
-                    const empty = ""
-                    if(messagetosend == empty){
-                        message.reply('specify what you want me to say! command format is "!s [message]"')
-                    }
-                    else {
-                        message.channel.send(`${messagetosend}`)
-                        // message.channel.send(`${messagetosend}`).then(sentMessage =>{
-                        //     sentMessage.react("1️⃣")
-                        //     sentMessage.react("2️⃣")
-                        //     sentMessage.react("3️⃣")
-                        //     sentMessage.react("4️⃣")
-                        //     sentMessage.react("5️⃣")
-                        //     sentMessage.react("6️⃣")
-                        //     sentMessage.react("7️⃣")
-                        // })
-                        message.delete()
-                    }
-                    break
-                }
-            }
-        }
-
-        else {
-            message.reply("only mezmer420 can use that command! (these messages will autodelete)")
-            .then(msg => {
-              setTimeout(() => message.delete(), 6000)
-              setTimeout(() => msg.delete(), 6000)
-            })
-            .catch()
-        }
-    }
 
     if(command == "qwert"){
         if(message.author.id !== "527285622809952256") return
@@ -907,7 +671,7 @@ client.on("messageCreate", async message =>{
 // commands for boomer bot
 // client.on("messageCreate", message =>{
 //     if(message.author.id == "969084144141344788") {
-//     if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+//     if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
 //     const args = message.content.split(/ +/)
 //     const command = args.shift().toLowerCase()
@@ -943,7 +707,7 @@ client.on("messageCreate", async message =>{
 client.on("messageCreate", message =>{
     if(message.channel.type == "DM") return
     if(message.author.id == "973731082136592454"){
-    if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+    if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
@@ -971,35 +735,12 @@ client.on("messageCreate", message =>{
 // respond to people with @france role
 // client.on("messageCreate", message =>{
 //     if(message.channel.type == "DM") return
-//     const hasfrancerole = message.member.roles.cache.has("973334603253317702")
-//     if(hasfrancerole){
+//     if(message.author.id == ""){
 //     message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
 // }
 // })
 
 // dad bot
-// const imWord = ["i'm", "im"]
-
-// client.on("messageCreate", message =>{
-
-//     const args = message.content.split(/ +/)
-//     const command = args.shift().toLowerCase()
-
-//     if(command == "i'm" || command == "im"){
-//     if(message.author.id == "956345939130482750") return
-//     for (var i = 0; i < imWord.length; i++) {
-//         const index = message.content.toLowerCase().indexOf(imWord[i])
-//         if (index !== -1) {
-//             // add one to include the space
-//             const name = message.content.slice(index + imWord[i].length + 1)
-//             message.channel.send(`hi ${name}`)
-//             break
-//         }
-//     }
-// }
-// })
-
-// dad bot anywhere in message
 // client.on("messageCreate", message =>{
 
 //     const args = message.content.split(/ +/)
@@ -1022,7 +763,7 @@ client.on("messageCreate", message =>{
 
 // bad language response from anywhere in message
 // client.on("messageCreate", message =>{
-//     if(message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == dtts || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
+//     if(message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == role || message.channel.id == funq || message.channel.id == hydr) return
 //     if(message.author.id == "956345939130482750") return
 
 //     const badWord = ["fuck", "bitch", "damn", "shit"]

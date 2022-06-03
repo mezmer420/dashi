@@ -22,7 +22,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
 
     const randomvalue = Math.floor(Math.random() * 100)
 
-    if(randomvalue >= 10){
+    if(randomvalue >= 5){
         const coins_earned = Math.floor(Math.random() * 35) + 65
 
         await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
@@ -56,7 +56,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         })
     }
 
-    else if(randomvalue < 10){
+    else if(randomvalue < 5){
         if(getUser.superbike == true){
             workCooldown.create({
                 id: member.id,

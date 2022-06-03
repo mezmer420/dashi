@@ -7,7 +7,7 @@ module.exports = (client) => {
     const suffix = ".js"
 
     const commandFiles = getFiles("./commands", suffix)
-    console.log(commandFiles)
+    // console.log(commandFiles)
 
     for (const command of commandFiles) {
         let commandFile = require(command)
@@ -19,7 +19,7 @@ module.exports = (client) => {
         commands[commandName.toLowerCase()] = commandFile
     }
 
-    // console.log(commands)
+    console.log(commands)
     console.log("Successfully loaded text (!) commands.")
 
     client.on("messageCreate", (message) => {
