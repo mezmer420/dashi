@@ -5,7 +5,7 @@ const client = new Discord.Client({
         status: "online",
         afk: false,
         activities: [{
-            name: "to everything you say",
+            name: "everything you say",
             type: "LISTENING"
             // url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }],
