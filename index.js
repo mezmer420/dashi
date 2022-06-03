@@ -632,55 +632,170 @@ client.on("messageCreate", message => {
     const args = message.content.split(/ +/)
     const command = args.shift().toLowerCase()
 
-    const vcashdialect = ["ballsl", "el mao", "toyota", "toyot", "xt"]
-    const mezmerdialect = ["ecks dee", "hmok", "idecay", "ifusaiso", "obsessed", "omegal", "wowzer", "wowzr", "wowzerooni", "wowzeroni"]
-    const chocdialect = ["ifusaso", "perty", "ys", "yss"]
-    // const speedychocdialect = ["e"]
-    const speedydialect = ["emoyi", "gf", "ues"]
-    const deltadialect = ["bigfunni", "bigl", "cockl", "ifusayso", "la mao", "mediuml", "shut", "tinyl", "yees", "yeees", "yeeees", "yews", "yeews"]
-
-    for (var i = 0; i < vcashdialect.length; i++) {
-        const index = message.content.toLowerCase().indexOf(vcashdialect[i])
-        if (index !== -1) {
-            client.dialects.get("vcashdialect").execute(message, sleep)
-            break
-        }
+    // vcash
+    if(command == "ballsl"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
     }
 
-    for (var i = 0; i < mezmerdialect.length; i++) {
-        const index = message.content.toLowerCase().indexOf(mezmerdialect[i])
-        if (index !== -1) {
-            client.dialects.get("mezmerdialect").execute(message, sleep)
-            break
-        }
+    if(message.content == "el mao"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
     }
 
-    for (var i = 0; i < chocdialect.length; i++) {
-        const index = message.content.toLowerCase().indexOf(chocdialect[i])
-        if (index !== -1) {
-            client.dialects.get("chocdialect").execute(message, sleep)
-            break
-        }
+    if(message.content == "le mao"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
     }
 
+    if(command == "toyota"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
+    }
+
+    if(command == "toyot"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
+    }
+
+    if(command == "xt"){
+        client.dialects.get("vcashdialect").execute(message, sleep)
+    }
+
+    // mezmer
+    if(command == "hmok"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "idecay"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "ifusaiso"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(message.content == "le mayo"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "obsessed"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "omegal"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "wowzer"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "wowzr"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "wowzerooni"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    if(command == "wowzeroni"){
+        client.dialects.get("mezmerdialect").execute(message, sleep)
+    }
+
+    // choc
+    if(command == "ifusaso"){
+        client.dialects.get("chocdialect").execute(message, sleep)
+    }
+
+    if(command == "perty"){
+        client.dialects.get("chocdialect").execute(message, sleep)
+    }
+
+    if(command == "ys"){
+        client.dialects.get("chocdialect").execute(message, sleep)
+    }
+
+    if(command == "yss"){
+        client.dialects.get("chocdialect").execute(message, sleep)
+    }
+
+    //choc x spedy
     if(command == "e"){
         client.dialects.get("speedychocdialect").execute(message, sleep)
     }
 
-    for (var i = 0; i < speedydialect.length; i++) {
-        const index = message.content.toLowerCase().indexOf(speedydialect[i])
-        if (index !== -1) {
-            client.dialects.get("speedydialect").execute(message, sleep)
-            break
-        }
+    // speedy
+    if(command == "emoyi"){
+        client.dialects.get("speedydialect").execute(message, sleep)
     }
 
-    for (var i = 0; i < deltadialect.length; i++) {
-        const index = message.content.toLowerCase().indexOf(deltadialect[i])
-        if (index !== -1) {
-            client.dialects.get("deltadialect").execute(message, sleep)
-            break
-        }
+    if(command == "gf"){
+        client.dialects.get("speedydialect").execute(message, sleep)
+    }
+
+    if(command == "ues"){
+        client.dialects.get("speedydialect").execute(message, sleep)
+    }
+
+    // delta
+    if(command == "bigfunni"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "bigl"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "bihl"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "cockl"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "ifusayso"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(message.content == "la mao"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "mediuml"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "megal"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "r"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "shut"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "tinyl"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "yees"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "yeees"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "yeeees"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "yews"){
+        client.dialects.get("deltadialect").execute(message, sleep)
+    }
+
+    if(command == "yeews"){
+        client.dialects.get("deltadialect").execute(message, sleep)
     }
 })
 
