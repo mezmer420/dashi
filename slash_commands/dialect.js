@@ -36,7 +36,7 @@ module.exports.run = async (client, interaction, options) => {
         const chocEmbed = new MessageEmbed()
         .setColor("RED")
         .setTitle("choc dialect")
-        .addField("`ifusaso\n\nperty\n\nys\n\nyss`\n—————", "<@826841451945787412>")
+        .addField("`idit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys\n\nyss`\n—————", "<@826841451945787412>")
         await interaction.editReply({
             embeds: [chocEmbed]
         })

@@ -1,5 +1,4 @@
 const {SlashCommandBuilder} = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
 
 function RandArray(array){
     var rand = Math.random()*array.length | 0
