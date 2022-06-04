@@ -25,7 +25,8 @@ module.exports = (client) => {
     client.on("messageCreate", (message) => {
         if(message.channel.type == "DM" || message.author.bot) return
 
-        const dialectName = message.content.toLowerCase()
+        const args = message.content.split(/ +/)
+        const dialectName = args.shift().toLowerCase()
 
         if (!dialects[dialectName]) return
 

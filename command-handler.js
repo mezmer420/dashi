@@ -6,7 +6,7 @@ module.exports = (client) => {
 
     const suffix = ".js"
 
-    const commandFiles = getFiles("./commands", suffix)
+    const commandFiles = getFiles("./text_commands", suffix)
     // console.log(commandFiles)
 
     for (const command of commandFiles) {
