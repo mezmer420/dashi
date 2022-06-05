@@ -25,6 +25,7 @@ The bot has evolved significantly over time.
 
 ## dashi can and does:
 
+- Discriminate between human users and bots
 - Uniquely react to certain "dialects" (phrases)
 - Provide embeds for dialect information
 - Selectively grant certain users access to commands
@@ -33,6 +34,7 @@ The bot has evolved significantly over time.
 - Respond when an unauthorized person attempts to use a command
 - Respond when an unauthorized person attempts to ping @everyone or @here
 - Say whatever I want
+- Modify own status and activity
 - Send files
 - Spam and stop spam
 - Simulate delay and typing
@@ -43,6 +45,7 @@ The bot has evolved significantly over time.
 - Sell items you purchased, and detect if you do not already own it
 - Set cooldowns on certain economy commands (e.g. work), reducable by purchasing certain item(s)
 - Set a high cooldown for all eco-related commands in the event of a foiled robbery to simulate jail time, reducable by purchasing certain item(s)
+- Kick and ban users
 - Perform basic user management (kick, ban) with an interactive button embed
 - Require new users to react to a message to verify and gain access to the server
 - Assign roles by reacting to a message, and removing roles by unreacting (reaction roles)
