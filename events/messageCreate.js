@@ -71,23 +71,24 @@ module.exports = {
 
         // if non-government tries to use @everyone or @here
         if(message.channel.type !== "DM"){   // vcash, mezmer, choc, dashi, vcashcarbot, boomer 
-            if(message.author.id == "762133129209053244" || message.author.id == "527285622809952256" || message.author.id == "826841451945787412" || message.author.id == "956345939130482750" || message.author.id == "975952163090071553" || message.author.id == "969084144141344788") return
-            if(message.channel.id == self || message.channel.id == cour || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == funq || message.channel.id == hydr) return
-            const ping = ["@everyone", "@here"]
-            for (var i = 0; i < ping.length; i++) {
-                const index = message.content.toLowerCase().indexOf(ping[i])
-                if (index !== -1) {
-                    message.reply("only governmental officials can use that ping idot!")
-                    break
+            if(message.author.id !== "762133129209053244" && message.author.id !== "527285622809952256" && message.author.id !== "826841451945787412" && message.author.id !== "956345939130482750" && message.author.id !== "975952163090071553" && message.author.id !== "969084144141344788"){
+                if(message.channel.id == self || message.channel.id == cour || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == funq || message.channel.id == hydr) return
+                const ping = ["@everyone", "@here"]
+                for (var i = 0; i < ping.length; i++) {
+                    const index = message.content.toLowerCase().indexOf(ping[i])
+                    if (index !== -1) {
+                        message.reply("only governmental officials can use that ping idot!")
+                        break
+                    }
                 }
             }
         }
 
         if(message.channel.type !== "DM"){
             // respond to people with @france role
-            // if(message.author.id == ""){
-            // message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
-            // }
+            if(message.author.id == "251778379211210755"){
+            message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
+            }
 
             // general responses for everyone (non-bot)
             if(!message.author.bot){

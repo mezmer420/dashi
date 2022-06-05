@@ -22,7 +22,7 @@ module.exports = {
                     const member = guild.members.cache.find(member => member.id == user.id)
         
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
-        
+                    if(member == "251778379211210755") return
                     member.roles.add(eoicrole)
                     // console.log(`${user.username} verified`)
         

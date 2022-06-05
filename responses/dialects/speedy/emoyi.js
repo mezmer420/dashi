@@ -6,7 +6,7 @@ const self = "963930001303015495"
 const cour = "939675256765939863"
 const semi = "965054741480636496"
 const gove = "950196454880866314"
-const mee6 = "955948174894325782"
+const logs = "955948174894325782"
 const spec = "980961535826473033"
 
 const vtts = "947301903186944020"
@@ -30,7 +30,7 @@ function sleep(ms) {
 
 module.exports = {
     callback: async (message, args) => {
-        if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == mee6 || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
+        if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
         message.channel.sendTyping()
         await sleep(Math.floor(Math.random() * 0) + 1001)
         message.channel.send("speedy dialect uwu owu uwo ow- -w- -wu uWu")
