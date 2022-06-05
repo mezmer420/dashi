@@ -14,6 +14,7 @@ The bot has evolved significantly over time.
 - "Dialect" response
 - Text-based prefix commands
 - Wide array of application (/) commands
+- A local database
 - Economy and inventory system
 - Basic event logging
 - Verification and reaction roles system
