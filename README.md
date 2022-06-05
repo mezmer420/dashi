@@ -31,7 +31,7 @@ The bot has evolved significantly over time.
 - Provide embeds for dialect information
 - Selectively grant certain users access to commands
 - Selectively allow certain commands/responses in certain channels
-- Respond when a command is attempted to be uses in unauthorized channel
+- Respond when a command is attempted to be used in unauthorized channel
 - Respond when an unauthorized person attempts to use a command
 - Respond when an unauthorized person attempts to ping @everyone or @here
 - Say whatever I want
