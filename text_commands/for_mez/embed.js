@@ -6,7 +6,7 @@ module.exports = {
             message.delete()
             const Embed = new MessageEmbed()
             .setColor("#9BDBF5")
-            .setTitle("Case #4 — IN RECESS")
+            .setTitle("Case #4 — choc wins")
             .addField("choc versus rock", "Punishment Appeal")
             await message.channel.send({
                 embeds: [Embed]

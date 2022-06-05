@@ -14,7 +14,7 @@ module.exports.run = async (client, interaction) => {
     .addField("Debit Card", "`1000 Dashcoins`   Purchases will be made by default from your bank")
     .addField("Motorcycle", "`500 Dashcoins`   Get places fast! Work cooldown reduced to 3 minutes")
     .addField("Superbike", "`3500 Dashcoins`   Get places super fast! Work cooldown reduced to 1 minute")
-    .addField("Wife", "`1000 Dashcoins`   Aw, a loving partner~ (currently does nothing lmao)")
+    .addField("Wife", "`1000 Dashcoins`   Aw, a loving partner~ Chances of having a bad day at work reduced to 5%")
     .addField("Bail Bonds", "`2000 Dashcoins`   If you're caught robbing, eco cooldowns reduced to 15 minutes")
     await interaction.editReply({
         embeds: [shopopenEmbed]

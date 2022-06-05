@@ -53,7 +53,7 @@ module.exports.run = async (client, interaction) => {
         .setColor("RANDOM")
         .setTitle("Golf Ball")
         .setDescription("swing at it to try to get in hole")
-        .setImage("https://golf.com/wp-content/uploads/2021/01/CallawayChromeSoftX20JonRahm.jpg")
+        .setImage("https://golfblueheron.com/wp-content/uploads/2021/09/golf-balls8-1030x559.jpg")
         await interaction.editReply({
             embeds: [Embed]
         })

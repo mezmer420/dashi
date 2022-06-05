@@ -22,67 +22,135 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
 
     const randomvalue = Math.floor(Math.random() * 100)
 
-    if(randomvalue >= 5){
-        const coins_earned = Math.floor(Math.random() * 35) + 65
-
-        await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
-
-        if(getUser.superbike == true){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (60000),
-                command: "work"
-            })
-        }
-
-        else if(getUser.motorcycle == true && getUser.superbike == false){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (180000),
-                command: "work"
-            })
-        }
-
-        else if(getUser.motorcycle == false && getUser.superbike == false){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (150000 * 2),
-                command: "work"
+    if(getUser.wife == true){
+        if(randomvalue >= 5){
+            const coins_earned = Math.floor(Math.random() * 35) + 65
+    
+            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
+    
+            if(getUser.superbike == true){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (60000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == true && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (180000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == false && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (150000 * 2),
+                    command: "work"
+                })
+            }
+        
+            await interaction.editReply({
+                content: `You earned **${coins_earned}** Dashcoins:tm:!`
             })
         }
     
-        await interaction.editReply({
-            content: `You earned **${coins_earned}** Dashcoins:tm:!`
-        })
+        else if(randomvalue < 5){
+            if(getUser.superbike == true){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (60000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == true && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (180000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == false && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (150000 * 2),
+                    command: "work"
+                })
+            }
+        
+            await interaction.editReply({
+                content: "Unfortunately, you had a bad day and couldn't work."
+            })
+        }
     }
 
-    else if(randomvalue < 5){
-        if(getUser.superbike == true){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (60000),
-                command: "work"
-            })
-        }
-
-        else if(getUser.motorcycle == true && getUser.superbike == false){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (180000),
-                command: "work"
-            })
-        }
-
-        else if(getUser.motorcycle == false && getUser.superbike == false){
-            workCooldown.create({
-                id: member.id,
-                expiry: new Date().getTime() + (150000 * 2),
-                command: "work"
+    else if(getUser.wife == false){
+        if(randomvalue >= 10){
+            const coins_earned = Math.floor(Math.random() * 35) + 65
+    
+            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
+    
+            if(getUser.superbike == true){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (60000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == true && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (180000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == false && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (150000 * 2),
+                    command: "work"
+                })
+            }
+        
+            await interaction.editReply({
+                content: `You earned **${coins_earned}** Dashcoins:tm:!`
             })
         }
     
-        await interaction.editReply({
-            content: "Unfortunately, you had a bad day and couldn't work."
-        })
+        else if(randomvalue < 10){
+            if(getUser.superbike == true){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (60000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == true && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (180000),
+                    command: "work"
+                })
+            }
+    
+            else if(getUser.motorcycle == false && getUser.superbike == false){
+                workCooldown.create({
+                    id: member.id,
+                    expiry: new Date().getTime() + (150000 * 2),
+                    command: "work"
+                })
+            }
+        
+            await interaction.editReply({
+                content: "Unfortunately, you had a bad day and couldn't work."
+            })
+        }
     }
 }
