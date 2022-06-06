@@ -13,4 +13,7 @@ module.exports.run = async (client, interaction) => {
     await interaction.editReply({
         embeds: [deltaEmbed]
     })
+    .catch((err) => {
+        return
+    })
 }

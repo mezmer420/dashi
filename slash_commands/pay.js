@@ -18,6 +18,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     let member = options.getMember("user")
 
     if(amount < 1 || amount > 1000) return interaction.editReply({content: "Invalid amount; must be between 1 and 1000"})
+    .catch((err) => {
+        return
+    })
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
     if(!getUser) {
@@ -25,6 +28,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     }
     
     if(getUser.wallet < amount) return interaction.editReply({content: "Insufficient wallet balance"})
+    .catch((err) => {
+        return
+    })
 
     const memberWallet = await Economy.findOne({where: {id: member.id}})
 
@@ -46,5 +52,8 @@ module.exports.run = async (client, interaction, options, Economy) => {
 
     await interaction.editReply({
         embeds: [embed]
+    })
+    .catch((err) => {
+        return
     })
 }

@@ -27,11 +27,17 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.bailbonds == false){
         interaction.editReply({ 
             content: "You don't own **bail bonds**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

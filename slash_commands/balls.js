@@ -24,6 +24,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomball == "Football"){
@@ -34,6 +37,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/utepathletics.com/images/2021/6/24/DSC04844.jpg")
         await interaction.editReply({
             embeds: [Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -46,6 +52,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomball == "Golf Ball"){
@@ -56,6 +65,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://golfblueheron.com/wp-content/uploads/2021/09/golf-balls8-1030x559.jpg")
         await interaction.editReply({
             embeds: [Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 }

@@ -8,4 +8,7 @@ module.exports.run = async (client, interaction) => {
     await interaction.editReply({ 
         content: "Pong!"
     })
+    .catch((err) => {
+        return
+    })
 }

@@ -19,14 +19,22 @@ module.exports.run = async (client, interaction, options) => {
     if(user.id == "956345939130482750") return interaction.editReply({
         content: "i can't DM myself idot"
     })
+    .catch((err) => {
+        return
+    })
 
     user.send(message)
 
     await interaction.editReply({
         content: `**${message}** successsfully sent to **${user}**! (this message will autodelete)`
     })
-    .then(interaction => {
-        setTimeout(() => interaction.delete(), 5000)
+    .catch((err) => {
+        return
     })
-    .catch()
+    .then(interaction => {
+        setTimeout(() => interaction.delete()
+        .catch((err) => {
+            return
+        }), 6000)
+    })
 }

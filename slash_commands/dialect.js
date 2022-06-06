@@ -20,6 +20,9 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             embeds: [vcashEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(member.id == "527285622809952256"){
@@ -29,6 +32,9 @@ module.exports.run = async (client, interaction, options) => {
         .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc\n\noolc\n\nomegaL\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
         await interaction.editReply({
             embeds: [mezmerEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -40,6 +46,9 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             embeds: [chocEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(member.id == "691727350051635262"){
@@ -49,6 +58,9 @@ module.exports.run = async (client, interaction, options) => {
         .addField("`emoyi\n\ngf\n\nues`\n—————", "<@691727350051635262>")
         await interaction.editReply({
             embeds: [speedyEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -60,6 +72,9 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             embeds: [deltaEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(member.id == "651251126884368384"){
@@ -70,11 +85,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             embeds: [georgeertoEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else {
         await interaction.editReply({
             content: "The user you specified doesn't have a dialect"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

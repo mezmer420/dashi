@@ -28,6 +28,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 3500 && getUser.wallet >= 3500){
@@ -44,6 +47,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 3500 && getUser.wallet < 3500){
@@ -58,6 +64,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
             
                 await interaction.editReply({
                     embeds: [embed]
+                })
+                .catch((err) => {
+                    return
                 })
             }
         }
@@ -76,6 +85,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
     
             else if(getUser.wallet < 3500){
@@ -90,6 +102,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
         }
     }
@@ -97,6 +112,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     else if(getUser.superbike == true){
         interaction.editReply({ 
             content: "You already own **superbike**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

@@ -19,11 +19,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "dog"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "bedroom"){
         await interaction.editReply({
             content: "bedroom"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -31,11 +37,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "rainbow dash"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "m1a2 abrams"){
         await interaction.editReply({
             content: "m1a2 abrams"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -43,11 +55,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "tree"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "window"){
         await interaction.editReply({
             content: "window"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -55,11 +73,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "f-15e strike eagle"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "hand"){
         await interaction.editReply({
             content: "hand"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -67,11 +91,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "house"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "applejack"){
         await interaction.editReply({
             content: "applejack"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -79,11 +109,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "brother"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "your face"){
         await interaction.editReply({
             content: "your face"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -91,11 +127,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "chair"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "glasses"){
         await interaction.editReply({
             content: "glasses"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -103,17 +145,26 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "yuri"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "reid"){
         await interaction.editReply({
             content: "reid"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomthing == "spedy face"){
         await interaction.editReply({
             content: "spedy face"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

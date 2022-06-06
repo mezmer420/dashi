@@ -25,4 +25,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
     await interaction.editReply({
         embeds: [embed]
     })
+    .catch((err) => {
+        return
+    })
 }

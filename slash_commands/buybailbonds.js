@@ -28,6 +28,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 2000 && getUser.wallet >= 2000){
@@ -44,6 +47,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 2000 && getUser.wallet < 2000){
@@ -58,6 +64,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
             
                 await interaction.editReply({
                     embeds: [embed]
+                })
+                .catch((err) => {
+                    return
                 })
             }
         }
@@ -76,6 +85,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
     
             else if(getUser.wallet < 2000){
@@ -90,6 +102,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
         }
     }
@@ -97,6 +112,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     else if(getUser.bailbonds == true){
         interaction.editReply({ 
             content: "You already own **bail bonds**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

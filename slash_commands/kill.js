@@ -205,4 +205,7 @@ module.exports.run = async (client, interaction, options) => {
         `While performing colonoscopy on an elephant, ${target} gets their head stuck in the elephants rectum and chokes.`,
       ]
       await interaction.editReply(kills[Math.floor(Math.random() * kills.length)])
+      .catch((err) => {
+          return
+      })
 }

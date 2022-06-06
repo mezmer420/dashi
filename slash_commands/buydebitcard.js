@@ -26,7 +26,10 @@ module.exports.run = async (client, interaction, options, Economy) => {
         
             await interaction.editReply({
                 embeds: [embed]
-            })    
+            })
+            .catch((err) => {
+                return
+            })  
         }
 
         else if(getUser.wallet < 1000){
@@ -40,13 +43,19 @@ module.exports.run = async (client, interaction, options, Economy) => {
         
             await interaction.editReply({
                 embeds: [embed]
-            })   
+            })
+            .catch((err) => {
+                return
+            })
         }
     }
 
     else if(getUser.debitcard == true){
         interaction.editReply({ 
             content: "You already own **debit card**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

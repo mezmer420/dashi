@@ -16,4 +16,7 @@ module.exports.run = async (client, interaction) => {
             }
         ]
     })
+    .catch((err) => {
+        return
+    })
 }

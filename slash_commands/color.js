@@ -19,11 +19,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "red"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomcolor == "orange"){
         await interaction.editReply({
             content: "orange"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -31,11 +37,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "yellow"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomcolor == "green"){
         await interaction.editReply({
             content: "green"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -43,11 +55,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "blue"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomcolor == "indigo"){
         await interaction.editReply({
             content: "indigo"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -55,11 +73,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "violet"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomcolor == "purple"){
         await interaction.editReply({
             content: "purple"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -67,11 +91,17 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             content: "cyan"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomcolor == "magenta"){
         await interaction.editReply({
             content: "magenta"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

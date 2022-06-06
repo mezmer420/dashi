@@ -27,11 +27,17 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.motorcycle == false){
         interaction.editReply({ 
             content: "You don't own **motorcycle**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

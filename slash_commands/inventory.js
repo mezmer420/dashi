@@ -26,6 +26,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
@@ -37,6 +40,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -50,6 +56,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
@@ -61,6 +70,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -74,6 +86,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
@@ -85,6 +100,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -98,6 +116,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
@@ -109,6 +130,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -122,6 +146,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
@@ -133,6 +160,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -146,6 +176,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == false){
@@ -157,6 +190,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -170,6 +206,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
@@ -181,6 +220,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -194,6 +236,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
@@ -205,6 +250,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -218,6 +266,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
@@ -229,6 +280,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -242,6 +296,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
@@ -253,6 +310,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -266,6 +326,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
@@ -277,6 +340,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -290,6 +356,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
@@ -301,6 +370,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -314,6 +386,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
@@ -325,6 +400,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -338,6 +416,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
@@ -349,6 +430,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -362,6 +446,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
@@ -373,6 +460,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -386,6 +476,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
@@ -397,6 +490,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     
         await interaction.editReply({
             embeds: [embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 }

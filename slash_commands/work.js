@@ -11,6 +11,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     let workcooldownTime = getworkCooldown?.expiry
     if(getworkCooldown && workcooldownTime > new Date().getTime()) {
         return interaction.editReply({content: `Wait **${ms(workcooldownTime - new Date().getTime(), {long: true})}** before trying to work again!`})
+        .catch((err) => {
+            return
+        })
     } else if (getworkCooldown) {
         workCooldown.destroy({where: {id: member.id, command: "work"}})
     }
@@ -55,6 +58,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             await interaction.editReply({
                 content: `You earned **${coins_earned}** Dashcoins:tm:!`
             })
+            .catch((err) => {
+                return
+            })
         }
     
         else if(randomvalue < 5){
@@ -84,6 +90,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         
             await interaction.editReply({
                 content: "Unfortunately, you had a bad day and couldn't work."
+            })
+            .catch((err) => {
+                return
             })
         }
     }
@@ -121,6 +130,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             await interaction.editReply({
                 content: `You earned **${coins_earned}** Dashcoins:tm:!`
             })
+            .catch((err) => {
+                return
+            })
         }
     
         else if(randomvalue < 10){
@@ -150,6 +162,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         
             await interaction.editReply({
                 content: "Unfortunately, you had a bad day and couldn't work."
+            })
+            .catch((err) => {
+                return
             })
         }
     }

@@ -70,11 +70,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             content: `I choose... **${choice1}**`
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(response == choice2){
         await interaction.editReply({
             content: `I choose... **${choice2}**`
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -82,11 +88,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             content: `I choose... **${choice3}**`
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(response == choice4){
         await interaction.editReply({
             content: `I choose... **${choice4}**`
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -94,11 +106,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             content: `I choose... **${choice5}**`
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(response == choice6){
         await interaction.editReply({
             content: `I choose... **${choice6}**`
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -106,11 +124,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             content: `I choose... **${choice7}**`
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(response == choice8){
         await interaction.editReply({
             content: `I choose... **${choice8}**`
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -118,11 +142,17 @@ module.exports.run = async (client, interaction, options) => {
         await interaction.editReply({
             content: `I choose... **${choice9}**`
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(response == choice10){
         await interaction.editReply({
             content: `I choose... **${choice10}**`
+        })
+        .catch((err) => {
+            return
         })
     }
 }

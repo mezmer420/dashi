@@ -11,6 +11,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     let begcooldownTime = getbegCooldown?.expiry
     if(getbegCooldown && begcooldownTime > new Date().getTime()) {
         return interaction.editReply({content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`})
+        .catch((err) => {
+            return
+        })
     } else if (getbegCooldown) {
         begCooldown.destroy({where: {id: member.id, command: "beg"}})
     }
@@ -24,17 +27,26 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.wallet < 1000 && getUser.bank >= 1000){
         await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your bank; what are you doing begging lmao"
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(getUser.wallet >= 1000 && getUser.bank >= 1000){
         await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao"
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -55,6 +67,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             await interaction.editReply({
                 content: `You recieved **${coins_earned}** Dashcoins:tm:!`
             })
+            .catch((err) => {
+                return
+            })
         }
     
         else if(10 <= randomvalue && randomvalue < 20){
@@ -71,6 +86,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             await interaction.editReply({
                 content: `Woah, was that MrBeast? You recieved **${coins_earned}** Dashcoins:tm:!`
             })
+            .catch((err) => {
+                return
+            })
         }
     
         else if(randomvalue < 10){
@@ -82,6 +100,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         
             await interaction.editReply({
                 content: "Unfortunately, nobody donated you anything. Better luck next time."
+            })
+            .catch((err) => {
+                return
             })
         }
     }

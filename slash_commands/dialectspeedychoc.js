@@ -12,5 +12,8 @@ module.exports.run = async (client, interaction) => {
     .addField("`e`\n—————", "<@691727350051635262> x <@826841451945787412> ")
     await interaction.editReply({
         embeds: [speedychocEmbed]
-    }) 
+    })
+    .catch((err) => {
+        return
+    })
 }

@@ -41,6 +41,9 @@ module.exports.run = async (client, interaction, options) => {
             interaction.editReply({
                 embeds: [doneEmbed]
             })
+            .catch((err) => {
+                return
+            })
             interaction.member.send(`The timer you set **${time} seconds** ago is up! Reminder: **${subject}**`)
         }, milliseconds)
     }

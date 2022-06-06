@@ -24,6 +24,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [twilightsparkleEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Rainbow Dash"){
@@ -34,6 +37,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://i.pinimg.com/originals/06/05/2b/06052b46e6d6395abd5630764a644b7b.png")
         await interaction.editReply({
             embeds: [rainbowdashEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -46,6 +52,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [applejackEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Fluttershy"){
@@ -56,6 +65,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/characterprofile/images/2/29/Fluttershy.png/revision/latest/scale-to-width-down/1600?cb=20200722005905")
         await interaction.editReply({
             embeds: [fluttershyEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -68,6 +80,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [rarityEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Pinkie Pie"){
@@ -78,6 +93,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/heroes-and-villain/images/8/8c/Pinke_Pie.png/revision/latest?cb=20190127191309")
         await interaction.editReply({
             embeds: [pinkiepieEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -90,6 +108,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [princesscelestiaEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Princess Luna"){
@@ -100,6 +121,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/p__/images/1/13/Luna.png/revision/latest?cb=20161122231248&path-prefix=protagonist")
         await interaction.editReply({
             embeds: [princesslunaEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -112,6 +136,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [princesscadanceEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Starlight Glimmer"){
@@ -122,6 +149,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/sexypedia/images/1/15/Starlight.png/revision/latest?cb=20210515185452")
         await interaction.editReply({
             embeds: [starlightglimmerEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -134,6 +164,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [sweetiebelleEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Scootaloo"){
@@ -144,6 +177,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/my-little-pony-in-madagascar/images/b/b5/Determined_Scootaloo.png/revision/latest?cb=20180329153302")
         await interaction.editReply({
             embeds: [scootalooEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -156,6 +192,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [applebloomEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Shining Armor"){
@@ -166,6 +205,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/heroes-and-villain/images/f/f6/Shining_Armor.png/revision/latest?cb=20190131181012")
         await interaction.editReply({
             embeds: [shiningarmorEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -178,6 +220,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [derpyhoovesEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Big Macintosh"){
@@ -189,6 +234,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [bigmacintoshEmbed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randompony == "Trixie"){
@@ -199,6 +247,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/mlpfimroleplay/images/9/92/Trixie.png/revision/latest?cb=20160812001149")
         await interaction.editReply({
             embeds: [trixieEmbed]
+        })
+        .catch((err) => {
+            return
         })
     }
 }

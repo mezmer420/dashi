@@ -28,6 +28,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 1000 && getUser.wallet >= 1000){
@@ -44,6 +47,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
 
             else if(getUser.bank < 1000 && getUser.wallet < 1000){
@@ -58,6 +64,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
             
                 await interaction.editReply({
                     embeds: [embed]
+                })
+                .catch((err) => {
+                    return
                 })
             }
         }
@@ -76,6 +85,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
     
             else if(getUser.wallet < 1000){
@@ -90,6 +102,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
                 await interaction.editReply({
                     embeds: [embed]
                 })
+                .catch((err) => {
+                    return
+                })
             }
         }
     }
@@ -97,6 +112,9 @@ module.exports.run = async (client, interaction, options, Economy) => {
     else if(getUser.wife == true){
         interaction.editReply({ 
             content: "You already own **wife**!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

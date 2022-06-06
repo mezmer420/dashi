@@ -24,6 +24,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri1Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "2"){
@@ -34,6 +37,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9f1a633b-231d-4b77-9c14-5ce67d4f0917/dby7b7r-32eeabbd-0bb3-4c82-8790-89258f5e31f6.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzlmMWE2MzNiLTIzMWQtNGI3Ny05YzE0LTVjZTY3ZDRmMDkxN1wvZGJ5N2I3ci0zMmVlYWJiZC0wYmIzLTRjODItODc5MC04OTI1OGY1ZTMxZjYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.2EwAYyQ9l_06CzOTGD3EVlxok7AKpW9NLroKsPo_z_I")
         await interaction.editReply({
             embeds: [yuri2Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -46,6 +52,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri3Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "4"){
@@ -56,6 +65,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://www.kindpng.com/picc/m/325-3250080_yuri-cute-yuri-doki-doki-hd-png-download.png")
         await interaction.editReply({
             embeds: [yuri4Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -68,6 +80,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri5Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "6"){
@@ -78,6 +93,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://pbs.twimg.com/media/EQGnPoSWAAEnf2E.jpg:large")
         await interaction.editReply({
             embeds: [yuri6Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -90,6 +108,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri7Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "8"){
@@ -100,6 +121,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://i.pinimg.com/originals/ca/dc/92/cadc92995ad6fa4592d72036518ca3d7.png")
         await interaction.editReply({
             embeds: [yuri8Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -112,6 +136,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri9Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "10"){
@@ -122,6 +149,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://i.pinimg.com/736x/1b/cd/6f/1bcd6f453c9a56150ec843b8032bc094.jpg")
         await interaction.editReply({
             embeds: [yuri10Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -134,6 +164,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri11Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "12"){
@@ -144,6 +177,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://pbs.twimg.com/media/E_b9pv4XIAYY5BG.jpg:large")
         await interaction.editReply({
             embeds: [yuri12Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -156,6 +192,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri13Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "14"){
@@ -166,6 +205,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://i.pinimg.com/originals/fb/75/cf/fb75cf65b60763c66283446c97324e8f.jpg")
         await interaction.editReply({
             embeds: [yuri14Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -178,6 +220,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri15Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "16"){
@@ -188,6 +233,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://www.seekpng.com/png/small/134-1347813_doki-doki-literature-club-yuri-ddlc-yuri.png")
         await interaction.editReply({
             embeds: [yuri16Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -200,6 +248,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri17Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "18"){
@@ -210,6 +261,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://pbs.twimg.com/media/Eymj8oWXEAEn9hP?format=jpg&name=4096x4096")
         await interaction.editReply({
             embeds: [yuri18Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 
@@ -222,6 +276,9 @@ module.exports.run = async (client, interaction) => {
         await interaction.editReply({
             embeds: [yuri19Embed]
         })
+        .catch((err) => {
+            return
+        })
     }
 
     else if(randomyuri == "20"){
@@ -232,6 +289,9 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://pbs.twimg.com/media/E8u5LohVkAEgyuz?format=jpg&name=4096x4096")
         await interaction.editReply({
             embeds: [yuri20Embed]
+        })
+        .catch((err) => {
+            return
         })
     }
 }

@@ -17,6 +17,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     let robcooldownTime = getrobCooldown?.expiry
     if(getrobCooldown && robcooldownTime > new Date().getTime()) {
         return interaction.editReply({content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`})
+        .catch((err) => {
+            return
+        })
     } else if (getrobCooldown) {
         robCooldown.destroy({where: {id: interaction.member.id, command: "rob"}})
     }
@@ -35,8 +38,14 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     if(getUser.wallet < 100 || memberWallet.wallet < 100){
         // if(getUser.wallet = 0) interaction.editReply({content: "Bruh your wallet is empty. I'm going to stop you right there and urge you not to start off your money-making career by being a lawbreaker."})
         if(getUser.wallet < 100) interaction.editReply({content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."})
+        .catch((err) => {
+            return
+        })
         // else if(memberWallet.wallet = 0) interaction.editReply({content: "Bruh the person you're trying to rob has **0** coins in his wallet. At least show some decency for the homeless."})
         else if(memberWallet.wallet < 100) interaction.editReply({content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"})
+        .catch((err) => {
+            return
+        })
     }
 
     else {
@@ -44,11 +53,17 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             interaction.editReply({
                 content: "bruh did you just try to rob yourself"
             })
+            .catch((err) => {
+                return
+            })
         }
 
         if(member.id == "956345939130482750"){
             interaction.editReply({
                 content: "you can't rob me >:)"
+            })
+            .catch((err) => {
+                return
             })
         }
         else {
@@ -72,6 +87,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             
                 interaction.editReply({
                     embeds: [failembed]
+                })
+                .catch((err) => {
+                    return
                 })
 
                 // console.log(randomvalue)
@@ -124,6 +142,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                     interaction.editReply({
                         embeds: [caughtembed]
                     })
+                    .catch((err) => {
+                        return
+                    })
 
                     interaction.member.send(`You were caught by the police. You were fined **${coins_fined}** Dashcoins:tm: and since you have bail bonds, you are unable to work, beg, or rob for **15** minutes.`)
                 }
@@ -158,6 +179,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
                 
                     interaction.editReply({
                         embeds: [caughtembed]
+                    })
+                    .catch((err) => {
+                        return
                     })
 
                     interaction.member.send(`You were caught by the police. You were fined **${coins_fined}** Dashcoins:tm: and you are unable to work, beg, or rob for **30** minutes.`)
@@ -194,6 +218,9 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
             
                 interaction.editReply({
                     embeds: [successembed]
+                })
+                .catch((err) => {
+                    return
                 })
                 
                 // console.log(randomvalue)

@@ -42,10 +42,16 @@ module.exports.run = async (client, interaction, options, Economy) => {
         await interaction.editReply({
             embeds: [embed]
         })
+        .catch((err) => {
+            return
+        })
     }
     else {
         interaction.editReply({
             content: "only mezmer420 can use that command!"
+        })
+        .catch((err) => {
+            return
         })
     }
 }

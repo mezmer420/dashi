@@ -14,4 +14,7 @@ module.exports.run = async (client, interaction) => {
     await interaction.editReply({
         embeds: [infoEmbed]
     })
+    .catch((err) => {
+        return
+    })
 }

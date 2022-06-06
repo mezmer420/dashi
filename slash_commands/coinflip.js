@@ -13,4 +13,7 @@ module.exports.run = (client, interaction) => {
     interaction.editReply({
         content: `Ok, flipped it. It's... **${outcome}**`
     })
+    .catch((err) => {
+        return
+    })
 }

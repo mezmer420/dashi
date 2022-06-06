@@ -28,4 +28,7 @@ module.exports.run = (client, interaction, options) => {
     interaction.editReply({ 
         content: `From ${num1} to ${num2}, I choose... **${randomnumber}**`
     })
+    .catch((err) => {
+        return
+    })
 }
