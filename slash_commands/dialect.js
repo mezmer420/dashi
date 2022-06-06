@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("dialect")
-.setDescription("View dialect info (use the dedicated /dialectspeedychoc command)")
+.setDescription("View dialect info")
 .addUserOption(option => option
     .setName("user")
     .setRequired(true)
@@ -59,6 +59,16 @@ module.exports.run = async (client, interaction, options) => {
         .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nmediumL\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
         await interaction.editReply({
             embeds: [deltaEmbed]
+        })
+    }
+
+    else if(member.id == "651251126884368384"){
+        const georgeertoEmbed = new MessageEmbed()
+        .setColor("GREEN")
+        .setTitle("georgeerto dialect")
+        .addField("` \n\nalright got it`\n—————", "<@651251126884368384>")
+        await interaction.editReply({
+            embeds: [georgeertoEmbed]
         })
     }
 

@@ -51,7 +51,6 @@ module.exports.run = async (client, interaction, options) => {
         "Outlook not so good...",
         "Very doubtful.",
     ]
-
     const fortune = fortunes[Math.floor(Math.random() * fortunes.length)]
 
     const Embed = new MessageEmbed()

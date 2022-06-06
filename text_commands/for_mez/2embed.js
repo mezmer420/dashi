@@ -5,19 +5,11 @@ module.exports = {
         if(message.author.id == "527285622809952256"){
             message.delete()
             const Embed = new MessageEmbed()
-            .setColor("RED")
-            .setTitle("Surefresh")
-            .addField('"ew get away"', "Imagine begging LMAO")
-            await message.channel.send({
-                embeds: [Embed]
-            })
-
-            const Embed2 = new MessageEmbed()
             .setColor("GREEN")
             .setTitle("Cookies")
             .addField('"Oh you poor little beggar, take **1** Dashcoin:tm:"', "1 Dashcoin:tm: Recieved")
             await message.channel.send({
-                embeds: [Embed2]
+                embeds: [Embed]
             })
 
             // const Embed = new MessageEmbed()
