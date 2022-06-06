@@ -231,6 +231,24 @@ module.exports = {
                     await sleep(Math.floor(Math.random() * 0) + 1001)
                     message.channel.send("vcashy waifu")
                 }
+
+                else if(message.content == "‎"){
+                    message.channel.sendTyping()
+                    await sleep(Math.floor(Math.random() * 0) + 1001)
+                    message.channel.send("georgeerto dialect")
+                }
+
+                else if(message.content == "‎"){
+                    message.channel.sendTyping()
+                    await sleep(Math.floor(Math.random() * 0) + 1001)
+                    message.channel.send("georgeerto dialect")
+                }
+
+                else if(message.content == "alright got it"){
+                    message.channel.sendTyping()
+                    await sleep(Math.floor(Math.random() * 0) + 1001)
+                    message.channel.send("georgeerto dialect")
+                }
                 
                 else if(message.content.startsWith("r/")){
                     const reddit = "r/"
