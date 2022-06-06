@@ -23,6 +23,7 @@ The bot has evolved significantly over time.
 - Welcome messaging
 
 - Event and command handlers
+- Error handling
 
 ## dashi can and does:
 
@@ -37,7 +38,7 @@ The bot has evolved significantly over time.
 - Say whatever I want
 - Modify own status and activity
 - Send files
-- Spam and stop spam
+- Spam
 - Simulate delay and typing
 - Randomize outcomes
 - Display the avatar of a user
@@ -53,3 +54,4 @@ The bot has evolved significantly over time.
 - Log basic events in a logs channel (e.g. channel create/delete, channel update in #logs)
 - Let you DM users via dashi
 - DMs new users when they join the server
+- Prevent runtime errors from leading to a crash
