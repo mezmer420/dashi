@@ -1,7 +1,7 @@
 # dashi
 ## _A Discord Bot_
 
-A multi-function Discord bot created with Discord.js V13, intended for use in a lone server. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, logging, and more!
+A multi-function Discord bot created with Discord.js V13, intended for use in a lone server. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, logging, and more.
 
 Created by mezmer420#7301
 
