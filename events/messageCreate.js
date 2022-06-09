@@ -1,4 +1,4 @@
-// welc, cons, anno, vot, self, cour, semi, gove, logs, spec, imag, vide, argu, game, poli, role, funq, lear, fran, hydr, vtts, mtts, ctts
+// welc, cons, anno, vot, self, cour, semi, gove, logs, spec, imag, vide, argu, game, poli, role, funq, lear, fran, bots, hydr, vtts, mtts, ctts
 // const blacklistedchannel = [
 //     "964361642668343376",
 //     "939675214600605757",
@@ -20,6 +20,7 @@
 //     "964714582402826280",
 //     "981647726129319976",
 //     "973334244178919504",
+//     "983507823965114378",
 //     "955689401688682526",
 
 //     "947301903186944020",
@@ -47,6 +48,7 @@ const role = "949118223805210674"
 const funq = "964714582402826280"
 const lear = "981647726129319976"
 const fran = "973334244178919504"
+const bots = "983507823965114378"
 const hydr = "955689401688682526"
 
 const vtts = "947301903186944020"
@@ -86,13 +88,13 @@ module.exports = {
 
         if(message.channel.type !== "DM"){
             // respond to people with @france role
-            if(message.author.id == "251778379211210755"){
-            message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
-            }
+            // if(message.author.id == "251778379211210755"){
+            // message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
+            // }
 
             // general responses for everyone (non-bot)
             if(!message.author.bot){
-                if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
+                if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == bots || message.channel.id == hydr) return
 
                 if(command == "rainbow dash"){
                     message.channel.sendTyping()
@@ -294,13 +296,16 @@ module.exports = {
                         message.channel.sendTyping()
                         await sleep(Math.floor(Math.random() * 0) + 1001)
                         message.reply("a lot*")
+                        .catch((err) => {
+                            return
+                        })
                         break
                     }
                 }
             }
 
             else if(message.author.bot){
-                if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == hydr) return
+                if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == bots || message.channel.id == hydr) return
                 if(message.author.id == "975952163090071553"){        // vcashcarbot
                     return
                 }

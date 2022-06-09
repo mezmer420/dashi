@@ -16,13 +16,35 @@ module.exports = {
         }
 
         else if(oldChannel.topic !== newChannel.topic){
-            const topicEmbed = new MessageEmbed()
-            .setTitle("🌼 Channel Update")
-            .addField("Channel Topic Changed", `#${newChannel.name}: **${oldChannel.topic}** -> **${newChannel.topic}**`)
-            .setColor("#9BDBF5")
-            .setTimestamp()
+            if(!oldChannel.topic){
+                const topicEmbed = new MessageEmbed()
+                .setTitle("🌼 Channel Update")
+                .addField("Channel Topic Added", `#${newChannel.name}:\n**${newChannel.topic}**`)
+                .setColor("#9BDBF5")
+                .setTimestamp()
+    
+                logs.send({embeds: [topicEmbed]})
+            }
 
-            logs.send({embeds: [topicEmbed]})
+            else if(!newChannel.topic){
+                const topicEmbed = new MessageEmbed()
+                .setTitle("🌼 Channel Update")
+                .addField("Channel Topic Removed", `#${newChannel.name}:\n**${oldChannel.topic}**\n->\n(none)`)
+                .setColor("#9BDBF5")
+                .setTimestamp()
+    
+                logs.send({embeds: [topicEmbed]})
+            }
+
+            else {
+                const topicEmbed = new MessageEmbed()
+                .setTitle("🌼 Channel Update")
+                .addField("Channel Topic Changed", `#${newChannel.name}:\n**${oldChannel.topic}**\n->\n**${newChannel.topic}**`)
+                .setColor("#9BDBF5")
+                .setTimestamp()
+    
+                logs.send({embeds: [topicEmbed]}) 
+            }
         }
 
         else if(oldChannel.nsfw !== newChannel.nsfw){

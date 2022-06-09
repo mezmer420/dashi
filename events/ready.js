@@ -1,4 +1,4 @@
-const {Economy, workCooldown, begCooldown, robCooldown} = require("../database")
+const {Economy, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
 
 module.exports = {
     name: "ready",
@@ -15,7 +15,8 @@ module.exports = {
         await Economy.sync()
         await workCooldown.sync()
         await begCooldown.sync()
-        await robCooldown.sync().then(console.log("Database synced"))
+        await robCooldown.sync()
+        await Waifus.sync().then(console.log("Database synced"))
     
         const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
         if (!dashiuser){
