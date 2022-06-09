@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("work")
 .setDescription("Work for Dashcoins; default cooldown 5 min—reducable to 3 or 1 min")
 
-module.exports.run = async (client, interaction, options, Economy, workCooldown, begCooldown, robCooldown) => {
+module.exports.run = async (client, interaction, Economy, workCooldown, begCooldown, robCooldown) => {
     let getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id, command: "work"}})
     let workcooldownTime = getworkCooldown?.expiry
 

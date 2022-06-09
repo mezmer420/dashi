@@ -1,4 +1,4 @@
-const {Economy, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
+const {Economy, workCooldown, begCooldown, robCooldown, Waifu} = require("../database")
 
 module.exports = {
     name: "ready",
@@ -15,8 +15,7 @@ module.exports = {
         await Economy.sync()
         await workCooldown.sync()
         await begCooldown.sync()
-        await robCooldown.sync()
-        await Waifus.sync().then(console.log("Database synced"))
+        await robCooldown.sync().then(console.log("Database synced"))
     
         const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
         if (!dashiuser){
@@ -30,6 +29,7 @@ module.exports = {
         // workCooldown.destroy({truncate: true}).then(console.log("workCooldown destroyed"))
         // begCooldown.destroy({truncate: true}).then(console.log("begCooldown destroyed"))
         // robCooldown.destroy({truncate: true}).then(console.log("robCooldown destroyed"))
+        // Waifu.destroy({truncate: true}).then(console.log("Waifu destroyed"))
     
         // console.log("I am unable.")
         // client.destroy()

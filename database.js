@@ -55,12 +55,12 @@ module.exports.robCooldown = database.define("robcooldown", {
     command: Sequelize.STRING
 })
 
-module.exports.Waifus = database.define("waifus", {
-    id: {
-        primaryKey: true,
-        type: Sequelize.STRING,
-        unique: true
-    },
-    waifu: Sequelize.STRING,
-    haswaifu: Sequelize.BOOLEAN
-})
+// module.exports.Waifus = database.define("waifus", {
+//     id: {
+//         primaryKey: true,
+//         type: Sequelize.STRING,
+//         unique: true
+//     },
+//     waifu: Sequelize.STRING,
+//     haswaifu: Sequelize.BOOLEAN
+// })

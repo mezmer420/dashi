@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("yuri")
 .setDescription("Gives a random Yuri!")
 
-module.exports.run = async (client, interaction, Waifus) => {
+module.exports.run = async (client, interaction) => {
     const yuris = ["Yuri1", "Yuri2", "Yuri3", "Yuri4", "Yuri5", "Yuri6", "Yuri7", "Yuri8", "Yuri9", "Yuri10", "Yuri11", "Yuri12", "Yuri13", "Yuri14", "Yuri15", "Yuri16", "Yuri17", "Yuri18", "Yuri19", "Yuri20"]
     const randomyuri = RandArray(yuris)
     
@@ -177,7 +177,7 @@ module.exports.run = async (client, interaction, Waifus) => {
         .setImage("https://pbs.twimg.com/media/E8u5LohVkAEgyuz?format=jpg&name=4096x4096")
     }
 
-    const sentInteraction =
+    // const sentInteraction =
     await interaction.editReply({
         embeds: [embed]
     })
@@ -185,54 +185,53 @@ module.exports.run = async (client, interaction, Waifus) => {
         return
     })
 
-    sentInteraction.react("❤️")
+    // sentInteraction.react("❤️")
 
-    const filter = (reaction, user) => {
-        return reaction.emoji.name == "❤️" && user.id == interaction.member.id
-    }
+    // const filter = (reaction, user) => {
+    //     return reaction.emoji.name == "❤️" && user.id == interaction.member.id
+    // }
 
-    const collector = sentInteraction.createReactionCollector({
-        filter,
-        max: 1,
-        time: 20000
-    })
+    // const collector = sentInteraction.createReactionCollector({
+    //     filter,
+    //     max: 1,
+    //     time: 20000
+    // })
 
-    collector.on("collect", async (reaction) => {
-        let member = interaction.member
-        let getUser = await Waifus.findOne({where: {id: member.id}})
-        if(!getUser) {
-            getUser = await Waifus.create({id: member.id, haswaifu: false})
-        }
+    // collector.on("collect", async (reaction) => {
+    //     let getUser = await Waifus.findOne({where: {id: interaction.member.id}})
+    //     if(!getUser){
+    //         getUser = await Waifus.create({id: interaction.member.id, haswaifu: false})
+    //     }
 
-        if(getUser.haswaifu == false){
-            await Waifus.update({waifu: randompony, haswaifu: true}, {where: {id: member.id}})
+    //     if(getUser.haswaifu == false){
+    //         await Waifus.update({waifu: randomyuri, haswaifu: true}, {where: {id: interaction.member.id}})
 
-            interaction.editReply({ 
-                content: `Aww, your new waifu is **${randompony}**!`
-            })
-            .catch((err) => {
-                return
-            })
-        }
+    //         interaction.editReply({ 
+    //             content: `Aww, your new waifu is **${randomyuri}**!`
+    //         })
+    //         .catch((err) => {
+    //             return
+    //         })
+    //     }
 
-        else if(getUser.haswaifu == true){
-            // const existingwaifu = await Waifus.findOne({where: {id: member.id}})
+    //     else if(getUser.haswaifu == true){
+    //         // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
 
-            interaction.editReply({ 
-                content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
-            })
-            .catch((err) => {
-                return
-            })
-        }
-        // console.log(`${interaction.member.username} collected a new ${reaction.emoji.name} reaction`)
-    })
+    //         interaction.editReply({ 
+    //             content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
+    //         })
+    //         .catch((err) => {
+    //             return
+    //         })
+    //     }
+    //     // console.log(`${interaction.member.username} collected a new ${reaction.emoji.name} reaction`)
+    // })
 
-    collector.on("end", (collected, reason) => {
-        return
-        // if(reason == "limit") return console.log("limit reached")
-        // else {
-        //     console.log("time expired")
-        // }
-    })
+    // collector.on("end", (collected, reason) => {
+    //     return
+    //     // if(reason == "limit") return console.log("limit reached")
+    //     // else {
+    //     //     console.log("time expired")
+    //     // }
+    // })
 }
