@@ -4,10 +4,10 @@ const Docs = require("discord.js-docs")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("docs")
-.setDescription("Search the Discord.JS documentation")
+.setDescription("Search the official Discord.JS documentation")
 .addStringOption(option => option
     .setName("search-query")
-    .setDescription("Search the Discord.JS documentation")
+    .setDescription("Search the official Discord.JS documentation")
     .setRequired(true)
 )
 
