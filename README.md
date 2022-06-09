@@ -69,7 +69,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 
 ## Dependencies:
 
-    "@discordjs/opus": "^0.5.3"
+    "@discordjs/opus": "^0.5.3",
     "@discordjs/rest": "^0.5.0",
     "@discordjs/voice": "^0.10.0",
     "discord-api-types": "^0.33.4",
