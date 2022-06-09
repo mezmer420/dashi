@@ -60,8 +60,6 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Perform basic user management (kick, ban) with an interactive button embed
 - Require new users to react to a message to verify and gain access to the server
 - Assign roles by reacting to a message, and removing roles by unreacting (reaction roles)
-- Let you "claim" a waifu by reacted to its respective embed (reaction roles)
-- Prevent you from claiming another waifu until you "break up" with your current one
 - Log basic events in a logs channel (e.g. channel create/delete, channel update in #logs)
 - Let you DM users via dashi
 - DMs new users when they join the server
