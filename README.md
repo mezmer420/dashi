@@ -66,3 +66,20 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Let you DM users via dashi
 - DMs new users when they join the server
 - Prevent runtime errors from leading to a crash
+
+## Dependencies:
+
+    "@discordjs/opus": "^0.5.3"
+    "@discordjs/rest": "^0.5.0",
+    "@discordjs/voice": "^0.10.0",
+    "discord-api-types": "^0.33.4",
+    "discord-player": "^5.2.2",
+    "discordjs-button-pagination": "^1.0.7",
+    "dotenv": "^16.0.1",
+    "ffmpeg-static": "^4.4.1",
+    "i": "^0.3.7",
+    "mongoose": "^6.3.4",
+    "npm": "^8.12.1",
+    "ns": "^1.0.2",
+    "sequelize": "^6.19.2",
+    "sqlite3": "^5.0.8"
