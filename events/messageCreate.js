@@ -69,6 +69,10 @@ module.exports = {
             if(message.author.id == "956345939130482750") return
             const me = await message.client.users.fetch("527285622809952256").catch(console.error)
             me.send(`**${message.author.username}** DM'd me **${message.content}**`)
+            .catch((err) => {
+                console.log(err)
+                return
+            })
         }
 
         // if non-government tries to use @everyone or @here
@@ -80,6 +84,9 @@ module.exports = {
                     const index = message.content.toLowerCase().indexOf(ping[i])
                     if (index !== -1) {
                         message.reply("only governmental officials can use that ping idot!")
+                        .catch((err) => {
+                            return
+                        })
                         break
                     }
                 }
@@ -262,6 +269,9 @@ module.exports = {
                             const empty = ""
                             if(subreddit == empty){
                                 message.reply('specify what the subreddit is! format is "r/[subreddit]"')
+                                .catch((err) => {
+                                    return
+                                })
                             }
                             else {
                                 message.channel.send(`https://www.reddit.com/r/${subreddit}/`)
@@ -354,6 +364,9 @@ module.exports = {
                         const index = message.content.toLowerCase().indexOf(badWord[i])
                         if (index !== -1) {
                             message.reply("language!")
+                            .catch((err) => {
+                                return
+                            })
                             break
                         }
                     }

@@ -24,6 +24,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
                     if(member == "251778379211210755") return
                     member.roles.add(eoicrole)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} verified`)
         
                     // console.log(`${eoicrole.name}, ${member}, test`)
@@ -46,6 +50,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(weeb)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${weeb.name}`)
                 }
     
@@ -57,6 +65,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(procrastinator)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${procrastinator.name}`)
                 }
     
@@ -68,6 +80,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(gordon)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${gordon.name}`)
                 }
     
@@ -79,6 +95,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(funque)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${funque.name}`)
                 }
     
@@ -90,6 +110,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(streams)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${streams.name}`)
                 }
     
@@ -101,6 +125,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(innoc)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${innoc.name}`)
                 }
     
@@ -112,6 +140,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.add(nerd)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} got ${nerd.name}`)
                 }
             }

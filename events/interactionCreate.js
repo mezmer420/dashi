@@ -22,6 +22,9 @@ module.exports = {
     
             if(command == "ban"){
                 member.ban()
+                .catch((err) => {
+                    return
+                })
                 return interaction.editReply({
                     content: "Successfully banned the user",
                     ephemeral: true
@@ -30,6 +33,9 @@ module.exports = {
             
             else if(command == "kick"){
                 member.kick()
+                .catch((err) => {
+                    return
+                })
                 return interaction.editReply({
                     content: "Successfully kicked the user",
                     ephemeral: true

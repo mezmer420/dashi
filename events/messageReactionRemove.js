@@ -24,6 +24,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(weeb)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${weeb.name}`)
                 }
         
@@ -35,6 +39,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(procrastinator)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${procrastinator.name}`)
                 }
         
@@ -46,6 +54,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(gordon)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${gordon.name}`)
                 }
         
@@ -57,6 +69,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(funque)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${funque.name}`)
                 }
         
@@ -68,6 +84,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(streams)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${streams.name}`)
                 }
         
@@ -79,6 +99,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(innoc)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${innoc.name}`)
                 }
         
@@ -90,6 +114,10 @@ module.exports = {
                     // console.log(`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`)
         
                     member.roles.remove(nerd)
+                    .catch((err) => {
+                        console.log(err)
+                        return
+                    })
                     // console.log(`${user.username} removed ${nerd.name}`)
                 }
             }
