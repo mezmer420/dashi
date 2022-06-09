@@ -1,7 +1,7 @@
 # dashi
 ## _A Discord Bot_
 
-A multi-function Discord bot created with Discord.js V13, intended for use in a lone server. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, logging, and more.
+A multi-function Discord bot created with Discord.js V13, intended for use in a lone server. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, music features, and more.
 
 Created by mezmer420#7301
 
@@ -16,6 +16,7 @@ The bot has evolved significantly over time.
 - Wide array of application (/) commands
 - A local database
 - Economy and inventory system
+- Music system
 - Basic event logging
 - Verification and reaction roles system
 - Ability to DM users
@@ -47,6 +48,10 @@ The bot has evolved significantly over time.
 - Sell items you purchased, and detect if you do not already own it
 - Set cooldowns on certain economy commands (e.g. work), reducable by purchasing certain item(s)
 - Set a high cooldown for all eco-related commands in the event of a foiled robbery to simulate jail time, reducable by purchasing certain item(s)
+- Find videos from YouTube with a URL or keywords and play their audio in VC (music bot)
+- Display basic info about playing songs/videos
+- Store song requests in a queue
+- Shuffle, skip, and skipto songs
 - Kick and ban users
 - Perform basic user management (kick, ban) with an interactive button embed
 - Require new users to react to a message to verify and gain access to the server
