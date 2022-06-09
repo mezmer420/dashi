@@ -6,8 +6,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("View dialect info")
 .addUserOption(option => option
     .setName("user")
+    .setDescription("User to view the dialect of")
     .setRequired(true)
-    .setDescription("User to view the dialect of"))
+)
 
 module.exports.run = async (client, interaction) => {
     const member = interaction.options.getMember("user")

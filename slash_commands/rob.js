@@ -7,8 +7,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Attempt to rob 10% of another user's wallet balance; cooldown 5 min")
 .addUserOption(option => option
     .setName("user")
+    .setDescription("The user you want to attempt to rob")
     .setRequired(true)
-    .setDescription("The user you want to attempt to rob"))
+)
 
 module.exports.run = async (client, interaction, Economy, workCooldown, begCooldown, robCooldown) => {
     // if(interaction.member.id == "527285622809952256"){

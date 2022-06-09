@@ -7,7 +7,8 @@ module.exports.data = new SlashCommandBuilder()
     .setName("tracknumber")
     .setDescription("The track to skip to")
     .setMinValue(1)
-    .setRequired(true))
+    .setRequired(true)
+)
 
 module.exports.run = async (client, interaction) => {
     const queue = client.player.getQueue(interaction.guildId)

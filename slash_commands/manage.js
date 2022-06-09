@@ -7,12 +7,15 @@ module.exports.data = new SlashCommandBuilder()
 .addUserOption(option => option
     .setName("user")
     .setDescription("The user to manage")
-    .setRequired(true))
+    .setRequired(true)
+)
 
 module.exports.run = async (client, interaction) => {
     const permissions = interaction.member.permissions
 
-    if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({content: "you don't have sufficient perms!"})
+    if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({
+        content: "you don't have sufficient perms!"
+    })
     .catch((err) => {
         return
     })

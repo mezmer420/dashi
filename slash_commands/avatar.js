@@ -6,8 +6,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("View your or another user's avatar")
 .addUserOption(option => option
     .setName("user")
+    .setDescription("User to view the avatar of")
     .setRequired(true)
-    .setDescription("User to view the avatar of"))
+)
 
 module.exports.run = async (client, interaction) => {
     const member = interaction.options.getMember("user")

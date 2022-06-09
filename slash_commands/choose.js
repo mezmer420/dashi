@@ -11,45 +11,54 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("I will choose something for you")
 .addStringOption(option => option
     .setName("1st")
+    .setDescription("The 1st thing to choose from")
     .setRequired(true)
-    .setDescription("The 1st thing to choose from"))
+)
 .addStringOption(option => option
     .setName("2nd")
+    .setDescription("The 2nd thing to choose from")
     .setRequired(true)
-    .setDescription("The 2nd thing to choose from"))
+)
 .addStringOption(option => option
     .setName("3rd")
+    .setDescription("The 3rd thing to choose from")
     .setRequired(false)
-    .setDescription("The 3rd thing to choose from"))
+)
 .addStringOption(option => option
     .setName("4th")
+    .setDescription("The 4th thing to choose from")
     .setRequired(false)
-    .setDescription("The 4th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("5th")
+    .setDescription("The 5th thing to choose from")
     .setRequired(false)
-    .setDescription("The 5th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("6th")
+    .setDescription("The 6th thing to choose from")
     .setRequired(false)
-    .setDescription("The 6th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("7th")
+    .setDescription("The 7th thing to choose from")
     .setRequired(false)
-    .setDescription("The 7th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("8th")
+    .setDescription("The 8th thing to choose from")
     .setRequired(false)
-    .setDescription("The 8th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("9th")
+    .setDescription("The 9th thing to choose from")
     .setRequired(false)
-    .setDescription("The 9th thing to choose from"))
+)
 .addStringOption(option => option
     .setName("10th")
+    .setDescription("The 10th thing to choose from")
     .setRequired(false)
-    .setDescription("The 10th thing to choose from"))
-
+)
 
 module.exports.run = async (client, interaction) => {
     const choice1 = interaction.options.getString("1st")

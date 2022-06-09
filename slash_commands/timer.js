@@ -6,12 +6,14 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Set a timer")
 .addIntegerOption(option => option
     .setName("seconds")
+    .setDescription("The time in seconds")
     .setRequired(true)
-    .setDescription("The time in seconds"))
+)
 .addStringOption(option => option
     .setName("reminder")
+    .setDescription("What to remind you about")
     .setRequired(true)
-    .setDescription("What to remind you about"))
+)
 
 module.exports.run = async (client, interaction) => {
     const time = interaction.options.getInteger("seconds")

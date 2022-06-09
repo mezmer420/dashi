@@ -5,8 +5,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Kill someone")
 .addUserOption(option => option
     .setName("victim")
+    .setDescription("The person to kill")
     .setRequired(true)
-    .setDescription("The person to kill"))
+)
 
 module.exports.run = async (client, interaction) => {
     const target = interaction.options.getMember("victim")

@@ -4,10 +4,11 @@ const { MessageEmbed } = require("discord.js")
 module.exports.data = new SlashCommandBuilder()
 .setName("inventory")
 .setDescription("View the inventory of yourself or another user; leave blank to view your own inventory")
-.addUserOption(option =>
-    option.setName("user")
+.addUserOption(option => option
+    .setName("user")
+    .setDescription("User to check the balance of")
     .setRequired(false)
-    .setDescription("User to check the balance of"))
+)
 
 module.exports.run = async (client, interaction, Economy) => {
     let member = interaction.options.getMember("user") || interaction.member

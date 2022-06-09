@@ -5,12 +5,14 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Pick a random integer between two numbers, inclusive")
 .addIntegerOption(option => option
     .setName("number1")
+    .setDescription("The first number")
     .setRequired(true)
-    .setDescription("The first number"))
+)
 .addIntegerOption(option => option
     .setName("number2")
+    .setDescription("The second number")
     .setRequired(true)
-    .setDescription("The second number"))
+)
 
 
 module.exports.run = (client, interaction) => {

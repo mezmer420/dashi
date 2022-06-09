@@ -5,12 +5,14 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Make me DM a user")
 .addUserOption(option => option
     .setName("user")
+    .setDescription("The user to DM")
     .setRequired(true)
-    .setDescription("The user to DM"))
+)
 .addStringOption(option => option
     .setName("message")
+    .setDescription("The message to DM")
     .setRequired(true)
-    .setDescription("The message to DM"))
+)
 
 module.exports.run = async (client, interaction) => {
     const user = interaction.options.getMember("user")

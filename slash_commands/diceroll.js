@@ -5,8 +5,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Roll a dice")
 .addIntegerOption(option => option
     .setName("dice")
-    .setRequired(false)
-    .setDescription("The number of dice to roll; skip to roll one"))
+    .setDescription("The number of dice to roll; skip to roll one")
+    .setRequired(true)
+)
 
 module.exports.run = (client, interaction) => {
     let dice = interaction.options.getInteger("dice") || 1

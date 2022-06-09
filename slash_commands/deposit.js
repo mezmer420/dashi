@@ -6,18 +6,12 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Deposit Dashcoins into bank")
 .addIntegerOption(option => option
     .setName("amount")
+    .setDescription("The amount to deposit")
     .setRequired(true)
-    .setDescription("The amount to deposit"))
+)
 
 module.exports.run = async (client, interaction, Economy) => {
     const amount = interaction.options.getInteger("amount")
-
-    if(amount < 1 || amount > 5000) return interaction.editReply({
-        content: "Invalid amount; must be between 1 and 5000, inclusive"
-    })
-    .catch((err) => {
-        return
-    })
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 

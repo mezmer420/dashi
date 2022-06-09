@@ -6,12 +6,14 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Set a user's bank balance")
 .addUserOption(option => option
     .setName("user")
+    .setDescription("The user to set the bank balance of")
     .setRequired(true)
-    .setDescription("The user to set the bank balance of"))
+)
 .addIntegerOption(option => option
     .setName("amount")
+    .setDescription("The bank balance to set")
     .setRequired(true)
-    .setDescription("The bank balance to set"))
+)
 
 module.exports.run = async (client, interaction, Economy) => {
     if(interaction.member.id == "527285622809952256" || interaction.member.id == "842775855632744478"){

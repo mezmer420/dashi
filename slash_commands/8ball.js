@@ -6,8 +6,9 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Ask the magic 8ball a question")
 .addStringOption(option => option
     .setName("question")
+    .setDescription("The question you want to ask the magic 8ball")
     .setRequired(true)
-    .setDescription("The question you want to ask the magic 8ball"))
+)
 
 module.exports.run = async (client, interaction) => {
     const inquiry = interaction.options.getString("question")
