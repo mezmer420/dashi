@@ -9,6 +9,8 @@ I did not know how to program in any way, shape, or form prior to this project. 
 
 The bot has evolved significantly over time.
 
+The bot itself won't be made public as there's way too much stuff specifically designed only for our server. But feel free to look around the code for inspiration for your own bot(s).
+
 ## Features:
 
 - "Dialect" response
