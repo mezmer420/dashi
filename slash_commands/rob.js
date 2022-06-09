@@ -10,22 +10,25 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The user you want to attempt to rob"))
 
-module.exports.run = async (client, interaction, options, Economy, workCooldown, begCooldown, robCooldown) => {
+module.exports.run = async (client, interaction, Economy, workCooldown, begCooldown, robCooldown) => {
     // if(interaction.member.id == "527285622809952256"){
-    let member = options.getMember("user")
-    let getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
+    const member = interaction.options.getMember("user")
+    const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
     let robcooldownTime = getrobCooldown?.expiry
-    if(getrobCooldown && robcooldownTime > new Date().getTime()) {
-        return interaction.editReply({content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`})
-        .catch((err) => {
-            return
-        })
-    } else if (getrobCooldown) {
+
+    if(getrobCooldown && robcooldownTime > new Date().getTime()) return interaction.editReply({
+        content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`
+    })
+    .catch((err) => {
+        return
+    })
+
+    if(getrobCooldown){
         robCooldown.destroy({where: {id: interaction.member.id, command: "rob"}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
-    if(!getUser) {
+    if(!getUser){
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
@@ -36,13 +39,21 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     }
 
     if(getUser.wallet < 100 || memberWallet.wallet < 100){
-        // if(getUser.wallet = 0) interaction.editReply({content: "Bruh your wallet is empty. I'm going to stop you right there and urge you not to start off your money-making career by being a lawbreaker."})
-        if(getUser.wallet < 100) interaction.editReply({content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."})
+        // if(getUser.wallet = 0) interaction.editReply({
+        //     content: "Bruh your wallet is empty. I'm going to stop you right there and urge you not to start off your money-making career by being a lawbreaker."
+        // })
+        if(getUser.wallet < 100) interaction.editReply({
+            content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."
+        })
         .catch((err) => {
             return
         })
-        // else if(memberWallet.wallet = 0) interaction.editReply({content: "Bruh the person you're trying to rob has **0** coins in his wallet. At least show some decency for the homeless."})
-        else if(memberWallet.wallet < 100) interaction.editReply({content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"})
+        // else if(memberWallet.wallet = 0) interaction.editReply({
+            // content: "Bruh the person you're trying to rob has **0** coins in his wallet. At least show some decency for the homeless."
+        // })
+        else if(memberWallet.wallet < 100) interaction.editReply({
+            content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"
+        })
         .catch((err) => {
             return
         })
@@ -97,16 +108,18 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         
             else if(20 <= randomvalue && randomvalue < 30){
                 const coins_fined = (Math.round(getUser.wallet * 0.1))
-        
                 const newrobberWallet = getUser.wallet - coins_fined
             
                 await Economy.update({wallet: newrobberWallet}, {where: {id: interaction.member.id}})
             
                 const getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id, command: "work"}})
+
                 if(getworkCooldown){
                     await workCooldown.destroy({where: {id: interaction.member.id, command: "work"}})
                 }
+
                 const getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id, command: "beg"}})
+
                 if(getbegCooldown){
                     await begCooldown.destroy({where: {id: interaction.member.id, command: "beg"}})
                 }
@@ -194,7 +207,6 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
 
             else if(randomvalue < 20){
                 const coins_robbed = (Math.round(memberWallet.wallet * 0.1))
-        
                 const newrobberWallet = getUser.wallet + coins_robbed
                 const newvictimWallet = memberWallet.wallet - coins_robbed
             

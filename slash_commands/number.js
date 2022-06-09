@@ -13,9 +13,9 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The second number"))
 
 
-module.exports.run = (client, interaction, options) => {
-    let num1 = options.getInteger("number1")
-    let num2 = options.getInteger("number2")
+module.exports.run = (client, interaction) => {
+    const num1 = interaction.options.getInteger("number1")
+    const num2 = interaction.options.getInteger("number2")
 
     function getRandomIntInclusive(min, max){
         min = Math.ceil(min)

@@ -9,10 +9,11 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
     .setDescription("User to check the balance of; skip to view your own balance"))
 
-module.exports.run = async (client, interaction, options, Economy) => {
-    let member = options.getMember("user") || interaction.member
+module.exports.run = async (client, interaction, Economy) => {
+    let member = interaction.options.getMember("user") || interaction.member
     let getUser = await Economy.findOne({where: {id: member.id}})
-    if(!getUser) {
+
+    if(!getUser){
         getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 

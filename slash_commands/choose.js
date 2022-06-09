@@ -51,17 +51,17 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("The 10th thing to choose from"))
 
 
-module.exports.run = async (client, interaction, options) => {
-    const choice1 = options.getString("1st")
-    const choice2 = options.getString("2nd")
-    const choice3 = options.getString("3rd")
-    const choice4 = options.getString("4th")
-    const choice5 = options.getString("5th")
-    const choice6 = options.getString("6th")
-    const choice7 = options.getString("7th")
-    const choice8 = options.getString("8th")
-    const choice9 = options.getString("9th")
-    const choice10 = options.getString("10th")
+module.exports.run = async (client, interaction) => {
+    const choice1 = interaction.options.getString("1st")
+    const choice2 = interaction.options.getString("2nd")
+    const choice3 = interaction.options.getString("3rd")
+    const choice4 = interaction.options.getString("4th")
+    const choice5 = interaction.options.getString("5th")
+    const choice6 = interaction.options.getString("6th")
+    const choice7 = interaction.options.getString("7th")
+    const choice8 = interaction.options.getString("8th")
+    const choice9 = interaction.options.getString("9th")
+    const choice10 = interaction.options.getString("10th")
 
     const responsevalues = [choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, choice10]
     const response = RandArray(responsevalues)

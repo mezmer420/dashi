@@ -8,12 +8,12 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The person to kill"))
 
-module.exports.run = async (client, interaction, options) => {
-    let target = options.getMember("victim")
+module.exports.run = async (client, interaction) => {
+    const target = interaction.options.getMember("victim")
+    const perp = interaction.member
 
-    let perp = interaction.member
-      var kills = [
-        ` after a long day, plops down on the couch with ${target} and turns on The Big Bang Theory. After a Sheldon Cooper joke, ${target} laughs uncontrollably as they die.`,
+    const kills = [
+        `${perp} after a long day, plops down on the couch with ${target} and turns on The Big Bang Theory. After a Sheldon Cooper joke, ${target} laughs uncontrollably as they die.`,
         `${perp} Alt+F4'd ${target}.exe!`,
         `${perp} attempted to play a flute, exploding the head of ${target}.`,
         `${perp} blew his ear drums out listening to music too hard.`,
@@ -204,6 +204,7 @@ module.exports.run = async (client, interaction, options) => {
         `The bullet missed Harambe and hit ${target} instead. Yay for Harambe!`,
         `While performing colonoscopy on an elephant, ${target} gets their head stuck in the elephants rectum and chokes.`,
       ]
+      
       await interaction.editReply(kills[Math.floor(Math.random() * kills.length)])
       .catch((err) => {
           return

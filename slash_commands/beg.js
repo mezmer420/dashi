@@ -6,21 +6,26 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Beg for Dashcoins; cooldown 30 sec")
 
 module.exports.run = async (client, interaction, options, Economy, workCooldown, begCooldown, robCooldown) => {
-    let member = interaction.member
-    let getbegCooldown = await begCooldown.findOne({where: {id: member.id, command: "beg"}})
+    let getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id, command: "beg"}})
     let begcooldownTime = getbegCooldown?.expiry
+
     if(getbegCooldown && begcooldownTime > new Date().getTime()) {
-        return interaction.editReply({content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`})
+        return interaction.editReply({
+            content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`
+        })
         .catch((err) => {
             return
         })
-    } else if (getbegCooldown) {
-        begCooldown.destroy({where: {id: member.id, command: "beg"}})
+    }
+    
+    else if (getbegCooldown) {
+        begCooldown.destroy({where: {id: interaction.member.id, command: "beg"}})
     }
 
-    let getUser = await Economy.findOne({where: {id: member.id}})
+    let getUser = await Economy.findOne({where: {id: interaction.member.id}})
+
     if(!getUser) {
-        getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
     if(getUser.wallet >= 1000 && getUser.bank < 1000){
@@ -56,10 +61,10 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         if(randomvalue >= 20){
             const coins_earned = Math.floor(Math.random() * 5) + 5
     
-            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
+            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: interaction.member.id}})
         
             begCooldown.create({
-                id: member.id,
+                id: interaction.member.id,
                 expiry: new Date().getTime() + (15000 * 2),
                 command: "beg"
             })
@@ -75,10 +80,10 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
         else if(10 <= randomvalue && randomvalue < 20){
             const coins_earned = Math.floor(Math.random() * 50) + 100
     
-            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: member.id}})
+            await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: interaction.member.id}})
         
             begCooldown.create({
-                id: member.id,
+                id: interaction.member.id,
                 expiry: new Date().getTime() + (15000 * 2),
                 command: "beg"
             })
@@ -93,7 +98,7 @@ module.exports.run = async (client, interaction, options, Economy, workCooldown,
     
         else if(randomvalue < 10){
             begCooldown.create({
-                id: member.id,
+                id: interaction.member.id,
                 expiry: new Date().getTime() + (15000 * 2),
                 command: "beg"
             })

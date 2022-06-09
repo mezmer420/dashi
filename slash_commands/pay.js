@@ -13,9 +13,9 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The amount to give"))
 
-module.exports.run = async (client, interaction, options, Economy) => {
-    let amount = options.getInteger("amount")
-    let member = options.getMember("user")
+module.exports.run = async (client, interaction, Economy) => {
+    const amount = interaction.options.getInteger("amount")
+    const member = interaction.options.getMember("user")
 
     if(amount < 1 || amount > 1000) return interaction.editReply({content: "Invalid amount; must be between 1 and 1000"})
     .catch((err) => {
@@ -23,7 +23,8 @@ module.exports.run = async (client, interaction, options, Economy) => {
     })
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
-    if(!getUser) {
+
+    if(!getUser){
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
     
@@ -34,7 +35,7 @@ module.exports.run = async (client, interaction, options, Economy) => {
 
     const memberWallet = await Economy.findOne({where: {id: member.id}})
 
-    if(!memberWallet) {
+    if(!memberWallet){
         memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 

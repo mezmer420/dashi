@@ -13,10 +13,10 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("What to remind you about"))
 
-module.exports.run = async (client, interaction, options) => {
-    let time = options.getInteger("seconds")
-    let subject = options.getString("reminder")
-    let milliseconds = time * 1000
+module.exports.run = async (client, interaction) => {
+    const time = interaction.options.getInteger("seconds")
+    const subject = interaction.options.getString("reminder")
+    const milliseconds = time * 1000
 
     if(time <= 840){
         const createdEmbed = new MessageEmbed()
@@ -30,7 +30,7 @@ module.exports.run = async (client, interaction, options) => {
         .setColor("#9BDBF5")
         .setTitle("Timer Up!")
         .setAuthor(`${interaction.member.user.tag}'s Timer`, interaction.member.avatarURL())
-        .setDescription(`**${subject}**\nTime set: **${time} seconds** ago`)
+        .setDescription(`**${subject}**\nTime set: **${time} seconds**`)
         .setTimestamp()
     
         await interaction.editReply({

@@ -8,8 +8,8 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The text to say"))
 
-module.exports.run = async (client, interaction, options) => {
-    let text = options.getString("text")
+module.exports.run = async (client, interaction) => {
+    let text = interaction.options.getString("text")
 
     await interaction.editReply({
         files: [

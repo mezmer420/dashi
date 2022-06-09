@@ -8,8 +8,8 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
     .setDescription("The number of dice to roll; skip to roll one"))
 
-module.exports.run = (client, interaction, options) => {
-    let dice = options.getInteger("dice") || 1
+module.exports.run = (client, interaction) => {
+    let dice = interaction.options.getInteger("dice") || 1
 
     const roll1 = Math.floor(Math.random() * 5) + 1
     const roll2 = Math.floor(Math.random() * 5) + 1

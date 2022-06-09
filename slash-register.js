@@ -2,8 +2,8 @@ const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
 const { token } = require("./config.json")
 const fs = require("node:fs")
-const commands = []
-const commandList = new Map()
+let commands = []
+let commandList = new Map()
 
 module.exports = (updateCommands) => {
     const commandFiles = fs.readdirSync("./slash_commands/").filter(file => file.endsWith(".js"))

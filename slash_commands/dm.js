@@ -12,9 +12,9 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The message to DM"))
 
-module.exports.run = async (client, interaction, options) => {
-    let user = options.getMember("user")
-    let message = options.getString("message")
+module.exports.run = async (client, interaction) => {
+    const user = interaction.options.getMember("user")
+    const message = interaction.options.getString("message")
 
     if(user.id == "956345939130482750") return interaction.editReply({
         content: "i can't DM myself idot"

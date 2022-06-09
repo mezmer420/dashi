@@ -54,3 +54,13 @@ module.exports.robCooldown = database.define("robcooldown", {
     expiry: Sequelize.BIGINT,
     command: Sequelize.STRING
 })
+
+module.exports.Waifus = database.define("waifus", {
+    id: {
+        primaryKey: true,
+        type: Sequelize.STRING,
+        unique: true
+    },
+    waifu: Sequelize.STRING,
+    haswaifu: Sequelize.BOOLEAN
+})

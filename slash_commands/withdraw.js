@@ -9,20 +9,25 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The amount to withdraw"))
 
-module.exports.run = async (client, interaction, options, Economy) => {
-    let amount = options.getInteger("amount")
+module.exports.run = async (client, interaction, Economy) => {
+    const amount = interaction.options.getInteger("amount")
 
-    if(amount < 1 || amount > 5000) return interaction.editReply({content: "Invalid amount; must be between 1 and 5000, inclusive"})
+    if(amount < 1 || amount > 5000) return interaction.editReply({
+        content: "Invalid amount; must be between 1 and 5000, inclusive"
+    })
     .catch((err) => {
         return
     })
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
-    if(!getUser) {
+
+    if(!getUser){
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
     
-    if(getUser.bank < amount) return interaction.editReply({content: "Insufficient bank balance!"})
+    if(getUser.bank < amount) return interaction.editReply({
+        content: "Insufficient bank balance!"
+    })
     .catch((err) => {
         return
     })

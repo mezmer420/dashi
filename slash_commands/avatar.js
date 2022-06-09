@@ -9,9 +9,9 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("User to view the avatar of"))
 
-module.exports.run = async (client, interaction, options) => {
-    const member = options.getMember("user")
-    let avatar = member.displayAvatarURL({dynamic: true, size: 4096})
+module.exports.run = async (client, interaction) => {
+    const member = interaction.options.getMember("user")
+    const avatar = member.displayAvatarURL({dynamic: true, size: 4096})
 
     const embed = new MessageEmbed()
     .setTitle(`${member.displayName}'s Avatar`)

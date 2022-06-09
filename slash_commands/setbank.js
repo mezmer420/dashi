@@ -13,19 +13,20 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
     .setDescription("The bank balance to set"))
 
-module.exports.run = async (client, interaction, options, Economy) => {
+module.exports.run = async (client, interaction, Economy) => {
     if(interaction.member.id == "527285622809952256" || interaction.member.id == "842775855632744478"){
-        let amount = options.getInteger("amount")
-        let member = options.getMember("user")
+        const amount = interaction.options.getInteger("amount")
+        const member = interaction.options.getMember("user")
     
         let getUser = await Economy.findOne({where: {id: interaction.member.id}})
-        if(!getUser) {
+
+        if(!getUser){
             getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
         }
     
         const memberWallet = await Economy.findOne({where: {id: member.id}})
     
-        if(!memberWallet) {
+        if(!memberWallet){
             memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
         }
     
