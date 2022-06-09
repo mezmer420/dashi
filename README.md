@@ -28,6 +28,8 @@ The bot has evolved significantly over time.
 
 ## dashi can and does:
 
+*A slightly comprehensive list*
+
 - Differentiate between human users and bots
 - Uniquely react to certain "dialects" (phrases)
 - Provide embeds for dialect information
