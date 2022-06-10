@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const text = interaction.options.getString("search-query")
     const branch = "stable"
 

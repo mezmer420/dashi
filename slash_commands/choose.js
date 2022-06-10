@@ -60,7 +60,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const choice1 = interaction.options.getString("1st")
     const choice2 = interaction.options.getString("2nd")
     const choice3 = interaction.options.getString("3rd")

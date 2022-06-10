@@ -9,7 +9,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     let text = interaction.options.getString("text")
 
     await interaction.editReply({

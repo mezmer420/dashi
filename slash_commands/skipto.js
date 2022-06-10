@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const queue = client.player.getQueue(interaction.guildId)
 
     if(!queue) return await interaction.editReply({

@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction, Economy) => {
+module.exports.run = async ({client, interaction, Economy}) => {
     if(interaction.member.id == "527285622809952256" || interaction.member.id == "842775855632744478"){
         const amount = interaction.options.getInteger("amount")
         const member = interaction.options.getMember("user")

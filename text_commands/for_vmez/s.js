@@ -10,7 +10,7 @@ module.exports = {
                     const messagetosend = message.content.slice(index + sayWord[i].length + 1)
                     const empty = ""
                     if(messagetosend == empty){
-                        message.reply('specify what you want me to say! command format is "!s [message]"')
+                        message.reply('specify what you want me to say! command format is `!s [message]`')
                     }
                     else {
                         message.channel.send(`${messagetosend}`)

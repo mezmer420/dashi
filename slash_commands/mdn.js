@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const text = interaction.options.getString("search-query")
     const base = "https://developer.mozilla.org"
     const uri = `${base}/api/v1/search?q=${encodeURIComponent(

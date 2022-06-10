@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const permissions = interaction.member.permissions
 
     if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({

@@ -4,7 +4,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("quit")
 .setDescription("Stops the bot and clears the queue")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
 	const queue = client.player.getQueue(interaction.guildId)
 
 	if (!queue) return await interaction.editReply({content: "There are no songs in the queue"})

@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const member = interaction.options.getMember("user")
     
     let embed = new MessageEmbed()
@@ -34,7 +34,7 @@ module.exports.run = async (client, interaction) => {
             embed
             .setColor("RED")
             .setTitle("choc dialect")
-            .addField("`..\n\nidit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys\n\nyss`\n—————", "<@826841451945787412>")
+            .addField("`..\n\nchickin\n\nchickn\n\nchikn\n\nchkin\n\nidit\n\nifusaso\n\nlay-mow\n\nys\n\nyss`\n—————", "<@826841451945787412>")
         }
     
         else if(member.id == "691727350051635262"){

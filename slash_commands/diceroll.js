@@ -9,7 +9,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = (client, interaction) => {
+module.exports.run = ({client, interaction}) => {
     let dice = interaction.options.getInteger("dice") || 1
 
     const roll1 = Math.floor(Math.random() * 5) + 1

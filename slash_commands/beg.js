@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("beg")
 .setDescription("Beg for Dashcoins; cooldown 30 sec")
 
-module.exports.run = async (client, interaction, Economy, workCooldown, begCooldown, robCooldown) => {
+module.exports.run = async ({client, interaction, Economy, workCooldown, begCooldown, robCooldown}) => {
     let getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id, command: "beg"}})
     let begcooldownTime = getbegCooldown?.expiry
 

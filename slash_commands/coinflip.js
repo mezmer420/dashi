@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Flip a coin")
 
 
-module.exports.run = (client, interaction) => {
+module.exports.run = ({client, interaction}) => {
     const outcomes = ["heads", "tails"]
     const outcome = outcomes[Math.floor(Math.random() * outcomes.length)]
 

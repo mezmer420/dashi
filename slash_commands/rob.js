@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction, Economy, workCooldown, begCooldown, robCooldown) => {
+module.exports.run = async ({client, interaction, Economy, workCooldown, begCooldown, robCooldown}) => {
     // if(interaction.member.id == "527285622809952256"){
     const member = interaction.options.getMember("user")
     const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})

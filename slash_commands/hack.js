@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
   )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const victim = interaction.options.getMember("user") 
 
     await interaction.editReply(`Hacking ${victim.displayName}....`)

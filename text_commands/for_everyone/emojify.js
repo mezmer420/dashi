@@ -37,7 +37,7 @@ module.exports = {
                 const messagetoemojify = message.content.slice(index + emojifyWord[i].length + 7)
                 const empty = ""
                 if(messagetoemojify == empty){
-                    message.reply('specify what you want me to emojify! command format is "!emojify [message]"')
+                    message.reply('specify what you want me to emojify! command format is `!emojify [message]`')
                     .catch((err) => {
                         return
                     })

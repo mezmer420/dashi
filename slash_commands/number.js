@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 
-module.exports.run = (client, interaction) => {
+module.exports.run = ({client, interaction}) => {
     const num1 = interaction.options.getInteger("number1")
     const num2 = interaction.options.getInteger("number2")
 

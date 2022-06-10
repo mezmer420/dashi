@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("pony")
 .setDescription("Gives a random My Little Pony!")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction, Waifus}) => {
     const ponies = ["Twilight Sparkle", "Rainbow Dash", "Applejack", "Fluttershy", "Rarity", "Pinkie Pie", "Princess Celestia", "Princess Luna", "Princess Cadance", "Starlight Glimmer", "Sweetie Belle", "Scootaloo", "Apple Bloom", "Shining Armor", "Derpy Hooves", "Big Macintosh", "Trixie"]
     const randompony = RandArray(ponies)
     
@@ -153,7 +153,7 @@ module.exports.run = async (client, interaction) => {
         .setImage("https://static.wikia.nocookie.net/mlpfimroleplay/images/9/92/Trixie.png/revision/latest?cb=20160812001149")
     }
 
-    // const sentInteraction =
+    const sentInteraction =
     await interaction.editReply({
         embeds: [embed]
     })
@@ -161,54 +161,56 @@ module.exports.run = async (client, interaction) => {
         return
     })
 
-    // sentInteraction.react("❤️")
+    sentInteraction.react("❤️")
+    .catch((err) => {
+        return
+    })
 
-    // const filter = (reaction, user) => {
-    //     return reaction.emoji.name == "❤️" && user.id == interaction.member.id
-    // }
+    const filter = (reaction, user) => {
+        return reaction.emoji.name == "❤️" && user.id == interaction.member.id
+    }
 
-    // const collector = sentInteraction.createReactionCollector({
-    //     filter,
-    //     max: 1,
-    //     time: 20000
-    // })
+    const collector = sentInteraction.createReactionCollector({
+        filter,
+        max: 1,
+        time: 20000
+    })
 
-    // collector.on("collect", async (reaction) => {
-    //     let member = interaction.member
-    //     let getUser = await Waifus.findOne({where: {id: member.id}})
-    //     if(!getUser) {
-    //         getUser = await Waifus.create({id: member.id, haswaifu: false})
-    //     }
+    collector.on("collect", async (reaction) => {
+        let getUser = await Waifus.findOne({where: {id: interaction.member.id}})
+        if(!getUser){
+            getUser = await Waifus.create({id: interaction.member.id, haswaifu: false})
+        }
 
-    //     if(getUser.haswaifu == false){
-    //         await Waifus.update({waifu: randompony, haswaifu: true}, {where: {id: member.id}})
+        if(getUser.haswaifu == false){
+            await Waifus.update({waifu: randompony, haswaifu: true}, {where: {id: interaction.member.id}})
 
-    //         interaction.editReply({ 
-    //             content: `Aww, your new waifu is **${randompony}**!`
-    //         })
-    //         .catch((err) => {
-    //             return
-    //         })
-    //     }
+            interaction.editReply({ 
+                content: `Aww, your new waifu is **${randompony}**!`
+            })
+            .catch((err) => {
+                return
+            })
+        }
 
-    //     else if(getUser.haswaifu == true){
-    //         // const existingwaifu = await Waifus.findOne({where: {id: member.id}})
+        else if(getUser.haswaifu == true){
+            // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
 
-    //         interaction.editReply({ 
-    //             content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
-    //         })
-    //         .catch((err) => {
-    //             return
-    //         })
-    //     }
-    //     // console.log(`${interaction.member.username} collected a new ${reaction.emoji.name} reaction`)
-    // })
+            interaction.editReply({ 
+                content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
+            })
+            .catch((err) => {
+                return
+            })
+        }
+        // console.log(`${interaction.member.username} collected a new ${reaction.emoji.name} reaction`)
+    })
 
-    // collector.on("end", (collected, reason) => {
-    //     return
-    //     // if(reason == "limit") return console.log("limit reached")
-    //     // else {
-    //     //     console.log("time expired")
-    //     // }
-    // })
+    collector.on("end", (collected, reason) => {
+        return
+        // if(reason == "limit") return console.log("limit reached")
+        // else {
+        //     console.log("time expired")
+        // }
+    })
 }

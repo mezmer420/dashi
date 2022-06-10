@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("help")
 .setDescription("Provides first aid")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const infoEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("dashi Help")

@@ -7,6 +7,7 @@ module.exports.data = new SlashCommandBuilder()
 .addIntegerOption(option => option
     .setName("seconds")
     .setDescription("The time in seconds")
+    .setMinValue(1)
     .setRequired(true)
 )
 .addStringOption(option => option
@@ -15,7 +16,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const time = interaction.options.getInteger("seconds")
     const subject = interaction.options.getString("reminder")
     const milliseconds = time * 1000

@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("shop")
 .setDescription("Open the shop")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const shopopenEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("Shop")

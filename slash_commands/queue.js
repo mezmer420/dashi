@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setMinValue(1)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const queue = client.player.getQueue(interaction.guildId)
     
     if(!queue || !queue.playing) return await interaction.editReply({content: "There are no songs in the queue"})

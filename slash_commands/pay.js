@@ -17,7 +17,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction, Economy) => {
+module.exports.run = async ({client, interaction, Economy}) => {
     const amount = interaction.options.getInteger("amount")
     const member = interaction.options.getMember("user")
 

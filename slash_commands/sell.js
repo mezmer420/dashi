@@ -25,7 +25,7 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("Sell bail bonds")
 )
 
-module.exports.run = async (client, interaction, Economy) => {
+module.exports.run = async ({client, interaction, Economy}) => {
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){

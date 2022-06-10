@@ -14,7 +14,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const user = interaction.options.getMember("user")
     const message = interaction.options.getString("message")
 
@@ -26,6 +26,14 @@ module.exports.run = async (client, interaction) => {
     })
 
     user.send(message)
+    .catch((err) => {
+        return interaction.editReply({
+            content: `Failed to send that message, please try again`
+        })
+        .catch((err) => {
+            return
+        })
+    })
 
     await interaction.editReply({
         content: `**${message}** successsfully sent to **${user}**! (this message will autodelete)`

@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("skip")
 .setDescription("Skips the current song")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const queue = client.player.getQueue(interaction.guildId)
 
     if(!queue) return await interaction.editReply({

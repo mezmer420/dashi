@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("mem")
 .setDescription("Sends a mem")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const num = Math.floor(Math.random() * (500 - 1) + 1)
 
     await interaction.editReply({

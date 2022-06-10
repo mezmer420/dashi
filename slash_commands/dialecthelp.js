@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("dialecthelp")
 .setDescription("View general dialect info")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const infoEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("Dialect Information")

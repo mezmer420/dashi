@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("dialectspeedychoc")
 .setDescription("View speedychoc dialect")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const speedychocEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("speedychoc dialect")

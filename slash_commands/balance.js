@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
 )
 
-module.exports.run = async (client, interaction, Economy) => {
+module.exports.run = async ({client, interaction, Economy}) => {
     let member = interaction.options.getMember("user") || interaction.member
     let getUser = await Economy.findOne({where: {id: member.id}})
 

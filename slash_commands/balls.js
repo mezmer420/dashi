@@ -11,7 +11,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("balls")
 .setDescription("Gives a random ball")
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction, Waifus}) => {
     const balls = ["Basketball", "Football", "Baseball", "Golf Ball"]
     const randomball = RandArray(balls)
 
@@ -46,13 +46,67 @@ module.exports.run = async (client, interaction) => {
         .setColor("RANDOM")
         .setTitle("Golf Ball")
         .setDescription("swing at it to try to get in hole")
-        .setImage("https://golfblueheron.com/wp-content/uploads/2021/09/golf-balls8-1030x559.jpg")
+        .setImage("https://ncg-live-assets.ams3.cdn.digitaloceanspaces.com/uploads/2021/02/1-Ball-in-Golf-1.jpg")
     }
 
+    const sentInteraction =
     await interaction.editReply({
         embeds: [embed]
     })
     .catch((err) => {
         return
+    })
+
+    sentInteraction.react("❤️")
+    .catch((err) => {
+        return
+    })
+
+    const filter = (reaction, user) => {
+        return reaction.emoji.name == "❤️" && user.id == interaction.member.id
+    }
+
+    const collector = sentInteraction.createReactionCollector({
+        filter,
+        max: 1,
+        time: 20000
+    })
+
+    collector.on("collect", async (reaction) => {
+        let getUser = await Waifus.findOne({where: {id: interaction.member.id}})
+        if(!getUser){
+            getUser = await Waifus.create({id: interaction.member.id, haswaifu: false})
+        }
+
+        if(getUser.haswaifu == false){
+            await Waifus.update({waifu: randomball, haswaifu: true}, {where: {id: interaction.member.id}})
+
+            interaction.editReply({ 
+                content: `Aww, your new waifu is **${randomball}**!`
+            })
+            .catch((err) => {
+                return
+            })
+        }
+
+        else if(getUser.haswaifu == true){
+            // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
+
+            interaction.editReply({ 
+                content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
+            })
+            .catch((err) => {
+                return
+            })
+        }
+        // console.log(`${interaction.member.username} collected a new ${reaction.emoji.name} reaction`)
+    })
+
+    collector.on("end", (collected, reason) => {
+        return
+        // if(reason == "limit") return console.log("limit reached")
+        // else {
+        //     console.log("time expired")
+        // }
     })
 }

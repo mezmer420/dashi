@@ -33,7 +33,7 @@ module.exports.data = new SlashCommandBuilder()
         )
 )
 
-module.exports.run = async (client, interaction) => {
+module.exports.run = async ({client, interaction}) => {
     const url = interaction.options.getString("url")
     const searchterms = interaction.options.getString("searchterms")
 
