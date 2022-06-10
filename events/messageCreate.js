@@ -142,8 +142,6 @@ module.exports = {
                 }
             
                 else if(command == "igues" || command == "iges" || command == "igs"){
-                    message.channel.sendTyping()
-                    await sleep(Math.floor(Math.random() * 0) + 1001)
                     message.channel.send("uncertainty detected")
                 }
             
@@ -239,12 +237,6 @@ module.exports = {
                     message.channel.sendTyping()
                     await sleep(Math.floor(Math.random() * 0) + 1001)
                     message.channel.send("vcashy waifu")
-                }
-
-                else if(message.content == "‎"){
-                    message.channel.sendTyping()
-                    await sleep(Math.floor(Math.random() * 0) + 1001)
-                    message.channel.send("georgeerto dialect")
                 }
 
                 else if(message.content == "‎"){

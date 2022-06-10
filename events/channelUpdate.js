@@ -12,7 +12,13 @@ module.exports = {
             .setColor("#9BDBF5")
             .setTimestamp()
 
-            logs.send({embeds: [nameEmbed]})
+            logs.send({
+                embeds: [nameEmbed]
+            })
+            .catch((err) => {
+                console.log(err)
+                return
+            })
         }
 
         else if(oldChannel.topic !== newChannel.topic){
@@ -23,7 +29,13 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({embeds: [topicEmbed]})
+                logs.send({
+                    embeds: [topicEmbed]
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return
+                })
             }
 
             else if(!newChannel.topic){
@@ -33,7 +45,13 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({embeds: [topicEmbed]})
+                logs.send({
+                    embeds: [topicEmbed]
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return
+                })
             }
 
             else {
@@ -43,7 +61,13 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({embeds: [topicEmbed]}) 
+                logs.send({
+                    embeds: [topicEmbed]
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return
+                })
             }
         }
 
@@ -54,7 +78,13 @@ module.exports = {
             .setColor("#9BDBF5")
             .setTimestamp()
 
-            logs.send({embeds: [nsfwEmbed]})
+            logs.send({
+                embeds: [nsfwEmbed]
+            })
+            .catch((err) => {
+                console.log(err)
+                return
+            })
         }
     }
 }

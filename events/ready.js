@@ -1,4 +1,4 @@
-const {Economy, workCooldown, begCooldown, robCooldown, Waifu} = require("../database")
+const {Economy, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
 
 module.exports = {
     name: "ready",
@@ -15,7 +15,10 @@ module.exports = {
         await Economy.sync()
         await workCooldown.sync()
         await begCooldown.sync()
-        await robCooldown.sync().then(console.log("Database synced"))
+        await robCooldown.sync()
+        await Waifus.sync()
+        
+        console.log("Database synced")
     
         const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
         if (!dashiuser){
@@ -25,17 +28,18 @@ module.exports = {
         // await Economy.update({bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true}, {where: {id: "956345939130482750"}}).then(console.log("dashi stats set"))
     
         console.log("dashi is on~")
-    
+
+        // Economy.destroy({truncate: true}).then(console.log("Economy destroyed"))
         // workCooldown.destroy({truncate: true}).then(console.log("workCooldown destroyed"))
         // begCooldown.destroy({truncate: true}).then(console.log("begCooldown destroyed"))
         // robCooldown.destroy({truncate: true}).then(console.log("robCooldown destroyed"))
-        // Waifu.destroy({truncate: true}).then(console.log("Waifu destroyed"))
-    
-        // console.log("I am unable.")
-        // client.destroy()
-    
+        // Waifus.destroy({truncate: true}).then(console.log("Waifus destroyed"))
+
         // await Economy.destroy({where: {id: "762133129209053244"}})
         // const getUser = await Economy.findOne({where: {id: "826841451945787412"}})
         // console.log(getUser)
+    
+        // console.log("I am unable.")
+        // client.destroy()
     }
 }

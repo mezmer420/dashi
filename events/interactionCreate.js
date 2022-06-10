@@ -1,4 +1,4 @@
-const {Economy, workCooldown, begCooldown, robCooldown} = require("../database")
+const {Economy, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
 const {commands} = require("../slash-register")
 
 module.exports = {
@@ -7,11 +7,12 @@ module.exports = {
         if(interaction.isCommand()){
             const name = interaction.commandName
             const commandMethod = commands.get(name)
+            const client = interaction.client
             
             if(!commandMethod) return
     
             await interaction.deferReply()
-            commandMethod(interaction.client, interaction, Economy, workCooldown, begCooldown, robCooldown)
+            commandMethod({client, interaction, Economy, workCooldown, begCooldown, robCooldown, Waifus})
         }
 
         else if(interaction.isButton()){
