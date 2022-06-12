@@ -44,7 +44,7 @@ module.exports.run = async ({client, interaction}) => {
             return
         })
 
-        interaction.editReply({
+        await interaction.editReply({
             content: `${text}`
         })
         .catch((err) => {

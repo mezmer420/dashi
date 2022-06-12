@@ -16,7 +16,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
     if(getUser.haswaifu == true){
         // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
 
-        interaction.editReply({
+        await interaction.editReply({
             content: `You broke up with your waifu`
         })
         .catch((err) => {
@@ -27,7 +27,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
     }
 
     else if(getUser.haswaifu == false){
-        interaction.editReply({
+        await interaction.editReply({
             content: "You don't have a waifu to break up with LOL"
         })
         .catch((err) => {

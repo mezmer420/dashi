@@ -3,6 +3,7 @@ module.exports = {
     async execute(client, member){
         member.send(`${member.user.username}, welcome to Eoic Gamer Server!`)
         .catch((err) => {
+            console.log(err)
             return
         })
     }

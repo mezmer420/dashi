@@ -1,11 +1,5 @@
 const {SlashCommandBuilder} = require("@discordjs/builders")
 
-function RandArray(array){
-    var rand = Math.random()*array.length | 0
-    var rValue = array[rand]
-    return rValue
-}
-
 module.exports.data = new SlashCommandBuilder()
 .setName("choose")
 .setDescription("I will choose something for you")
@@ -73,95 +67,12 @@ module.exports.run = async ({client, interaction}) => {
     const choice10 = interaction.options.getString("10th")
 
     const responsevalues = [choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, choice10]
-    const response = RandArray(responsevalues)
+    const response = responsevalues[Math.floor(Math.random() * responsevalues.length)]
 
-    if(response == choice1){
-        await interaction.editReply({
-            content: `I choose... **${choice1}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice2){
-        await interaction.editReply({
-            content: `I choose... **${choice2}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice3){
-        await interaction.editReply({
-            content: `I choose... **${choice3}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice4){
-        await interaction.editReply({
-            content: `I choose... **${choice4}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice5){
-        await interaction.editReply({
-            content: `I choose... **${choice5}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice6){
-        await interaction.editReply({
-            content: `I choose... **${choice6}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice7){
-        await interaction.editReply({
-            content: `I choose... **${choice7}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice8){
-        await interaction.editReply({
-            content: `I choose... **${choice8}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice9){
-        await interaction.editReply({
-            content: `I choose... **${choice9}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
-
-    else if(response == choice10){
-        await interaction.editReply({
-            content: `I choose... **${choice10}**`
-        })
-        .catch((err) => {
-            return
-        })
-    }
+    await interaction.editReply({
+        content: `I choose... **${response}**`
+    })
+    .catch((err) => {
+        return
+    })
 }

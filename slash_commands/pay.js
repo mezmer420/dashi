@@ -27,7 +27,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
     
-    if(getUser.wallet < amount) return interaction.editReply({content: "Insufficient wallet balance"})
+    if(getUser.wallet < amount) return await interaction.editReply({content: "Insufficient wallet balance"})
     .catch((err) => {
         return
     })

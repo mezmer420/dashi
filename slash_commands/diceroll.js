@@ -9,7 +9,7 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = ({client, interaction}) => {
+module.exports.run = async ({client, interaction}) => {
     let dice = interaction.options.getInteger("dice") || 1
 
     const roll1 = Math.floor(Math.random() * 5) + 1
@@ -19,7 +19,7 @@ module.exports.run = ({client, interaction}) => {
     const roll5 = Math.floor(Math.random() * 5) + 1
 
     if(dice == 1){
-        interaction.editReply({
+        await interaction.editReply({
             content: `Landed on... **${roll1}**`
         })
         .catch((err) => {
@@ -28,7 +28,7 @@ module.exports.run = ({client, interaction}) => {
     }
 
     else if(dice == 2){
-        interaction.editReply({
+        await interaction.editReply({
             content: `Die 1 landed on **${roll1}**... die 2 landed on **${roll2}**`
         })
         .catch((err) => {
@@ -37,7 +37,7 @@ module.exports.run = ({client, interaction}) => {
     }
 
     else if(dice == 3){
-        interaction.editReply({
+        await interaction.editReply({
             content: `Die 1 is **${roll1}**, die 2 is **${roll2}**, die 3 is **${roll3}**`
         })
         .catch((err) => {
@@ -46,7 +46,7 @@ module.exports.run = ({client, interaction}) => {
     }
 
     else if(dice == 4){
-        interaction.editReply({
+        await interaction.editReply({
             content: `Die 1 is **${roll1}**, die 2 is **${roll2}**, die 3 is **${roll3}**, die 4 is **${roll4}**`
         })
         .catch((err) => {
@@ -55,7 +55,7 @@ module.exports.run = ({client, interaction}) => {
     }
 
     else if(dice == 5){
-        interaction.editReply({
+        await interaction.editReply({
             content: `Die 1 is **${roll1}**, die 2 is **${roll2}**, die 3 is **${roll3}**, die 4 is **${roll4}**, die 5 is **${roll5}**`
         })
         .catch((err) => {

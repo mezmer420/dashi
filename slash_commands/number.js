@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 
-module.exports.run = ({client, interaction}) => {
+module.exports.run = async ({client, interaction}) => {
     const num1 = interaction.options.getInteger("number1")
     const num2 = interaction.options.getInteger("number2")
 
@@ -27,7 +27,7 @@ module.exports.run = ({client, interaction}) => {
 
     const randomnumber = getRandomIntInclusive(num1, num2)
 
-    interaction.editReply({ 
+    await interaction.editReply({ 
         content: `From ${num1} to ${num2}, I choose... **${randomnumber}**`
     })
     .catch((err) => {

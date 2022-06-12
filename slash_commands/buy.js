@@ -72,7 +72,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.debitcard == true){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You already own **debit card**!"
             })
             .catch((err) => {
@@ -181,7 +181,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.motorcycle == true){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You already own **motorcycle**!"
             })
             .catch((err) => {
@@ -290,7 +290,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.superbike == true){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You already own **superbike**!"
             })
             .catch((err) => {
@@ -399,7 +399,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.wife == true){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You already own **wife**!"
             })
             .catch((err) => {
@@ -507,7 +507,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.bailbonds == true){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You already own **bail bonds**!"
             })
             .catch((err) => {

@@ -37,7 +37,7 @@ module.exports.run = async ({client, interaction}) => {
     const url = interaction.options.getString("url")
     const searchterms = interaction.options.getString("searchterms")
 
-    if(!interaction.member.voice.channel) return interaction.editReply({content: "You need to be in a VC to use this command"})
+    if(!interaction.member.voice.channel) return await interaction.editReply({content: "You need to be in a VC to use this command"})
     .catch((err) => {
         return
     })
@@ -62,7 +62,7 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.YOUTUBE_VIDEO
         })
         
-        if(result.tracks.length == 0) return interaction.editReply({content: "No results"})
+        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
         .catch((err) => {
             return
         })
@@ -89,7 +89,7 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.YOUTUBE_PLAYLIST
         })
 
-        if(result.tracks.length == 0) return interaction.editReply({content: "No results"})
+        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
         .catch((err) => {
             return
         })
@@ -116,7 +116,7 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.AUTO
         })
 
-        if(result.tracks.length == 0) return interaction.editReply({content: "No results"})
+        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
         .catch((err) => {
             return
         })

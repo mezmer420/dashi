@@ -55,7 +55,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.debitcard == false){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You don't own **debit card**!"
             })
             .catch((err) => {
@@ -87,7 +87,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.motorcycle == false){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You don't own **motorcycle**!"
             })
             .catch((err) => {
@@ -119,7 +119,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.superbike == false){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You don't own **superbike**!"
             })
             .catch((err) => {
@@ -151,7 +151,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.wife == false){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You don't own **wife**!"
             })
             .catch((err) => {
@@ -183,7 +183,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     
         else if(getUser.bailbonds == false){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "You don't own **bail bonds**!"
             })
             .catch((err) => {

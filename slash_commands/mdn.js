@@ -20,7 +20,7 @@ module.exports.run = async ({client, interaction}) => {
 
     const documents = (await axios(uri)).data.documents
 
-    if(!documents) return interaction.editReply({
+    if(!documents) return await interaction.editReply({
         content: "Could not find that documentation"
     })
     .catch((err) => {

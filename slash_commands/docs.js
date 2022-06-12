@@ -25,7 +25,7 @@ module.exports.run = async ({client, interaction}) => {
     const doc = await Docs.fetch(branch)
     const results = await doc.resolveEmbed(text)
 
-    if(!results) return interaction.editReply({
+    if(!results) return await interaction.editReply({
         content: "Could not find that documentation"
     })
     .catch((err) => {

@@ -41,7 +41,7 @@ module.exports.run = async ({client, interaction}) => {
         })
     
         setTimeout(async () => {
-            interaction.editReply({
+            await interaction.editReply({
                 embeds: [doneEmbed]
             })
             .catch((err) => {
@@ -52,7 +52,7 @@ module.exports.run = async ({client, interaction}) => {
     }
 
     else if(time > 840){
-        interaction.editReply({
+        await interaction.editReply({
             content: "Invalid time; max time is 14 minutes (840 seconds)"
         })
     }

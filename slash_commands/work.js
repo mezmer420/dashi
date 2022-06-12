@@ -9,7 +9,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     let getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id, command: "work"}})
     let workcooldownTime = getworkCooldown?.expiry
 
-    if(getworkCooldown && workcooldownTime > new Date().getTime()) return interaction.editReply({
+    if(getworkCooldown && workcooldownTime > new Date().getTime()) return await interaction.editReply({
         content: `Wait **${ms(workcooldownTime - new Date().getTime(), {long: true})}** before trying to work again!`
     })
     .catch((err) => {

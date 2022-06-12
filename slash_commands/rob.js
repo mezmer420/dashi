@@ -17,7 +17,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
     let robcooldownTime = getrobCooldown?.expiry
 
-    if(getrobCooldown && robcooldownTime > new Date().getTime()) return interaction.editReply({
+    if(getrobCooldown && robcooldownTime > new Date().getTime()) return await interaction.editReply({
         content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`
     })
     .catch((err) => {
@@ -43,7 +43,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         // if(getUser.wallet = 0) interaction.editReply({
         //     content: "Bruh your wallet is empty. I'm going to stop you right there and urge you not to start off your money-making career by being a lawbreaker."
         // })
-        if(getUser.wallet < 100) interaction.editReply({
+        if(getUser.wallet < 100) await interaction.editReply({
             content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."
         })
         .catch((err) => {
@@ -52,7 +52,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         // else if(memberWallet.wallet = 0) interaction.editReply({
             // content: "Bruh the person you're trying to rob has **0** coins in his wallet. At least show some decency for the homeless."
         // })
-        else if(memberWallet.wallet < 100) interaction.editReply({
+        else if(memberWallet.wallet < 100) await interaction.editReply({
             content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"
         })
         .catch((err) => {
@@ -62,7 +62,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
 
     else {
         if(member.id == interaction.member.id){
-            interaction.editReply({
+            await interaction.editReply({
                 content: "bruh did you just try to rob yourself"
             })
             .catch((err) => {
@@ -71,7 +71,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         }
 
         if(member.id == "956345939130482750"){
-            interaction.editReply({
+            await interaction.editReply({
                 content: "you can't rob me >:)"
             })
             .catch((err) => {
@@ -97,7 +97,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                 .setColor("YELLOW")
                 .setThumbnail(member.user.avatarURL())
             
-                interaction.editReply({
+                await interaction.editReply({
                     embeds: [failembed]
                 })
                 .catch((err) => {
@@ -153,7 +153,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                     .setColor("RED")
                     .setThumbnail(member.user.avatarURL())
                 
-                    interaction.editReply({
+                    await interaction.editReply({
                         embeds: [caughtembed]
                     })
                     .catch((err) => {
@@ -191,7 +191,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                     .setColor("RED")
                     .setThumbnail(member.user.avatarURL())
                 
-                    interaction.editReply({
+                    await interaction.editReply({
                         embeds: [caughtembed]
                     })
                     .catch((err) => {
@@ -229,7 +229,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                 .setColor("GREEN")
                 .setThumbnail(member.user.avatarURL())
             
-                interaction.editReply({
+                await interaction.editReply({
                     embeds: [successembed]
                 })
                 .catch((err) => {

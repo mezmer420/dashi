@@ -21,7 +21,7 @@ module.exports = {
         console.log("Database synced")
     
         const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
-        if (!dashiuser){
+        if(!dashiuser){
             await Economy.create({id: "956345939130482750", bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true})
         }
     

@@ -50,7 +50,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         })
     }
     else {
-        interaction.editReply({
+        await interaction.editReply({
             content: "only mezmer420 can use that command!"
         })
         .catch((err) => {

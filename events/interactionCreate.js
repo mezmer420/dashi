@@ -22,10 +22,11 @@ module.exports = {
             if(command == "ban"){
                 member.ban()
                 .catch((err) => {
+                    console.log(err)
                     return
                 })
                 return interaction.editReply({
-                    content: "Successfully banned the user",
+                    content: "Banned the user",
                     ephemeral: true
                 })
             }
@@ -33,10 +34,11 @@ module.exports = {
             else if(command == "kick"){
                 member.kick()
                 .catch((err) => {
+                    console.log(err)
                     return
                 })
                 return interaction.editReply({
-                    content: "Successfully kicked the user",
+                    content: "Kicked the user",
                     ephemeral: true
                 })
             }

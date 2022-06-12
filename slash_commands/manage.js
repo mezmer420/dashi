@@ -13,7 +13,7 @@ module.exports.data = new SlashCommandBuilder()
 module.exports.run = async ({client, interaction}) => {
     const permissions = interaction.member.permissions
 
-    if(!permissions.has("BAN_MEMBERS")) return interaction.editReply({
+    if(!permissions.has("BAN_MEMBERS")) return await interaction.editReply({
         content: "you don't have sufficient perms!"
     })
     .catch((err) => {
@@ -25,7 +25,7 @@ module.exports.run = async ({client, interaction}) => {
 
                           //        vcash                                     mezmer                                     dashi                                     mee6                                    vcashcar
         if(member.user.id == "762133129209053244" || member.user.id == "527285622809952256" || member.user.id == "956345939130482750" || member.user.id == "159985870458322944" || member.user.id == "975952163090071553"){
-            interaction.editReply({ 
+            await interaction.editReply({ 
                 content: "lol did you just try to manage an admin"
             })
             .catch((err) => {
@@ -68,7 +68,7 @@ module.exports.run = async ({client, interaction}) => {
     }
 
     else {
-        interaction.editReply({ 
+        await interaction.editReply({ 
             content: "For safety, you can only use this command in government channels"
         })
         .catch((err) => {

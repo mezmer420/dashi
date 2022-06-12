@@ -10,7 +10,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     let begcooldownTime = getbegCooldown?.expiry
 
     if(getbegCooldown && begcooldownTime > new Date().getTime()) {
-        return interaction.editReply({
+        return await interaction.editReply({
             content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`
         })
         .catch((err) => {
@@ -18,13 +18,13 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         })
     }
     
-    else if (getbegCooldown) {
+    else if(getbegCooldown){
         begCooldown.destroy({where: {id: interaction.member.id, command: "beg"}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
-    if(!getUser) {
+    if(!getUser){
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
