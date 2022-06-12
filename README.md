@@ -26,7 +26,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Welcome messaging
 
 - Event and command handlers
-- Error handling to prevent most crashes
+- Error handling to prevent practically all crashes
 
 ## dashi can and does:
 
