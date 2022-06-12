@@ -61,13 +61,13 @@ function sleep(ms) {
 
 module.exports = {
     name: "messageCreate",
-    async execute(message){
+    async execute(client, message){
         const args = message.content.split(/ +/)
         const command = args.shift().toLowerCase()
 
         if(message.channel.type == "DM"){
             if(message.author.id == "956345939130482750") return
-            const me = await message.client.users.fetch("527285622809952256").catch(console.error)
+            const me = await client.users.fetch("527285622809952256").catch(console.error)
             me.send(`**${message.author.username}** DM'd me **${message.content}**`)
             .catch((err) => {
                 console.log(err)
@@ -240,12 +240,6 @@ module.exports = {
                 }
 
                 else if(message.content == "‎"){
-                    message.channel.sendTyping()
-                    await sleep(Math.floor(Math.random() * 0) + 1001)
-                    message.channel.send("georgeerto dialect")
-                }
-
-                else if(message.content == "alright got it"){
                     message.channel.sendTyping()
                     await sleep(Math.floor(Math.random() * 0) + 1001)
                     message.channel.send("georgeerto dialect")

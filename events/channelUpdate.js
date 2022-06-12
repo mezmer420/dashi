@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
     name: "channelUpdate",
-    async execute(oldChannel, newChannel){
-        const logs = await newChannel.client.channels.cache.get("955948174894325782")
+    async execute(client, oldChannel, newChannel){
+        const logs = await client.channels.cache.get("955948174894325782")
 
         if(oldChannel.name !== newChannel.name){
             const nameEmbed = new MessageEmbed()

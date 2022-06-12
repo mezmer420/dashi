@@ -3,15 +3,13 @@ const {commands} = require("../slash-register")
 
 module.exports = {
     name: "interactionCreate",
-    async execute(interaction){
+    async execute(client, interaction){
+        await interaction.deferReply()
         if(interaction.isCommand()){
             const name = interaction.commandName
             const commandMethod = commands.get(name)
-            const client = interaction.client
             
             if(!commandMethod) return
-    
-            await interaction.deferReply()
             commandMethod({client, interaction, Economy, workCooldown, begCooldown, robCooldown, Waifus})
         }
 

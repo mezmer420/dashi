@@ -1,6 +1,6 @@
 module.exports = {
     name: "messageReactionRemove",
-    async execute(reaction, user){
+    async execute(client, reaction, user){
         // When a reaction is received, check if the structure is partial
         if(reaction.partial){
             // If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
