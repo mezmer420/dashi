@@ -47,6 +47,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Simulate delay and typing
 - Randomize outcomes
 - Display the avatar of a user
+- Send Discord.JS docs and and MDN docs info
 - Let you pay and rob other users
 - Let you purchase items that have an effect in the economy system
 - Sell items you purchased, and detect if you do not already own it
@@ -56,6 +57,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Display basic info about playing songs/videos
 - Store song requests in a queue
 - Shuffle, skip, and skipto songs
+- Let you play hangman
 - Kick and ban users
 - Perform basic user management (kick, ban) with an interactive button embed
 - Require new users to react to a message to verify and gain access to the server
@@ -72,14 +74,18 @@ The bot itself won't be made public as there's way too much stuff specifically d
     "@discordjs/opus": "^0.5.3",
     "@discordjs/rest": "^0.5.0",
     "@discordjs/voice": "^0.10.0",
+    "axios": "^0.27.2",
     "discord-api-types": "^0.33.4",
     "discord-player": "^5.2.2",
-    "discordjs-button-pagination": "^1.0.7",
+    "discord.js": "^13.8.0",
+    "discord.js-docs": "^0.3.0",
     "dotenv": "^16.0.1",
     "ffmpeg-static": "^4.4.1",
     "i": "^0.3.7",
     "mongoose": "^6.3.4",
     "npm": "^8.12.1",
     "ns": "^1.0.2",
+    "reconlx": "^1.4.21",
     "sequelize": "^6.19.2",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "^5.0.8",
+    "tesseract.js": "^2.1.5"
