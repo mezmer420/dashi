@@ -28,7 +28,7 @@ const ctts = "955599561869639710"
 const emojifyWord = "!emojify"
 
 module.exports = {
-    callback: (message, args) => {
+    callback: (client, message, args) => {
         if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == game || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == bots || message.channel.id == hydr) return
         for (var i = 0; i < emojifyWord.length; i++) {
             const index = message.content.indexOf(emojifyWord[i])

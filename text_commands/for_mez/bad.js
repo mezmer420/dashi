@@ -1,5 +1,5 @@
 module.exports = {
-    callback: async (message, args) => {
+    callback: async (client, message, args) => {
         if(message.author.id == "527285622809952256"){
             message.channel.sendTyping()
             await sleep(Math.floor(Math.random() * 0) + 1001)

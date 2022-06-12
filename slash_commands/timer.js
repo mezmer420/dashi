@@ -47,7 +47,7 @@ module.exports.run = async ({client, interaction}) => {
             .catch((err) => {
                 return
             })
-            interaction.member.send(`The timer you set **${time} seconds** ago is up! Reminder: **${subject}**`)
+            interaction.member.send(`<@${interaction.member.id}> The timer you set **${time} seconds** ago is up! Reminder: **${subject}**`)
         }, milliseconds)
     }
 

@@ -1,5 +1,5 @@
 module.exports = {
-    callback: (message, args) => {
+    callback: (client, message, args) => {
         if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
             if(message.channel.id == "945527434655187006"){
                 switch (message.content) {

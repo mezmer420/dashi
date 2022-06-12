@@ -62,7 +62,7 @@ module.exports.run = async ({client, interaction}) => {
                 setTimeout(() => interaction.delete()
                 .catch((err) => {
                     return
-                }), 6000)
+                }), 30000)
             })
         }
     }

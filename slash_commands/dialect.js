@@ -34,7 +34,7 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("RED")
             .setTitle("choc dialect")
-            .addField("`..\n\nchickin\n\nchickn\n\nchikn\n\nchkin\n\nidit\n\nifusaso\n\nlay-mow\n\nys\n\nyss`\n—————", "<@826841451945787412>")
+            .addField("`..\n\nchickin\n\nchickn\n\nchikn\n\nchkin\n\nidit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys\n\nyss`\n—————", "<@826841451945787412>")
         }
     
         else if(member.id == "691727350051635262"){
@@ -48,7 +48,7 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("PURPLE")
             .setTitle("delta airlines dialect")
-            .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nmediumL\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
+            .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
         }
     
         else if(member.id == "651251126884368384"){

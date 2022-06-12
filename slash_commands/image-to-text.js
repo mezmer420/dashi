@@ -17,15 +17,39 @@ module.exports.run = async ({client, interaction}) => {
         const worker = createWorker()
 
         await worker.load()
+        .catch((err) => {
+            console.log(err)
+            return
+        })
         await worker.loadLanguage("eng")
+        .catch((err) => {
+            console.log(err)
+            return
+        })
         await worker.initialize("eng")
+        .catch((err) => {
+            console.log(err)
+            return
+        })
         const {
             data: { text },
         } = await worker.recognize(image.url)
+        .catch((err) => {
+            console.log(err)
+            return
+        })
         await worker.terminate()
+        .catch((err) => {
+            console.log(err)
+            return
+        })
 
         interaction.editReply({
             content: `${text}`
+        })
+        .catch((err) => {
+            console.log(err)
+            return
         })
     } catch(err) {
         console.log(err)

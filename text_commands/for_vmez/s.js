@@ -1,7 +1,7 @@
 const sayWord = "!s"
 
 module.exports = {
-    callback: (message, args) => {
+    callback: (client, message, args) => {
         if(message.author.id == "527285622809952256" || message.author.id == "762133129209053244"){
             for (var i = 0; i < sayWord.length; i++) {
                 const index = message.content.indexOf(sayWord[i])
@@ -11,6 +11,9 @@ module.exports = {
                     const empty = ""
                     if(messagetosend == empty){
                         message.reply('specify what you want me to say! command format is `!s [message]`')
+                        .catch((err) => {
+                            return
+                        })
                     }
                     else {
                         message.channel.send(`${messagetosend}`)
@@ -24,6 +27,9 @@ module.exports = {
                         //     sentMessage.react("7️⃣")
                         // })
                         message.delete()
+                        .catch((err) => {
+                            return
+                        })
                     }
                     break
                 }

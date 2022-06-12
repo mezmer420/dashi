@@ -39,7 +39,7 @@ module.exports = (client) => {
         commands[commandName.toLowerCase()] = commandFile
     }
 
-    console.log(commands)
+    // console.log(commands)
     console.log("Successfully loaded text (!) commands.")
 
     client.on("messageCreate", (message) => {
@@ -51,7 +51,7 @@ module.exports = (client) => {
         if (!commands[commandName]) return
 
         try {
-            commands[commandName].callback(message, ...args)
+            commands[commandName].callback(client, message, ...args)
         } catch (error) {
             console.error(error)
         }

@@ -1,9 +1,12 @@
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
-    callback: async (message, args) => {
+    callback: async (client, message, args) => {
         if(message.author.id == "527285622809952256"){
             message.delete()
+            .catch((err) => {
+                return
+            })
             message.channel.send("https://i.pinimg.com/originals/32/8a/7e/328a7efd6bda56acd35a3d2ab702aa2a.gif")
         }
         else {
