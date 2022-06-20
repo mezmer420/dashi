@@ -10,7 +10,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 module.exports.run = async ({client, interaction}) => {
-    let text = interaction.options.getString("text")
+    const text = interaction.options.getString("text")
 
     await interaction.editReply({
         files: [
