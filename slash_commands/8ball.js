@@ -23,6 +23,11 @@ module.exports.run = async ({client, interaction}) => {
         "what is that",
         "you know what just ask someone else",
         "i mean sure, if you believe",
+        "without doubt",
+        "without doubt      no",
+        "sorry son",
+        "possibly",
+        "in one universe out of 9876567... yes",
     ]
     const fortune = fortunes[Math.floor(Math.random() * fortunes.length)]
 

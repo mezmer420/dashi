@@ -15,6 +15,9 @@ module.exports = {
             
             else {
                 message.reply(`you can only use that command in ${message.guild.channels.cache.get("945527434655187006").toString()}! (these messages will autodelete)`)
+                .catch((err) => {
+                    return
+                })
                 .then(msg => {
                     setTimeout(() => message.delete()
                     .catch((err) => {
@@ -30,6 +33,9 @@ module.exports = {
 
         else {
             message.reply("only mezmer420 and vcashy can use that command! (these messages will autodelete)")
+            .catch((err) => {
+                return
+            })
             .then(msg => {
                 setTimeout(() => message.delete()
                 .catch((err) => {

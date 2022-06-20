@@ -5,8 +5,8 @@ module.exports.data = new SlashCommandBuilder()
 .setName("beg")
 .setDescription("Beg for Dashcoins; cooldown 30 sec")
 
-module.exports.run = async ({client, interaction, Economy, workCooldown, begCooldown, robCooldown}) => {
-    let getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id, command: "beg"}})
+module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
+    let getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id}})
     let begcooldownTime = getbegCooldown?.expiry
 
     if(getbegCooldown && begcooldownTime > new Date().getTime()) {
@@ -19,7 +19,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     }
     
     else if(getbegCooldown){
-        begCooldown.destroy({where: {id: interaction.member.id, command: "beg"}})
+        begCooldown.destroy({where: {id: interaction.member.id}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
@@ -65,8 +65,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2),
-                command: "beg"
+                expiry: new Date().getTime() + (15000 * 2)
             })
         
             await interaction.editReply({
@@ -84,8 +83,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2),
-                command: "beg"
+                expiry: new Date().getTime() + (15000 * 2)
             })
         
             await interaction.editReply({
@@ -99,8 +97,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
         else if(randomvalue < 10){
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2),
-                command: "beg"
+                expiry: new Date().getTime() + (15000 * 2)
             })
         
             await interaction.editReply({

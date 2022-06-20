@@ -5,8 +5,8 @@ module.exports.data = new SlashCommandBuilder()
 .setName("work")
 .setDescription("Work for Dashcoins; default cooldown 5 min—reducable to 3 or 1 min")
 
-module.exports.run = async ({client, interaction, Economy, workCooldown, begCooldown, robCooldown}) => {
-    let getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id, command: "work"}})
+module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
+    let getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id}})
     let workcooldownTime = getworkCooldown?.expiry
 
     if(getworkCooldown && workcooldownTime > new Date().getTime()) return await interaction.editReply({
@@ -17,7 +17,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     })
 
     if(getworkCooldown){
-        workCooldown.destroy({where: {id: interaction.member.id, command: "work"}})
+        workCooldown.destroy({where: {id: interaction.member.id}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
@@ -37,24 +37,21 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
             if(getUser.superbike == true){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (60000),
-                    command: "work"
+                    expiry: new Date().getTime() + (60000)
                 })
             }
     
             else if(getUser.motorcycle == true && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (180000),
-                    command: "work"
+                    expiry: new Date().getTime() + (180000)
                 })
             }
     
             else if(getUser.motorcycle == false && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "work"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
             }
         
@@ -70,24 +67,21 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
             if(getUser.superbike == true){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (60000),
-                    command: "work"
+                    expiry: new Date().getTime() + (60000)
                 })
             }
     
             else if(getUser.motorcycle == true && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (180000),
-                    command: "work"
+                    expiry: new Date().getTime() + (180000)
                 })
             }
     
             else if(getUser.motorcycle == false && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "work"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
             }
         
@@ -109,24 +103,21 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
             if(getUser.superbike == true){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (60000),
-                    command: "work"
+                    expiry: new Date().getTime() + (60000)
                 })
             }
     
             else if(getUser.motorcycle == true && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (180000),
-                    command: "work"
+                    expiry: new Date().getTime() + (180000)
                 })
             }
     
             else if(getUser.motorcycle == false && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "work"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
             }
         
@@ -142,24 +133,21 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
             if(getUser.superbike == true){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (60000),
-                    command: "work"
+                    expiry: new Date().getTime() + (60000)
                 })
             }
     
             else if(getUser.motorcycle == true && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (180000),
-                    command: "work"
+                    expiry: new Date().getTime() + (180000)
                 })
             }
     
             else if(getUser.motorcycle == false && getUser.superbike == false){
                 workCooldown.create({
                     id: interaction.member.id,
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "work"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
             }
         

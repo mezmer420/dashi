@@ -17,6 +17,12 @@ module.exports.run = async ({client, interaction}) => {
     .catch((err) => {
         return
     })
+    .then(interaction => {
+		setTimeout(() => interaction.delete()
+		.catch((err) => {
+			return
+		}), 10000)
+	})
 
     const totalPages = Math.ceil(queue.tracks.length / 10) || 1
     const page = (interaction.options.getNumber("page") || 1) - 1

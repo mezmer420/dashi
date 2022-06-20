@@ -8,14 +8,17 @@ module.exports = {
                 if (index !== -1) {
                     // add one to include the space
                     const messagetosend = message.content.slice(index + sayWord[i].length + 1)
-                    const empty = ""
-                    if(messagetosend == empty){
+                    if(!messagetosend){
                         message.reply('specify what you want me to say! command format is `!s [message]`')
                         .catch((err) => {
                             return
                         })
                     }
                     else {
+                        message.delete()
+                        .catch((err) => {
+                            return
+                        })
                         message.channel.send(`${messagetosend}`)
                         // message.channel.send(`${messagetosend}`).then(sentMessage =>{
                         //     sentMessage.react("1️⃣")
@@ -26,10 +29,6 @@ module.exports = {
                         //     sentMessage.react("6️⃣")
                         //     sentMessage.react("7️⃣")
                         // })
-                        message.delete()
-                        .catch((err) => {
-                            return
-                        })
                     }
                     break
                 }

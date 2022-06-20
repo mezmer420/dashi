@@ -20,14 +20,14 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("#FFA500")
             .setTitle("vcash dialect")
-            .addField("`ballsL\n\nel mao\n\nle mao\n\ntoyota\n\ntoyot\n\nxt`\n—————", "<@762133129209053244>")
+            .addField("`ballsL\n\nel mao\n\nle mao\n\ntoyot\n\ntoyota\n\nxt`\n—————", "<@762133129209053244>")
         }
     
         else if(member.id == "527285622809952256"){
             embed
             .setColor("#0096FF")
             .setTitle("mezmer dialect")
-            .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc\n\noolc\n\nomegaL\n\nwoaow\n\nwowzer\n\nwowzr\n\nwowzerooni\n\nwowzeroni`\n—————", "<@527285622809952256>")
+            .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc\n\nomegaL\n\oolc\n\nwoaow\n\nwowzer\n\nwowezoni\n\nwowzerooni\n\nwowzr`\n—————", "<@527285622809952256>")
         }
     
         else if(member.id == "826841451945787412"){
@@ -41,14 +41,14 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("PURPLE")
             .setTitle("speedy dialect uwu owu uwo ow- -w- -wu uWu")
-            .addField("`emoyi\n\ngf\n\nues`\n—————", "<@691727350051635262>")
+            .addField("`^\n\nemoyi\n\ngf\n\nues`\n—————", "<@691727350051635262>")
         }
     
         else if(member.id == "251778379211210755"){
             embed
             .setColor("PURPLE")
             .setTitle("delta airlines dialect")
-            .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nyees\n\nyeees\n\nyeeees\n\nyews\n\nyeews`\n—————", "<@251778379211210755>")
+            .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nye\n\nyee\n\nyeeees\n\nyeees\n\nyees\n\nyeees\n\nyeews\n\nyews`\n—————", "<@251778379211210755>")
         }
     
         else if(member.id == "651251126884368384"){

@@ -11,10 +11,10 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async ({client, interaction, Economy, workCooldown, begCooldown, robCooldown}) => {
+module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
     // if(interaction.member.id == "527285622809952256"){
     const member = interaction.options.getMember("user")
-    const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id, command: "rob"}})
+    const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id}})
     let robcooldownTime = getrobCooldown?.expiry
 
     if(getrobCooldown && robcooldownTime > new Date().getTime()) return await interaction.editReply({
@@ -25,7 +25,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
     })
 
     if(getrobCooldown){
-        robCooldown.destroy({where: {id: interaction.member.id, command: "rob"}})
+        robCooldown.destroy({where: {id: interaction.member.id}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
@@ -85,8 +85,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                 robCooldown.create({
                     id: interaction.member.id,
                     // expiry: new Date().getTime() + (150000 * 2),
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "rob"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
         
                 member.send(`**${interaction.member.displayName}** attempted and **failed** to rob you!`)
@@ -113,38 +112,35 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
             
                 await Economy.update({wallet: newrobberWallet}, {where: {id: interaction.member.id}})
             
-                const getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id, command: "work"}})
+                const getworkCooldown = await workCooldown.findOne({where: {id: interaction.member.id}})
 
                 if(getworkCooldown){
-                    await workCooldown.destroy({where: {id: interaction.member.id, command: "work"}})
+                    await workCooldown.destroy({where: {id: interaction.member.id}})
                 }
 
-                const getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id, command: "beg"}})
+                const getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id}})
 
                 if(getbegCooldown){
-                    await begCooldown.destroy({where: {id: interaction.member.id, command: "beg"}})
+                    await begCooldown.destroy({where: {id: interaction.member.id}})
                 }
 
                 if(getUser.bailbonds == true){
                     workCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000),
-                        command: "work"
+                        expiry: new Date().getTime() + (900000)
                     })
     
                     begCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000),
-                        command: "beg"
+                        expiry: new Date().getTime() + (900000)
                     })
                 
                     robCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000),
-                        command: "rob"
+                        expiry: new Date().getTime() + (900000)
                     })
 
                     const caughtembed = new MessageEmbed()
@@ -167,22 +163,19 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                     workCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2),
-                        command: "work"
+                        expiry: new Date().getTime() + (900000 * 2)
                     })
     
                     begCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2),
-                        command: "beg"
+                        expiry: new Date().getTime() + (900000 * 2)
                     })
                 
                     robCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2),
-                        command: "rob"
+                        expiry: new Date().getTime() + (900000 * 2)
                     })
 
                     const caughtembed = new MessageEmbed()
@@ -217,8 +210,7 @@ module.exports.run = async ({client, interaction, Economy, workCooldown, begCool
                 robCooldown.create({
                     id: interaction.member.id,
                     // expiry: new Date().getTime() + (150000 * 2),
-                    expiry: new Date().getTime() + (150000 * 2),
-                    command: "rob"
+                    expiry: new Date().getTime() + (150000 * 2)
                 })
         
                 member.send(`**${interaction.member.displayName}** robbed **${coins_robbed}** Dashcoins:tm: from you!`)

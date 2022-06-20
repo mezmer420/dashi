@@ -218,10 +218,10 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         }
 
         else if(getUser.haswaifu == true){
-            // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
+            const existingwaifu = getUser.waifu
 
             await interaction.editReply({ 
-                content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
+                content: `You already have a waifu—**${existingwaifu}**! Use `+"`/breakup`"+` to break up with ${existingwaifu}`
             })
             .catch((err) => {
                 return

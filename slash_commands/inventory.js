@@ -71,7 +71,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
     else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
         embed
         .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**bail boonds**`)
+        .setDescription(`**bail bonds**`)
         .setColor("#9BDBF5")
         .setThumbnail(member.user.avatarURL())
     }

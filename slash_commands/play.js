@@ -6,7 +6,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("play")
 .setDescription("Loads songs from YouTube")
 .addSubcommand((subcommand) => subcommand
-        .setName("url")
+        .setName("songurl")
         .setDescription("Loads a single song from a URL")
         .addStringOption((option) => option
             .setName("url")
@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
         )
 )
 .addSubcommand((subcommand) => subcommand
-        .setName("playlist")
+        .setName("playlisturl")
         .setDescription("Loads a playlist of songs from a URL")
         .addStringOption((option) => option
             .setName("url")
@@ -56,7 +56,7 @@ module.exports.run = async ({client, interaction}) => {
 
     let embed = new MessageEmbed()
 
-    if(interaction.options.getSubcommand() == "url"){
+    if(interaction.options.getSubcommand() == "songurl"){
         const result = await client.player.search(url, {
             requestedBy: interaction.user,
             searchEngine: QueryType.YOUTUBE_VIDEO
@@ -83,7 +83,7 @@ module.exports.run = async ({client, interaction}) => {
             .setFooter({ text: `Duration: ${song.duration}`})
     }
     
-    else if(interaction.options.getSubcommand() == "playlist"){
+    else if(interaction.options.getSubcommand() == "playlisturl"){
         const result = await client.player.search(url, {
             requestedBy: interaction.user,
             searchEngine: QueryType.YOUTUBE_PLAYLIST

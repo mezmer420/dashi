@@ -42,6 +42,9 @@ module.exports = {
 
         else {
             message.reply("only government officials can use that command! (these messages will autodelete)")
+            .catch((err) => {
+                return
+            })
             .then(msg => {
                 setTimeout(() => message.delete()
                 .catch((err) => {

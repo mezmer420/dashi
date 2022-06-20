@@ -38,7 +38,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         .setColor("RANDOM")
         .setTitle("Baseball")
         .setDescription("hit with stick or something")
-        .setImage("https://i.kym-cdn.com/entries/icons/original/000/018/603/Baseball_(crop).jpg")
+        .setImage("https://images.squarespace-cdn.com/content/v1/5737bc404d088e9a0cc49199/1602379045086-OIA9DAWFOLEE16AVTQ80/image-asset.jpeg?format=1500w")
     }
 
     else if(randomball == "Golf Ball"){
@@ -90,10 +90,10 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         }
 
         else if(getUser.haswaifu == true){
-            // const existingwaifu = await Waifus.findOne({where: {id: interaction.member.id}})
+            const existingwaifu = getUser.waifu
 
             await interaction.editReply({ 
-                content: `You already have a waifu! Use `+"`/breakup`"+" to break up with your current waifu"
+                content: `You already have a waifu—**${existingwaifu}**! Use `+"`/breakup`"+` to break up with ${existingwaifu}`
             })
             .catch((err) => {
                 return
