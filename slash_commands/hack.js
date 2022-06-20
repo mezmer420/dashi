@@ -5,13 +5,13 @@ module.exports.data = new SlashCommandBuilder()
 .setName("hack")
 .setDescription("heck someone")
 .addUserOption(option => option
-    .setName("user")
+    .setName("target")
     .setDescription("The user to heck")
     .setRequired(true)
   )
 
 module.exports.run = async ({client, interaction}) => {
-    const victim = interaction.options.getMember("user") 
+    const victim = interaction.options.getMember("target") 
 
     await interaction.editReply(`Hacking ${victim.displayName}....`)
     .catch((err) => {

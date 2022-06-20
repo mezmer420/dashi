@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("avatar")
-.setDescription("View your or another user's avatar")
+.setDescription("View your or another user's server avatar")
 .addUserOption(option => option
     .setName("user")
     .setDescription("User to view the avatar of")

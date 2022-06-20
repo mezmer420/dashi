@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("balance")
-.setDescription("Check the balance of yourself or another user")
+.setDescription("Check the balance of yourself or another ")
 .addUserOption(option => option
     .setName("user")
     .setDescription("User to check the balance of; skip to view your own balance")
