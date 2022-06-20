@@ -20,21 +20,21 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("#FFA500")
             .setTitle("vcash dialect")
-            .addField("`ballsL\n\nel mao\n\nle mao\n\ntoyot\n\ntoyota\n\nxt`\n—————", "<@762133129209053244>")
+            .addField("`ballsL\n\nel mao`   `le mao\n\ntoyot`   `toyota\n\nxt`\n—————", "<@762133129209053244>")
         }
     
         else if(member.id == "527285622809952256"){
             embed
             .setColor("#0096FF")
             .setTitle("mezmer dialect")
-            .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc\n\nomegaL\n\oolc\n\nwoaow\n\nwowzer\n\nwowezoni\n\nwowzerooni\n\nwowzr`\n—————", "<@527285622809952256>")
+            .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc`   `oolc\n\nomegaL\n\nwoaow\n\nwowzer`   `wowzr\n\nwowezoni`   `wowzerooni`\n—————", "<@527285622809952256>")
         }
     
         else if(member.id == "826841451945787412"){
             embed
             .setColor("RED")
             .setTitle("choc dialect")
-            .addField("`..\n\nchickin\n\nchickn\n\nchikn\n\nchkin\n\nidit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys\n\nyss`\n—————", "<@826841451945787412>")
+            .addField("`..\n\nchickin`   `chickn`   `chikn`   `chkin\n\nidit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys`   `yss`\n—————", "<@826841451945787412>")
         }
     
         else if(member.id == "691727350051635262"){
@@ -48,7 +48,7 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("PURPLE")
             .setTitle("delta airlines dialect")
-            .addField("`bigfunni\n\nbigL\n\nbihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nye\n\nyee\n\nyeeees\n\nyeees\n\nyees\n\nyeees\n\nyeews\n\nyews`\n—————", "<@251778379211210755>")
+            .addField("`bigfunni\n\nbigL`   `bihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nye`   `yee yee`   `yee\n\nyeeees`   `yeees`   `yees`   `yeees\n\nyeews`   `yews`\n—————", "<@251778379211210755>")
         }
     
         else if(member.id == "651251126884368384"){
