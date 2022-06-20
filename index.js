@@ -1,5 +1,9 @@
-const Discord = require("discord.js")
+// npm i reconlx@version1
 
+const current = new Date()
+console.log(current.toLocaleString())
+
+const Discord = require("discord.js")
 const client = new Discord.Client({
     presence: {
         status: "online",
@@ -16,7 +20,6 @@ const client = new Discord.Client({
 })
 
 const {Player} = require("discord-player")
-
 client.player = new Player(client, {
     leaveOnEnd: false,
     leaveOnStop: false,
@@ -31,7 +34,6 @@ client.player = new Player(client, {
 require("./slash-register")(true)
 
 const fs = require("fs")
-
 const eventFiles = fs.readdirSync("./events/").filter(file => file.endsWith(".js"))
 
 for (const file of eventFiles) {
@@ -44,5 +46,4 @@ for (const file of eventFiles) {
 }
 
 const config = require("./config.json")
-
 client.login(config.token)

@@ -25,14 +25,22 @@ module.exports.Economy = database.define("economy", {
     bailbonds: Sequelize.BOOLEAN
 })
 
+module.exports.dailyCooldown = database.define("dailycooldown", {
+    id: {
+        primaryKey: true,
+        type: Sequelize.STRING,
+        unique: true
+    },
+    expiry: Sequelize.BIGINT
+})
+
 module.exports.workCooldown = database.define("workcooldown", {
     id: {
         primaryKey: true,
         type: Sequelize.STRING,
         unique: true
     },
-    expiry: Sequelize.BIGINT,
-    command: Sequelize.STRING
+    expiry: Sequelize.BIGINT
 })
 
 module.exports.begCooldown = database.define("begcooldown", {
@@ -41,8 +49,7 @@ module.exports.begCooldown = database.define("begcooldown", {
         type: Sequelize.STRING,
         unique: true
     },
-    expiry: Sequelize.BIGINT,
-    command: Sequelize.STRING
+    expiry: Sequelize.BIGINT
 })
 
 module.exports.robCooldown = database.define("robcooldown", {
@@ -51,8 +58,7 @@ module.exports.robCooldown = database.define("robcooldown", {
         type: Sequelize.STRING,
         unique: true
     },
-    expiry: Sequelize.BIGINT,
-    command: Sequelize.STRING
+    expiry: Sequelize.BIGINT
 })
 
 module.exports.Waifus = database.define("waifus", {
