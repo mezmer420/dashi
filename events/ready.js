@@ -1,18 +1,27 @@
-const {Economy, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
+const {Economy, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
 
 module.exports = {
     name: "ready",
     once: "true",
     async execute(client){
         let commandhandler = require("../command-handler")
-        if (commandhandler.default) commandhandler = commandhandler.default
+
+        if(commandhandler.default){
+            commandhandler = commandhandler.default
+        }
+
         commandhandler(client)
     
         let dialecthandler = require("../dialect-handler")
-        if (dialecthandler.default) dialecthandler = dialecthandler.default
+
+        if(dialecthandler.default){
+            dialecthandler = dialecthandler.default
+        }
+
         dialecthandler(client)
     
         await Economy.sync()
+        await dailyCooldown.sync()
         await workCooldown.sync()
         await begCooldown.sync()
         await robCooldown.sync()
@@ -22,14 +31,18 @@ module.exports = {
     
         const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
         if(!dashiuser){
-            await Economy.create({id: "956345939130482750", bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true})
+            Economy.create({id: "956345939130482750", bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true})
         }
-    
-        // await Economy.update({bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true}, {where: {id: "956345939130482750"}}).then(console.log("dashi stats set"))
-    
+
         console.log("dashi is on~")
 
+        const current = new Date()
+        console.log(current.toLocaleString())
+    
+        // await Economy.update({bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true}, {where: {id: "956345939130482750"}}).then(console.log("dashi stats set"))
+
         // Economy.destroy({truncate: true}).then(console.log("Economy destroyed"))
+        // dailyCooldown.destroy({truncate: true}).then(console.log("dailyCooldown destroyed"))
         // workCooldown.destroy({truncate: true}).then(console.log("workCooldown destroyed"))
         // begCooldown.destroy({truncate: true}).then(console.log("begCooldown destroyed"))
         // robCooldown.destroy({truncate: true}).then(console.log("robCooldown destroyed"))
