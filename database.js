@@ -10,6 +10,13 @@ const database = new Sequelize("database", "user", "password", {
     }
 })
 
+module.exports.Infractions = database.define("infractions", {
+    memberid: Sequelize.STRING,
+    infractionid: Sequelize.STRING,
+    time: Sequelize.BIGINT,
+    nature: Sequelize.STRING
+})
+
 module.exports.Economy = database.define("economy", {
     id: {
         primaryKey: true,

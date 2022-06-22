@@ -26,7 +26,7 @@ module.exports = (client) => {
 
     const suffix = ".js"
 
-    const dialectFiles = getFiles("./responses/dialects", suffix)
+    const dialectFiles = getFiles("./dialects", suffix)
     // console.log(dialectFiles)
 
     for (const dialect of dialectFiles) {
@@ -50,16 +50,16 @@ module.exports = (client) => {
 
         if (!dialects[dialectName]) return
 
-        const choc = "choc dialect"
-        const delta = "delta airlines dialect"
-        const georgeerto = "georgeerto dialect"
-        const mezmer = "mezmer dialect"
-        const speedy = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
-        const speedychocdelta = "speedychocdelta dialect"
-        const vcash = "vcash dialect"
+        // const choc = "choc dialect"
+        // const delta = "delta airlines dialect"
+        // const georgeerto = "georgeerto dialect"
+        // const mezmer = "mezmer dialect"
+        // const speedy = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+        // const speedychocdelta = "speedychocdelta dialect"
+        // const vcash = "vcash dialect"
 
         try {
-            dialects[dialectName].callback(message, args, choc, delta, georgeerto, mezmer, speedy, speedychocdelta, vcash)
+            dialects[dialectName].callback(message, ...args)
         } catch (error) {
             console.error(error)
         }
