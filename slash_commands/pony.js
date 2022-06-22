@@ -177,13 +177,10 @@ module.exports.run = async ({client, interaction, Waifus}) => {
     })
 
     collector.on("collect", async (reaction) => {
-        let getUser = await Waifus.findOne({where: {id: interaction.member.id}})
-        if(!getUser){
-            getUser = await Waifus.create({id: interaction.member.id, haswaifu: false})
-        }
+        const getUser = await Waifus.findOne({where: {id: interaction.member.id}})
 
-        if(getUser.haswaifu == false){
-            await Waifus.update({waifu: randompony, haswaifu: true}, {where: {id: interaction.member.id}})
+        if(!getUser){
+            await Waifus.create({id: interaction.member.id, waifu: randompony})
 
             await interaction.editReply({ 
                 content: `Aww, your new waifu is **${randompony}**!`
@@ -193,7 +190,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
             })
         }
 
-        else if(getUser.haswaifu == true){
+        else if(getUser){
             const existingwaifu = getUser.waifu
 
             await interaction.editReply({ 

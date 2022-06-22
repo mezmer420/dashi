@@ -20,44 +20,63 @@ module.exports = {
             const [command, id] = button_id.split("-")
             const member = interaction.guild.members.cache.get(id)
             const permissions = interaction.member.permissions
+
+            if(command == "breakup"){
+                if(interaction.member.id !== id) return
+
+                const getUser = await Waifus.findOne({where: {id: id}})
+
+                if(!getUser) return
+
+                const existingwaifu = getUser.waifu
+
+                await Waifus.destroy({where: {id: id}}, {truncate: true})
+
+                await interaction.reply({
+                    content: `You broke up with **${existingwaifu}**`
+                })
+                .catch((err) => {
+                    return
+                })
+            }
     
-            if(command == "ban"){
-                if(!permissions.has("BAN_MEMBERS")) return
+            // if(command == "ban"){
+            //     if(!permissions.has("BAN_MEMBERS")) return
 
-                member.ban()
-                .catch((err) => {
-                    console.log(err)
-                    return interaction.editReply({
-                        content: "Failed to ban the user"
-                    })
-                    .catch((err) => {
-                        return
-                    })
-                })
+            //     member.ban()
+            //     .catch((err) => {
+            //         console.log(err)
+            //         return interaction.editReply({
+            //             content: "Failed to ban the user"
+            //         })
+            //         .catch((err) => {
+            //             return
+            //         })
+            //     })
 
-                return interaction.editReply({
-                    content: "Banned the user"
-                })
-            }
+            //     return interaction.editReply({
+            //         content: "Banned the user"
+            //     })
+            // }
             
-            else if(command == "kick"){
-                if(!permissions.has("BAN_MEMBERS")) return
+            // else if(command == "kick"){
+            //     if(!permissions.has("BAN_MEMBERS")) return
 
-                member.kick()
-                .catch((err) => {
-                    console.log(err)
-                    return interaction.editReply({
-                        content: "Failed to ban the user"
-                    })
-                    .catch((err) => {
-                        return
-                    })
-                })
+            //     member.kick()
+            //     .catch((err) => {
+            //         console.log(err)
+            //         return interaction.editReply({
+            //             content: "Failed to ban the user"
+            //         })
+            //         .catch((err) => {
+            //             return
+            //         })
+            //     })
 
-                return interaction.editReply({
-                    content: "Kicked the user"
-                })
-            }
+            //     return interaction.editReply({
+            //         content: "Kicked the user"
+            //     })
+            // }
         }
     }
 }

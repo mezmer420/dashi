@@ -4,35 +4,29 @@ const { MessageEmbed } = require("discord.js")
 module.exports.data = new SlashCommandBuilder()
 .setName("buy")
 .setDescription("Buy items from the shop")
-.addSubcommand((subcommand) => subcommand
-    .setName("debitcard")
-    .setDescription("Buy debit card")
-)
-.addSubcommand((subcommand) => subcommand
-    .setName("motorcycle")
-    .setDescription("Buy motorcycle")
-)
-.addSubcommand((subcommand) => subcommand
-    .setName("superbike")
-    .setDescription("Buy superbike")
-)
-.addSubcommand((subcommand) => subcommand
-    .setName("wife")
-    .setDescription("Buy wife")
-)
-.addSubcommand((subcommand) => subcommand
-    .setName("bailbonds")
-    .setDescription("Buy bail bonds")
+.addStringOption(option => option
+    .setName("item")
+    .setDescription("The item to purchase")
+    .setRequired(true)
+    .addChoices(
+        {name: "debit card", value: "debitcard"},
+        {name: "motorcycle", value: "motorcycle"},
+        {name: "superbike", value: "superbike"},
+        {name: "wife", value: "wife"},
+        {name: "bail bonds", value: "bailbonds"}
+    )
 )
 
 module.exports.run = async ({client, interaction, Economy}) => {
+    const item = interaction.options.getString("item")
+
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
     }
 
-    if(interaction.options.getSubcommand() == "debitcard"){
+    if(item == "debitcard"){
         if(getUser.debitcard == false){
             if(getUser.wallet >= 1000){
                 const newWallet = getUser.wallet - 1000
@@ -81,7 +75,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     }
 
-    else if(interaction.options.getSubcommand() == "motorcycle"){
+    else if(item == "motorcycle"){
         if(getUser.motorcycle == false){
             if(getUser.debitcard == true){
                 if(getUser.bank >= 500){
@@ -190,7 +184,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     }
 
-    else if(interaction.options.getSubcommand() == "superbike"){
+    else if(item == "superbike"){
         if(getUser.superbike == false){
             if(getUser.debitcard == true){
                 if(getUser.bank >= 3500){
@@ -299,7 +293,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     }
 
-    else if(interaction.options.getSubcommand() == "wife"){
+    else if(item == "wife"){
         if(getUser.wife == false){
             if(getUser.debitcard == true){
                 if(getUser.bank >= 1000){
@@ -408,7 +402,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
         }
     }
 
-    else if(interaction.options.getSubcommand() == "bailbonds"){
+    else if(item == "bailbonds"){
         if(getUser.bailbonds == false){
             if(getUser.debitcard == true){
                 if(getUser.bank >= 2000){
