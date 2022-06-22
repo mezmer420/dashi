@@ -298,11 +298,15 @@ module.exports = {
                     }
                 }
 
-                function isUpper(str) {
-                    return !/[a-z]/.test(str) && /[A-Z]/.test(str)
+                function isUpper(string) {
+                    return !/[a-z]/.test(string) && /[A-Z]/.test(string)
                 }
 
-                if(isUpper(message.content) == true){
+                function hasSymbols(string) {
+                    return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(string)
+                }
+
+                if(isUpper(message.content) == true && hasSymbols(message.content) == false){
                     message.channel.sendTyping()
                     await wait(Math.floor(Math.random() * 0) + 1001)
                     message.channel.send("keep your voice down!")
@@ -377,10 +381,16 @@ module.exports = {
                 else if(message.author.id == "973731082136592454"){   // idiotbot
                     // if(command == "shut"){
                     //     message.reply("language")
+                    //     .catch((err) => {
+                    //         return
+                    //     })
                     // }
                 
                     // else if(command == "oki"){
                     //     message.reply("uwu owo")
+                    //     .catch((err) => {
+                    //         return
+                    //     })
                     // }
                 
                     const badWord = ["fuck", "bitch", "damn", "shit"]

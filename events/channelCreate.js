@@ -11,12 +11,11 @@ module.exports = {
         .setColor("#9BDBF5")
         .setTimestamp()
 
-        logs.send({
+        await logs.send({
             embeds: [Embed]
         })
         .catch((err) => {
-            console.log(err)
-            return
+            return console.log(err)
         })
     }
 }

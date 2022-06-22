@@ -12,7 +12,7 @@ module.exports = {
             .setColor("#9BDBF5")
             .setTimestamp()
 
-            logs.send({
+            await logs.send({
                 embeds: [nameEmbed]
             })
             .catch((err) => {
@@ -29,7 +29,7 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({
+                await logs.send({
                     embeds: [topicEmbed]
                 })
                 .catch((err) => {
@@ -45,7 +45,7 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({
+                await logs.send({
                     embeds: [topicEmbed]
                 })
                 .catch((err) => {
@@ -61,7 +61,7 @@ module.exports = {
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
-                logs.send({
+                await logs.send({
                     embeds: [topicEmbed]
                 })
                 .catch((err) => {
@@ -78,7 +78,7 @@ module.exports = {
             .setColor("#9BDBF5")
             .setTimestamp()
 
-            logs.send({
+            await logs.send({
                 embeds: [nsfwEmbed]
             })
             .catch((err) => {

@@ -4,6 +4,7 @@ module.exports = {
     name: "guildScheduledEventCreate",
     async execute(client, guildScheduledEvent){
         const logs = await client.channels.cache.get("955948174894325782")
+        const anno = await client.channels.cache.get("946442711936938034")
 
         const startts = new Date(guildScheduledEvent.scheduledStartTimestamp + 3600000)
         const endts = new Date(guildScheduledEvent.scheduledEndTimestamp + 3600000)
@@ -29,12 +30,18 @@ module.exports = {
         // .setColor("#9BDBF5")
         // .setTimestamp()
 
-        logs.send({
+        await logs.send({
             embeds: [Embed]
         })
         .catch((err) => {
-            console.log(err)
-            return
+            return console.log(err)
         })
+
+        // await anno.send({
+        //     embeds: [Embed]
+        // })
+        // .catch((err) => {
+        //     return console.log(err)
+        // })
     }
 }
