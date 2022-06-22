@@ -12,7 +12,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 module.exports.run = async ({client, interaction}) => {
-    const text = interaction.options.getString("search-query")
+    const query = interaction.options.getString("search-query")
     const branch = "stable"
 
     const max = 1024
@@ -23,10 +23,10 @@ module.exports.run = async ({client, interaction}) => {
         .replace(/ \(disco\)/g, "")
 
     const doc = await Docs.fetch(branch)
-    const results = await doc.resolveEmbed(text)
+    const results = await doc.resolveEmbed(query)
 
     if(!results) return await interaction.editReply({
-        content: "Could not find that documentation"
+        content: "No results"
     })
     .catch((err) => {
         return

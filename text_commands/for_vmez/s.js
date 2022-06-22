@@ -37,15 +37,20 @@ module.exports = {
 
         else {
             message.reply("only mezmer420 and vcash can use that command! (these messages will autodelete)")
+            .catch((err) => {
+                return
+            })
             .then(msg => {
                 setTimeout(() => message.delete()
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
         }
     }

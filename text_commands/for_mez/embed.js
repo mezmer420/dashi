@@ -53,10 +53,12 @@ module.exports = {
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
         }
     }

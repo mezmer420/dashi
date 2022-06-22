@@ -12,20 +12,20 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 module.exports.run = async ({client, interaction}) => {
-    const text = interaction.options.getString("search-query")
+    const query = interaction.options.getString("search-query")
     const base = "https://developer.mozilla.org"
     const uri = `${base}/api/v1/search?q=${encodeURIComponent(
-        text
+        query
     )}&locale=en-US`
 
     const documents = (await axios(uri)).data.documents
 
-    if(!documents) return await interaction.editReply({
-        content: "Could not find that documentation"
-    })
-    .catch((err) => {
-        return
-    })
+    // if(!documents) return await interaction.editReply({
+    //     content: "Could not find that documentation"
+    // })
+    // .catch((err) => {
+    //     return
+    // })
 
     if(documents){
         const embed = new MessageEmbed()
@@ -52,10 +52,17 @@ module.exports.run = async ({client, interaction}) => {
             embed.addField(
                 "Too many results!",
                 `View more results [here](https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(
-                    text
+                    query
                 )}).`
             )
         }
+    
+        if(embed.fields == "") return await interaction.editReply({
+            content: "No results"
+        })
+        .catch((err) => {
+            return
+        })
 
         await interaction.editReply({
             embeds: [embed]

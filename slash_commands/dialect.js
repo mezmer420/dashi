@@ -9,13 +9,25 @@ module.exports.data = new SlashCommandBuilder()
     .setDescription("User to view the dialect of")
     .setRequired(true)
 )
+.addUserOption(option => option
+    .setName("user2")
+    .setDescription("Choose spedy, choc, and delta (in that order) to view speedychocdelta dialect")
+    .setRequired(false)
+)
+.addUserOption(option => option
+    .setName("user3")
+    .setDescription("Choose spedy, choc, and delta (in that order) to view speedychocdelta dialect")
+    .setRequired(false)
+)
 
 module.exports.run = async ({client, interaction}) => {
     const member = interaction.options.getMember("user")
+    const member2 = interaction.options.getMember("user2")
+    const member3 = interaction.options.getMember("user3")
     
     let embed = new MessageEmbed()
 
-    if(member.id == "762133129209053244" || member.id == "527285622809952256" || member.id == "826841451945787412" || member.id == "691727350051635262" || member.id == "251778379211210755" || member.id == "651251126884368384"){
+    if(!member2 && !member3){
         if(member.id == "762133129209053244"){
             embed
             .setColor("#FFA500")
@@ -34,7 +46,7 @@ module.exports.run = async ({client, interaction}) => {
             embed
             .setColor("RED")
             .setTitle("choc dialect")
-            .addField("`..\n\nchickin`   `chickn`   `chikn`   `chkin\n\nidit\n\nifusaso\n\nlay-mow\n\nperty\n\nwhat\n\nys`   `yss`\n—————", "<@826841451945787412>")
+            .addField("`..\n\nchickin`   `chickn`   `chikn`   `chkin\n\nidit\n\nifusaso\n\nlay mow\n\nperty\n\nrawblocky\n\nwhat\n\nys`   `yss`\n—————", "<@826841451945787412>")
         }
     
         else if(member.id == "691727350051635262"){
@@ -57,21 +69,36 @@ module.exports.run = async ({client, interaction}) => {
             .setTitle("georgeerto dialect")
             .addField("` \n\nalright got it`\n—————", "<@651251126884368384>")
         }
-    
-        await interaction.editReply({
-            embeds: [embed]
-        })
-        .catch((err) => {
-            return
-        })
+
+        else {
+            return await interaction.editReply({
+                content: "The user you specified doesn't have a dialect"
+            })
+            .catch((err) => {
+                return
+            })
+        }
+    }
+
+    else if(member.id == "691727350051635262" && member2.id == "826841451945787412" && member3.id == "251778379211210755"){
+        embed
+        .setColor("#9BDBF5")
+        .setTitle("speedychocdelta dialect")
+        .addField("`e`\n—————", "<@691727350051635262> x <@826841451945787412> x <@251778379211210755>")
     }
 
     else {
-        await interaction.editReply({
-            content: "The user you specified doesn't have a dialect"
-        })
-        .catch((err) => {
-            return
+        return await interaction.editReply({
+            content: "The user combination you input doesn't match any dialect"
         })
     }
+
+    await interaction.editReply({
+        embeds: [embed]
+    })
+    .catch((err) => {
+        return
+    })
 }
+
+// else if(member.id == "691727350051635262" && member2.id == "826841451945787412" && member3.id == "251778379211210755" || member.id == "826841451945787412" && member2.id == "691727350051635262" && member3.id == "251778379211210755" || member.id == "826841451945787412" && member2.id == "691727350051635262" && member3.id == "251778379211210755" || member.id == "826841451945787412" && member2.id == "251778379211210755" && member3.id == "691727350051635262" || member.id == "")

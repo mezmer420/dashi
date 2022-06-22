@@ -25,7 +25,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     })
 
     if(getrobCooldown){
-        robCooldown.destroy({where: {id: interaction.member.id}})
+        await robCooldown.destroy({where: {id: interaction.member.id}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})

@@ -10,7 +10,7 @@ module.exports = {
                 }
             }
             else {
-                message.reply(`you can only use that command in ${message.guild.channels.cache.get("945527434655187006").toString()}! (these messages will autodelete)`)
+                message.reply("you can only use that command in <#945527434655187006>! (these messages will autodelete)")
                 .catch((err) => {
                     return
                 })
@@ -19,10 +19,12 @@ module.exports = {
                     .catch((err) => {
                         return
                     }), 6000)
-                    setTimeout(() => msg.delete()
-                    .catch((err) => {
-                        return
-                    }), 6000)
+                    if(msg){
+                        setTimeout(() => msg.delete()
+                        .catch((err) => {
+                            return
+                        }), 6000)
+                    }
                   })
             }
         }
@@ -37,10 +39,12 @@ module.exports = {
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
         }
     }

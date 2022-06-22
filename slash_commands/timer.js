@@ -25,14 +25,14 @@ module.exports.run = async ({client, interaction}) => {
     const createdEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("Timer Set")
-    .setAuthor(`${interaction.member.user.tag}'s Timer`, interaction.member.avatarURL())
+    .setAuthor(`${interaction.member.user.tag}'s Timer ⏱️`, interaction.member.avatarURL())
     .setDescription(`In **${time} seconds**, I will remind you about **${subject}**`)
     .setTimestamp()
 
     const doneEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
     .setTitle("Timer Up!")
-    .setAuthor(`${interaction.member.user.tag}'s Timer`, interaction.member.avatarURL())
+    .setAuthor(`${interaction.member.user.tag}'s Timer ⏱️`, interaction.member.avatarURL())
     .setDescription(`**${subject}**\nTime set: **${time} seconds**`)
     .setTimestamp()
 

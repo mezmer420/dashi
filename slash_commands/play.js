@@ -35,7 +35,7 @@ module.exports.data = new SlashCommandBuilder()
 
 module.exports.run = async ({client, interaction}) => {
     const url = interaction.options.getString("url")
-    const searchterms = interaction.options.getString("searchterms")
+    const query = interaction.options.getString("searchterms")
 
     if(!interaction.member.voice.channel) return await interaction.editReply({content: "You need to be in a VC to use this command"})
     .catch((err) => {
@@ -111,7 +111,7 @@ module.exports.run = async ({client, interaction}) => {
     }
     
     else if(interaction.options.getSubcommand() == "search"){
-        const result = await client.player.search(searchterms, {
+        const result = await client.player.search(query, {
             requestedBy: interaction.user,
             searchEngine: QueryType.AUTO
         })

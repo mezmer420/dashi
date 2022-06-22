@@ -26,6 +26,7 @@ const mtts = "951345913627021354"
 const ctts = "955599561869639710"
 
 const {hangman} = require("reconlx")
+// npm i reconlx@version1
 
 module.exports = {
     callback: async (client, message, args) => {
@@ -38,17 +39,22 @@ module.exports = {
                 return
             })
 
-            if(channel.id !== "939674946953682976" && channel.id !== "939686071241949205"  && channel.id !== "940786577808969738" && channel.id !== "945527434655187006" && channel.id !== "969027553878749204") return message.reply(`you can only use that command in ${message.guild.channels.cache.get("939674946953682976").toString()}, ${message.guild.channels.cache.get("939686071241949205").toString()}, ${message.guild.channels.cache.get("940786577808969738").toString()}, ${message.guild.channels.cache.get("945527434655187006").toString()}, or ${message.guild.channels.cache.get("969027553878749204").toString()}! (these messages will autodelete)`)
+            if(channel.id !== "939674946953682976" && channel.id !== "939686071241949205"  && channel.id !== "940786577808969738" && channel.id !== "945527434655187006" && channel.id !== "969027553878749204") return message.reply("you can only use that command in <#939674946953682976>, <#939686071241949205>, <#940786577808969738>, <#945527434655187006>, or <#969027553878749204> (these messages will autodelete)")
+            .catch((err) => {
+                return
+            })
             .then(msg => {
                 setTimeout(() => message.delete()
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
-            })
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
+              })
 
             const word = message.content.slice(12).replace(`<#${channel.id}>`, "").replace("  ", " ").split(/ +/).shift()
 
@@ -70,10 +76,12 @@ module.exports = {
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
 
             const hangmangame = new hangman({
@@ -87,8 +95,7 @@ module.exports = {
 
             hangmangame.start()
             .catch((err) => {
-                console.log(err)
-                return
+                return console.log(err)
             })
         }
 
@@ -102,10 +109,12 @@ module.exports = {
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
         }
     }

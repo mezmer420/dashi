@@ -10,7 +10,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     let dailycooldownTime = getdailyCooldown?.expiry
 
     if(getdailyCooldown && dailycooldownTime > new Date().getTime()) return await interaction.editReply({
-        content: `Wait **${ms(dailycooldownTime - new Date().getTime(), {long: true})}** before using ` + "`/daily`" + " again!"
+        content: `Wait **${ms(dailycooldownTime - new Date().getTime(), {long: true})}** before acquiring your next daily!`
     })
     .catch((err) => {
         return

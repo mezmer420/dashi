@@ -19,7 +19,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     }
     
     else if(getbegCooldown){
-        begCooldown.destroy({where: {id: interaction.member.id}})
+        await begCooldown.destroy({where: {id: interaction.member.id}})
     }
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})

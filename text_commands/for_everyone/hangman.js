@@ -26,27 +26,35 @@ const mtts = "951345913627021354"
 const ctts = "955599561869639710"
 
 const {hangman} = require("reconlx")
+// npm i reconlx@version1
 
 module.exports = {
     callback: async (client, message, args) => {
         if(message.channel.id == welc || message.channel.id == cons || message.channel.id == anno || message.channel.id == voti || message.channel.id == self || message.channel.id == cour || message.channel.id == semi || message.channel.id == gove || message.channel.id == logs || message.channel.id == spec || message.channel.id == vtts || message.channel.id == mtts || message.channel.id == ctts || message.channel.id == imag || message.channel.id == vide || message.channel.id == argu || message.channel.id == poli || message.channel.id == role || message.channel.id == funq || message.channel.id == lear || message.channel.id == fran || message.channel.id == bots || message.channel.id == hydr) return
 
-        if(message.channel.id !== "939674946953682976" && message.channel.id !== "939686071241949205" && message.channel.id !== "940786577808969738" && message.channel.id !== "945527434655187006" && message.channel.id !== "969027553878749204") return message.reply(`you can only use that command in ${message.guild.channels.cache.get("939674946953682976").toString()}, ${message.guild.channels.cache.get("939686071241949205").toString()}, ${message.guild.channels.cache.get("940786577808969738").toString()}, ${message.guild.channels.cache.get("945527434655187006").toString()}, or ${message.guild.channels.cache.get("969027553878749204").toString()}! (these messages will autodelete)`)
+        if(message.channel.id !== "939674946953682976" && message.channel.id !== "939686071241949205" && message.channel.id !== "940786577808969738" && message.channel.id !== "945527434655187006" && message.channel.id !== "969027553878749204") return message.reply("you can only use that command in <#939674946953682976>, <#939686071241949205>, <#940786577808969738>, <#945527434655187006>, or <#969027553878749204>! (these messages will autodelete)")
+        .catch((err) => {
+            return
+        })
         .then(msg => {
             setTimeout(() => message.delete()
             .catch((err) => {
                 return
             }), 6000)
-            setTimeout(() => msg.delete()
-            .catch((err) => {
-                return
-            }), 6000)
-        })
+            if(msg){
+                setTimeout(() => msg.delete()
+                .catch((err) => {
+                    return
+                }), 6000)
+            }
+          })
 
         const categories = [
             "Animals",
             "Car Companies",
-            "Sports"
+            "Sports",
+            "Holidays",
+            "Countries"
         ]
         const category = categories[Math.floor(Math.random() * categories.length)]
 
@@ -223,14 +231,11 @@ module.exports = {
                 "Ram",
                 "Rat",
                 "Raven",
-                "Red deer",
-                "Red panda",
                 "Reindeer",
                 "Rhinoceros",
                 "Rook",
                 "Salamander",
                 "Salmon",
-                "Sand Dollar",
                 "Sandpiper",
                 "Sardine",
                 "Scorpion",
@@ -331,6 +336,72 @@ module.exports = {
             ]
         }
 
+        else if(category == "Holidays"){
+            words = [
+                "BodhiDay",
+                "Christmas",
+                "Diwali",
+                "Easter",
+                "FathersDay",
+                "Halloween",
+                "Hanukkah",
+                "LaborDay",
+                "MartinLutherKingJrDay",
+                "MemorialDay",
+                "MothersDay",
+                "NewYear",
+                "SaintPatricksDay",
+                "Thanksgiving",
+                "ValentinesDay",
+                "VeteransDay"
+            ]
+        }
+
+        else if(category == "Countries"){
+            words = [
+                "Afghanistan",
+                "Austrailia",
+                "Austria",
+                "Brazil",
+                "Canada",
+                "Chile",
+                "China",
+                "Colombia",
+                "CostaRica",
+                "Cuba",
+                "Denmark",
+                "Egypt",
+                "Germany",
+                "Greeze",
+                "Guatemala",
+                "France",
+                "Iran",
+                "Iraq",
+                "Ireland",
+                "Italy",
+                "Jamaica",
+                "Japan",
+                "Malaysia",
+                "Mexico",
+                "NewZealand",
+                "NorthKorea",
+                "Philippines",
+                "Poland",
+                "Portugal",
+                "Russia",
+                "SaudiArabia",
+                "SouthAfrica",
+                "SouthKorea",
+                "Spain",
+                "Sweden",
+                "Switzerland",
+                "Thailand",
+                "UnitedKingdom",
+                "UnitedStatesofAmerica",
+                "Venezuela"
+            ] 
+        }
+
         const word = words[Math.floor(Math.random() * words.length)]
 
         console.log(word)
@@ -346,8 +417,7 @@ module.exports = {
 
         hangmangame.start()
         .catch((err) => {
-            console.log(err)
-            return
+            return console.log(err)
         })
     }
 }

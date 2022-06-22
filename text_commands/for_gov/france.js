@@ -33,7 +33,7 @@ module.exports = {
             }
 
             else {
-                message.reply(`for safety, you can only use that command in ${message.guild.channels.cache.get("973334244178919504").toString()}`)
+                message.reply("for safety, you can only use that command in <#973334244178919504>")
                 .catch((err) => {
                     return
                 })
@@ -50,10 +50,12 @@ module.exports = {
                 .catch((err) => {
                     return
                 }), 6000)
-                setTimeout(() => msg.delete()
-                .catch((err) => {
-                    return
-                }), 6000)
+                if(msg){
+                    setTimeout(() => msg.delete()
+                    .catch((err) => {
+                        return
+                    }), 6000)
+                }
               })
         }
     }
