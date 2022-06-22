@@ -19,7 +19,8 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - A local database
 - Economy and inventory system
 - Music system
-- Basic event logging
+- Event logging
+- Warn and infraction system
 - Verification and reaction roles system
 - Ability to DM users
 - Ability to recieve DMs
@@ -42,7 +43,10 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Respond when an unauthorized person attempts to ping @everyone or @here
 - Say whatever I want
 - Modify own status and activity
-- Send files
+- Delete/edit messages after an interval
+- Delete/edit old messages not sent during the bot's current running
+- Warn members and store infractions with a randomly generated ID
+- Remove infractions by ID
 - Spam
 - Simulate delay and typing
 - Randomize outcomes
