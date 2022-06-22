@@ -55,6 +55,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Let you pay and rob other users
 - Let you purchase items that have an effect in the economy system
 - Sell items you purchased, and detect if you do not already own it
+- Display a economy leaderboard
 - Set cooldowns on certain economy commands (e.g. work), reducable by purchasing certain item(s)
 - Set a high cooldown for all eco-related commands in the event of a foiled robbery to simulate jail time, reducable by purchasing certain item(s)
 - Find videos from YouTube with a URL or keywords and play their audio in VC (music bot)
