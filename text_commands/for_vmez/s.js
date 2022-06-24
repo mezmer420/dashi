@@ -19,8 +19,17 @@ module.exports = {
                         .catch((err) => {
                             return
                         })
+                        
                         message.channel.send(`${messagetosend}`)
-                        // message.channel.send(`${messagetosend}`).then(sentMessage =>{
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+
+                        // message.channel.send(`${messagetosend}`)
+                        // .catch((err) => {
+                        //     return console.log(err)
+                        // })
+                        // .then(sentMessage =>{
                         //     sentMessage.react("1️⃣")
                         //     sentMessage.react("2️⃣")
                         //     sentMessage.react("3️⃣")

@@ -30,6 +30,16 @@ module.exports = {
             // .setDescription()
             .addField("choc versus rock", "Punishment Appeal")
 
+            const hydra = await client.users.fetch("547905866255433758")
+
+            const execution = new MessageEmbed()
+            .setColor("RED")
+            .setTitle("Execution Underway")
+            .setDescription("User: Hydra#1214\nReason: Redundant Bot\nMethod: Electric Chair\nExecutioner: <@826841451945787412>")
+            .setThumbnail(`${hydra.displayAvatarURL()}`)
+            // .addField("User: Hydra#1214")
+            .setTimestamp()
+
             const musicEmbed = new MessageEmbed()
             .setAuthor({name: "dashi", iconURL: "https://cdn.discordapp.com/avatars/956345939130482750/e2794eeee75ea31659a17c2de5502bed.webp?size=4096"})
             .setColor("#9BDBF5")
@@ -38,8 +48,11 @@ module.exports = {
             .addField("Commands", "```/play songurl   /play playlisturl   /play search\n\n/queue        /quit        /pause        /resume\n\n/skip             /skip-to             /shuffle```")
             // .addField("Commands", "```/play url\n\n/play playlist\n\n/play search\n\n/queue\n\n/quit\n\n/pause\n\n/resume\n\n/skip\n\n/skipto\n\n/shuffle```")
 
-            await message.channel.send({
-                embeds: [musicEmbed]
+            message.channel.send({
+                embeds: [execution]
+            })
+            .catch((err) => {
+                return console.log(err)
             })
         }
 

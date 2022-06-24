@@ -414,6 +414,9 @@ module.exports = {
         })
 
         await client.channels.cache.get(`${message.channel.id}`).send(`**Hangman**\nStarted By: ${message.author.username}\nCategory: ${category}`)
+        .catch((err) => {
+            return console.log(err)
+        })
 
         hangmangame.start()
         .catch((err) => {

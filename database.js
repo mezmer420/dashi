@@ -25,11 +25,16 @@ module.exports.Economy = database.define("economy", {
     },
     wallet: Sequelize.INTEGER,
     bank: Sequelize.INTEGER,
-    debitcard: Sequelize.BOOLEAN,
-    motorcycle: Sequelize.BOOLEAN,
-    superbike: Sequelize.BOOLEAN,
-    wife: Sequelize.BOOLEAN,
-    bailbonds: Sequelize.BOOLEAN
+    // debitcard: Sequelize.BOOLEAN,
+    // motorcycle: Sequelize.BOOLEAN,
+    // superbike: Sequelize.BOOLEAN,
+    // wife: Sequelize.BOOLEAN,
+    // bailbonds: Sequelize.BOOLEAN
+})
+
+module.exports.Items = database.define("items", {
+    memberid: Sequelize.STRING,
+    item: Sequelize.STRING
 })
 
 module.exports.dailyCooldown = database.define("dailycooldown", {
@@ -74,6 +79,14 @@ module.exports.Waifus = database.define("waifus", {
         type: Sequelize.STRING,
         unique: true
     },
-    waifu: Sequelize.STRING,
-    haswaifu: Sequelize.BOOLEAN
+    waifu: Sequelize.STRING
+})
+
+module.exports.Spams = database.define("spams", {
+    starterid: {
+        primaryKey: true,
+        type: Sequelize.STRING,
+        unique: true
+    },
+    active: Sequelize.BOOLEAN,
 })

@@ -48,6 +48,9 @@ module.exports = {
 
                     var emoji = emojis[Math.floor(Math.random() * emojis.length)]
                     message.channel.send(messagetoemojify.replace(/ /g, ` ${emoji} `))
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 break
             }

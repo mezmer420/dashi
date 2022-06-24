@@ -71,6 +71,9 @@ module.exports = {
             })
 
             message.channel.send(`starting a hangman game with word **${word}** in <#${channel.id}> (these messages will autodelete)`)
+            .catch((err) => {
+                return console.log(err)
+            })
             .then(msg => {
                 setTimeout(() => message.delete()
                 .catch((err) => {
@@ -92,6 +95,9 @@ module.exports = {
             })
 
             await client.channels.cache.get(`${channel.id}`).send(`**Custom Hangman Game**\nStarted By: ${message.author.username}`)
+            .catch((err) => {
+                return console.log(err)
+            })
 
             hangmangame.start()
             .catch((err) => {
