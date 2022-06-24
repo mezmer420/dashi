@@ -25,12 +25,14 @@ module.exports.run = async ({client, interaction}) => {
     const doc = await Docs.fetch(branch)
     const results = await doc.resolveEmbed(query)
 
-    if(!results) return await interaction.editReply({
-        content: "No results"
-    })
-    .catch((err) => {
-        return
-    })
+    if(!results){
+        return await interaction.editReply({
+            content: "No results"
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     const string = replaceDisco(JSON.stringify(results))
 

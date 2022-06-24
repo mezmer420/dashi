@@ -15,28 +15,12 @@ module.exports.run = async ({client, interaction, Infractions}) => {
     const user = interaction.options.getUser("member")
 
     if(member){
-        let data = await Infractions.findAll({where: {memberid: member.id}})
+        const data = await Infractions.findAll({where: {memberid: member.id}})
 
-        // if(!data) return await interaction.editReply({
-        //     embeds: [
-        //         new MessageEmbed()
-        //         .setColor("#9BDBF5")
-        //         .setAuthor({name: `${user.tag} has no infractions`, iconURL: `${member.displayAvatarURL()}`})
-        //     ]
-        // })
-        // .catch((err) => {
-        //     return
-        // })
-    
         let infractions = []
     
         for (let obj of data) {
-            // if(interaction.guild.members.cache
-            //     .map((member) => member.id)
-            //     .includes(obj.id)
-            //     ){
-                    infractions.push(obj)
-                // }
+            infractions.push(obj)
         }
     
         const embed = new MessageEmbed()
@@ -54,6 +38,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
         })
     
         let pos = 0
+
         for (let obj of infractions) {
             pos++
         }
@@ -74,18 +59,20 @@ module.exports.run = async ({client, interaction, Infractions}) => {
     
         embed.setDescription(desc)
     
-        if(embed.description == "") return await interaction.editReply({
-            embeds: [
-                new MessageEmbed()
-                .setColor("#9BDBF5")
-                .setAuthor({name: `${user.tag} is an outstanding citizen!`, iconURL: `${member.displayAvatarURL()}`})
-                .setThumbnail("https://orangeleaders.com/wp-content/uploads/2020/04/wow-left-red1.png")
-            ]
-        })
-        .catch((err) => {
-            return
-        })
-    
+        if(embed.description == ""){
+            return await interaction.editReply({
+                embeds: [
+                    new MessageEmbed()
+                    .setColor("#9BDBF5")
+                    .setAuthor({name: `${user.tag} is an outstanding citizen!`, iconURL: `${member.displayAvatarURL()}`})
+                    .setThumbnail("https://orangeleaders.com/wp-content/uploads/2020/04/wow-left-red1.png")
+                ]
+            })
+            .catch((err) => {
+                return
+            })
+        }
+        
         await interaction.editReply({
             embeds: [embed]
         })
@@ -95,34 +82,17 @@ module.exports.run = async ({client, interaction, Infractions}) => {
     }
 
     else if(!member){
-        let data = await Infractions.findAll({})
+        const data = await Infractions.findAll({})
 
-        // if(!data) return await interaction.editReply({
-        //     embeds: [
-        //         new MessageEmbed()
-        //         .setColor("#9BDBF5")
-        //         .setAuthor({name: `${user.tag} has no infractions`, iconURL: `${member.displayAvatarURL()}`})
-        //     ]
-        // })
-        // .catch((err) => {
-        //     return
-        // })
-    
         let infractions = []
     
         for (let obj of data) {
-            // if(interaction.guild.members.cache
-            //     .map((member) => member.id)
-            //     .includes(obj.id)
-            //     ){
-                    infractions.push(obj)
-                // }
+            infractions.push(obj)
         }
     
         const embed = new MessageEmbed()
         .setColor("#9BDBF5")
         .setTitle("All Infractions")
-        // .setAuthor({name: `${user.tag}'s Infractions`, iconURL: `${member.displayAvatarURL()}`})
         .setThumbnail("https://rosenblumlaw.com/wp-content/uploads/2019/08/shutterstock_1174972870-1024x683.jpg")
         .setFooter("Sorted by newest to oldest")
     
@@ -135,6 +105,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
         })
     
         let pos = 0
+        
         for (let obj of infractions) {
             pos++
         }
@@ -156,18 +127,19 @@ module.exports.run = async ({client, interaction, Infractions}) => {
     
         embed.setDescription(desc)
     
-        if(embed.description == "") return await interaction.editReply({
-            embeds: [
-                new MessageEmbed()
-                .setColor("#9BDBF5")
-                .setTitle("Everyone in this server is an outstanding citizen!")
-                .setThumbnail("https://orangeleaders.com/wp-content/uploads/2020/04/wow-left-red1.png")
-                // .setAuthor({name: `${user.tag} is an outstanding citizen!`, iconURL: `${member.displayAvatarURL()}`})
-            ]
-        })
-        .catch((err) => {
-            return
-        })
+        if(embed.description == ""){
+            return await interaction.editReply({
+                embeds: [
+                    new MessageEmbed()
+                    .setColor("#9BDBF5")
+                    .setTitle("Everyone in this server is an outstanding citizen!")
+                    .setThumbnail("https://orangeleaders.com/wp-content/uploads/2020/04/wow-left-red1.png")
+                ]
+            })
+            .catch((err) => {
+                return
+            })
+        }
     
         await interaction.editReply({
             embeds: [embed]

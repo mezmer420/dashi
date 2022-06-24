@@ -25,6 +25,16 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 .addBooleanOption(option => option
+    .setName("hammer")
+    .setDescription("hammer")
+    .setRequired(true)
+)
+.addBooleanOption(option => option
+    .setName("sickle")
+    .setDescription("sickle")
+    .setRequired(true)
+)
+.addBooleanOption(option => option
     .setName("wife")
     .setDescription("wife")
     .setRequired(true)
@@ -35,172 +45,105 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async ({client, interaction, Economy}) => {
-    if(interaction.member.id == "527285622809952256" || interaction.member.id == "842775855632744478"){
-        const member = interaction.options.getMember("user")
-        const newdebitcard = interaction.options.getBoolean("debitcard")
-        const newmotorcycle = interaction.options.getBoolean("motorcycle")
-        const newsuperbike = interaction.options.getBoolean("superbike")
-        const newwife = interaction.options.getBoolean("wife")
-        const newbailbonds = interaction.options.getBoolean("bailbonds")
-    
-        let getUser = await Economy.findOne({where: {id: member.id}})
-    
-        if(!getUser){
-            getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
-        }
-    
-        await Economy.update({debitcard: newdebitcard, motorcycle: newmotorcycle, superbike: newsuperbike, wife: newwife, bailbonds: newbailbonds}, {where: {id: member.id}})
-    
-        let inv
+module.exports.run = async ({client, interaction, Economy, Items}) => {
+    const member = interaction.options.getMember("user")
 
-        if(newdebitcard == false && newmotorcycle == false && newsuperbike == false && newwife == false && newbailbonds == false){
-            inv = `Nothing but empty in here`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == true && newwife == true && newbailbonds == true){
-            inv = `**debit card**, **motorcycle**, **superbike**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == false && newwife == false && newbailbonds == false){
-            inv = `**debit card**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == false && newwife == false && newbailbonds == false){
-            inv = `**motorcycle**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == true && newwife == false && newbailbonds == false){
-            inv = `**superbike**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == false && newwife == true && newbailbonds == false){
-            inv = `**wife**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == false && newwife == false && newbailbonds == true){
-            inv = `**bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == false && newwife == false && newbailbonds == false){
-            inv = `**debit card**, **motorcycle**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == true && newwife == false && newbailbonds == false){
-            inv = `**debit card**, **superbike**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == false && newwife == true && newbailbonds == false){
-            inv = `**debit card**, **wife**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == false && newwife == false && newbailbonds == true){
-            inv = `**debit card**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == true && newwife == false && newbailbonds == false){
-            inv = `**motorcycle**, **superbike**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == false && newwife == true && newbailbonds == false){
-            inv = `**motorcycle**, **wife**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == false && newwife == false && newbailbonds == true){
-            inv = `**motorcycle**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == true && newwife == true && newbailbonds == false){
-            inv = `**superbike**, **wife**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == true && newwife == false && newbailbonds == true){
-            inv = `**superbike**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == false && newwife == true && newbailbonds == true){
-            inv = `**wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == false && newsuperbike == true && newwife == true && newbailbonds == true){
-            inv = `**superbike**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == false && newwife == true && newbailbonds == true){
-            inv = `**motorcycle**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == true && newwife == false && newbailbonds == true){
-            inv = `**motorcycle**, **superbike**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == true && newwife == true && newbailbonds == false){
-            inv = `**motorcycle**, **superbike**, **wife**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == false && newwife == true && newbailbonds == true){
-            inv = `**debit card**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == true && newwife == false && newbailbonds == true){
-            inv = `**debit card**, **superbike**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == true && newwife == true && newbailbonds == false){
-            inv = `**debit card**, **superbike**, **wife**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == false && newwife == false && newbailbonds == true){
-            inv = `**debit card**, **motorcycle**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == false && newwife == true && newbailbonds == false){
-            inv = `**debit card**, **motorcycle**, **wife**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == true && newwife == false && newbailbonds == false){
-            inv = `**debit card**, **motorcycle**, **superbike**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == true && newwife == true && newbailbonds == false){
-            inv = `**debit card**, **motorcycle**, **superbike**, **wife**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == true && newwife == false && newbailbonds == true){
-            inv = `**debit card**, **motorcycle**, **superbike**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == true && newsuperbike == false && newwife == true && newbailbonds == true){
-            inv = `**debit card**, **motorcycle**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == true && newmotorcycle == false && newsuperbike == true && newwife == true && newbailbonds == true){
-            inv = `**debit card**, **superbike**, **wife**, **bail bonds**`
-        }
-    
-        else if(newdebitcard == false && newmotorcycle == true && newsuperbike == true && newwife == true && newbailbonds == true){
-            inv = `**motorcycle**, **superbike**, **wife**, **bail bonds**`
-        }
+    const newdebitcard = interaction.options.getBoolean("debitcard")
+    const newmotorcycle = interaction.options.getBoolean("motorcycle")
+    const newsuperbike = interaction.options.getBoolean("superbike")
+    const newhammer = interaction.options.getBoolean("hammer")
+    const newsickle = interaction.options.getBoolean("sickle")
+    const newwife = interaction.options.getBoolean("wife")
+    const newbailbonds = interaction.options.getBoolean("bailbonds")
 
-        const embed = new MessageEmbed()
-        .setTitle("📦 New Inventory Set ✔️")
-        .setDescription(`**${member.displayName}**'s inventory has been set to:\n${inv}`)
-        .setColor("GREEN")
-        .setThumbnail(member.user.avatarURL())
-    
-        await interaction.editReply({
-            embeds: [embed]
-        })
-        .catch((err) => {
-            return
-        })
+    const findDebitcard = await Items.findOne({where: {memberid: member.id, item: "1"}})
+    const findMotorcycle = await Items.findOne({where: {memberid: member.id, item: "2"}})
+    const findSuperbike = await Items.findOne({where: {memberid: member.id, item: "3"}})
+    const findHammer = await Items.findOne({where: {memberid: member.id, item: "4"}})
+    const findSickle = await Items.findOne({where: {memberid: member.id, item: "5"}})
+    const findWife = await Items.findOne({where: {memberid: member.id, item: "6"}})
+    const findBailbonds = await Items.findOne({where: {memberid: member.id, item: "7"}})
+
+    if(newdebitcard == true){
+        if(!findDebitcard){
+            await Items.create({memberid: member.id, item: "1"})
+        }
+    } else if(newdebitcard == false){
+        if(findDebitcard){
+            await Items.destroy({where: {memberid: member.id, item: "1"}})
+        }
     }
-    else {
-        await interaction.editReply({
-            content: "only mezmer420 and vcashy can use that command!"
-        })
-        .catch((err) => {
-            return
-        })
+
+    if(newmotorcycle == true){
+        if(!findMotorcycle){
+            await Items.create({memberid: member.id, item: "2"})
+        }
+    } else if(newmotorcycle == false){
+        if(findMotorcycle){
+            await Items.destroy({where: {memberid: member.id, item: "2"}})
+        }
     }
+
+    if(newsuperbike == true){
+        if(!findSuperbike){
+            await Items.create({memberid: member.id, item: "3"})
+        }
+    } else if(newsuperbike == false){
+        if(findSuperbike){
+            await Items.destroy({where: {memberid: member.id, item: "3"}})
+        }
+    }
+
+    if(newhammer == true){
+        if(!findHammer){
+            await Items.create({memberid: member.id, item: "4"})
+        }
+    } else if(newhammer == false){
+        if(findHammer){
+            await Items.destroy({where: {memberid: member.id, item: "4"}})
+        }
+    }
+
+    if(newsickle == true){
+        if(!findSickle){
+            await Items.create({memberid: member.id, item: "5"})
+        }
+    } else if(newsickle == false){
+        if(findSickle){
+            await Items.destroy({where: {memberid: member.id, item: "5"}})
+        }
+    }
+
+    if(newwife == true){
+        if(!findWife){
+            await Items.create({memberid: member.id, item: "6"})
+        }
+    } else if(newwife == false){
+        if(findWife){
+            await Items.destroy({where: {memberid: member.id, item: "6"}})
+        }
+    }
+
+    if(newbailbonds == true){
+        if(!findBailbonds){
+            await Items.create({memberid: member.id, item: "7"})
+        }
+    } else if(newbailbonds == false){
+        if(findBailbonds){
+            await Items.destroy({where: {memberid: member.id, item: "7"}})
+        }
+    }
+
+    const embed = new MessageEmbed()
+    .setTitle("📦 New Inventory Set ✔️")
+    .setDescription(`**${member.displayName}**'s inventory has been set`)
+    .setColor("GREEN")
+    .setThumbnail(member.user.avatarURL())
+
+    await interaction.editReply({
+        embeds: [embed]
+    })
+    .catch((err) => {
+        return
+    })
 }

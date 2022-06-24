@@ -4,25 +4,27 @@ const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("rob")
-.setDescription("Attempt to rob 10% of another user's wallet balance; cooldown 5 min")
+.setDescription("Attempt to rob 10% of another user's wallet balance")
 .addUserOption(option => option
     .setName("user")
-    .setDescription("The user you want to attempt to rob")
+    .setDescription("The user you want to rob")
     .setRequired(true)
 )
 
-module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
+module.exports.run = async ({client, interaction, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
     // if(interaction.member.id == "527285622809952256"){
     const member = interaction.options.getMember("user")
     const getrobCooldown = await robCooldown.findOne({where: {id: interaction.member.id}})
-    let robcooldownTime = getrobCooldown?.expiry
+    const robcooldownTime = getrobCooldown?.expiry
 
-    if(getrobCooldown && robcooldownTime > new Date().getTime()) return await interaction.editReply({
-        content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`
-    })
-    .catch((err) => {
-        return
-    })
+    if(getrobCooldown && robcooldownTime > new Date().getTime()){
+        return await interaction.editReply({
+            content: `Wait **${ms(robcooldownTime - new Date().getTime(), {long: true})}** before trying to rob again!`
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     if(getrobCooldown){
         await robCooldown.destroy({where: {id: interaction.member.id}})
@@ -30,39 +32,43 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
 
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
     if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
 
     let memberWallet = await Economy.findOne({where: {id: member.id}})
 
-    if(!memberWallet) {
-        memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+    if(!memberWallet){
+        memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0})
     }
 
     if(getUser.wallet < 100 || memberWallet.wallet < 100){
         // if(getUser.wallet = 0) interaction.editReply({
         //     content: "Bruh your wallet is empty. I'm going to stop you right there and urge you not to start off your money-making career by being a lawbreaker."
         // })
-        if(getUser.wallet < 100) await interaction.editReply({
-            content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."
-        })
-        .catch((err) => {
-            return
-        })
+        if(getUser.wallet < 100){
+            return await interaction.editReply({
+                content: "Bro your wallet balance is so low (less than 100 Dashcoins:tm:). I'm going to stop you right there."
+            })
+            .catch((err) => {
+                return
+            })
+        }
         // else if(memberWallet.wallet = 0) interaction.editReply({
             // content: "Bruh the person you're trying to rob has **0** coins in his wallet. At least show some decency for the homeless."
         // })
-        else if(memberWallet.wallet < 100) await interaction.editReply({
-            content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"
-        })
-        .catch((err) => {
-            return
-        })
+        else if(memberWallet.wallet < 100){
+            return await interaction.editReply({
+                content: "Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their wallet. Why bother trying to steal 10 Dashcoins:tm: at most?"
+            })
+            .catch((err) => {
+                return
+            })
+        }
     }
 
     else {
         if(member.id == interaction.member.id){
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: "bruh did you just try to rob yourself"
             })
             .catch((err) => {
@@ -71,7 +77,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
         }
 
         if(member.id == "956345939130482750"){
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: "you can't rob me >:)"
             })
             .catch((err) => {
@@ -85,7 +91,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                 robCooldown.create({
                     id: interaction.member.id,
                     // expiry: new Date().getTime() + (150000 * 2),
-                    expiry: new Date().getTime() + (150000 * 2)
+                    expiry: new Date().getTime() + (60000 * 10)
                 })
         
                 member.send(`**${interaction.member.displayName}** attempted and **failed** to rob you!`)
@@ -96,7 +102,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                 .setColor("YELLOW")
                 .setThumbnail(member.user.avatarURL())
             
-                await interaction.editReply({
+                return await interaction.editReply({
                     embeds: [failembed]
                 })
                 .catch((err) => {
@@ -124,23 +130,25 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                     await begCooldown.destroy({where: {id: interaction.member.id}})
                 }
 
-                if(getUser.bailbonds == true){
+                const findBailbonds = await Items.findOne({where: {memberid: interaction.member.id, item: "7"}})
+
+                if(findBailbonds){
                     workCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000)
+                        expiry: new Date().getTime() + (60000 * 30)
                     })
     
                     begCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000)
+                        expiry: new Date().getTime() + (60000 * 30)
                     })
                 
                     robCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000)
+                        expiry: new Date().getTime() + (60000 * 30)
                     })
 
                     const caughtembed = new MessageEmbed()
@@ -159,23 +167,23 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                     interaction.member.send(`You were caught by the police. You were fined **${coins_fined}** Dashcoins:tm: and since you have bail bonds, you are unable to work, beg, or rob for **15** minutes.`)
                 }
 
-                else if(getUser.bailbonds == false){
+                else if(!findBailbonds){
                     workCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2)
+                        expiry: new Date().getTime() + (60000 * 60)
                     })
     
                     begCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2)
+                        expiry: new Date().getTime() + (60000 * 60)
                     })
                 
                     robCooldown.create({
                         id: interaction.member.id,
                         // expiry: new Date().getTime() + (150000 * 2),
-                        expiry: new Date().getTime() + (900000 * 2)
+                        expiry: new Date().getTime() + (60000 * 60)
                     })
 
                     const caughtembed = new MessageEmbed()
@@ -210,7 +218,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                 robCooldown.create({
                     id: interaction.member.id,
                     // expiry: new Date().getTime() + (150000 * 2),
-                    expiry: new Date().getTime() + (150000 * 2)
+                    expiry: new Date().getTime() + (60000 * 10)
                 })
         
                 member.send(`**${interaction.member.displayName}** robbed **${coins_robbed}** Dashcoins:tm: from you!`)
@@ -221,7 +229,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
                 .setColor("GREEN")
                 .setThumbnail(member.user.avatarURL())
             
-                await interaction.editReply({
+                return await interaction.editReply({
                     embeds: [successembed]
                 })
                 .catch((err) => {
@@ -234,7 +242,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     }
 // }
 // else {
-//     interaction.editReply({
+//     return interaction.editReply({
 //         content: "this is still a wip command; mezmer420 can use this command!"
 //     })
 // }

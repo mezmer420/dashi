@@ -3,13 +3,13 @@ const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("beg")
-.setDescription("Beg for Dashcoins; cooldown 30 sec")
+.setDescription("Beg for Dashcoins; cooldown 1 min")
 
 module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
-    let getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id}})
-    let begcooldownTime = getbegCooldown?.expiry
+    const getbegCooldown = await begCooldown.findOne({where: {id: interaction.member.id}})
+    const begcooldownTime = getbegCooldown?.expiry
 
-    if(getbegCooldown && begcooldownTime > new Date().getTime()) {
+    if(getbegCooldown && begcooldownTime > new Date().getTime()){
         return await interaction.editReply({
             content: `Wait **${ms(begcooldownTime - new Date().getTime(), {long: true})}** before trying to beg again!`
         })
@@ -25,11 +25,11 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
 
     if(getUser.wallet >= 1000 && getUser.bank < 1000){
-        await interaction.editReply({
+        return await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao"
         })
         .catch((err) => {
@@ -38,7 +38,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     }
 
     else if(getUser.wallet < 1000 && getUser.bank >= 1000){
-        await interaction.editReply({
+        return await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in your bank; what are you doing begging lmao"
         })
         .catch((err) => {
@@ -47,7 +47,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     }
 
     else if(getUser.wallet >= 1000 && getUser.bank >= 1000){
-        await interaction.editReply({
+        return await interaction.editReply({
             content: "bruh you have over 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao"
         })
         .catch((err) => {
@@ -65,10 +65,10 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
         
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2)
+                expiry: new Date().getTime() + (30000 * 2)
             })
         
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: `You recieved **${coins_earned}** Dashcoins:tm:!`
             })
             .catch((err) => {
@@ -83,10 +83,10 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
         
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2)
+                expiry: new Date().getTime() + (30000 * 2)
             })
         
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: `Woah, was that MrBeast? You recieved **${coins_earned}** Dashcoins:tm:!`
             })
             .catch((err) => {
@@ -97,10 +97,10 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
         else if(randomvalue < 10){
             begCooldown.create({
                 id: interaction.member.id,
-                expiry: new Date().getTime() + (15000 * 2)
+                expiry: new Date().getTime() + (30000 * 2)
             })
         
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: "Unfortunately, nobody donated you anything. Better luck next time."
             })
             .catch((err) => {

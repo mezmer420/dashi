@@ -6,7 +6,8 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Sort users by their total Dashcoins (sum of wallet and bank)")
 
 module.exports.run = async ({client, interaction, Economy}) => {
-    let data = await Economy.findAll({})
+    const data = await Economy.findAll({})
+    
     let members = []
 
     for (let obj of data) {
@@ -32,6 +33,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
     })
 
     let pos = 0
+    
     for (let obj of members) {
         pos++
 
@@ -41,6 +43,7 @@ module.exports.run = async ({client, interaction, Economy}) => {
     }
 
     members = members.slice(0, 10)
+
     let desc = ""
 
     for (let i = 0; i < members.length; i++) {
@@ -77,7 +80,6 @@ module.exports.run = async ({client, interaction, Economy}) => {
     }
 
     embed.setDescription(desc)
-    // console.log(members)
 
     interaction.editReply({
         embeds: [embed]

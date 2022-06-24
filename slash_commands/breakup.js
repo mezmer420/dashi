@@ -34,9 +34,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
 
         setTimeout(async function () {
             row.components[0].setDisabled(true)
-            // .catch((err) => {
-            //     return
-            // })
+
             await response.edit({
                 embeds: [embed],
                 components: [row]
@@ -71,8 +69,8 @@ module.exports.run = async ({client, interaction, Waifus}) => {
     }
 
     else if(!getUser){
-        await interaction.editReply({
-            content: "You don't have a waifu to break up with LOL"
+        return await interaction.editReply({
+            content: "You don't have a waifu to break up with lol"
         })
         .catch((err) => {
             return

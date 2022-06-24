@@ -37,16 +37,18 @@ module.exports.run = async ({client, interaction}) => {
     const url = interaction.options.getString("url")
     const query = interaction.options.getString("searchterms")
 
-    if(!interaction.member.voice.channel) return await interaction.editReply({content: "You need to be in a VC to use this command"})
-    .catch((err) => {
-        return
-    })
-	.then(interaction => {
-		setTimeout(() => interaction.delete()
-		.catch((err) => {
-			return
-		}), 10000)
-	})
+    if(!interaction.member.voice.channel){
+        return await interaction.editReply({content: "You need to be in a VC to use this command"})
+        .catch((err) => {
+            return
+        })
+        .then(interaction => {
+            setTimeout(() => interaction.delete()
+            .catch((err) => {
+                return
+            }), 10000)
+        })
+    }
 
     const queue = await client.player.createQueue(interaction.guild)
 
@@ -62,16 +64,18 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.YOUTUBE_VIDEO
         })
         
-        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
-        .catch((err) => {
-            return
-        })
-        .then(interaction => {
-            setTimeout(() => interaction.delete()
+        if(result.tracks.length == 0){
+            return await interaction.editReply({content: "No results"})
             .catch((err) => {
                 return
-            }), 10000)
-        })
+            })
+            .then(interaction => {
+                setTimeout(() => interaction.delete()
+                .catch((err) => {
+                    return
+                }), 10000)
+            })
+        }
         
         const song = result.tracks[0]
 
@@ -89,16 +93,18 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.YOUTUBE_PLAYLIST
         })
 
-        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
-        .catch((err) => {
-            return
-        })
-        .then(interaction => {
-            setTimeout(() => interaction.delete()
+        if(result.tracks.length == 0){
+            return await interaction.editReply({content: "No results"})
             .catch((err) => {
                 return
-            }), 10000)
-        })
+            })
+            .then(interaction => {
+                setTimeout(() => interaction.delete()
+                .catch((err) => {
+                    return
+                }), 10000)
+            })
+        }
         
         const playlist = result.playlist
 
@@ -116,16 +122,18 @@ module.exports.run = async ({client, interaction}) => {
             searchEngine: QueryType.AUTO
         })
 
-        if(result.tracks.length == 0) return await interaction.editReply({content: "No results"})
-        .catch((err) => {
-            return
-        })
-        .then(interaction => {
-            setTimeout(() => interaction.delete()
+        if(result.tracks.length == 0){
+            return await interaction.editReply({content: "No results"})
             .catch((err) => {
                 return
-            }), 10000)
-        })
+            })
+            .then(interaction => {
+                setTimeout(() => interaction.delete()
+                .catch((err) => {
+                    return
+                }), 10000)
+            })
+        }
         
         const song = result.tracks[0]
 

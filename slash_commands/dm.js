@@ -18,12 +18,14 @@ module.exports.run = async ({client, interaction}) => {
     const user = interaction.options.getMember("user")
     const message = interaction.options.getString("message")
 
-    if(user.id == "956345939130482750") return await interaction.editReply({
-        content: "i can't DM myself idot"
-    })
-    .catch((err) => {
-        return
-    })
+    if(user.id == "956345939130482750"){
+        return await interaction.editReply({
+            content: "i can't DM myself idot"
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     user.send(message)
     .catch(async (err) => {

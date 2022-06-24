@@ -18,15 +18,17 @@ module.exports.run = async ({client, interaction, Economy}) => {
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
     
-    if(getUser.bank < amount) return await interaction.editReply({
-        content: "Insufficient bank balance!"
-    })
-    .catch((err) => {
-        return
-    })
+    if(getUser.bank < amount){
+        return await interaction.editReply({
+            content: "Insufficient bank balance"
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     const newsenderWallet = getUser.wallet + amount
     const newsenderBank = getUser.bank - amount

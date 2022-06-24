@@ -23,12 +23,14 @@ module.exports.run = async ({client, interaction}) => {
         return input.length > 1024 ? `${input.slice(0, 1020)} ...` : input
     }
 
-    if(!answer) return await interaction.editReply({
-        content: "No results"
-    })
-    .catch((err) => {
-        return
-    })
+    if(!answer){
+        return await interaction.editReply({
+            content: "No results"
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     const embed = new MessageEmbed()
     .setTitle(answer.word)

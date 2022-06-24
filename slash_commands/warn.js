@@ -42,7 +42,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
         .setFooter(`Infraction ID: ${randomid}`)
         .setTimestamp()
     
-        await interaction.editReply({
+        return await interaction.editReply({
             embeds: [embed]
         })
         .catch((err) => {
@@ -108,7 +108,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
             .setFooter("You just tried to warn an Admin 🤦‍♂️")
         }
 
-        await interaction.editReply({
+        return await interaction.editReply({
             embeds: [embed]
         })
         .catch((err) => {

@@ -18,7 +18,7 @@ module.exports.run = async ({client, interaction}) => {
         return
     })
 
-    let time = "1s"
+    const time = "1s"
     setTimeout(async function () {
       await interaction.editReply(`Finding ${victim.displayName}'s Email and Password.....`)
       .catch((err) => {
@@ -26,7 +26,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time));
 
-    let time1 = "6s"
+    const time1 = "6s"
     setTimeout(async function () {
       await interaction.editReply(`E-Mail: ${victim.displayName}@gmail.com \nPassword: ********`)
       .catch((err) => {
@@ -34,7 +34,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time1));
 
-    let time2 = "9s"
+    const time2 = "9s"
     setTimeout(async function () {
       await interaction.editReply("Finding Other Accounts.....")
       .catch((err) => {
@@ -42,7 +42,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time2));
 
-    let time3 = "15s"
+    const time3 = "15s"
     setTimeout(async function () {
       await interaction.editReply("Setting up Epic Games Account.....")
       .catch((err) => {
@@ -50,7 +50,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time3))
 
-    let time4 = "21s"
+    const time4 = "21s"
     setTimeout(async function () {
       await interaction.editReply("Hacking Epic Games Account......")
       .catch((err) => {
@@ -58,7 +58,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time4))
 
-    let time5 = "28s"
+    const time5 = "28s"
     setTimeout(async function () {
       await interaction.editReply("Hacked Epic Games Account!!")
       .catch((err) => {
@@ -66,7 +66,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time5))
 
-    let time6 = "31s"
+    const time6 = "31s"
     setTimeout(async function () {
       await interaction.editReply("Collecting Info.....")
       .catch((err) => {
@@ -74,7 +74,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time6))
 
-    let time7 = "38s"
+    const time7 = "38s"
     setTimeout(async function () {
       await interaction.editReply("Selling data to FBI....")
       .catch((err) => {
@@ -82,7 +82,7 @@ module.exports.run = async ({client, interaction}) => {
       })
     }, ms(time7))
 
-    let time8 = "41s"
+    const time8 = "41s"
     setTimeout(async function () {
       await interaction.editReply(`Finished hacking ${victim.displayName}`)
       .catch((err) => {

@@ -13,14 +13,16 @@ module.exports.data = new SlashCommandBuilder()
 module.exports.run = async ({client, interaction, Infractions}) => {
     const infractionId = interaction.options.getInteger("infractionid")
 
-    let getInfraction = await Infractions.findOne({where: {infractionid: infractionId}})
+    const getInfraction = await Infractions.findOne({where: {infractionid: infractionId}})
 
-    if(!getInfraction) return await interaction.editReply({
-        content: `Couldn't find an infraction on record with ID **${infractionId}**`
-    })
-    .catch((err) => {
-        return
-    })
+    if(!getInfraction){
+        return await interaction.editReply({
+            content: `Couldn't find an infraction on record with ID **${infractionId}**`
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     await Infractions.destroy({where: {infractionid: infractionId}})
 

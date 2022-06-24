@@ -20,12 +20,14 @@ module.exports.run = async ({client, interaction}) => {
 
     const documents = (await axios(uri)).data.documents
 
-    // if(!documents) return await interaction.editReply({
-    //     content: "Could not find that documentation"
-    // })
-    // .catch((err) => {
-    //     return
-    // })
+    // if(!documents){
+        // return await interaction.editReply({
+            //     content: "Could not find that documentation"
+            // })
+            // .catch((err) => {
+            //     return
+            // })
+    // }
 
     if(documents){
         const embed = new MessageEmbed()
@@ -57,12 +59,14 @@ module.exports.run = async ({client, interaction}) => {
             )
         }
     
-        if(embed.fields == "") return await interaction.editReply({
-            content: "No results"
-        })
-        .catch((err) => {
-            return
-        })
+        if(embed.fields == ""){
+            return await interaction.editReply({
+                content: "No results"
+            })
+            .catch((err) => {
+                return
+            })
+        }
 
         await interaction.editReply({
             embeds: [embed]

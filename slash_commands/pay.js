@@ -24,18 +24,20 @@ module.exports.run = async ({client, interaction, Economy}) => {
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
     
-    if(getUser.wallet < amount) return await interaction.editReply({content: "Insufficient wallet balance"})
-    .catch((err) => {
-        return
-    })
+    if(getUser.wallet < amount){
+        return await interaction.editReply({content: "Insufficient wallet balance"})
+        .catch((err) => {
+            return
+        })
+    }
 
     const memberWallet = await Economy.findOne({where: {id: member.id}})
 
     if(!memberWallet){
-        memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0})
     }
 
     const newrecieverWallet = memberWallet.wallet + amount

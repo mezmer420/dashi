@@ -32,7 +32,7 @@ module.exports.run = async ({client, interaction}) => {
     const fortune = fortunes[Math.floor(Math.random() * fortunes.length)]
 
     const Embed = new MessageEmbed()
-    .setColor("#202225")
+    .setColor("#9BDBF5")
     .setTitle(`${inquiry}`)
     .setDescription(`🎱 ${fortune}`)
 

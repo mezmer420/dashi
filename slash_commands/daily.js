@@ -6,15 +6,17 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Get 150 Dashcoins for free every 16 hours")
 
 module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
-    let getdailyCooldown = await dailyCooldown.findOne({where: {id: interaction.member.id}})
-    let dailycooldownTime = getdailyCooldown?.expiry
+    const getdailyCooldown = await dailyCooldown.findOne({where: {id: interaction.member.id}})
+    const dailycooldownTime = getdailyCooldown?.expiry
 
-    if(getdailyCooldown && dailycooldownTime > new Date().getTime()) return await interaction.editReply({
-        content: `Wait **${ms(dailycooldownTime - new Date().getTime(), {long: true})}** before acquiring your next daily!`
-    })
-    .catch((err) => {
-        return
-    })
+    if(getdailyCooldown && dailycooldownTime > new Date().getTime()){
+        return await interaction.editReply({
+            content: `Wait **${ms(dailycooldownTime - new Date().getTime(), {long: true})}** before acquiring your next daily!`
+        })
+        .catch((err) => {
+            return
+        })
+    }
 
     if(getdailyCooldown){
         dailyCooldown.destroy({where: {id: interaction.member.id}})
@@ -23,7 +25,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     let getUser = await Economy.findOne({where: {id: interaction.member.id}})
 
     if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
 
     const coins_earned = 150

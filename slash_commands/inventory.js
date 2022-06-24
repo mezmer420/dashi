@@ -10,270 +10,65 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
 )
 
-module.exports.run = async ({client, interaction, Economy}) => {
-    let member = interaction.options.getMember("user") || interaction.member
-    let getUser = await Economy.findOne({where: {id: member.id}})
+module.exports.run = async ({client, interaction, Items}) => {
+    const member = interaction.options.getMember("user") || interaction.member
 
-    if(!getUser){
-        getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+    const data = await Items.findAll({where: {memberid: member.id}})
+
+    let items = []
+
+    for (let obj of data) {
+        items.push(obj)
     }
 
-    let embed = new MessageEmbed()
+    const embed = new MessageEmbed()
+    .setColor("#9BDBF5")
+    .setTitle(`${member.displayName}'s Inventory`)
+    .setThumbnail(member.user.avatarURL())
 
-    if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`Nothing but empty in here`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
+    items = items.sort(function (b, a) {
+        return b.item - a.item
+    })
+
+    let desc = ""
+
+    for (let i = 0; i < items.length; i++) {
+        const itemid = items[i].item
+        let item
+        if(itemid == "1"){
+            item = "debit card"
+        } else if(itemid == "2"){
+            item = "motorcycle"
+        } else if(itemid == "3"){
+            item = "superbike"
+        } else if(itemid == "4"){
+            item = "hammer"
+        } else if(itemid == "5"){
+            item = "sickle"
+        } else if(itemid == "6"){
+            item = "wife"
+        } else if(itemid == "7"){
+            item = "bail bonds"
+        }
+
+        desc += `**${item}**\n`
     }
 
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **superbike**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
+    embed.setDescription(desc)
 
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**superbike**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **superbike**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **superbike**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**superbike**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**superbike**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**superbike**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **superbike**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **superbike**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **superbike**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **superbike**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **superbike**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == false){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **superbike**, **wife**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == false && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **superbike**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == true && getUser.superbike == false && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **motorcycle**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == true && getUser.motorcycle == false && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**debit card**, **superbike**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
-    }
-
-    else if(getUser.debitcard == false && getUser.motorcycle == true && getUser.superbike == true && getUser.wife == true && getUser.bailbonds == true){
-        embed
-        .setTitle(`${member.displayName}'s Inventory`)
-        .setDescription(`**motorcycle**, **superbike**, **wife**, **bail bonds**`)
-        .setColor("#9BDBF5")
-        .setThumbnail(member.user.avatarURL())
+    if(embed.description == ""){
+        return await interaction.editReply({
+            embeds: [
+                new MessageEmbed()
+                .setColor("#9BDBF5")
+                .setTitle(`${member.displayName}'s Inventory`)
+                .setDescription(`Nothing but empty in here`)
+                .setThumbnail(member.user.avatarURL())
+            ]
+        })
+        .catch((err) => {
+            return
+        })
     }
 
     await interaction.editReply({

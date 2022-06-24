@@ -12,7 +12,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 .addUserOption(option => option
     .setName("member")
-    .setDescription("Delete a specific member's message(s)")
+    .setDescription("Delete a specific member's messages")
     .setRequired(false)
 )
 

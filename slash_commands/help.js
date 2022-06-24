@@ -6,13 +6,24 @@ module.exports.data = new SlashCommandBuilder()
 .setDescription("Provides first aid")
 
 module.exports.run = async ({client, interaction}) => {
+    const dashi = await client.users.fetch("956345939130482750")
+    const mezmer = await client.users.fetch("527285622809952256")
+
     const infoEmbed = new MessageEmbed()
     .setColor("#9BDBF5")
-    .setTitle("dashi Help")
+    .setTitle("Help 🚑 ❤️‍🩹")
     // .setURL("https://github.com/mezmer420/dashi")
-    .setAuthor({name: "mezmer420", iconURL: "https://cdn.discordapp.com/avatars/527285622809952256/8ed4b61e12610fe4c6e332beb00a4fed.webp?size=4096"})
-    // .addField("**About**", "Every Eoician has a unique dialect. <@527285622809952256> pays careful attention to what you say and regularly updates my dialect database.")
-    // .addField("**Dialects**", "`vcash dialect\n\nmezmer dialect\n\n\choc dialect\n\nspeedychoc dialect\n\nspeedy dialect uwu owu uwo ow- -w- -wu uWu\n\ndelta airlines dialect`")
+    .setAuthor({name: `${dashi.tag}`, iconURL: `${dashi.displayAvatarURL()}`})
+    .setDescription(`**Who am I?**\n<@${mezmer.id}> originally got the idea of a creating a Discord bot to have one respond "obsessed with d" every time <@826841451945787412> expressed his obsession with d. Today, that feature is scarcely used and instead I've proceeded to result in the obsolescence of other bots here. I see that as a win.\n[GitHub](https://github.com/mezmer420/dashi)\n——————————\n**Text Commands**`)
+    // .setThumbnail(`${dashi.displayAvatarURL()}`)
+    .addFields(
+        {name: "For Everyone", value: "`!cockroach`  `!emojify [message]`  `!good`  `hangman`"},
+        {name: "For Government", value: "`!gulag`  `!newhangman [channel] [word]`"},
+        {name: "For Owners", value: "`!s [message]`"},
+        {name: "For mezmer", value: "(CLASSIFIED)\n——————————"},
+    )
+    .addField("**Slash Commands**", "I have over 40 slash commands that everyone can use + government commands. Type `/` and click me to view my slash commands available to you in your current channel. If you're an admin, mezmer has hardcoded certain commands such that only he can use them. ;)")
+    .setFooter({text: `${mezmer.tag}`, iconURL: `${mezmer.displayAvatarURL()}`})
     
     await interaction.editReply({
         embeds: [infoEmbed]

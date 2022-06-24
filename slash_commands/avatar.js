@@ -3,15 +3,15 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("avatar")
-.setDescription("View your or another user's server avatar")
+.setDescription("View your or another user's server avatar; leave blank to view your own")
 .addUserOption(option => option
     .setName("user")
     .setDescription("User to view the avatar of")
-    .setRequired(true)
+    .setRequired(false)
 )
 
 module.exports.run = async ({client, interaction}) => {
-    const member = interaction.options.getMember("user")
+    const member = interaction.options.getMember("user") || interaction.member
     const avatar = member.displayAvatarURL({dynamic: true, size: 4096})
 
     const embed = new MessageEmbed()

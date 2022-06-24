@@ -49,8 +49,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         .setImage("https://ncg-live-assets.ams3.cdn.digitaloceanspaces.com/uploads/2021/02/1-Ball-in-Golf-1.jpg")
     }
 
-    const sentInteraction =
-    await interaction.editReply({
+    const sentInteraction = await interaction.editReply({
         embeds: [embed]
     })
     .catch((err) => {
@@ -78,7 +77,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         if(!getUser){
             await Waifus.create({id: interaction.member.id, waifu: randomball})
 
-            await interaction.editReply({ 
+            return await interaction.editReply({ 
                 content: `Aww, your new waifu is **${randomball}**!`
             })
             .catch((err) => {
@@ -89,7 +88,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
         else if(getUser){
             const existingwaifu = getUser.waifu
 
-            await interaction.editReply({ 
+            return await interaction.editReply({ 
                 content: `You already have a waifu—**${existingwaifu}**! Use `+"`/breakup`"+` to break up with ${existingwaifu}`
             })
             .catch((err) => {

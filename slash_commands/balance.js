@@ -11,11 +11,11 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 module.exports.run = async ({client, interaction, Economy}) => {
-    let member = interaction.options.getMember("user") || interaction.member
+    const member = interaction.options.getMember("user") || interaction.member
     let getUser = await Economy.findOne({where: {id: member.id}})
 
     if(!getUser){
-        getUser = await Economy.create({id: member.id, wallet: 0, bank: 0, debitcard: false, motorcycle: false, superbike: false, wife: false, bailbonds: false})
+        getUser = await Economy.create({id: member.id, wallet: 0, bank: 0})
     }
 
     const embed = new MessageEmbed()
