@@ -25,7 +25,7 @@ module.exports = {
             if(!oldChannel.topic){
                 const topicEmbed = new MessageEmbed()
                 .setTitle("🌼 Channel Update")
-                .addField("Channel Topic Added", `#${newChannel.name}:\n**${newChannel.topic}**`)
+                .addField("Channel Topic Added", `<#${newChannel.id}>:\n**${newChannel.topic}**`)
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
@@ -41,7 +41,7 @@ module.exports = {
             else if(!newChannel.topic){
                 const topicEmbed = new MessageEmbed()
                 .setTitle("🌼 Channel Update")
-                .addField("Channel Topic Removed", `#${newChannel.name}:\n**${oldChannel.topic}**\n->\n(none)`)
+                .addField("Channel Topic Removed", `<#${newChannel.id}>:\n**${oldChannel.topic}**\n->\n(none)`)
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
@@ -57,7 +57,7 @@ module.exports = {
             else {
                 const topicEmbed = new MessageEmbed()
                 .setTitle("🌼 Channel Update")
-                .addField("Channel Topic Changed", `#${newChannel.name}:\n**${oldChannel.topic}**\n->\n**${newChannel.topic}**`)
+                .addField("Channel Topic Changed", `<#${newChannel.id}>:\n**${oldChannel.topic}**\n->\n**${newChannel.topic}**`)
                 .setColor("#9BDBF5")
                 .setTimestamp()
     
@@ -74,7 +74,7 @@ module.exports = {
         else if(oldChannel.nsfw !== newChannel.nsfw){
             const nsfwEmbed = new MessageEmbed()
             .setTitle("🌼 Channel Update")
-            .addField("Channel NSFW Changed", `#${newChannel.name}: **${oldChannel.nsfw}** -> **${newChannel.nsfw}**`)
+            .addField("Channel NSFW Changed", `<#${newChannel.id}>: **${oldChannel.nsfw}** -> **${newChannel.nsfw}**`)
             .setColor("#9BDBF5")
             .setTimestamp()
 

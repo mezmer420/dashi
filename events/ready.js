@@ -1,4 +1,4 @@
-const {Infractions, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus} = require("../database")
+const {Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Spams} = require("../database")
 
 module.exports = {
     name: "ready",
@@ -22,17 +22,17 @@ module.exports = {
     
         await Infractions.sync()
         await Economy.sync()
+        await Items.sync()
         await dailyCooldown.sync()
         await workCooldown.sync()
         await begCooldown.sync()
         await robCooldown.sync()
         await Waifus.sync()
+        await Spams.sync()
         console.log("Database synced")
-    
-        const dashiuser = await Economy.findOne({where: {id: "956345939130482750"}})
-        if(!dashiuser){
-            Economy.create({id: "956345939130482750", bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true})
-        }
+
+        await Spams.destroy({truncate: true})
+        await Spams.create({starterid: "10", active: false})
 
         const guild = client.guilds.resolve("939674946379083847")
 
@@ -45,22 +45,24 @@ module.exports = {
 
         const current = new Date()
         console.log(current.toLocaleString())
-    
-        // await Economy.update({bank: 10000000, debitcard: true, motorcycle: true, superbike: true, wife: true, bailbonds: true}, {where: {id: "956345939130482750"}}).then(console.log("dashi stats set"))
 
         // Infractions.destroy({truncate: true}).then(console.log("Infractions destroyed"))
         // Economy.destroy({truncate: true}).then(console.log("Economy destroyed"))
+        // Items.destroy({truncate: true}).then(console.log("Items destroyed"))
         // dailyCooldown.destroy({truncate: true}).then(console.log("dailyCooldown destroyed"))
         // workCooldown.destroy({truncate: true}).then(console.log("workCooldown destroyed"))
         // begCooldown.destroy({truncate: true}).then(console.log("begCooldown destroyed"))
         // robCooldown.destroy({truncate: true}).then(console.log("robCooldown destroyed"))
         // Waifus.destroy({truncate: true}).then(console.log("Waifus destroyed"))
 
-        // await Economy.destroy({where: {id: "762133129209053244"}})
-        // const getUser = await Economy.findOne({where: {id: "826841451945787412"}})
-        // console.log(getUser)
-    
-        // console.log("I am unable.")
-        // client.destroy()
+        // const fetchItems = await Items.findAll({where: {item: "5"}})
+        // console.log(fetchItems)
+
+        // await Items.update({item: "7"}, {where: {item: "6"}}).then(console.log('updated bailbonds'))
+        // await Items.update({item: "6"}, {where: {item: "5"}}).then(console.log('updated wife'))
+        // await Items.update({item: "5"}, {where: {item: "4"}}).then(console.log('updated sickle'))
+
+        // const fetchNewItems = await Items.findAll({where: {item: "5"}})
+        // console.log(fetchNewItems)
     }
 }

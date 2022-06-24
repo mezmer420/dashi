@@ -96,6 +96,9 @@ module.exports = {
             // respond to people with @france role
             // if(message.author.id == "691727350051635262"){
             // message.channel.send("https://c.tenor.com/eUGNMYebEwoAAAAC/bleu-blanc-rouge-france.gif")
+            // .catch((err) => {
+            //     return console.log(err)
+            // })
             // }
 
             // general responses for everyone (non-bot)
@@ -104,144 +107,323 @@ module.exports = {
 
                 if(command == "rainbow dash"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("best pony")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "ding"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+                    
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("dong")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                     
                 else if(lowercase == "dad"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+                    
                     await wait(Math.floor(Math.random() * 0) + 1001)
+
                     message.channel.send("is gone")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(lowercase == "mom"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("?? what's that")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                     
                 else if(command == "why"){
                     if(message.author.id == "527285622809952256") return
                     if(!message.content.startsWith("why not")){
                         message.channel.sendTyping()
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                        
                         await wait(Math.floor(Math.random() * 0) + 1001)
+
                         message.channel.send("why not")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
                     }
                     else {
                         message.channel.sendTyping()
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+
                         await wait(Math.floor(Math.random() * 0) + 1001)
+                        
                         message.channel.send("because why")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
                     }
                 }
             
                 else if(command == "igues" || command == "iges" || command == "igs"){
                     message.channel.send("uncertainty detected")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "rick"){
                     message.channel.send("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 
                 else if(lowercase == "bruh" || lowercase == "mug"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("moment")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "bruh"){
                     if(lowercase == "bruh") return
+
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("bruh moment")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "mug"){
                     if(lowercase == "mug") return
+
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+
                     message.channel.send("mug moment")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 
                 else if(command == "k"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+
                     message.channel.send("lack care")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "kk"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+
                     message.channel.send("lack care (x2)")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 
                 else if(command == "deez"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+
                     message.channel.send("nutz")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "caught"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send('Caught in 8K UHD surround sound 16 Gigs ram, HDR GEFORCE RTX, TI-80 texas insturments, Triple A duracell battery ultrapower100 Cargador Compatible iPhone 1A 5 W 1400 + Cable 100% 1 Metro Blanco Compatible iPhone 5 5 C 5S 6 SE 6S 7 8 X XR XS XS MAX GoPro hero 1 2 terrabyte xbox series x Dell UltraSharp 49 Curved Monitor - U4919DW Sony HDC-3300R 2/3" CCD HD Super Motion Color Camera, 1080p Resolution Toshiba EM131A5C-SS Microwave Oven with Smart Sensor, Easy Clean Interior, ECO Mode and Sound On/Off, 1.2 Cu. ft, Stainless Steel HP LaserJet Pro M404n Monochrome Laser Printer with Built-in Ethernet (W1A52A) GE Voluson E10 Ultrasound Machine LG 23 Cu. Ft. Smart Wi-Fi Enabled InstaView Door-in-Door Counter-Depth Refrigerator with Craft Ice Maker GFW850SPNRS GE 28" Air, Moto G4 SAMSUNG 85-inch Class Crystal UHD TU-8000 Series - 4K UHD HDR Smart TV with Alexa Built-in (UN85TU8000FXZA, 2020 Model) GE 38846 Premium Slim LED Light Bar, 18 Inch Under Cabinet Fixture, Plug-In, Convertible to Direct Wire, Linkable 628 Lumens, 3000K Soft Warm White, High/Off/Low, Easy to Install, 18 Ft Bissell Cleanview Swivel Pet Upright Bagless Vacuum Cleaner Trane20,000-Watt 1-Phase LPG/NG Liquid Cooled Whole House Standby Generator')
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "goodnight"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("goodnight 😴 🛌 💤 🌛 don't let the bed bugs bite")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 
                 else if(command == "silly"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("silly qilly willy rilly tilly yilly pilly dilly filly gilly hilly jilly killy lilly zilly xilly cilly villy billy nilly milly")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "😮"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("why 😮")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(command == "boner"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("what you get from going to your favorite site")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(lowercase == "i like turtles"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("i like trains")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
             
                 else if(lowercase == "i like trains"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("i like turtles")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
 
                 else if(lowercase == "hold up" || lowercase == "hol up" || lowercase == "holdup" || lowercase == "holup"){
                     message.channel.send("https://www.reddit.com/r/HolUp/")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
 
                 else if(command == "yuri"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("vcashy waifu")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
 
                 else if(message.content == "‎"){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("georgeerto dialect")
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
                 
                 else if(message.content.startsWith("r/")){
@@ -252,14 +434,19 @@ module.exports = {
                             // add one to include the space
                             const subreddit = message.content.slice(index + reddit[i].length + 1)
                             const empty = ""
+
                             if(subreddit == empty){
                                 message.reply('specify what the subreddit is! format is "r/[subreddit]"')
                                 .catch((err) => {
                                     return
                                 })
                             }
+
                             else {
                                 message.channel.send(`https://www.reddit.com/r/${subreddit}/`)
+                                .catch((err) => {
+                                    return console.log(err)
+                                })
                             }
                             break
                         }
@@ -268,6 +455,9 @@ module.exports = {
 
                 else if(message.content.startsWith("R/")){
                     message.channel.send(`https://www.reddit.com/r/foundthemobileuser/`)
+                    .catch((err) => {
+                        return console.log(err)
+                    })
                 }
 
                 // obsessed with d
@@ -277,8 +467,17 @@ module.exports = {
                     if (index !== -1) {
                         // add one to include the space
                         message.channel.sendTyping()
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+
                         await wait(Math.floor(Math.random() * 0) + 1001)
+                        
                         message.channel.send("obsessed with d")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                        
                         break
                     }
                 }
@@ -289,11 +488,17 @@ module.exports = {
                     const index = lowercase.indexOf(alot[i])
                     if (index !== -1) {
                         message.channel.sendTyping()
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+
                         await wait(Math.floor(Math.random() * 0) + 1001)
+
                         message.reply("a lot*")
                         .catch((err) => {
                             return
                         })
+                        
                         break
                     }
                 }
@@ -308,10 +513,15 @@ module.exports = {
 
                 if(isUpper(message.content) == true && hasSymbols(message.content) == false){
                     message.channel.sendTyping()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
                     await wait(Math.floor(Math.random() * 0) + 1001)
+                    
                     message.channel.send("keep your voice down!")
                     .catch((err) => {
-                        return
+                        return console.log(err)
                     })
                 }
 
@@ -324,16 +534,31 @@ module.exports = {
                 //         } else if(lowercase.startsWith("i'm ")){
                 //             imWord = "i'm "
                 //         }
+
                 //         const name = message.content.slice(imWord[i].length)
                 //         if(!name) return
+
                 //         message.channel.sendTyping()
+                //         .catch((err) => {
+                //             return console.log(err)
+                //         })
+
                 //         await wait(Math.floor(Math.random() * 0) + 1001)
+
                 //         message.channel.send(`hi ${name}, i'm dashi!`)
+                //         .catch((err) => {
+                //             return console.log(err)
+                //         })
                 //     }
 
                 //     else if(lowercase.startsWith("im im") || lowercase.startsWith("i'm i'm") || lowercase.startsWith("i'm im") || lowercase.startsWith("im i'm")){
                 //         message.channel.sendTyping()
+                //         .catch((err) => {
+                //             return console.log(err)
+                //         })
+
                 //         await wait(Math.floor(Math.random() * 0) + 1001)
+
                 //         message.reply("lol nice try :)")
                 //         .catch((err) => {
                 //             return
@@ -353,29 +578,48 @@ module.exports = {
                 }
 
                 else if(message.author.id == "969084144141344788"){   // boomer
-                    // if(command == "how"){
-                    //     message.channel.send("<@&969084144141344788> ??? choc himself said it's ok for us to call him \"cock\"")
-                    // }
+                    return
+                    if(command == "how"){
+                        message.channel.send("<@&969084144141344788> ??? choc himself said it's ok for us to call him \"cock\"")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                 
-                    // else if(command == "cookies"){
-                    //     message.channel.send("boomer detected")
-                    // }
+                    else if(command == "cookies"){
+                        message.channel.send("boomer detected")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                 
-                    // else if(command == "i"){
-                    //     message.channel.send("bomer hi")
-                    // }
+                    else if(command == "i"){
+                        message.channel.send("bomer hi")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                     
-                    // else if(command == "why"){
-                    //     message.channel.send("damn do we not have a right to misspell your name")
-                    // }
+                    else if(command == "why"){
+                        message.channel.send("damn do we not have a right to misspell your name")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                 
-                    // else if(command == "stop"){
-                    //     message.channel.send("sinner")
-                    // }
+                    else if(command == "stop"){
+                        message.channel.send("sinner")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                 
-                    // else if(command == "yes"){
-                    //     message.channel.send("https://www.unorules.org/wp-content/uploads/2021/09/Uno-Reverse-Card-Green-Classic-Uno-Unorules.org_.png.png")
-                    // }
+                    else if(command == "yes"){
+                        message.channel.send("https://www.unorules.org/wp-content/uploads/2021/09/Uno-Reverse-Card-Green-Classic-Uno-Unorules.org_.png.png")
+                        .catch((err) => {
+                            return console.log(err)
+                        })
+                    }
                 }
 
                 else if(message.author.id == "973731082136592454"){   // idiotbot
