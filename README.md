@@ -43,13 +43,13 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Respond when an unauthorized person attempts to ping @everyone or @here
 - Say whatever I want
 - Modify own status and activity
-- Delete/edit messages after an interval
-- Delete/edit old messages not sent during the bot's current running
+- Delete/edit/pin messages, either immediately or after an interval
 - Warn members and store infractions with a randomly generated ID
 - Remove infractions by ID
 - Spam
 - Simulate delay and typing
 - Randomize outcomes
+- Extract text from images (experimental)
 - Display the avatar of a user
 - Send Discord.JS docs and and MDN docs info
 - Let you pay and rob other users
