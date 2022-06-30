@@ -36,6 +36,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 
 - Differentiate between human users and bots
 - Uniquely react to certain "dialects" (phrases)
+- Let me edit dialects straight from Discord
 - Provide embeds for dialect information
 - Selectively grant certain users access to commands
 - Selectively allow certain commands/responses in certain channels
