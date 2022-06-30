@@ -10,6 +10,13 @@ const database = new Sequelize("database", "user", "password", {
     }
 })
 
+module.exports.Dialects = database.define("dialects", {
+    dialectid: Sequelize.STRING,
+    dialectname: Sequelize.STRING,
+    phrase: Sequelize.STRING,
+    count: Sequelize.INTEGER
+})
+
 module.exports.Tickets = database.define("tickets", {
     memberid: Sequelize.STRING,
     ticketid: Sequelize.STRING,

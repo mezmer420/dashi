@@ -17,7 +17,7 @@ const client = new Discord.Client({
     partials: ["USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "GUILD_SCHEDULED_EVENT"]
 })
 
-const {Player} = require("discord-player")
+const { Player } = require("discord-player")
 client.player = new Player(client, {
     leaveOnEnd: false,
     leaveOnStop: false,
@@ -33,13 +33,14 @@ require("./slash-register")(true)
 
 const fs = require("fs")
 const eventFiles = fs.readdirSync("./events/").filter(file => file.endsWith(".js"))
+const { Dialects } = require("./database")
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if(event.once){
         client.once(event.name, (...args) => event.execute(client, ...args))
     } else {
-        client.on(event.name, (...args) => event.execute(client, ...args))
+        client.on(event.name, (...args) => event.execute(client, ...args, Dialects))
     }
 }
 
