@@ -1,4 +1,4 @@
-const {Tickets, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam} = require("../database")
+const {Dialects, Tickets, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam} = require("../database")
 
 module.exports = {
     name: "ready",
@@ -12,14 +12,15 @@ module.exports = {
 
         commandhandler(client)
     
-        let dialecthandler = require("../dialect-handler")
+        // let dialecthandler = require("../dialect-handler")
 
-        if(dialecthandler.default){
-            dialecthandler = dialecthandler.default
-        }
+        // if(dialecthandler.default){
+        //     dialecthandler = dialecthandler.default
+        // }
 
-        dialecthandler(client)
+        // dialecthandler(client)
     
+        await Dialects.sync()
         await Tickets.sync()
         await Infractions.sync()
         await Economy.sync()
@@ -47,9 +48,6 @@ module.exports = {
 
         const current = new Date()
         console.log(current.toLocaleString())
-
-        const getTickets = await Tickets.findAll({})
-        console.log(getTickets)
         
         // Infractions.destroy({truncate: true}).then(console.log("Infractions destroyed"))
         // Economy.destroy({truncate: true}).then(console.log("Economy destroyed"))

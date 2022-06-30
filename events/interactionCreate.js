@@ -1,4 +1,4 @@
-const {Tickets, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam} = require("../database")
+const {Dialects, Tickets, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam} = require("../database")
 const {commands} = require("../slash-register")
 const { ButtonInteraction, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 
@@ -18,7 +18,7 @@ module.exports = {
             
             if(!commandMethod) return
 
-            commandMethod({client, interaction, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam})
+            commandMethod({client, interaction, Dialects, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam})
         }
 
         else if(interaction.isButton()){

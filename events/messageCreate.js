@@ -4,10 +4,24 @@ const wait = require("node:timers/promises").setTimeout
 
 module.exports = {
     name: "messageCreate",
-    async execute(client, message){
+    async execute(client, message, Dialects){
         const args = message.content.split(/ +/)
         const command = args.shift().toLowerCase()
         const lowercase = message.content.toLowerCase()
+
+        async function TypeWaitSend(str) {
+            await message.channel.sendTyping()
+            .catch((err) => {
+                return console.log(err)
+            })
+
+            await wait(Math.floor(Math.random() * 0) + 1001)
+            
+            await message.channel.send(str)
+            .catch((err) => {
+                return console.log(err)
+            })
+        }
 
         if(message.channel.type == "DM"){
             if(message.author.id == "956345939130482750") return
@@ -63,89 +77,147 @@ module.exports = {
             if(!message.author.bot){
                 if(blacklistedchannels.includes(message.channel.id) || blacklistedcategories.includes(message.channel.parent.id)) return
 
-                if(command == "rainbow dash"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                // Dialects
+                const vcashDialectData = await Dialects.findAll({where: {dialectid: "1"}})
+                let vcashDialect = []
+                for (let obj of vcashDialectData) {
+                    vcashDialect.push(obj)
+                }
+                let vcashDialectPhrases = []
+                for (let i = 0; i < vcashDialect.length; i++) {
+                    const phrase = vcashDialect[i].phrase
+                    vcashDialectPhrases.push(phrase)
+                }
 
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("best pony")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                const mezmerDialectData = await Dialects.findAll({where: {dialectid: "2"}})
+                let mezmerDialect = []
+                for (let obj of mezmerDialectData) {
+                    mezmerDialect.push(obj)
+                }
+                let mezmerDialectPhrases = []
+                for (let i = 0; i < mezmerDialect.length; i++) {
+                    const phrase = mezmerDialect[i].phrase
+                    mezmerDialectPhrases.push(phrase)
+                }
+
+                const chocDialectData = await Dialects.findAll({where: {dialectid: "3"}})
+                let chocDialect = []
+                for (let obj of chocDialectData) {
+                    chocDialect.push(obj)
+                }
+                let chocDialectPhrases = []
+                for (let i = 0; i < chocDialect.length; i++) {
+                    const phrase = chocDialect[i].phrase
+                    chocDialectPhrases.push(phrase)
+                }
+
+                const deltaDialectData = await Dialects.findAll({where: {dialectid: "4"}})
+                let deltaDialect = []
+                for (let obj of deltaDialectData) {
+                    deltaDialect.push(obj)
+                }
+                let deltaDialectPhrases = []
+                for (let i = 0; i < deltaDialect.length; i++) {
+                    const phrase = deltaDialect[i].phrase
+                    deltaDialectPhrases.push(phrase)
+                }
+
+                const speedyDialectData = await Dialects.findAll({where: {dialectid: "5"}})
+                let speedyDialect = []
+                for (let obj of speedyDialectData) {
+                    speedyDialect.push(obj)
+                }
+                let speedyDialectPhrases = []
+                for (let i = 0; i < speedyDialect.length; i++) {
+                    const phrase = speedyDialect[i].phrase
+                    speedyDialectPhrases.push(phrase)
+                }
+
+                if(vcashDialectPhrases.includes(message.content)){
+                    const getvcashDialectPhrase = await Dialects.findOne({where: {dialectid: "1", phrase: message.content}})
+
+                    TypeWaitSend(`${getvcashDialectPhrase.dialectname}`)
+
+                    if(message.channel.id !== "945527434655187006"){
+                        const vcashDialectPhraseOldCount = getvcashDialectPhrase.count
+    
+                        await Dialects.update({count: vcashDialectPhraseOldCount + 1}, {where: {dialectid: "1", phrase: message.content}})
+                    }
+                }
+
+                else if(mezmerDialectPhrases.includes(message.content)){
+                    const getmezmerDialectPhrase = await Dialects.findOne({where: {dialectid: "2", phrase: message.content}})
+
+                    TypeWaitSend(`${getmezmerDialectPhrase.dialectname}`)
+
+                    if(message.channel.id !== "945527434655187006"){
+                        const mezmerDialectPhraseOldCount = getmezmerDialectPhrase.count
+    
+                        await Dialects.update({count: mezmerDialectPhraseOldCount + 1}, {where: {dialectid: "2", phrase: message.content}})
+                    }
+                }
+
+                else if(chocDialectPhrases.includes(message.content)){
+                    const getchocDialectPhrase = await Dialects.findOne({where: {dialectid: "3", phrase: message.content}})
+
+                    TypeWaitSend(`${getchocDialectPhrase.dialectname}`)
+
+                    if(message.channel.id !== "945527434655187006"){
+                        const chocDialectPhraseOldCount = getchocDialectPhrase.count
+    
+                        await Dialects.update({count: chocDialectPhraseOldCount + 1}, {where: {dialectid: "3", phrase: message.content}})
+
+                    }
+                }
+
+                else if(deltaDialectPhrases.includes(message.content)){
+                    const getdeltaDialectPhrase = await Dialects.findOne({where: {dialectid: "4", phrase: message.content}})
+
+                    TypeWaitSend(`${getdeltaDialectPhrase.dialectname}`)
+
+                    if(message.channel.id !== "945527434655187006"){
+                        const deltaDialectPhraseOldCount = getdeltaDialectPhrase.count
+    
+                        await Dialects.update({count: deltaDialectPhraseOldCount + 1}, {where: {dialectid: "4", phrase: message.content}})
+                    }
+                }
+
+                else if(speedyDialectPhrases.includes(message.content)){
+                    const getspeedyDialectPhrase = await Dialects.findOne({where: {dialectid: "5", phrase: message.content}})
+
+                    TypeWaitSend(`${getspeedyDialectPhrase.dialectname}`)
+
+                    if(message.channel.id !== "945527434655187006"){
+                        const speedyDialectPhraseOldCount = getspeedyDialectPhrase.count
+    
+                        await Dialects.update({count: speedyDialectPhraseOldCount + 1}, {where: {dialectid: "5", phrase: message.content}})
+                    }
+                }
+
+
+                if(lowercase == "rainbow dash"){
+                    TypeWaitSend("best pony")
                 }
             
-                else if(command == "ding"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-                    
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("dong")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                else if(lowercase == "ding"){
+                    TypeWaitSend("dong")
                 }
                     
                 else if(lowercase == "dad"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-                    
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-
-                    message.channel.send("is gone")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("is gone")
                 }
             
                 else if(lowercase == "mom"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("?? what's that")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("?? what's that")
                 }
                     
                 else if(command == "why"){
                     if(message.author.id == "527285622809952256") return
                     if(!message.content.startsWith("why not")){
-                        message.channel.sendTyping()
-                        .catch((err) => {
-                            return console.log(err)
-                        })
-                        
-                        await wait(Math.floor(Math.random() * 0) + 1001)
-
-                        message.channel.send("why not")
-                        .catch((err) => {
-                            return console.log(err)
-                        })
+                        TypeWaitSend("why not")
                     }
                     else {
-                        message.channel.sendTyping()
-                        .catch((err) => {
-                            return console.log(err)
-                        })
-
-                        await wait(Math.floor(Math.random() * 0) + 1001)
-                        
-                        message.channel.send("because why")
-                        .catch((err) => {
-                            return console.log(err)
-                        })
+                        TypeWaitSend("because why")
                     }
                 }
             
@@ -164,114 +236,45 @@ module.exports = {
                 }
                 
                 else if(lowercase == "bruh" || lowercase == "mug"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("moment")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("moment")
                 }
             
                 else if(command == "bruh"){
                     if(lowercase == "bruh") return
 
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("bruh moment")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("bruh moment")
                 }
             
                 else if(command == "mug"){
                     if(lowercase == "mug") return
 
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-
-                    message.channel.send("mug moment")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("mug moment")
                 }
                 
                 else if(command == "k"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-
-                    message.channel.send("lack care")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("lack care")
                 }
             
                 else if(command == "kk"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("lack care (x2)")
+                }
 
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-
-                    message.channel.send("lack care (x2)")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                else if(command == "kkk"){
+                    TypeWaitSend("what Master presented as part of his AP Seminar score")
                 }
                 
                 else if(command == "deez"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-
-                    message.channel.send("nutz")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("nutz")
                 }
             
                 else if(command == "caught"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send('Caught in 8K UHD surround sound 16 Gigs ram, HDR GEFORCE RTX, TI-80 texas insturments, Triple A duracell battery ultrapower100 Cargador Compatible iPhone 1A 5 W 1400 + Cable 100% 1 Metro Blanco Compatible iPhone 5 5 C 5S 6 SE 6S 7 8 X XR XS XS MAX GoPro hero 1 2 terrabyte xbox series x Dell UltraSharp 49 Curved Monitor - U4919DW Sony HDC-3300R 2/3" CCD HD Super Motion Color Camera, 1080p Resolution Toshiba EM131A5C-SS Microwave Oven with Smart Sensor, Easy Clean Interior, ECO Mode and Sound On/Off, 1.2 Cu. ft, Stainless Steel HP LaserJet Pro M404n Monochrome Laser Printer with Built-in Ethernet (W1A52A) GE Voluson E10 Ultrasound Machine LG 23 Cu. Ft. Smart Wi-Fi Enabled InstaView Door-in-Door Counter-Depth Refrigerator with Craft Ice Maker GFW850SPNRS GE 28" Air, Moto G4 SAMSUNG 85-inch Class Crystal UHD TU-8000 Series - 4K UHD HDR Smart TV with Alexa Built-in (UN85TU8000FXZA, 2020 Model) GE 38846 Premium Slim LED Light Bar, 18 Inch Under Cabinet Fixture, Plug-In, Convertible to Direct Wire, Linkable 628 Lumens, 3000K Soft Warm White, High/Off/Low, Easy to Install, 18 Ft Bissell Cleanview Swivel Pet Upright Bagless Vacuum Cleaner Trane20,000-Watt 1-Phase LPG/NG Liquid Cooled Whole House Standby Generator')
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend(
+                        'Caught in 8K UHD surround sound 16 Gigs ram, HDR GEFORCE RTX, TI-80 texas insturments, Triple A duracell battery ultrapower100 Cargador Compatible iPhone 1A 5 W 1400 + Cable 100% 1 Metro Blanco Compatible iPhone 5 5 C 5S 6 SE 6S 7 8 X XR XS XS MAX GoPro hero 1 2 terrabyte xbox series x Dell UltraSharp 49 Curved Monitor - U4919DW Sony HDC-3300R 2/3" CCD HD Super Motion Color Camera, 1080p Resolution Toshiba EM131A5C-SS Microwave Oven with Smart Sensor, Easy Clean Interior, ECO Mode and Sound On/Off, 1.2 Cu. ft, Stainless Steel HP LaserJet Pro M404n Monochrome Laser Printer with Built-in Ethernet (W1A52A) GE Voluson E10 Ultrasound Machine LG 23 Cu. Ft. Smart Wi-Fi Enabled InstaView Door-in-Door Counter-Depth Refrigerator with Craft Ice Maker GFW850SPNRS GE 28" Air, Moto G4 SAMSUNG 85-inch Class Crystal UHD TU-8000 Series - 4K UHD HDR Smart TV with Alexa Built-in (UN85TU8000FXZA, 2020 Model) GE 38846 Premium Slim LED Light Bar, 18 Inch Under Cabinet Fixture, Plug-In, Convertible to Direct Wire, Linkable 628 Lumens, 3000K Soft Warm White, High/Off/Low, Easy to Install, 18 Ft Bissell Cleanview Swivel Pet Upright Bagless Vacuum Cleaner Trane20,000-Watt 1-Phase LPG/NG Liquid Cooled Whole House Standby Generator'
+                    )
                 }
             
                 else if(command == "goodnight"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
+                    TypeWaitSend("goodnight 😴 🛌 💤 🌛 don't let the bed bugs bite")
                     
                     message.channel.send("goodnight 😴 🛌 💤 🌛 don't let the bed bugs bite")
                     .catch((err) => {
@@ -280,73 +283,25 @@ module.exports = {
                 }
                 
                 else if(command == "silly"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("silly qilly willy rilly tilly yilly pilly dilly filly gilly hilly jilly killy lilly zilly xilly cilly villy billy nilly milly")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend(
+                        "silly qilly willy rilly tilly yilly pilly dilly filly gilly hilly jilly killy lilly zilly xilly cilly villy billy nilly milly"
+                        )
                 }
             
                 else if(command == "😮"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("why 😮")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("why 😮")
                 }
             
                 else if(command == "boner"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("what you get from going to your favorite site")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("what you get from going to your favorite site")
                 }
             
                 else if(lowercase == "i like turtles"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("i like trains")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("i like trains")
                 }
             
                 else if(lowercase == "i like trains"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("i like turtles")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("i like turtles")
                 }
 
                 else if(lowercase == "hold up" || lowercase == "hol up" || lowercase == "holdup" || lowercase == "holup"){
@@ -357,32 +312,22 @@ module.exports = {
                 }
 
                 else if(command == "yuri"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("vcashy waifu")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("vcashy waifu")
                 }
 
-                else if(message.content == "‎"){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                // else if(message.content == "‎"){
+                //     message.channel.sendTyping()
+                //     .catch((err) => {
+                //         return console.log(err)
+                //     })
 
-                    await wait(Math.floor(Math.random() * 0) + 1001)
+                //     await wait(Math.floor(Math.random() * 0) + 1001)
                     
-                    message.channel.send("georgeerto dialect")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-                }
+                //     message.channel.send("georgeerto dialect")
+                //     .catch((err) => {
+                //         return console.log(err)
+                //     })
+                // }
                 
                 else if(message.content.startsWith("r/")){
                     const reddit = "r/"
@@ -424,17 +369,7 @@ module.exports = {
                     const index = lowercase.indexOf(ddd[i])
                     if(index !== -1){
                         // add one to include the space
-                        message.channel.sendTyping()
-                        .catch((err) => {
-                            return console.log(err)
-                        })
-
-                        await wait(Math.floor(Math.random() * 0) + 1001)
-                        
-                        message.channel.send("obsessed with d")
-                        .catch((err) => {
-                            return console.log(err)
-                        })
+                        TypeWaitSend("obsessed with d")
                         
                         break
                     }
@@ -470,17 +405,7 @@ module.exports = {
                 }
 
                 if(isUpper(message.content) == true && hasSymbols(message.content) == false){
-                    message.channel.sendTyping()
-                    .catch((err) => {
-                        return console.log(err)
-                    })
-
-                    await wait(Math.floor(Math.random() * 0) + 1001)
-                    
-                    message.channel.send("keep your voice down!")
-                    .catch((err) => {
-                        return console.log(err)
-                    })
+                    TypeWaitSend("keep your voice down!")
                 }
 
                 // // dad bot (anywhere in message)
