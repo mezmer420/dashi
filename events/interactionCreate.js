@@ -1,495 +1,308 @@
-const {Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Spams} = require("../database")
+const {Tickets, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam} = require("../database")
 const {commands} = require("../slash-register")
-const { MessageEmbed } = require("discord.js")
+const { ButtonInteraction, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
+
+const { everyoneid, categoryid, transcriptsid } = require("../config.json")
 
 module.exports = {
     name: "interactionCreate",
     async execute(client, interaction){
         if(interaction.isCommand()){
             await interaction.deferReply()
+            .catch((err) => {
+                return console.log(err)
+            })
 
             const name = interaction.commandName
             const commandMethod = commands.get(name)
             
             if(!commandMethod) return
 
-            commandMethod({client, interaction, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Spams})
+            commandMethod({client, interaction, Infractions, Economy, Items, dailyCooldown, workCooldown, begCooldown, robCooldown, Waifus, Birthdays, Spam})
         }
 
         else if(interaction.isButton()){
-            const button_id = interaction.customId
-            const [command, id] = button_id.split("-")
+            // const button_id = interaction.customId
+            // const [command, id] = button_id.split("-")
 
-            if(interaction.member.id !== id) return
+            // if(interaction.member.id !== id) return
 
-            const member = interaction.guild.members.cache.get(id)
-            const permissions = interaction.member.permissions
+            // const member = interaction.guild.members.cache.get(id)
+            // const permissions = interaction.member.permissions
 
-            if(command == "buy_debitcard_wallet"){
-                const findDebitcard = await Items.findOne({where: {memberid: id, item: "1"}})
+            const { guild, member, customId, channel } = interaction
 
-                if(findDebitcard) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 1000
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "1"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **debit card** for 1000 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_motorcycle_bank"){
-                const findMotorcycle = await Items.findOne({where: {memberid: id, item: "2"}})
-
-                if(findMotorcycle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 500
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "2"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **motorcycle** for 500 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_motorcycle_wallet"){
-                const findMotorcycle = await Items.findOne({where: {memberid: id, item: "2"}})
-
-                if(findMotorcycle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 500
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "2"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **motorcycle** for 500 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_superbike_bank"){
-                const findSuperbike = await Items.findOne({where: {memberid: id, item: "3"}})
-
-                if(findSuperbike) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 3500
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "3"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **superbike** for 3500 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_superbike_wallet"){
-                const findSuperbike = await Items.findOne({where: {memberid: id, item: "3"}})
-
-                if(findSuperbike) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 3500
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "3"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **superbike** for 3500 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            if(command == "buy_hammer_wallet"){
-                const findHammer = await Items.findOne({where: {memberid: id, item: "4"}})
-
-                if(findHammer) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 1000
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "4"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **hammer** for 1000 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_hammer_bank"){
-                const findHammer = await Items.findOne({where: {memberid: id, item: "4"}})
-
-                if(findHammer) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 1000
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "4"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **hammer** for 1000 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_sickle_bank"){
-                const findSickle = await Items.findOne({where: {memberid: id, item: "5"}})
-
-                if(findSickle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 1500
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "5"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **sickle** for 1500 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_sickle_wallet"){
-                const findSickle = await Items.findOne({where: {memberid: id, item: "5"}})
-
-                if(findSickle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 1500
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "5"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **sickle** for 1500 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_wife_bank"){
-                const findWife = await Items.findOne({where: {memberid: id, item: "6"}})
-
-                if(findWife) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 1000
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "6"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **wife** for 1000 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_wife_wallet"){
-                const findWife = await Items.findOne({where: {memberid: id, item: "6"}})
-
-                if(findWife) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 1000
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "6"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **wife** for 1000 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_bailbonds_bank"){
-                const findBailbonds = await Items.findOne({where: {memberid: id, item: "7"}})
-
-                if(findBailbonds) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newBank = getUser.bank - 2000
-
-                await Economy.update({bank: newBank}, {where: {id: id}})
-                await Items.create({memberid: id, item: "7"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **bail bonds** for 2000 Dashcoins:tm: from your bank! Your new bank balance is ${newBank} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "buy_bailbonds_wallet"){
-                const findBailbonds = await Items.findOne({where: {memberid: id, item: "7"}})
-
-                if(findBailbonds) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const newWallet = getUser.wallet - 2000
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.create({memberid: id, item: "7"})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Purchase Complete 💸`)
-                        .setDescription(`You just purchased **bail bonds** for 2000 Dashcoins:tm: from your wallet! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-
-            else if(command == "sell_debitcard"){
-                const findDebitcard = await Items.findOne({where: {memberid: id, item: "1"}})
-
-                if(!findDebitcard) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 200) + 751
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "1"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **debit card** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "sell_motorcycle"){
-                const findMotorcycle = await Items.findOne({where: {memberid: id, item: "2"}})
-
-                if(!findMotorcycle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 100) + 351
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "2"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **motorcycle** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "sell_superbike"){
-                const findSuperbike = await Items.findOne({where: {memberid: id, item: "3"}})
-
-                if(!findSuperbike) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 550) + 2801
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "3"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **superbike** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "sell_hammer"){
-                const findHammer = await Items.findOne({where: {memberid: id, item: "4"}})
-
-                if(!findHammer) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 200) + 751
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "4"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **hammer** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-            
-            else if(command == "sell_sickle"){
-                const findMotorcycle = await Items.findOne({where: {memberid: id, item: "5"}})
-
-                if(!findMotorcycle) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 300) + 1101
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "5"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **sickle** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "sell_wife"){
-                const findWife = await Items.findOne({where: {memberid: id, item: "6"}})
-
-                if(!findWife) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 200) + 751
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "6"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **wife** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-            else if(command == "sell_bailbonds"){
-                const findBailbonds = await Items.findOne({where: {memberid: id, item: "7"}})
-
-                if(!findBailbonds) return
-
-                const getUser = await Economy.findOne({where: {id: id}})
-                const sellprice = Math.floor(Math.random() * 350) + 1501
-                const newWallet = getUser.wallet + sellprice
-
-                await Economy.update({wallet: newWallet}, {where: {id: id}})
-                await Items.destroy({where: {memberid: id, item: "7"}})
-
-                return await interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                        .setTitle(`💸 Sale Complete 💸`)
-                        .setDescription(`You just sold **bail bonds** for ${sellprice} Dashcoins:tm:! Your new wallet balance is ${newWallet} Dashcoins:tm:.`)
-                        .setColor("#9BDBF5")
-                        .setThumbnail(interaction.member.user.avatarURL())
-                    ]
-                })
-            }
-
-
-            else if(command == "breakup"){
-                const getUser = await Waifus.findOne({where: {id: id}})
-
-                if(!getUser) return
-
-                const existingwaifu = getUser.waifu
-
-                await Waifus.destroy({where: {id: id}}, {truncate: true})
-
-                return await interaction.reply({
-                    content: `You broke up with **${existingwaifu}**`
+            if(["reportuser", "reportbug", "reportother"].includes(customId)){
+                await interaction.deferReply({
+                    ephemeral: true
                 })
                 .catch((err) => {
-                    return
+                    return console.log(err)
+                })
+
+                const ID = Math.floor(Math.random() * 8989000) + 1010000
+
+                await guild.channels.create(`${customId + "-" + ID}`, {
+                    type: "GUILD_TEXT",
+                    parent: categoryid,
+                    permissionOverwrites: [
+                        {
+                            id: member.id,
+                            allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"]
+                        },
+                        {
+                            id: "950173176246177823",
+                            allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"]
+                        },
+                        {
+                            id: everyoneid,
+                            deny: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"]
+                        }
+                    ]
+                }).then(async (channel) => {
+                    await Tickets.create({
+                        memberid: member.id,
+                        ticketid: ID,
+                        channelid: channel.id,
+                        closed: false,
+                        locked: false,
+                        type: customId
+                    })
+    
+                    const Embed = new MessageEmbed()
+                    .setColor("#9BDBF5")
+                    .setAuthor(`Ticket: ${ID}`, guild.iconURL({dynamic: true}))
+                    .setDescription(
+                        "Please wait for a response from the Government. In the meantime, please describe your issue in as much detail as possible. All messages sent in this channel will be logged and saved to a government-access transcript file."
+                    )
+                    .setFooter("The buttons below are Admins-only")
+        
+                    const Buttons = new MessageActionRow()
+                    .addComponents(
+                        new MessageButton()
+                        .setCustomId("lock")
+                        .setLabel("Lock")
+                        .setStyle("SECONDARY")
+                        .setEmoji("🔒"),
+                
+                        new MessageButton()
+                        .setCustomId("unlock")
+                        .setLabel("Unlock")
+                        .setStyle("SUCCESS")
+                        .setEmoji("🔓"),
+
+                        new MessageButton()
+                        .setCustomId("close")
+                        .setLabel("Save & Close Ticket")
+                        .setStyle("PRIMARY")
+                        .setEmoji("💾")
+                    )
+        
+                    const sentMessage = await channel.send({
+                        embeds: [Embed],
+                        components: [Buttons]
+                    })
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
+                    await sentMessage.pin()
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+    
+                    await channel.send(`${member} here is your ticket (this message will autodelete)`)
+                    .catch((err) => {
+                        return
+                    })
+                    .then(msg => {
+                        if(msg){
+                            setTimeout(() => msg.delete()
+                            .catch((err) => {
+                                return
+                            }), 10000)
+                        }
+                    })
+
+                    await channel.send("<@&950173176246177823>")
+                    .catch((err) => {
+                        return
+                    })
+        
+                    await interaction.editReply({
+                        content: `${member} your ticket has been created: ${channel}`,
+                        ephemeral: true
+                    })
+                    .catch((err) => {
+                        return
+                    })
                 })
             }
+
+            else if(["close", "lock", "unlock"].includes(customId)){
+                if(!member.permissions.has("KICK_MEMBERS")) return
+
+                await interaction.deferReply()
+                .catch((err) => {
+                    return console.log(err)
+                })
+                
+                const { createTranscript } = require("discord-html-transcripts")
+
+                let Embed = new MessageEmbed()
+                .setColor("#9BDBF5")
+
+                const getTicket = await Tickets.findOne({where: {channelid: channel.id}})
+
+                if(!getTicket){
+                    return await interaction.editReply({
+                        content: `No data was found related to this ticket, <@527285622809952256> delete this DB entry`
+                    })
+                    .catch((err) => {
+                        return
+                    })
+                }
+
+                if(customId == "lock"){
+                    if(getTicket.locked == true){
+                        return await interaction.editReply({
+                            content: "The ticket is already locked (this message will autodelete)"
+                        })
+                        .catch((err) => {
+                            return
+                        })
+                        .then(interaction => {
+                            setTimeout(() => interaction.delete()
+                            .catch((err) => {
+                                return
+                            }), 6000)
+                        })
+
+                    }
+
+                    await Tickets.update({locked: true}, {where: {channelid: channel.id}})
+
+                    Embed.setDescription("🔒 | This ticket is now locked for review")
+
+                    await channel.permissionOverwrites.edit(getTicket.memberid, {
+                        SEND_MESSAGES: false
+                    })
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
+                    return await interaction.editReply({
+                        embeds: [Embed]
+                    })
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+                }
+
+                else if(customId == "unlock"){
+                    if(getTicket.locked == false){
+                        return await interaction.editReply({
+                            content: "The ticket is already unlocked (this message will autodelete)"
+                        })
+                        .catch((err) => {
+                            return
+                        })
+                        .then(interaction => {
+                            setTimeout(() => interaction.delete()
+                            .catch((err) => {
+                                return
+                            }), 6000)
+                        })
+                    }
+
+                    await Tickets.update({locked: false}, {where: {channelid: channel.id}})
+
+                    Embed.setDescription("🔓 | This ticket is now unlocked")
+
+                    await channel.permissionOverwrites.edit(getTicket.memberid, {
+                        SEND_MESSAGES: true
+                    })
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+
+                    return await interaction.editReply({
+                        embeds: [Embed]
+                    })
+                    .catch((err) => {
+                        return console.log(err)
+                    })
+                }
+
+                else if(customId == "close"){
+                    if(getTicket.closed == true){
+                        return await interaction.editReply({
+                            content: "The ticket is already closed and is about to be autodeleted (this message will autodelete)"
+                        })
+                        .catch((err) => {
+                            return
+                        })
+                        .then(interaction => {
+                            setTimeout(() => interaction.delete()
+                            .catch((err) => {
+                                return
+                            }), 6000)
+                        })
+                    }
+
+                    const attachment = await createTranscript(channel, {
+                        limit: -1,
+                        returnBuffer: false,
+                        fileName: `${getTicket.type} - ${getTicket.ticketid}.html`
+                    })
+
+                    await Tickets.update({closed: true}, {where: {channelid: channel.id}})
+
+                    const MEMBER = await guild.members.cache.get(getTicket.memberid)
+
+                    const Message = await guild.channels.cache.get(transcriptsid).send({
+                        embeds: [
+                            Embed
+                            .setAuthor(MEMBER.user.tag, MEMBER.user.displayAvatarURL())
+                            .setTitle(`Report Type: ${getTicket.type}\nID: ${getTicket.ticketid}`)
+                        ],
+                        files: [attachment]
+                    })
+
+                    await interaction.editReply({
+                        embeds: [
+                            Embed
+                            .setDescription(`The transcript is now saved [TRANSCRIPT](${Message.url})`)
+                        ]
+                    })
+
+                    await channel.send("This channel and respective ticket will autodelete in 10 seconds")
+
+                    setTimeout(async () => {
+                        channel.delete()
+                        .catch((err) => {
+                            return
+                        })
+
+                        const getNewTicket = await Tickets.findOne({where: {channelid: channel.id}})
+                        if(getNewTicket){
+                            Tickets.destroy({where: {channelid: channel.id}})
+                        }
+                    }, 10000)
+                }
+            }
+
+            // if(command == "test"){
+            //     return await interaction.reply({
+            //         embeds: [
+            //             new MessageEmbed()
+            //             .setTitle(`💸 Purchase Complete 💸`)
+            //             .setDescription(`You just purchased **motorcycle** for 500 Dashcoins:tm: from your bank! Your new bank balance is Dashcoins:tm:.`)
+            //             .setColor("#9BDBF5")
+            //             .setThumbnail(interaction.member.user.avatarURL())
+            //         ]
+            //     })
+            // }
     
             // if(command == "ban"){
             //     if(!permissions.has("BAN_MEMBERS")) return
@@ -497,7 +310,7 @@ module.exports = {
             //     member.ban()
             //     .catch((err) => {
             //         console.log(err)
-            //         return interaction.editReply({
+            //         return await interaction.editReply({
             //             content: "Failed to ban the user"
             //         })
             //         .catch((err) => {
@@ -505,7 +318,7 @@ module.exports = {
             //         })
             //     })
 
-            //     return interaction.editReply({
+            //     return await interaction.editReply({
             //         content: "Banned the user"
             //     })
             // }
@@ -516,7 +329,7 @@ module.exports = {
             //     member.kick()
             //     .catch((err) => {
             //         console.log(err)
-            //         return interaction.editReply({
+            //         return await interaction.editReply({
             //             content: "Failed to ban the user"
             //         })
             //         .catch((err) => {
@@ -524,7 +337,7 @@ module.exports = {
             //         })
             //     })
 
-            //     return interaction.editReply({
+            //     return await interaction.editReply({
             //         content: "Kicked the user"
             //     })
             // }

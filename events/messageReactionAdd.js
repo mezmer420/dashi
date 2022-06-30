@@ -14,6 +14,15 @@ module.exports = {
 
             const member = reaction.message.guild.members.cache.find(member => member.id == user.id)
 
+            // if(reaction.message.id == "991347311278030920"){
+            //     // reaction.message.edit("New slash command: `/pokemon`\nRestrictions: <#939674946953682976>, <#939686071241949205>, <#945527434655187006>, <#969027553878749204>")
+
+            //     reaction.message.pin()
+            //     .catch((err) => {
+            //         return console.log(err)
+            //     })
+            // }
+
             if(reaction.message.id == "964363343789961267"){
                 if(reaction.emoji.name == "✅"){
                     const eoicrole = reaction.message.guild.roles.cache.find(r => r.id == "957872601550716929")
