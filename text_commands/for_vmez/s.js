@@ -60,7 +60,7 @@ module.exports = {
                         return
                     }), 6000)
                 }
-              })
+            })
         }
     }
 }
