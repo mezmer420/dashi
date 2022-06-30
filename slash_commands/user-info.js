@@ -10,12 +10,12 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(true)
 )
 
-module.exports.run = async ({client, interaction}) => {
+module.exports.run = async ({client, interaction, Infractions}) => {
     const member = interaction.options.getMember("user")
-    const user = interaction.options.getUser("user")
-    const avatar = user.avatarURL({dynamic: true, size: 4096})
 
-    const createdts = new Date(user.createdTimestamp + 5 * 3600000)
+    const avatar = member.user.avatarURL({dynamic: true, size: 4096})
+
+    const createdts = new Date(member.user.createdTimestamp + 5 * 3600000)
     const createdtime = createdts.toLocaleString()
 
     const joinedts = new Date(member.joinedTimestamp + 6 * 3600000)
@@ -24,7 +24,7 @@ module.exports.run = async ({client, interaction}) => {
     let nick = member.nickname
 
     if(!nick){
-        nick = `${user.username}`
+        nick = `${member.user.username}`
     }
 
     const boostingts = new Date(member.premiumSinceTimestamp + 6 * 3600000)
@@ -34,19 +34,46 @@ module.exports.run = async ({client, interaction}) => {
         boostingtime = "Not boosting"
     }
 
+    let bot = "No"
+    if(member.user.bot == true){
+        bot = "Yes"
+    }
+
+    const infractiondata = await Infractions.findAll({where: {memberid: member.id}})
+
+    let infractions = []
+
+    for (let obj of infractiondata) {
+        infractions.push(obj)
+    }
+
     const embed = new MessageEmbed()
     .setColor("#9BDBF5")
-    .setAuthor({name: `${user.tag}`, iconURL: `${avatar}`})
+    .setAuthor({name: `${member.user.tag}`, iconURL: `${avatar}`})
     .addFields(
-        {name: "User ID", value: `${user.id}`, inline: true},
-        {name: "Account Created at", value: `${createdtime}`, inline: true}
-    )
-    .addFields(
+        {name: "User ID", value: `${member.id}`, inline: true},
         {name: "Server Nickname", value: `${nick}`, inline: true},
+        {name: "Bot", value: `${bot}`, inline: true},
+        {name: "Account Created at", value: `${createdtime}`, inline: true},
         {name: "Joined Server at", value: `${joinedtime}`, inline: true},
-        {name: "Boosting Since", value: `${boostingtime}`, inline: true}
+        {name: "Highest Role", value: `${member.roles.highest}`, inline: true},
+        {name: "Boosting Server Since", value: `${boostingtime}`, inline: true},
+        {name: "Infractions", value: `${infractions.length}`, inline: true}
     )
     .setThumbnail(avatar)
+
+    const memberPerms = (await member.permissions).toArray()
+
+    if(memberPerms.length > 0){
+        const perms = memberPerms.join(", ").toLowerCase().replace(/_/g, " ")
+         embed
+        .addField("Server Permissions", `${perms}`, false)
+        // .addField("Member Permissions", `${memberPerms.map(perm => perm[perm]).join("\n")}`)
+    }
+
+    // console.log(member.permissions)
+
+    // const userFlags = await member.user.fetchFlags()
 
     await interaction.editReply({
         embeds: [embed]

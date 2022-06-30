@@ -67,7 +67,7 @@ module.exports.run = async ({client, interaction}) => {
 	.then(interaction => {
 		setTimeout(() => interaction.delete()
 		.catch((err) => {
-			return
+            return
 		}), 30000)
 	})
 }

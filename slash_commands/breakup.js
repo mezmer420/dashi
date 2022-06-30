@@ -21,7 +21,7 @@ module.exports.run = async ({client, interaction, Waifus}) => {
             new MessageButton()
             .setLabel("Yes")
             .setStyle("PRIMARY")
-            .setCustomId(`breakup-${interaction.member.id}`)
+            .setCustomId(`breakup`)
         )
 
         const response = await interaction.editReply({
@@ -32,40 +32,47 @@ module.exports.run = async ({client, interaction, Waifus}) => {
             return
         })
 
-        setTimeout(async function () {
-            row.components[0].setDisabled(true)
+        const filter = i => {
+            return i.user.id == interaction.user.id
+        }
+    
+        const collector = response.createMessageComponentCollector({
+            filter,
+            max: 1,
+            time: 10000
+        })
 
+        collector.on("collect", async i => {
+            const getNewUser = await Waifus.findOne({where: {id: interaction.member.id}})
+    
+            if(!getNewUser) return
+    
+            const command = i.customId
+    
+            if(command !== `breakup`) return
+
+            const newExistingwaifu = getNewUser.waifu
+    
+            await Waifus.destroy({where: {id: interaction.member.id}}, {truncate: true})
+    
+            await i.reply({
+                content: `You broke up with **${newExistingwaifu}**`
+            })
+            .catch((err) => {
+                return
+            })
+        })
+    
+        collector.on("end", async i => {
+            row.components[0].setDisabled(true)
+    
             await response.edit({
-                embeds: [embed],
                 components: [row]
             })
             .catch((err) => {
                 return
             })
-        }, 10000)
-
-        // await response.edit({
-        //     components: [row]
-        // })
-        // .catch((err) => {
-        //     return
-        // })
-
-        // .then(interaction => {
-        //     setTimeout(() => interaction.delete()
-        //     .catch((err) => {
-        //         return
-        //     }), 30000)
-        // })
-
-        // await interaction.editReply({
-        //     content: `You broke up with ${existingwaifu}`
-        // })
-        // .catch((err) => {
-        //     return
-        // })
-
-        // await Waifus.destroy({where: {id: interaction.member.id}}, {truncate: true})
+        })
     }
 
     else if(!getUser){

@@ -4,9 +4,9 @@ module.exports.data = new SlashCommandBuilder()
 .setName("stop-spam")
 .setDescription("Stop the existing spam")
 
-module.exports.run = async ({client, interaction, Spams}) => {
+module.exports.run = async ({client, interaction, Spam}) => {
     if(interaction.channel.id == "945527434655187006"){
-        const getSpam = await Spams.findOne({where: {active: true}})
+        const getSpam = await Spam.findOne({where: {active: true}})
 
         if(!getSpam){
             return await interaction.editReply({
@@ -28,7 +28,7 @@ module.exports.run = async ({client, interaction, Spams}) => {
             })
         }
 
-        await Spams.update({active: false}, {where: {active: true}})
+        await Spam.update({active: false}, {where: {active: true}})
 
         clearInterval(interval)
 

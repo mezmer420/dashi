@@ -30,11 +30,11 @@ module.exports.run = async ({client, interaction, Economy, Items, dailyCooldown,
 
     const randomvalue = Math.floor(Math.random() * 100)
 
-    const findWife = await Items.findOne({where: {memberid: interaction.member.id, item: "5"}})
-    const findMotorcycle = await Items.findOne({where: {memberid: interaction.member.id, item: "2"}})
-    const findSuperbike = await Items.findOne({where: {memberid: interaction.member.id, item: "3"}})
-    const findHammer = await Items.findOne({where: {memberid: interaction.member.id, item: "4"}})
-    const findSickle = await Items.findOne({where: {memberid: interaction.member.id, item: "5"}})
+    const findWife = await Items.findOne({where: {memberid: interaction.member.id, item: "Wife"}})
+    const findMotorcycle = await Items.findOne({where: {memberid: interaction.member.id, item: "Motorcycle"}})
+    const findSuperbike = await Items.findOne({where: {memberid: interaction.member.id, item: "Superbike"}})
+    const findHammer = await Items.findOne({where: {memberid: interaction.member.id, item: "Hammer"}})
+    const findSickle = await Items.findOne({where: {memberid: interaction.member.id, item: "Sickle"}})
 
     let coins_earned = Math.floor(Math.random() * 35) + 66
 

@@ -27,31 +27,15 @@ module.exports.run = async ({client, interaction, Items}) => {
     .setThumbnail(member.user.avatarURL())
 
     items = items.sort(function (b, a) {
-        return b.item - a.item
+        return b.itemid - a.itemid
     })
 
     let desc = ""
 
     for (let i = 0; i < items.length; i++) {
-        const itemid = items[i].item
-        let item
-        if(itemid == "1"){
-            item = "debit card"
-        } else if(itemid == "2"){
-            item = "motorcycle"
-        } else if(itemid == "3"){
-            item = "superbike"
-        } else if(itemid == "4"){
-            item = "hammer"
-        } else if(itemid == "5"){
-            item = "sickle"
-        } else if(itemid == "6"){
-            item = "wife"
-        } else if(itemid == "7"){
-            item = "bail bonds"
-        }
+        const itemname = items[i].item
 
-        desc += `**${item}**\n`
+        desc += `**${itemname}**\n`
     }
 
     embed.setDescription(desc)

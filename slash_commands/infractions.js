@@ -52,7 +52,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
             time = time.toLocaleString()
             const infractionid = infractions[i].infractionid
     
-            let rank = `${i + 1}.`
+            const rank = `${i + 1}.`
     
             desc += `${rank} **${nature}** | ${time} EST\nInfraction ID: ${infractionid}\n\n`
         }
@@ -120,7 +120,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
             time = time.toLocaleString()
             const infractionid = infractions[i].infractionid
     
-            let rank = `${i + 1}.`
+            const rank = `${i + 1}.`
     
             desc += `${rank} <@${memberId}> **${nature}** | ${time} EST\nInfraction ID: ${infractionid}\n\n`
         }

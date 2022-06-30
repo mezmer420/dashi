@@ -4,7 +4,7 @@ module.exports.data = new SlashCommandBuilder()
 .setName("spam")
 .setDescription("Spam ping a user")
 .addUserOption(option => option
-    .setName("user")
+    .setName("victim")
     .setDescription("User to spam")
     .setRequired(true)
 )
@@ -14,9 +14,9 @@ module.exports.data = new SlashCommandBuilder()
     .setRequired(false)
 )
 
-module.exports.run = async ({client, interaction, Spams}) => {
+module.exports.run = async ({client, interaction, Spam}) => {
     if(interaction.channel.id == "945527434655187006"){
-        const getSpam = await Spams.findOne({where: {active: true}})
+        const getSpam = await Spam.findOne({where: {active: true}})
 
         if(getSpam){
             return await interaction.editReply({
@@ -27,10 +27,10 @@ module.exports.run = async ({client, interaction, Spams}) => {
             })
         }
 
-        const member = interaction.options.getMember("user")
+        const member = interaction.options.getMember("victim")
         const messagecontent = interaction.options.getString("message") || ""
 
-        await Spams.update({starterid: interaction.member.id, active: true}, {where: {active: false}})
+        await Spam.update({starterid: interaction.member.id, active: true}, {where: {active: false}})
 
         await interaction.editReply({
             content: "Spam started!"
@@ -41,6 +41,9 @@ module.exports.run = async ({client, interaction, Spams}) => {
 
         interval = setInterval (function () {
             interaction.channel.send(`<@${member.id}> ${messagecontent}`)
+            .catch((err) => {
+                return
+            })
         }, 2000)
     }
 

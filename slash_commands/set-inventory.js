@@ -56,81 +56,81 @@ module.exports.run = async ({client, interaction, Economy, Items}) => {
     const newwife = interaction.options.getBoolean("wife")
     const newbailbonds = interaction.options.getBoolean("bailbonds")
 
-    const findDebitcard = await Items.findOne({where: {memberid: member.id, item: "1"}})
-    const findMotorcycle = await Items.findOne({where: {memberid: member.id, item: "2"}})
-    const findSuperbike = await Items.findOne({where: {memberid: member.id, item: "3"}})
-    const findHammer = await Items.findOne({where: {memberid: member.id, item: "4"}})
-    const findSickle = await Items.findOne({where: {memberid: member.id, item: "5"}})
-    const findWife = await Items.findOne({where: {memberid: member.id, item: "6"}})
-    const findBailbonds = await Items.findOne({where: {memberid: member.id, item: "7"}})
+    const findDebitcard = await Items.findOne({where: {memberid: member.id, item: "Debit Card"}})
+    const findMotorcycle = await Items.findOne({where: {memberid: member.id, item: "Motorcycle"}})
+    const findSuperbike = await Items.findOne({where: {memberid: member.id, item: "Superbike"}})
+    const findHammer = await Items.findOne({where: {memberid: member.id, item: "Hammer"}})
+    const findSickle = await Items.findOne({where: {memberid: member.id, item: "Sickle"}})
+    const findWife = await Items.findOne({where: {memberid: member.id, item: "Wife"}})
+    const findBailbonds = await Items.findOne({where: {memberid: member.id, item: "Bail Bonds"}})
 
     if(newdebitcard == true){
         if(!findDebitcard){
-            await Items.create({memberid: member.id, item: "1"})
+            await Items.create({memberid: member.id, itemid: "1", item: "Debit Card"})
         }
     } else if(newdebitcard == false){
         if(findDebitcard){
-            await Items.destroy({where: {memberid: member.id, item: "1"}})
+            await Items.destroy({where: {memberid: member.id, item: "Debit Card"}})
         }
     }
 
     if(newmotorcycle == true){
         if(!findMotorcycle){
-            await Items.create({memberid: member.id, item: "2"})
+            await Items.create({memberid: member.id, itemid: "2", item: "Motorcycle"})
         }
     } else if(newmotorcycle == false){
         if(findMotorcycle){
-            await Items.destroy({where: {memberid: member.id, item: "2"}})
+            await Items.destroy({where: {memberid: member.id, item: "Motorcycle"}})
         }
     }
 
     if(newsuperbike == true){
         if(!findSuperbike){
-            await Items.create({memberid: member.id, item: "3"})
+            await Items.create({memberid: member.id, itemid: "3", item: "Superbike"})
         }
     } else if(newsuperbike == false){
         if(findSuperbike){
-            await Items.destroy({where: {memberid: member.id, item: "3"}})
+            await Items.destroy({where: {memberid: member.id, item: "Superbike"}})
         }
     }
 
     if(newhammer == true){
         if(!findHammer){
-            await Items.create({memberid: member.id, item: "4"})
+            await Items.create({memberid: member.id, itemid: "4", item: "Hammer"})
         }
     } else if(newhammer == false){
         if(findHammer){
-            await Items.destroy({where: {memberid: member.id, item: "4"}})
+            await Items.destroy({where: {memberid: member.id, item: "Hammer"}})
         }
     }
 
     if(newsickle == true){
         if(!findSickle){
-            await Items.create({memberid: member.id, item: "5"})
+            await Items.create({memberid: member.id, itemid: "5", item: "Sickle"})
         }
     } else if(newsickle == false){
         if(findSickle){
-            await Items.destroy({where: {memberid: member.id, item: "5"}})
+            await Items.destroy({where: {memberid: member.id, item: "Sickle"}})
         }
     }
 
     if(newwife == true){
         if(!findWife){
-            await Items.create({memberid: member.id, item: "6"})
+            await Items.create({memberid: member.id, itemid: "6", item: "Wife"})
         }
     } else if(newwife == false){
         if(findWife){
-            await Items.destroy({where: {memberid: member.id, item: "6"}})
+            await Items.destroy({where: {memberid: member.id, item: "Wife"}})
         }
     }
 
     if(newbailbonds == true){
         if(!findBailbonds){
-            await Items.create({memberid: member.id, item: "7"})
+            await Items.create({memberid: member.id, itemid: "7", item: "Bail Bonds"})
         }
     } else if(newbailbonds == false){
         if(findBailbonds){
-            await Items.destroy({where: {memberid: member.id, item: "7"}})
+            await Items.destroy({where: {memberid: member.id, item: "Bail Bonds"}})
         }
     }
 

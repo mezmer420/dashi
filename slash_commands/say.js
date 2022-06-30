@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
 )
 
 module.exports.run = async ({client, interaction}) => {
-    if(interaction.member.id == "527285622809952256" || message.author.id == "762133129209053244"){
+    if(interaction.member.id == "527285622809952256" || interaction.member.id == "762133129209053244"){
         const whatever = interaction.options.getString("message")
         const destination = interaction.options.getChannel("channel") || interaction.channel
 

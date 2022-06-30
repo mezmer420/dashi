@@ -3,7 +3,7 @@ const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
 .setName("daily")
-.setDescription("Get 150 Dashcoins for free every 16 hours")
+.setDescription("Get 200 Dashcoins for free every 16 hours")
 
 module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCooldown, begCooldown, robCooldown}) => {
     const getdailyCooldown = await dailyCooldown.findOne({where: {id: interaction.member.id}})
@@ -28,7 +28,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
         getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
     }
 
-    const coins_earned = 150
+    const coins_earned = 200
     
     await Economy.update({wallet: getUser.wallet + coins_earned}, {where: {id: interaction.member.id}})
 
@@ -38,7 +38,7 @@ module.exports.run = async ({client, interaction, Economy, dailyCooldown, workCo
     })
 
     await interaction.editReply({
-        content: `You got **150** Dashcoins:tm:!`
+        content: `You got **200** Dashcoins:tm:!`
     })
     .catch((err) => {
         return

@@ -42,7 +42,7 @@ module.exports.run = async ({client, interaction, Infractions}) => {
         .setFooter(`Infraction ID: ${randomid}`)
         .setTimestamp()
     
-        return await interaction.editReply({
+        await interaction.editReply({
             embeds: [embed]
         })
         .catch((err) => {

@@ -130,7 +130,7 @@ module.exports.run = async ({client, interaction, Economy, Items, dailyCooldown,
                     await begCooldown.destroy({where: {id: interaction.member.id}})
                 }
 
-                const findBailbonds = await Items.findOne({where: {memberid: interaction.member.id, item: "7"}})
+                const findBailbonds = await Items.findOne({where: {memberid: interaction.member.id, item: "Bail Bonds"}})
 
                 if(findBailbonds){
                     workCooldown.create({
