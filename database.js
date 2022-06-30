@@ -10,6 +10,15 @@ const database = new Sequelize("database", "user", "password", {
     }
 })
 
+module.exports.Tickets = database.define("tickets", {
+    memberid: Sequelize.STRING,
+    ticketid: Sequelize.STRING,
+    channelid: Sequelize.STRING,
+    closed: Sequelize.BOOLEAN,
+    locked: Sequelize.BOOLEAN,
+    type: Sequelize.STRING
+})
+
 module.exports.Infractions = database.define("infractions", {
     memberid: Sequelize.STRING,
     infractionid: Sequelize.STRING,
@@ -24,16 +33,12 @@ module.exports.Economy = database.define("economy", {
         unique: true
     },
     wallet: Sequelize.INTEGER,
-    bank: Sequelize.INTEGER,
-    // debitcard: Sequelize.BOOLEAN,
-    // motorcycle: Sequelize.BOOLEAN,
-    // superbike: Sequelize.BOOLEAN,
-    // wife: Sequelize.BOOLEAN,
-    // bailbonds: Sequelize.BOOLEAN
+    bank: Sequelize.INTEGER
 })
 
 module.exports.Items = database.define("items", {
     memberid: Sequelize.STRING,
+    itemid: Sequelize.STRING,
     item: Sequelize.STRING
 })
 
@@ -82,11 +87,20 @@ module.exports.Waifus = database.define("waifus", {
     waifu: Sequelize.STRING
 })
 
-module.exports.Spams = database.define("spams", {
+module.exports.Birthdays = database.define("birthdays", {
+    id: {
+        primaryKey: true,
+        type: Sequelize.STRING,
+        unique: true
+    },
+    date: Sequelize.BIGINT
+})
+
+module.exports.Spam = database.define("spam", {
     starterid: {
         primaryKey: true,
         type: Sequelize.STRING,
         unique: true
     },
-    active: Sequelize.BOOLEAN,
+    active: Sequelize.BOOLEAN
 })
