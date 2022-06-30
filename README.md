@@ -18,6 +18,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Wide array of application (/) commands
 - A local database
 - Economy and inventory system
+- Ticket system
 - Music system
 - Event logging
 - Warn and infraction system
@@ -63,6 +64,9 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Store song requests in a queue
 - Shuffle, skip, and skipto songs
 - Let you play hangman
+- Let users open tickets by interacting with an embed, creating a private channel to communicate to Staff
+- Let Staff lock, unlock, and save & close tickets, after which ticket channels are autodeleted
+- Send a transcript file of channels
 - Require new users to react to a message to verify and gain access to the server
 - Assign roles by reacting to a message, and removing roles by unreacting (reaction roles)
 - Let you "claim" a waifu by reacted to its respective embed (reaction roles)
@@ -79,6 +83,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
     "@discordjs/voice": "^0.10.0",
     "axios": "^0.27.2",
     "discord-api-types": "^0.33.4",
+    "discord-html-transcripts": "^2.5.8",
     "discord-player": "^5.2.2",
     "discord.js": "^13.8.0",
     "discord.js-docs": "^0.3.0",
