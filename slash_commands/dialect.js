@@ -4,96 +4,104 @@ const { MessageEmbed } = require("discord.js")
 module.exports.data = new SlashCommandBuilder()
 .setName("dialect")
 .setDescription("View dialect info")
-.addUserOption(option => option
-    .setName("user")
-    .setDescription("User to view the dialect of")
+.addStringOption(option => option
+    .setName("dialect")
+    .setDescription("The dialect to view")
     .setRequired(true)
-)
-.addUserOption(option => option
-    .setName("user2")
-    .setDescription("Choose spedy and choc(in that order) to view speedychoc dialect")
-    .setRequired(false)
-)
-.addUserOption(option => option
-    .setName("user3")
-    .setDescription("Choose spedy and choc(in that order) to view speedychoc dialect")
-    .setRequired(false)
+    .addChoices(
+        {name: "vcash dialect", value: "1"},
+        {name: "mezmer dialect", value: "2"},
+        {name: "choc dialect", value: "3"},
+        {name: "delta airlines dialect", value: "4"},
+        {name: "speedy dialect uwu owu uwo ow- -w- -wu uWu", value: "5"}
+    )
 )
 
-module.exports.run = async ({client, interaction}) => {
-    const member = interaction.options.getMember("user")
-    const member2 = interaction.options.getMember("user2")
-    
-    let embed = new MessageEmbed()
+module.exports.run = async ({client, interaction, Dialects}) => {
+    const dialectId = interaction.options.getString("dialect")
 
-    if(!member2){
-        if(member.id == "762133129209053244"){
-            embed
-            .setColor("#FFA500")
-            .setTitle("vcash dialect")
-            .addField("`ballsL\n\nel mao`   `le mao\n\ntoyot`   `toyota\n\nxt`\n—————", "<@762133129209053244>")
-        }
-    
-        else if(member.id == "527285622809952256"){
-            embed
-            .setColor("#0096FF")
-            .setTitle("mezmer dialect")
-            .addField("`hmok\n\nidecay\n\nifusaiso\n\nle mayo\n\nobsessed\n\nolc`   `oolc\n\nomegaL\n\nwoaow\n\nwowzer`   `wowzr\n\nwowezoni`   `wowzerooni`\n—————", "<@527285622809952256>")
-        }
-    
-        else if(member.id == "826841451945787412"){
-            embed
-            .setColor("RED")
-            .setTitle("choc dialect")
-            .addField("`..\n\nchickin`   `chickn`   `chikn`   `chkin\n\nel em a oh\n\nidit\n\nifusaso\n\nithink\n\nlay mow\n\nomegabruh\n\nomegasad\n\nperty\n\nrawblocky\n\nwhat\n\nys`   `yss`\n—————", "<@826841451945787412>")
-        }
-    
-        else if(member.id == "691727350051635262"){
-            embed
-            .setColor("PURPLE")
-            .setTitle("speedy dialect uwu owu uwo ow- -w- -wu uWu")
-            .addField("`^\n\nemoyi\n\ngf\n\nues`\n—————", "<@691727350051635262>")
-        }
-    
-        else if(member.id == "251778379211210755"){
-            embed
-            .setColor("PURPLE")
-            .setTitle("delta airlines dialect")
-            .addField("`bigfunni\n\nbigL`   `bihL\n\ncockL\n\nifusayso\n\nla mao\n\nleat fingies\n\nmediumL\n\nmegaL\n\nshut\n\ntinyL\n\nye`   `yee yee`   `yee\n\nyeeees`   `yeees`   `yees`   `yeees\n\nyeews`   `yews`   `yew`\n—————", "<@251778379211210755>")
-        }
-    
-        else if(member.id == "651251126884368384"){
-            embed
-            .setColor("GREEN")
-            .setTitle("georgeerto dialect")
-            .addField("` \n\nalright got it`\n—————", "<@651251126884368384>")
+    const dialectTest = await Dialects.findOne({where: {dialectid: dialectId}})
+
+    if(!dialectTest){
+        let dialectName
+        if(dialectId == "1"){
+            dialectName = "vcash dialect"
+        } else if(dialectId == "2"){
+            dialectName = "mezmer dialect"
+        } else if(dialectId == "3"){
+            dialectName = "choc dialect"
+        } else if(dialectId == "4"){
+            dialectName = "delta airlines dialect"
+        } else if(dialectId == "5"){
+            dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
         }
 
-        else {
-            return await interaction.editReply({
-                content: "The user you specified doesn't have a dialect"
-            })
-            .catch((err) => {
-                return
-            })
-        }
-    }
-
-    else if(member.id == "691727350051635262" && member2.id == "826841451945787412"){
-        embed
-        .setColor("#9BDBF5")
-        .setTitle("speedychoc dialect")
-        .addField("`e`\n—————", "<@691727350051635262> x <@826841451945787412>")
-    }
-
-    else {
         return await interaction.editReply({
-            content: "The user combination you input doesn't match any dialect"
+            content: `**${dialectName}** doesn't have any phrases yet`
+        })
+        .catch((err) => {
+            return
         })
     }
 
+    const dialectData = await Dialects.findAll({where: {dialectid: dialectId}})
+
+    let Dialect = []
+
+    for (let obj of dialectData) {
+        Dialect.push(obj)
+    }
+
+    let DialectPhrases = []
+
+    for (let i = 0; i < Dialect.length; i++) {
+        const phrase = Dialect[i].phrase
+
+        DialectPhrases.push(phrase)
+    }
+
+    DialectPhrases = DialectPhrases.sort()
+
+    let DialectCount = []
+
+    for (let i = 0; i < Dialect.length; i++) {
+        const count = Dialect[i].count
+
+        DialectCount.push(count)
+    }
+
+    DialectCount = DialectCount.reduce((a, b) => a + b, 0)
+
+    const OneDialectData = await Dialects.findOne({where: {dialectid: dialectId}})
+
+    const Embed = new MessageEmbed()
+    .setTitle(`${OneDialectData.dialectname}`)
+    .setFooter(`Use Count: ${DialectCount} | Started 6/30/2022 5:25 PM EST`)
+
+    let desc = ""
+
+    for (let i = 0; i < DialectPhrases.length; i++) {
+        const phrase = DialectPhrases[i]
+
+        desc += "`" + `${phrase}` + "`" + " "
+    }
+
+    Embed.setDescription(desc)
+
+    if(dialectId == "1"){
+        Embed.setColor("#FFA500")
+    } else if(dialectId == "2"){
+        Embed.setColor("#0096FF")
+    } else if(dialectId == "3"){
+        Embed.setColor("RED")
+    } else if(dialectId == "4"){
+        Embed.setColor("PURPLE")
+    } else if(dialectId == "5"){
+        Embed.setColor("PURPLE")
+    }
+
     await interaction.editReply({
-        embeds: [embed]
+        embeds: [Embed]
     })
     .catch((err) => {
         return

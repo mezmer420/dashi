@@ -47,11 +47,12 @@ module.exports.run = async ({client, interaction, Economy}) => {
     let desc = ""
 
     for (let i = 0; i < members.length; i++) {
-        let user = client.users.cache.get(members[i].id)
+        const user = client.users.cache.get(members[i].id)
 
         if(!user) return
 
-        let bal = members[i].bank + members[i].wallet
+        const bal = members[i].bank + members[i].wallet
+
         let rank = `${i + 1}`
 
         if(rank == "1"){
