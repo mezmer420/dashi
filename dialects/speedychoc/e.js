@@ -13,7 +13,7 @@ module.exports = {
 
         await wait(Math.floor(Math.random() * 0) + 1001)
 
-        message.channel.send("vcash dialect")
+        message.channel.send("speedychoc dialect")
         .catch((err) => {
             return console.log(err)
         })
