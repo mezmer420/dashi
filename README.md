@@ -18,13 +18,14 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Wide array of application (/) commands
 - A local database
 - Economy and inventory system
+- Chat bot
 - Ticket system
 - Music system
+- Birthday system
 - Event logging
 - Warn and infraction system
 - Verification and reaction roles system
-- Ability to DM users
-- Ability to recieve DMs
+- Ability to DM users/recieve DMs
 - Welcome messaging
 
 - Event and command handlers
