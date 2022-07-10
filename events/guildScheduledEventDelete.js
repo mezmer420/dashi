@@ -12,18 +12,17 @@ module.exports = {
         .setColor("#9BDBF5")
         .setTimestamp()
 
-        await logs.send({
+        logs.send({
             embeds: [Embed]
         })
         .catch((err) => {
-            return console.log(err)
+            console.log(err)
         })
 
-        // await anno.send({
-        //     embeds: [Embed]
-        // })
-        // .catch((err) => {
-        //     return console.log(err)
-        // })
+        // anno.send({
+		// 	embeds: [Embed],
+		// }).catch((err) => {
+		// 	console.log(err)
+		// })
     }
 }

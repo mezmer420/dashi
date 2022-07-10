@@ -1,9 +1,22 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
+const { QueueRepeatMode } = require("discord-player")
 
 module.exports.data = new SlashCommandBuilder()
-	.setName("skip")
-	.setDescription("Skips the current song")
+	.setName("loop")
+	.setDescription("Set loop mode")
+	.addIntegerOption((option) =>
+		option
+			.setName("mode")
+			.setDescription("The loop type")
+			.setRequired(true)
+			.addChoices(
+				{ name: "Off", value: QueueRepeatMode.OFF },
+				{ name: "Track", value: QueueRepeatMode.TRACK },
+				{ name: "Queue", value: QueueRepeatMode.QUEUE },
+				{ name: "Autoplay", value: QueueRepeatMode.AUTOPLAY }
+			)
+	)
 
 module.exports.run = async ({ client, interaction }) => {
 	if (interaction.channel.id !== "992630810186367016") {
@@ -31,31 +44,25 @@ module.exports.run = async ({ client, interaction }) => {
 			})
 	}
 
-	const currentSong = queue.current
+	const loopMode = interaction.options.get("mode").value
 
-	if (currentSong.requestedBy.id !== interaction.member.id) {
-		return await interaction
-			.editReply({
-				content: "Only the user who added the song may skip it",
-			})
-			.catch((err) => {})
-			.then((interaction) => {
-				setTimeout(() => interaction.delete().catch((err) => {}), 10000)
-			})
-	}
+	const success = await queue.setRepeatMode(loopMode)
 
-	queue.skip()
+	const mode =
+		loopMode == QueueRepeatMode.TRACK
+			? "🔂"
+			: loopMode == QueueRepeatMode.QUEUE
+			? "🔁"
+			: "▶"
 
 	await interaction
 		.editReply({
-			embeds: [
-				new MessageEmbed()
-					.setDescription(`${currentSong.title} has been skipped!`)
-					.setThumbnail(currentSong.thumbnail),
-			],
+			content: success
+				? `${mode} | Updated loop mode`
+				: "Hm,  I couldn't update the loop mode... maybe it's already set to what you selected",
 		})
 		.catch((err) => {})
 		.then((interaction) => {
-			setTimeout(() => interaction.delete().catch((err) => {}), 15000)
+			setTimeout(() => interaction.delete().catch((err) => {}), 10000)
 		})
 }

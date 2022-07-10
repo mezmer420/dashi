@@ -1,90 +1,93 @@
-const {SlashCommandBuilder} = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
 const fetch = require("node-fetch")
 
 module.exports.data = new SlashCommandBuilder()
-.setName("pokemon")
-.setDescription("View a Pokémon's stats")
-.addStringOption(option => option
-    .setName("pokémon")
-    .setDescription("The pokémon to search for")
-    .setRequired(true)
-)
+	.setName("pokemon")
+	.setDescription("View a Pokémon's stats")
+	.addStringOption((option) =>
+		option
+			.setName("pokémon")
+			.setDescription("The pokémon to search for")
+			.setRequired(true)
+	)
 
-module.exports.run = async ({client, interaction}) => {
-    const pokemon = interaction.options.getString("pokémon")
+module.exports.run = async ({ client, interaction }) => {
+	const pokemon = interaction.options.getString("pokémon")
 
-    async function getPokemon(pokemon) {
-        const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
-        let response = await fetch(`${BASE_URL}/${pokemon}`)
+	async function getPokemon(pokemon) {
+		const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
+		let response = await fetch(`${BASE_URL}/${pokemon}`)
 
-        return await response.json()
-        .catch((err) => {
-            return
-        })
-    }
+		return await response.json().catch((err) => {})
+	}
 
-    const pokeData = await getPokemon(pokemon)
+	const pokeData = await getPokemon(pokemon)
 
-    if(!pokeData){
-        return await interaction.editReply({
-            content: "No result found"
-        })
-        .catch((err) => {
-            return
-        })
-    }
+	if (!pokeData) {
+		return await interaction
+			.editReply({
+				content: `❌ | No result for **${pokemon}**`,
+			})
+			.catch((err) => {})
+	}
 
-    const {
-        name,
-        id,
-        sprites,
-        base_experience,
-        weight,
-        height,
-        types,
-        stats,
-        abilities
-    } = pokeData
+	const {
+		name,
+		id,
+		sprites,
+		base_experience,
+		weight,
+		height,
+		types,
+		stats,
+		abilities,
+	} = pokeData
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-    }
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1)
+	}
 
-    const embed = new MessageEmbed()
-    .setColor("RANDOM")
-    .setTitle(`${capitalizeFirstLetter(name)} #${id}`)
-    .setThumbnail(`${sprites.front_default}`)
+	const Embed = new MessageEmbed()
+		.setColor("RANDOM")
+		.setTitle(`${capitalizeFirstLetter(name)} #${id}`)
+		.setThumbnail(`${sprites.front_default}`)
 
-    let typesArray = []
-    types.forEach(type => typesArray.push(type.type.name))
-    const typesinfo = typesArray.join(", ")
-    let TypeorTypes = "Type"
-    if(typesArray.length > 1){
-        TypeorTypes = "Types"
-    }
+	let typesArray = []
+	types.forEach((type) => typesArray.push(type.type.name))
+	const typesinfo = typesArray.join(", ")
 
-    let abilitiesArray = []
-    abilities.forEach(ability => abilitiesArray.push(ability.ability.name))
-    const abilitiesinfo = abilitiesArray.join(", ")
-    let AbilityorAbilities = "Ability"
-    if(AbilityorAbilities.length > 1){
-        AbilityorAbilities = "Abilities"
-    }
+	let TypeorTypes = "Type"
+	if (typesArray.length > 1) {
+		TypeorTypes = "Types"
+	}
 
-    embed
-    .addField("Base Experience", `${base_experience}`, true)
-    .addField("Weight", `${weight}`, true)
-    .addField("Height", `${height}`, true)
-    .addField(TypeorTypes, typesinfo)
-    .addField(AbilityorAbilities, `${abilitiesinfo}\n——————————\n**Stats**`)
+	let abilitiesArray = []
+	abilities.forEach((ability) => abilitiesArray.push(ability.ability.name))
+	const abilitiesinfo = abilitiesArray.join(", ")
 
-    stats.forEach(stat => embed.addField(capitalizeFirstLetter(stat.stat.name), `${stat.base_stat}`, true))
+	let AbilityorAbilities = "Ability"
+	if (AbilityorAbilities.length > 1) {
+		AbilityorAbilities = "Abilities"
+	}
 
-    await interaction.editReply({
-        embeds: [embed]
-    })
-    .catch((err) => {
-        return
-    })
+	Embed.addField("Base Experience", `${base_experience}`, true)
+		.addField("Weight", `${weight}`, true)
+		.addField("Height", `${height}`, true)
+		.addField(TypeorTypes, typesinfo)
+		.addField(AbilityorAbilities, `${abilitiesinfo}\n——————————\n**Stats**`)
+
+	stats.forEach((stat) =>
+		Embed.addField(
+			capitalizeFirstLetter(stat.stat.name),
+			`${stat.base_stat}`,
+			true
+		)
+	)
+
+	await interaction
+		.editReply({
+			embeds: [Embed],
+		})
+		.catch((err) => {})
 }

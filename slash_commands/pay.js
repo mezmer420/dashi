@@ -1,61 +1,79 @@
-const {SlashCommandBuilder} = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
-.setName("pay")
-.setDescription("Pay Dashcoins to another user")
-.addUserOption(option => option
-    .setName("user")
-    .setDescription("The user you want to pay")
-    .setRequired(true)
-)
-.addIntegerOption(option => option
-    .setName("amount")
-    .setDescription("The amount to give")
-    .setMinValue(1)
-    .setMaxValue(1000)
-    .setRequired(true)
-)
+	.setName("pay")
+	.setDescription("Pay Dashcoins to another user")
+	.addUserOption((option) =>
+		option
+			.setName("user")
+			.setDescription("The user you want to pay")
+			.setRequired(true)
+	)
+	.addIntegerOption((option) =>
+		option
+			.setName("amount")
+			.setDescription("The amount to give")
+			.setMinValue(1)
+			.setMaxValue(1000)
+			.setRequired(true)
+	)
 
-module.exports.run = async ({client, interaction, Economy}) => {
-    const amount = interaction.options.getInteger("amount")
-    const member = interaction.options.getMember("user")
+module.exports.run = async ({ client, interaction, Economy }) => {
+	const amount = interaction.options.getInteger("amount")
+	const member = interaction.options.getMember("user")
 
-    let getUser = await Economy.findOne({where: {id: interaction.member.id}})
+	let getUser = await Economy.findOne({
+		where: { id: interaction.member.id },
+	})
 
-    if(!getUser){
-        getUser = await Economy.create({id: interaction.member.id, wallet: 0, bank: 0})
-    }
-    
-    if(getUser.wallet < amount){
-        return await interaction.editReply({content: "Insufficient wallet balance"})
-        .catch((err) => {
-            return
-        })
-    }
+	if (!getUser) {
+		getUser = await Economy.create({
+			id: interaction.member.id,
+			wallet: 0,
+			bank: 0,
+		})
+	}
 
-    const memberWallet = await Economy.findOne({where: {id: member.id}})
+	if (getUser.wallet < amount) {
+		return await interaction
+			.editReply({ content: "Insufficient wallet balance" })
+			.catch((err) => {})
+	}
 
-    if(!memberWallet){
-        memberWallet = await Economy.create({id: member.id, wallet: 0, bank: 0})
-    }
+	const memberWallet = await Economy.findOne({ where: { id: member.id } })
 
-    const newrecieverWallet = memberWallet.wallet + amount
-    const newsenderWallet = getUser.wallet - amount
+	if (!memberWallet) {
+		memberWallet = await Economy.create({
+			id: member.id,
+			wallet: 0,
+			bank: 0,
+		})
+	}
 
-    await Economy.update({wallet: newrecieverWallet}, {where: {id: member.id}})
-    await Economy.update({wallet: newsenderWallet}, {where: {id: interaction.member.id}})
+	const newrecieverWallet = memberWallet.wallet + amount
+	const newsenderWallet = getUser.wallet - amount
 
-    const embed = new MessageEmbed()
-    .setTitle("💸 Coin transfer complete 💸")
-    .setDescription(`**${interaction.member.displayName}** has sent **${amount}** Dashcoins:tm: to **${member.displayName}**!`)
-    .setColor("GREEN")
-    .setThumbnail(member.user.avatarURL())
+	await Economy.update(
+		{ wallet: newrecieverWallet },
+		{ where: { id: member.id } }
+	)
+	await Economy.update(
+		{ wallet: newsenderWallet },
+		{ where: { id: interaction.member.id } }
+	)
 
-    await interaction.editReply({
-        embeds: [embed]
-    })
-    .catch((err) => {
-        return
-    })
+	const embed = new MessageEmbed()
+		.setTitle("💸 Coin transfer complete 💸")
+		.setDescription(
+			`**${interaction.member.displayName}** has sent **${amount}** Dashcoins:tm: to **${member.displayName}**!`
+		)
+		.setColor("GREEN")
+		.setThumbnail(member.user.avatarURL())
+
+	await interaction
+		.editReply({
+			embeds: [embed],
+		})
+		.catch((err) => {})
 }
