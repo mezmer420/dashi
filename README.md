@@ -34,6 +34,7 @@ The bot itself won't be made public as there's way too much stuff specifically d
 
 ## Dependencies:
 
+    "@discord-player/extractor": "^3.0.2",
     "@discordjs/opus": "^0.5.3",
     "@discordjs/rest": "^0.5.0",
     "@discordjs/voice": "^0.10.0",
@@ -44,9 +45,12 @@ The bot itself won't be made public as there's way too much stuff specifically d
     "discord.js": "^13.8.0",
     "discord.js-docs": "^0.3.0",
     "dotenv": "^16.0.1",
+    "easy-discord-chatbot": "^0.0.4",
     "ffmpeg-static": "^4.4.1",
     "i": "^0.3.7",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.4",
+    "node-cron": "^3.0.1",
     "npm": "^8.12.1",
     "ns": "^1.0.2",
     "reconlx": "^1.4.21",
