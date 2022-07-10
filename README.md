@@ -29,8 +29,8 @@ The bot itself won't be made public as there's way too much stuff specifically d
 - Welcome messaging
 
 - Event and command handlers
-- Intensive Error handling
-- Dedicated Anti-crash system to make a crash close to impossible
+- Intensive Error handling +
+- a dedicated Anti-crash system to make a crash close to impossible
 
 ## Dependencies:
 
