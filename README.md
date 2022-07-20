@@ -67,4 +67,6 @@ The bot has evolved significantly over time.
     "tesseract.js": "^2.1.5",
     "ytdl-core": "^4.11.0"
     
-The bot itself won't be made public as there's way too much stuff specifically designed only for our server. But feel free to browse the code for inspiration for your own bot(s).
+*Only works in one guild (server)!* I didn't bother coding it to be multi-guild compatible as I never intended it ever be used outside of my own server. Heavily hardcoded to work only for the server.
+
+Feel free to browse the code for inspiration for your own bots.
