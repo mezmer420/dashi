@@ -19,6 +19,8 @@ The bot has evolved significantly over time.
 - Wide array of application (/) commands
 - A local database
 - Economy and inventory system
+- XP and Ranking system
+- Children system (don't ask)
 - Chat bot
 - Ticket system
 - Music system
