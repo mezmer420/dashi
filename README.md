@@ -1,7 +1,7 @@
 # dashi
 ## _A Discord Bot_
 
-The code you're looking at is the result of someone who never used JavaScript before and one day decided to make a Discord bot. A lot of inefficiencies, a lot of hardcoded stuff, but hey, it works for me.
+The code you're looking at is the result of a 16 year old who never used JavaScript before and one day decided to make a Discord bot. A lot of inefficiencies, a lot of hardcoded stuff, but hey, it works for me.
 
 A multi-function Discord bot created with Discord.js V14. Single guild bot. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, music features, and more.
 
