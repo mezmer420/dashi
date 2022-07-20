@@ -13,7 +13,8 @@ The bot has evolved significantly over time.
 
 ## Features:
 
-- "Dialect" response
+- "Dialect" responses
+- General repsonses
 - Text-based prefix commands
 - Wide array of application (/) commands
 - A local database
