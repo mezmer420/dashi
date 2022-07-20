@@ -18,6 +18,8 @@ const getFiles = (dir, suffix) => {
 		}
 	}
 
+	// console.log(commandFiles)
+
 	return commandFiles
 }
 
@@ -30,6 +32,8 @@ module.exports = (client) => {
 	// console.log(commandFiles)
 
 	for (const command of commandFiles) {
+		// console.log(command)
+
 		let commandFile = require(command)
 		if (commandFile.default) commandFile = commandFile.default
 
@@ -45,7 +49,7 @@ module.exports = (client) => {
 	client.on("messageCreate", (message) => {
 		if (
 			!message.content.startsWith("!") ||
-			message.channel.type == "DM" ||
+			message.channel.type === "DM" ||
 			message.author.bot
 		)
 			return

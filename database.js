@@ -10,6 +10,11 @@ const database = new Sequelize("database", "user", "password", {
 	},
 })
 
+module.exports.Systems = database.define("systems", {
+	system: Sequelize.STRING,
+	online: Sequelize.BOOLEAN,
+})
+
 module.exports.basicxp = database.define("basicxp", {
 	memberid: Sequelize.STRING,
 	xp: Sequelize.INTEGER,
@@ -32,9 +37,10 @@ module.exports.Tickets = database.define("tickets", {
 	type: Sequelize.STRING,
 })
 
-module.exports.Infractions = database.define("infractions", {
+module.exports.Infraction = database.define("infraction", {
 	memberid: Sequelize.STRING,
 	infractionid: Sequelize.STRING,
+	warnerid: Sequelize.STRING,
 	time: Sequelize.BIGINT,
 	nature: Sequelize.STRING,
 })
@@ -115,4 +121,23 @@ module.exports.Spam = database.define("spam", {
 		unique: true,
 	},
 	active: Sequelize.BOOLEAN,
+})
+
+module.exports.Fricking = database.define("fricking", {
+	memberid: Sequelize.STRING,
+	consent: Sequelize.BOOLEAN,
+	children: Sequelize.INTEGER,
+})
+
+module.exports.frickingCooldown = database.define("frickingcooldown", {
+	id: {
+		primaryKey: true,
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	expiry: Sequelize.BIGINT,
+})
+
+module.exports.Suppress = database.define("suppress", {
+	memberid: Sequelize.STRING,
 })
