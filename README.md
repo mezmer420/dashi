@@ -68,4 +68,4 @@ I did not know how to program in any way, shape, or form prior to this project. 
     
 *Only works in one guild (server)!* I didn't bother coding it to be multi-guild compatible as I never intended it ever be used outside of my own server. Heavily hardcoded to work only for the server.
 
-Feel free to browse the code for inspiration for your own bots.
+Feel free to browse the code for inspiration for your own bots... I definitely look at others' :p
