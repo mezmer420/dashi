@@ -76,40 +76,37 @@ module.exports.run = async ({ client, interaction }) => {
 	const choice9 = interaction.options.getString("9th")
 	const choice10 = interaction.options.getString("10th")
 
-	let responsevalues = [
-		choice1,
-		choice2,
-	]
+	let responsevalues = [choice1, choice2]
 
-	if(choice3){
+	if (choice3) {
 		responsevalues.push(choice3)
 	}
 
-	if(choice4){
+	if (choice4) {
 		responsevalues.push(choice4)
 	}
 
-	if(choice5){
+	if (choice5) {
 		responsevalues.push(choice5)
 	}
 
-	if(choice6){
+	if (choice6) {
 		responsevalues.push(choice6)
 	}
 
-	if(choice7){
+	if (choice7) {
 		responsevalues.push(choice7)
 	}
 
-	if(choice8){
+	if (choice8) {
 		responsevalues.push(choice8)
 	}
 
-	if(choice9){
+	if (choice9) {
 		responsevalues.push(choice9)
 	}
 
-	if(choice10){
+	if (choice10) {
 		responsevalues.push(choice10)
 	}
 
