@@ -1,17 +1,16 @@
 # dashi
 ## _A Discord Bot_
 
-A multi-function Discord bot created with Discord.js V14, intended for use in a lone server. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, music features, and more.
+The code you're looking at is the result of someone who never used JavaScript before and one day decided to make a Discord bot. A lot of inefficiencies, a lot of hardcoded stuff, but hey, it works for me.
+
+A multi-function Discord bot created with Discord.js V14. Single guild bot. Features include unique phrase response ("dialects"), text and slash commands, an economy/inventory system, reaction roles, music features, and more.
 
 Created by mezmer420#7301
 
-I did not know how to program in any way, shape, or form prior to this project. I learned basic JavaScript as I was creating this bot, and even now I still have much to learn about JavaScript. This was and is a fun project for me!
-
-The bot has evolved significantly over time.
+I did not know how to program in any way, shape, or form prior to this project. I learned basic JavaScript as I was creating this bot, and even now I still have much to learn. This was and is a fun project for me!
 
 
-
-## Features:
+## Current Features:
 
 - "Dialect" responses
 - General repsonses
