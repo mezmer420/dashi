@@ -31,8 +31,7 @@ The bot has evolved significantly over time.
 - Welcome messaging
 
 - Event and command handlers
-- Intensive Error handling +
-- a dedicated Anti-crash system to make a crash close to impossible
+- Anti-crash system
 
 ## Dependencies:
 
