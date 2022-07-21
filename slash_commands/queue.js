@@ -79,20 +79,11 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 
 	const currentSong = queue.songs[0]
 
-	let filters = queue.filters.collection
-	filters = Array.from(filters.values())
-
-	function status() {
-		return `Filters: \`${filters.join(", ") || "Off"}\`
-		\nLoop: \`${
-			queue.repeatMode
-				? queue.repeatMode === 2
-					? "Queue"
-					: "Song"
-				: "Off"
-		}\`
-		\nAutoplay: \`${queue.autoplay ? "On" : "Off"}\``
-	}
+	const status = `Filters: \`${
+		queue.filters.names.join(", ") || "Off"
+	}\` | Loop: \`${
+		queue.repeatMode ? (queue.repeatMode === 2 ? "Queue" : "Song") : "Off"
+	}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``
 
 	const progress = ((queue.currentTime / currentSong.duration) * 100).toFixed(
 		1
@@ -100,9 +91,38 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 
 	let progressInfo = `Progress: ${progress}%`
 
-	if (filters.includes("nightcore") || filters.includes("vaporwave")) {
-		progressInfo = `Progress: ${progress}% (Note: current timestamp and progress is based on original song speed)`
+	if (
+		queue.filters.names.includes("nightcore") ||
+		queue.filters.names.includes("vaporwave")
+	) {
+		progressInfo = `Progress: ${progress}% (based on original song speed)`
 	}
+
+	function round2(x) {
+		return Math.round(x / 2) * 2
+	}
+
+	let progressforBar = round2((queue.currentTime / currentSong.duration) * 100)
+
+	progressforBar = progressforBar / 2
+
+	let progressBar = "--------------------------------------------------"
+
+	let progressDashes = ""
+
+	for (let i = 0; i < progressforBar; i++) {
+		progressDashes += "**-**"
+	}
+
+	progressDashes = progressDashes.replaceAll("****", "")
+
+	progressBar = progressDashes + progressBar.slice(progressforBar)
+
+	// console.log(`|${progressBar}|`)
+
+	;("|-                                                 |")
+	;("|--------------------------------------------------|")
+	;("|                                                  |")
 
 	await interaction
 		.editReply({
@@ -112,10 +132,10 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 					.setDescription(
 						`**Currently Playing**\n` +
 							(currentSong
-								? `\`[${queue.formattedCurrentTime}]/[${currentSong.formattedDuration}]\` [${currentSong.name}](${currentSong.url})\n\n${progressInfo}\n\nRequested by ${currentSong.user}`
+								? `\`[${queue.formattedCurrentTime}]\`/\`[${currentSong.formattedDuration}]\` [${currentSong.name}](${currentSong.url})\n|${progressBar}|\n${progressInfo}\nRequested by ${currentSong.user}`
 								: "None") +
 							`\n\n**Queue**\n${queueString}
-							\n\n**Settings**\n${status()}`
+							\n**Settings**\n${status}`
 					)
 					.setThumbnail(currentSong.thumbnail)
 					.setFooter({ text: `Page ${page + 1} of ${totalPages}` })

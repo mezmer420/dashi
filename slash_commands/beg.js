@@ -54,28 +54,28 @@ module.exports.run = async ({
 		})
 	}
 
-	if (getUser.wallet >= 1000 && getUser.bank < 1000) {
-		return await interaction
-			.editReply({
-				content:
-					"bruh you have at least 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao",
-			})
-			.catch((err) => {})
-	} else if (getUser.wallet < 1000 && getUser.bank >= 1000) {
-		return await interaction
-			.editReply({
-				content:
-					"bruh you have at least 1000 Dashcoins:tm: in your bank; what are you doing begging lmao",
-			})
-			.catch((err) => {})
-	} else if (getUser.wallet >= 1000 && getUser.bank >= 1000) {
-		return await interaction
-			.editReply({
-				content:
-					"bruh you have at least 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao",
-			})
-			.catch((err) => {})
-	} else if (getUser.wallet < 1000 && getUser.bank < 1000) {
+	// if (getUser.wallet >= 1000 && getUser.bank < 1000) {
+	// 	return await interaction
+	// 		.editReply({
+	// 			content:
+	// 				"bruh you have at least 1000 Dashcoins:tm: in your wallet; nobody's going to donate to you lmao",
+	// 		})
+	// 		.catch((err) => {})
+	// } else if (getUser.wallet < 1000 && getUser.bank >= 1000) {
+	// 	return await interaction
+	// 		.editReply({
+	// 			content:
+	// 				"bruh you have at least 1000 Dashcoins:tm: in your bank; what are you doing begging lmao",
+	// 		})
+	// 		.catch((err) => {})
+	// } else if (getUser.wallet >= 1000 && getUser.bank >= 1000) {
+	// 	return await interaction
+	// 		.editReply({
+	// 			content:
+	// 				"bruh you have at least 1000 Dashcoins:tm: in both your wallet and bank; what are you doing begging lmao",
+	// 		})
+	// 		.catch((err) => {})
+	// } else if (getUser.wallet < 1000 && getUser.bank < 1000) {
 		const randomvalue = Math.floor(Math.random() * 100)
 
 		if (randomvalue >= 20) {
@@ -126,6 +126,6 @@ module.exports.run = async ({
 						"Unfortunately, nobody donated you anything. Better luck next time.",
 				})
 				.catch((err) => {})
-		}
+		// }
 	}
 }

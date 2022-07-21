@@ -40,9 +40,9 @@ module.exports.run = async ({
 	}
 
 	const Embed = new EmbedBuilder()
-		.setTitle(`${member.displayName}'s Balance`)
+		.setTitle(`💰 ${member.displayName}'s Balance`)
 		.setDescription(
-			`**${getUser.wallet}** Dashcoins:tm: in wallet and **${getUser.bank}** Dashcoins:tm: in bank`
+			`**Wallet:** \`${getUser.wallet}\` Dashcoins:tm:\n**Bank:** \`${getUser.bank}\` Dashcoins:tm:\n**Net:** \`${getUser.wallet + getUser.bank}\` Dashcoins:tm:`
 		)
 		.setColor(defaultColor)
 		.setThumbnail(

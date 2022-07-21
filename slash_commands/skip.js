@@ -5,7 +5,7 @@ module.exports.data = new SlashCommandBuilder()
 	.setName("skip")
 	.setDescription("Skips the current song")
 
-module.exports.run = async ({ client, interaction, Systems }) => {
+module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 	const getMusic = await Systems.findOne({
 		where: { system: "Music" },
 	})
@@ -46,14 +46,19 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 	const currentSong = queue.songs[0]
 
 	if (currentSong.user.id !== interaction.member.id) {
-		return await interaction
-			.editReply({
-				content: "Only the user who added the song may skip it",
-			})
-			.catch((err) => {})
-			.then((interaction) => {
-				setTimeout(() => interaction.delete().catch((err) => {}), 10000)
-			})
+		if (currentSong.user.id !== "956345939130482750") {
+			return await interaction
+				.editReply({
+					content: "Only the user who added the song may skip it",
+				})
+				.catch((err) => {})
+				.then((interaction) => {
+					setTimeout(
+						() => interaction.delete().catch((err) => {}),
+						10000
+					)
+				})
+		}
 	}
 
 	try {
@@ -63,7 +68,10 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 			.editReply({
 				embeds: [
 					new EmbedBuilder()
-						.setDescription(`${currentSong.name} has been skipped!\nNow playing: **${song.name}**`)
+						.setColor(defaultColor)
+						.setDescription(
+							`**${currentSong.name}** was skipped!\nNow playing: **${song.name}**`
+						)
 						.setThumbnail(currentSong.thumbnail),
 				],
 			})
@@ -75,16 +83,19 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 		await queue.stop()
 
 		return await interaction
-		.editReply({
-			embeds: [
-				new EmbedBuilder()
-					.setDescription(`${currentSong.name} has been skipped! No more songs in the queue, bye!`)
-					.setThumbnail(currentSong.thumbnail),
-			],
-		})
-		.catch((err) => {})
-		.then((interaction) => {
-			setTimeout(() => interaction.delete().catch((err) => {}), 15000)
-		})
+			.editReply({
+				embeds: [
+					new EmbedBuilder()
+						.setColor(defaultColor)
+						.setDescription(
+							`${currentSong.name} was skipped! No more songs in the queue, bye!`
+						)
+						.setThumbnail(currentSong.thumbnail),
+				],
+			})
+			.catch((err) => {})
+			.then((interaction) => {
+				setTimeout(() => interaction.delete().catch((err) => {}), 15000)
+			})
 	}
 }

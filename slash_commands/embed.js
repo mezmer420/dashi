@@ -16,6 +16,7 @@ module.exports.data = new SlashCommandBuilder()
 		option
 			.setName("description")
 			.setDescription("Description, char lim: 4096; required")
+			.setMaxLength(4096)
 			.setRequired(true)
 	)
 	.addStringOption((option) =>
@@ -30,12 +31,14 @@ module.exports.data = new SlashCommandBuilder()
 		option
 			.setName("title")
 			.setDescription("Title, char lim: 256")
+			.setMaxLength(256)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
 		option
 			.setName("authorname")
 			.setDescription("Name of author, char lim: 256")
+			.setMaxLength(256)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -67,6 +70,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 1, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -83,6 +87,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 2, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -99,6 +104,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 3, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -115,6 +121,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 4, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -131,6 +138,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 5, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -147,6 +155,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				'Name, value of field 6, char lims: 256, 1024; split with "-split-"'
 			)
+			.setMaxLength(1287)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
@@ -176,6 +185,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription(
 				"Footer text, char lim: 2048; required to use footericonurl"
 			)
+			.setMaxLength(2048)
 			.setRequired(false)
 	)
 	.addStringOption((option) =>
