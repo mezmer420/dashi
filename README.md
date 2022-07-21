@@ -1,5 +1,5 @@
 # dashi
-## _A Discord Bot_
+## _Yet Another Discord Bot_
 
 The code you're looking at is the result of a 16 year old who never used JavaScript before and one day decided to make a Discord bot. A lot of inefficiencies, a lot of hardcoded stuff, but hey, it works for me.
 
