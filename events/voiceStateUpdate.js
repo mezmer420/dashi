@@ -1,6 +1,6 @@
 module.exports = {
 	name: "voiceStateUpdate",
-	async execute(client, oldState, newState) {
+	async execute(client, oldState, newState, defaultColor) {
 		if (oldState.channelId && !newState.channelId) {
 			// Bot was disconnected?
 			if (newState.id !== client.user.id) return

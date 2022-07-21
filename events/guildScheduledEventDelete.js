@@ -2,14 +2,14 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
     name: "guildScheduledEventDelete",
-    async execute(client, guildScheduledEvent){
+    async execute(client, guildScheduledEvent, defaultColor){
         const logs = await client.channels.cache.get("955948174894325782")
         const anno = await client.channels.cache.get("946442711936938034")
 
         const Embed = new EmbedBuilder()
         .setTitle("❌ Event Cancelled")
         .setDescription(`Event Name: **${guildScheduledEvent.name}**`)
-        .setColor("#9BDBF5")
+        .setColor(defaultColor)
         .setTimestamp()
 
         logs.send({

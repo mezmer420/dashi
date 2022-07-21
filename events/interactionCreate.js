@@ -34,7 +34,7 @@ const transcriptsid = "991804401033416774"
 
 module.exports = {
 	name: "interactionCreate",
-	async execute(client, interaction) {
+	async execute(client, interaction, defaultColor) {
 		if (interaction.isChatInputCommand()) {
 			await interaction.deferReply().catch((err) => {
 				console.log(err)
@@ -44,8 +44,6 @@ module.exports = {
 			const commandMethod = commands.get(name)
 
 			if (!commandMethod) return
-
-			const defaultColor = "#9BDBF5"
 
 			commandMethod({
 				client,
@@ -133,7 +131,7 @@ module.exports = {
 						})
 
 						const Embed = new EmbedBuilder()
-							.setColor("#9BDBF5")
+							.setColor(defaultColor)
 							.setAuthor({
 								name: `Ticket: ${ID}`,
 								iconURL: guild.iconURL({
@@ -216,7 +214,7 @@ module.exports = {
 
 				const discordTranscripts = require("discord-html-transcripts")
 
-				let Embed = new EmbedBuilder().setColor("#9BDBF5")
+				let Embed = new EmbedBuilder().setColor(defaultColor)
 
 				const getTicket = await Tickets.findOne({
 					where: { channelid: channel.id },
@@ -410,7 +408,7 @@ module.exports = {
 			// 				.setDescription(
 			// 					`You just purchased **motorcycle** for 500 Dashcoins:tm: from your bank! Your new bank balance is Dashcoins:tm:.`
 			// 				)
-			// 				.setColor("#9BDBF5")
+			// 				.setColor(defaultColor)
 			// 				.setThumbnail(
 			// 					interaction.member.user.displayAvatarURL({
 			// 						size: 4096,
@@ -462,7 +460,7 @@ module.exports = {
 
 			if (customId === "help") {
 				const option1Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("⭐ XP System")
 					.setDescription(
 						"Rewards the most active members.\n\n"
@@ -474,7 +472,7 @@ module.exports = {
 					)
 
 				const option2Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("🗣️ Dialects System")
 					.setDescription("Eocians have unique dialects.\n\n")
 					.addFields(
@@ -486,12 +484,12 @@ module.exports = {
 					)
 
 				const option3Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("💬 General Responses System")
 					.setDescription("Universal replies to certain phrases.\n\n")
 
 				const option4Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("💸 Economy System")
 					.setDescription(
 						"Rather advanced economy system with a wide array of options.\n\n"
@@ -508,18 +506,18 @@ module.exports = {
 					)
 
 				const option5Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("🎵 Music System")
 					.setDescription(
 						"Rather advanced music system that gets the job done.\n\n"
 					)
 					.addFields({
 						name: "Everyone",
-						value: "`/filter` `/loop` `/play song` `/play playlisturl` `/pause` `/queue` `/quit` `/resume` `/skip` `/skip-to` `/shuffle`",
+						value: "`/autoplay` `/filter` `/loop` `/play song` `/play playlisturl` `/pause` `/queue` `/resume` `/seek` `/skip` `/skip-to` `/shuffle` `/stop`",
 					})
 
 				const option6Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("❤️ Waifus System")
 					.setDescription("Uwu Owo\n\n")
 					.addFields(
@@ -531,7 +529,7 @@ module.exports = {
 					)
 
 				const option7Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("🎂 Birthdays System")
 					.setDescription(
 						"Store your birthday and everyone will be announced the day of.\n\n"
@@ -542,8 +540,8 @@ module.exports = {
 					})
 
 				const option8Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
-					.setTitle("👶 Children System")
+					.setColor(defaultColor)
+					.setTitle("👶 Fricking System")
 					.setDescription("Create new Eocians.\n\n")
 					.addFields(
 						{
@@ -554,21 +552,21 @@ module.exports = {
 					)
 
 				const option9Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("❗ Message Filter & Auto Warn System")
 					.setDescription(
 						"Filters untolerably explicit language and auto warns the user.\n\n"
 					)
 
 				const option10Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("👮 Crazy Suppress System")
 					.setDescription(
 						"Deletes all messages specified user(s) sends. ~~Can be used as punishment.~~\n\n"
 					)
 
 				const option11Embed = new EmbedBuilder()
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTitle("✅ Anti-crash System")
 					.setDescription(
 						"Integral core system that ensures it's impossible to crash dashi.\n\n"

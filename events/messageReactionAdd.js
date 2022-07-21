@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "messageReactionAdd",
-	async execute(client, reaction, user) {
+	async execute(client, reaction, user, defaultColor) {
 		if (reaction.partial) {
 			try {
 				await reaction.fetch()
@@ -20,7 +20,7 @@ module.exports = {
 			)
 
 			// if (reaction.message.id === "995384674383843358") {
-			// 	return await reaction.message.edit({
+			// 	reaction.message.edit({
 			// 		embeds: [
 			// 			new EmbedBuilder()
 			// 				.setAuthor({
@@ -30,12 +30,12 @@ module.exports = {
 			// 				})
 			// 				.setColor("#C04BF7")
 			// 				.setTitle("🎵 Music System 🎵")
-			// 				.setDescription(
-			// 					"I can play videos up to an hour in length"
-			// 				)
+			// 				// .setDescription(
+			// 				// 	"I can play videos up to an hour in length"
+			// 				// )
 			// 				.addFields({
 			// 					name: "Commands",
-			// 					value: "`/play song` `/play playlisturl` `/quit` `/queue` `/loop` `/pause` `/resume` `/skip` `/skip-to` `/shuffle` `/filter`",
+			// 					value: "`/play song` `/play playlisturl` `/stop` `/queue` `/pause` `/resume` `/loop` `/autoplay` `/skip` `/skip-to` `/shuffle` `/seek` `/filter`",
 			// 					inline: false,
 			// 				})
 			// 				.setFooter({

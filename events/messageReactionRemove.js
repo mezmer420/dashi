@@ -1,6 +1,6 @@
 module.exports = {
 	name: "messageReactionRemove",
-	async execute(client, reaction, user) {
+	async execute(client, reaction, user, defaultColor) {
 		if (reaction.partial) {
 			try {
 				await reaction.fetch()

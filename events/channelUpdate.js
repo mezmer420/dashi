@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "channelUpdate",
-	async execute(client, oldChannel, newChannel) {
+	async execute(client, oldChannel, newChannel, defaultColor) {
 		const logs = await client.channels.cache.get("955948174894325782")
 
 		if (oldChannel.name !== newChannel.name) {
@@ -12,7 +12,7 @@ module.exports = {
 					name: "Channel Name Changed",
 					value: `**#${oldChannel.name}** -> **#${newChannel.name}**`,
 				})
-				.setColor("#9BDBF5")
+				.setColor(defaultColor)
 				.setTimestamp()
 
 			return logs
@@ -30,7 +30,7 @@ module.exports = {
 						name: "Channel Topic Added",
 						value: `<#${newChannel.id}>:\n**${newChannel.topic}**`,
 					})
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTimestamp()
 
 				return logs
@@ -47,7 +47,7 @@ module.exports = {
 						name: "Channel Topic Removed",
 						value: `<#${newChannel.id}>:\n**${oldChannel.topic}**\n->\n(none)`,
 					})
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTimestamp()
 
 				return logs
@@ -64,7 +64,7 @@ module.exports = {
 						name: "Channel Topic Changed",
 						value: `<#${newChannel.id}>:\n**${oldChannel.topic}**\n->\n**${newChannel.topic}**`,
 					})
-					.setColor("#9BDBF5")
+					.setColor(defaultColor)
 					.setTimestamp()
 
 				return logs
@@ -82,7 +82,7 @@ module.exports = {
 					name: "Channel NSFW Changed",
 					value: `<#${newChannel.id}>: **${oldChannel.nsfw}** -> **${newChannel.nsfw}**`,
 				})
-				.setColor("#9BDBF5")
+				.setColor(defaultColor)
 				.setTimestamp()
 
 			return logs

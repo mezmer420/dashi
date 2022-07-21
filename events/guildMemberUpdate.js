@@ -2,7 +2,7 @@ const { EmbedBuilder, MessageSelectMenu } = require("discord.js")
 
 module.exports = {
 	name: "guildMemberUpdate",
-	async execute(client, oldMember, newMember) {
+	async execute(client, oldMember, newMember, defaultColor) {
 		const logs = await client.channels.cache.get("955948174894325782")
 
 		if (oldMember.nickname !== newMember.nickname) {
@@ -24,7 +24,7 @@ module.exports = {
 					name: "📝 Member Nickname Changed",
 					value: `**${oldnickname}** -> **${newnickname}**`
 				})
-				.setColor("#9BDBF5")
+				.setColor(defaultColor)
 				.setTimestamp()
 				.setThumbnail(
 					`${newMember.displayAvatarURL({
@@ -48,7 +48,7 @@ module.exports = {
 		//     .setTitle(`${newMember.user.tag}`)
 		//     .setDescription(`<@${newMember.user.id}>`)
 		//     .addField("✈️ Member Avatar Changed", `${oldMember.displayAvatarURL()} -> ${newMember.displayAvatarURL()}`)
-		//     .setColor("#9BDBF5")
+		//     .setColor(defaultColor)
 		//     .setTimestamp()
 		//     .setThumbnail(`${newMember.displayAvatarURL()}`)
 

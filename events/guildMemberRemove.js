@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "guildMemberRemove",
-	async execute(client, member) {
+	async execute(client, member, defaultColor) {
 		const logs = await client.channels.cache.get("955948174894325782")
 
 		const Embed = new EmbedBuilder()

@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "roleDelete",
-	async execute(client, role) {
+	async execute(client, role, defaultColor) {
 		const logs = await client.channels.cache.get("955948174894325782")
 
 		const Embed = new EmbedBuilder()
@@ -10,7 +10,7 @@ module.exports = {
 			.setDescription(
 				`Role Name: **${role.name}**`
 			)
-			.setColor("#9BDBF5")
+			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({

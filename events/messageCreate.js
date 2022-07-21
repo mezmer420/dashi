@@ -9,7 +9,7 @@ const wait = require("node:timers/promises").setTimeout
 
 module.exports = {
 	name: "messageCreate",
-	async execute(client, message) {
+	async execute(client, message, defaultColor) {
 		const args = message.content.split(/ +/)
 		const firstWord = args.shift().toLowerCase()
 		const lowercase = message.content.toLowerCase()
@@ -92,6 +92,10 @@ module.exports = {
 						return message.channel
 							.send("https://www.reddit.com/r/HolUp/")
 							.catch((err) => {})
+					}
+
+					case "69": {
+						return TypeWaitSend("nice")
 					}
 				}
 
