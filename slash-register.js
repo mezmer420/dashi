@@ -6,24 +6,32 @@ const fs = require("node:fs")
 let commands = []
 let commandList = new Map()
 
-module.exports = (updateCommands) => {
-	const commandFiles = fs
-		.readdirSync("./slash_commands/")
-		.filter((file) => file.endsWith(".js"))
+module.exports = async (updateCommands) => {
+	handleCommands = (commandFolders, path) => {
+		for (folder of commandFolders) {
+			const commandFiles = fs
+				.readdirSync(`${path}/${folder}`)
+				.filter((file) => file.endsWith(".js"))
 
-	// Place your client and guild ids here
+			for (const file of commandFiles) {
+				const command = require(`${path}/${folder}/${file}`)
+
+				commandList.set(command.data.name, command.run)
+				commands.push(command.data.toJSON())
+			}
+		}
+	}
+
+	const commandFolders = fs.readdirSync("./slash_commands")
+
+	await handleCommands(commandFolders, "./slash_commands")
+
 	const clientId = "956345939130482750"
 	const guildId = "939674946379083847"
 
-	for (const file of commandFiles) {
-		const command = require(`./slash_commands/${file}`)
-		commands.push(command.data.toJSON())
-		commandList.set(command.data.name, command.run)
-	}
-
 	const rest = new REST({ version: "9" }).setToken(token)
 
-	if (updateCommands) {
+	if (updateCommands === true) {
 		;(async () => {
 			try {
 				// console.log("Started refreshing application (/) commands.")
