@@ -51,7 +51,6 @@ client.distube = new DisTube(client, {
 		treble: "treble=g=5",
 		vibrato: "vibrato=f=6.5",
 	},
-
 	ytdlOptions: {
 		quality: "highestaudio",
 		highWaterMark: 1 << 25,
@@ -60,7 +59,10 @@ client.distube = new DisTube(client, {
 
 require("./slash-register")(true)
 
+const defaultColor = "#9BDBF5"
+
 const fs = require("fs")
+
 const eventFiles = fs
 	.readdirSync("./events/")
 	.filter((file) => file.endsWith(".js"))
@@ -70,7 +72,9 @@ for (const file of eventFiles) {
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args))
 	} else {
-		client.on(event.name, (...args) => event.execute(client, ...args))
+		client.on(event.name, (...args) =>
+			event.execute(client, ...args, defaultColor)
+		)
 	}
 }
 
@@ -80,7 +84,9 @@ const musicEventFiles = fs
 
 for (const file of musicEventFiles) {
 	const event = require(`./music_events/${file}`)
-	client.distube.on(event.name, (...args) => event.execute(client, ...args))
+	client.distube.on(event.name, (...args) =>
+		event.execute(client, ...args, defaultColor)
+	)
 }
 
 const config = require("./config.json")
