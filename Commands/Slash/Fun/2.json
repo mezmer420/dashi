@@ -1,0 +1,19 @@
+{
+	"id": "embed_12",
+	"url": "https://manebooru.art/images/1138198",
+	"type": "image",
+	"rawTitle": "#1138198 - safe, artist:kianamai, character:nightmare moon, charact...",
+	"author": {
+		"name": "kianamai",
+		"url": "http://kilala97.deviantart.com/art/NightmareMoonXRarity-604679004"
+	},
+	"provider": { "name": "Manebooru", "url": "https://manebooru.art/" },
+	"color": "hsl(212, calc(var(--saturation-factor, 1) * 45%), 57.3%)",
+	"image": {
+		"url": "https://static.manebooru.art/img/2020/9/30/1138198/large.jpg",
+		"proxyURL": "https://images-ext-1.discordapp.net/external/_GkpwM68M-Ua_OBqGAHwy19LqUw_mzBtjkYnU97niXk/https/static.manebooru.art/img/2020/9/30/1138198/large.jpg",
+		"width": 1000,
+		"height": 946
+	},
+	"fields": []
+}
