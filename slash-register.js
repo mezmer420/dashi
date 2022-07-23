@@ -22,27 +22,27 @@ module.exports = async (updateCommands) => {
 		}
 	}
 
-	const commandFolders = fs.readdirSync("./slash_commands")
+	const commandFolders = fs.readdirSync("./Commands/Slash")
 
-	await handleCommands(commandFolders, "./slash_commands")
+	await handleCommands(commandFolders, "./Commands/Slash")
 
 	const clientId = "956345939130482750"
 	const guildId = "939674946379083847"
 
-	const rest = new REST({ version: "9" }).setToken(token)
+	const rest = new REST({ version: "10" }).setToken(token)
 
 	if (updateCommands === true) {
 		;(async () => {
 			try {
-				// console.log("Started refreshing application (/) commands.")
+				console.log("Started refreshing application (/) commands.")
 
-				// await rest.put(Routes.applicationCommands(clientId), {
-				// 	body: commands,
-				// })
-				await rest.put(
-					Routes.applicationGuildCommands(clientId, guildId),
-					{ body: commands }
-				)
+				await rest.put(Routes.applicationCommands(clientId), {
+					body: commands,
+				})
+				// await rest.put(
+				// 	Routes.applicationGuildCommands(clientId, guildId),
+				// 	{ body: commands }
+				// )
 
 				console.log("Successfully reloaded application (/) commands.")
 			} catch (error) {

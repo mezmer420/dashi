@@ -1,3 +1,5 @@
+const { ChannelType } = require("discord.js")
+
 const fs = require("fs")
 
 const getFiles = (dir, suffix) => {
@@ -26,9 +28,7 @@ const getFiles = (dir, suffix) => {
 module.exports = (client) => {
 	const commands = {}
 
-	const suffix = ".js"
-
-	const commandFiles = getFiles("./text_commands", suffix)
+	const commandFiles = getFiles("./Commands/Text", ".js")
 	// console.log(commandFiles)
 
 	for (const command of commandFiles) {
@@ -38,7 +38,7 @@ module.exports = (client) => {
 		if (commandFile.default) commandFile = commandFile.default
 
 		const split = command.replace(/\\/g, "/").split("/")
-		const commandName = split[split.length - 1].replace(suffix, "")
+		const commandName = split[split.length - 1].replace(".js", "")
 
 		commands[commandName.toLowerCase()] = commandFile
 	}
@@ -49,7 +49,7 @@ module.exports = (client) => {
 	client.on("messageCreate", (message) => {
 		if (
 			!message.content.startsWith("!") ||
-			message.channel.type === "DM" ||
+			message.channel.type === ChannelType.DM ||
 			message.author.bot
 		)
 			return
