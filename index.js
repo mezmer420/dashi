@@ -28,9 +28,9 @@ const client = new Client({
 	],
 })
 
-require("./slash-register")(true)
-
 require("./client.distube")(client)
+
+require("./slash-register")(true)
 
 const config = require("./config.json")
 
