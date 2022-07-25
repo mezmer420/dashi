@@ -125,7 +125,7 @@ module.exports.run = async ({
 
 	return await targetMember
 		.send(
-			`**${Member.user.username}** just fricked you!  You are both now the parents of a baby ${gender}!`
+			`**${Member.user.username}** just fricked you! You are both now the parents of a baby ${gender}!`
 		)
 		.catch((err) => {
 			console.log(err)
