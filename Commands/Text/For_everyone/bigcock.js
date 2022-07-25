@@ -1,6 +1,5 @@
 const { ChannelType } = require("discord.js")
 
-
 module.exports = {
 	callback: async (client, message, args) => {
 		if (message.channel.type !== ChannelType.GuildText) return

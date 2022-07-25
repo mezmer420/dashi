@@ -1,6 +1,4 @@
-const { ChannelType } = require("discord.js")
-
-const { EmbedBuilder } = require("discord.js")
+const { ChannelType, EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	callback: async (client, message, args) => {

@@ -123,7 +123,7 @@ module.exports.run = async ({
 
 	if (targetMember.user.bot) return
 
-	return await targetMember
+	await targetMember
 		.send(
 			`**${Member.user.username}** just fricked you! You are both now the parents of a baby ${gender}!`
 		)
