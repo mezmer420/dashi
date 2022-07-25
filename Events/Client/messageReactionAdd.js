@@ -51,29 +51,6 @@ module.exports = {
 
 			if (reaction.message.id === "964363343789961267") {
 				if (reaction.emoji.name === "✅") {
-					// if (
-					// 	member.roles.cache.some(
-					// 		(role) => role.id === "973334603253317702"
-					// 	)
-					// )
-					// return console.log(
-					// 	`${member.user.tag} tried to verify (denied)`
-					// )
-
-					// if (
-					// 	member.roles.cache.some(
-					// 		(role) => role.id === "997261030805753926"
-					// 	)
-					// )
-					// 	return console.log(
-					// 		`${member.user.tag} tried to verify (denied)`
-					// 	)
-
-					// if (member.id === "251778379211210755") {
-					// 	return console.log(
-					// 		`${member.user.tag} tried to verify (denied)`
-					// 	)
-					// }
 
 					const eoicrole = reaction.message.guild.roles.cache.find(
 						(r) => r.id === "957872601550716929"
@@ -195,9 +172,21 @@ module.exports = {
 					member.roles.add(anyone).catch((err) => {
 						console.log(err)
 					})
+				} else if (reaction.emoji.name === "9️⃣") {
+					const anyone = reaction.message.guild.roles.cache.find(
+						(r) => r.id === "1000505530978152569"
+					)
+
+					// console.log(
+					// 	`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`
+					// )
+
+					member.roles.add(anyone).catch((err) => {
+						console.log(err)
+					})
 				}
 
-				// else if (reaction.emoji.name === "9️⃣") {
+				// else if (reaction.emoji.name === "😳") {
 				// 	if (member.id !== "527285622809952256")
 				// 		reaction.message
 				// 			.edit(

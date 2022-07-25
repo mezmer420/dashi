@@ -4,7 +4,6 @@ module.exports = {
 	name: "guildMemberRemove",
 	async execute(client, member, defaultColor) {
 		const logs = await client.channels.cache.get("955948174894325782")
-		// const anno = await client.channels.cache.get("946442711936938034")
 
 		const Embed = new EmbedBuilder()
 			.setTitle(`👋 Member Left — ${member.user.tag}`)
@@ -23,11 +22,5 @@ module.exports = {
 		}).catch((err) => {
 			console.log(err)
 		})
-
-		// anno.send({
-		// 	embeds: [Embed],
-		// }).catch((err) => {
-		// 	console.log(err)
-		// })
 	},
 }

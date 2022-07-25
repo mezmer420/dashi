@@ -8,7 +8,7 @@ module.exports = {
 		const Embed = new EmbedBuilder()
 			.setTitle("🆕 Emoji Created")
 			.setDescription(
-				`Emoji: :${emoji.name}:`
+				`Emoji: <:${emoji.name}:${emoji.id}>\nID: **${emoji.id}**`
 			)
 			.setColor(defaultColor)
 			.setTimestamp()

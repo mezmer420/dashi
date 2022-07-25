@@ -86,6 +86,10 @@ module.exports = {
 						return TypeWaitSend("moment")
 					}
 
+					case "cock": {
+						return TypeWaitSend("cock moment")
+					}
+
 					case "hold up":
 					case "hol up":
 					case "holdup":

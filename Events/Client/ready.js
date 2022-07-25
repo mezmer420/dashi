@@ -163,7 +163,7 @@ module.exports = {
 		// frickingCooldown.destroy({ truncate: true }).then(console.log("frickingCooldown destroyed"))
 		// Suppress.destroy({ truncate: true }).then(console.log("Suppress destroyed"))
 
-		// await Items.update({ itemid: "7" }, { where: { itemid: "6" } }).then(console.log("updated bailbonds"))
+		// await Items.update({ itemid: "8" }, { where: { item: "Bail Bonds" } }).then(console.log("updated bailbonds"))
 		// await Items.update({ itemid: "6" }, { where: { itemid: "5" } }).then(console.log("updated wife"))
 		// await Items.update({ itemid: "5" }, { where: { itemid: "4" } }).then(console.log("updated sickle"))
 	},

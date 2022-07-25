@@ -115,6 +115,18 @@ module.exports = {
 					member.roles.remove(anyone).catch((err) => {
 						console.log(err)
 					})
+				} else if (reaction.emoji.name === "9️⃣") {
+					const anyone = reaction.message.guild.roles.cache.find(
+						(r) => r.id === "1000505530978152569"
+					)
+
+					// console.log(
+					// 	`${user.username} reacted to ${reaction.message.author.username}'s message "${reaction.message.content}" with ${reaction.emoji.name}`
+					// )
+
+					member.roles.remove(anyone).catch((err) => {
+						console.log(err)
+					})
 				}
 			}
 		}
