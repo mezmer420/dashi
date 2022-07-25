@@ -83,8 +83,20 @@ module.exports.data = new SlashCommandBuilder()
 			)
 			.addBooleanOption((option) =>
 				option
+					.setName("falsifiedcollegedegree")
+					.setDescription("falsified college degree")
+					.setRequired(true)
+			)
+			.addBooleanOption((option) =>
+				option
 					.setName("bailbonds")
 					.setDescription("bail bonds")
+					.setRequired(true)
+			)
+			.addBooleanOption((option) =>
+				option
+					.setName("holdupequipment")
+					.setDescription("holdup equipment")
 					.setRequired(true)
 			)
 			.addIntegerOption((option) =>
@@ -264,7 +276,12 @@ module.exports.run = async ({
 			const newhammer = interaction.options.getBoolean("hammer")
 			const newsickle = interaction.options.getBoolean("sickle")
 			const newwife = interaction.options.getBoolean("wife")
+			const newfalsifiedcollegedegree = interaction.options.getBoolean(
+				"falsifiedcollegedegree"
+			)
 			const newbailbonds = interaction.options.getBoolean("bailbonds")
+			const newholdupequipment =
+				interaction.options.getBoolean("holdupequipment")
 			const newbirthcontrolpills =
 				interaction.options.getInteger("birthcontrolpills")
 
@@ -286,8 +303,17 @@ module.exports.run = async ({
 			const findWife = await Items.findOne({
 				where: { memberid: member.id, item: "Wife" },
 			})
+			const findFalsifiedcollegedegree = await Items.findOne({
+				where: {
+					memberid: member.id,
+					item: "Falsified College Degree",
+				},
+			})
 			const findBailbonds = await Items.findOne({
 				where: { memberid: member.id, item: "Bail Bonds" },
+			})
+			const findHoldupequipment = await Items.findOne({
+				where: { memberid: member.id, item: "Holdup Equipment" },
 			})
 			const findBirthcontrolpills = await Items.findAll({
 				where: { memberid: member.id, item: "Birth Control Pills" },
@@ -389,11 +415,30 @@ module.exports.run = async ({
 				}
 			}
 
+			if (newfalsifiedcollegedegree === true) {
+				if (!findFalsifiedcollegedegree) {
+					await Items.create({
+						memberid: member.id,
+						itemid: "7",
+						item: "Falsified College Degree",
+					})
+				}
+			} else if (newfalsifiedcollegedegree === false) {
+				if (findFalsifiedcollegedegree) {
+					await Items.destroy({
+						where: {
+							memberid: member.id,
+							item: "Falsified College Degree",
+						},
+					})
+				}
+			}
+
 			if (newbailbonds === true) {
 				if (!findBailbonds) {
 					await Items.create({
 						memberid: member.id,
-						itemid: "7",
+						itemid: "8",
 						item: "Bail Bonds",
 					})
 				}
@@ -401,6 +446,25 @@ module.exports.run = async ({
 				if (findBailbonds) {
 					await Items.destroy({
 						where: { memberid: member.id, item: "Bail Bonds" },
+					})
+				}
+			}
+
+			if (newholdupequipment === true) {
+				if (!findHoldupequipment) {
+					await Items.create({
+						memberid: member.id,
+						itemid: "9",
+						item: "Holdup Equipment",
+					})
+				}
+			} else if (newholdupequipment === false) {
+				if (findHoldupequipment) {
+					await Items.destroy({
+						where: {
+							memberid: member.id,
+							item: "Holdup Equipment",
+						},
 					})
 				}
 			}

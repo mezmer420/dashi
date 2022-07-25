@@ -112,14 +112,14 @@ module.exports.run = async ({
 
 	const randomvalue = Math.floor(Math.random() * 100)
 
-	const findHoldupEquipment = await Items.findOne({
+	const findHoldupequipment = await Items.findOne({
 		where: { memberid: interaction.member.id, item: "Holdup Equipment" },
 	})
 
 	let outcome
 	let chance
 
-	chance = findHoldupEquipment ? 65 : 40
+	chance = findHoldupequipment ? 65 : 40
 
 	if (randomvalue >= chance) {
 		outcome = "caught"
