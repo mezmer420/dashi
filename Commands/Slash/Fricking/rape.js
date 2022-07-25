@@ -14,6 +14,7 @@ module.exports.run = async ({
 	client,
 	interaction,
 	Systems,
+	Items,
 	Fricking,
 	frickingCooldown,
 }) => {
@@ -205,34 +206,69 @@ module.exports.run = async ({
 	// const outcome = outcomes[Math.floor(Math.random() * outcomes.length)]
 
 	if (outcome === "success") {
-		await Fricking.update(
-			{ children: getTargetUser.children + 1 },
-			{ where: { memberid: targetMember.id } }
-		)
-
-		await frickingCooldown.create({
-			id: interaction.member.id,
-			expiry: new Date().getTime() + 1000 * 60 * 30,
+		const findBirthControlPills = await Items.findOne({
+			where: { memberid: targetMember.id, item: "Birth Control Pills" },
 		})
 
-		const genders = ["boy", "girl"]
-		const gender = genders[Math.floor(Math.random() * genders.length)]
+		let protection
 
-		await interaction
-			.followUp({
-				content: `You just raped <@${targetMember.id}>, who is now the forced parent of a baby ${gender}!`,
+		if (findBirthControlPills) {
+			protection = true
+		} else if (!findBirthControlPills) {
+			protection = false
+		}
+
+		if (protection === true) {
+			await frickingCooldown.create({
+				id: interaction.member.id,
+				expiry: new Date().getTime() + 1000 * 60 * 30,
 			})
-			.catch((err) => {})
 
-		if (targetMember.user.bot) return
+			await interaction
+				.followUp({
+					content: `You just raped <@${targetMember.id}>!`,
+				})
+				.catch((err) => {})
 
-		return await targetMember
-			.send(
-				`**${Member.user.username}** just penetrated you (raped)! You are now forced parent of a baby ${gender}!`
+			if (targetMember.user.bot) return
+
+			return await targetMember
+				.send(
+					`**${Member.user.username}** just penetrated you (raped)! Because you had birth control pills, you used \`1x\` birth control pills, preventing you from getting impregnated.`
+				)
+				.catch((err) => {
+					console.log(err)
+				})
+		} else if (protection === false) {
+			await Fricking.update(
+				{ children: getTargetUser.children + 1 },
+				{ where: { memberid: targetMember.id } }
 			)
-			.catch((err) => {
-				console.log(err)
+
+			await frickingCooldown.create({
+				id: interaction.member.id,
+				expiry: new Date().getTime() + 1000 * 60 * 30,
 			})
+
+			const genders = ["boy", "girl"]
+			const gender = genders[Math.floor(Math.random() * genders.length)]
+
+			await interaction
+				.followUp({
+					content: `You just raped <@${targetMember.id}>, who is now the forced parent of a baby ${gender}!`,
+				})
+				.catch((err) => {})
+
+			if (targetMember.user.bot) return
+
+			return await targetMember
+				.send(
+					`**${Member.user.username}** just penetrated you (raped)! You are now forced parent of a baby ${gender}!`
+				)
+				.catch((err) => {
+					console.log(err)
+				})
+		}
 	} else if (outcome === "fail") {
 		await interaction
 			.followUp({

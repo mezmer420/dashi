@@ -3,7 +3,7 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("balance")
-	.setDescription("Check the balance of yourself or another ")
+	.setDescription("Check the balance of yourself or another user")
 	.addUserOption((option) =>
 		option
 			.setName("user")

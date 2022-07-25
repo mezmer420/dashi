@@ -12,7 +12,7 @@ module.exports.data = new SlashCommandBuilder()
 	.addChannelOption((option) =>
 		option
 			.setName("channel")
-			.setDescription("The channel to send in")
+			.setDescription("The channel to say in")
 			.setRequired(false)
 	)
 

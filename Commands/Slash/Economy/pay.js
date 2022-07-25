@@ -15,7 +15,7 @@ module.exports.data = new SlashCommandBuilder()
 			.setName("amount")
 			.setDescription("The amount to give")
 			.setMinValue(1)
-			.setMaxValue(1000)
+			.setMaxValue(5000)
 			.setRequired(true)
 	)
 
@@ -59,7 +59,7 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			.catch((err) => {})
 	}
 
-	const memberWallet = await Economy.findOne({ where: { id: member.id } })
+	let memberWallet = await Economy.findOne({ where: { id: member.id } })
 
 	if (!memberWallet) {
 		memberWallet = await Economy.create({

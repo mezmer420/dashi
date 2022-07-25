@@ -10,13 +10,19 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The item to purchase")
 			.setRequired(true)
 			.addChoices(
-				{ name: "debit card", value: "Debit Card" },
-				{ name: "motorcycle", value: "Motorcycle" },
-				{ name: "superbike", value: "Superbike" },
-				{ name: "hammer", value: "Hammer" },
-				{ name: "sickle", value: "Sickle" },
-				{ name: "wife", value: "Wife" },
-				{ name: "bail bonds", value: "Bail Bonds" }
+				{ name: "Debit Card", value: "Debit Card" },
+				{ name: "Motorcycle", value: "Motorcycle" },
+				{ name: "Superbike", value: "Superbike" },
+				{ name: "Hammer", value: "Hammer" },
+				{ name: "Sickle", value: "Sickle" },
+				{ name: "Wife", value: "Wife" },
+				{
+					name: "Falsified College Degree",
+					value: "Falsified College Degree",
+				},
+				{ name: "Bail Bonds", value: "Bail Bonds" },
+				{ name: "Holdup Equipment", value: "Holdup Equipment" },
+				{ name: "Birth Control Pills", value: "Birth Control Pills" }
 			)
 	)
 
@@ -83,12 +89,21 @@ module.exports.run = async ({
 	} else if (item === "Wife") {
 		price = 1000
 		itemId = "6"
+	} else if (item === "Falsified College Degree") {
+		price = 50000
+		itemId = "7"
 	} else if (item === "Bail Bonds") {
 		price = 2000
-		itemId = "7"
+		itemId = "8"
+	} else if (item === "Holdup Equipment") {
+		price = 2000
+		itemId = "9"
+	} else if (item === "Birth Control Pills") {
+		price = 1000
+		itemId = "101"
 	}
 
-	if (findItem) {
+	if (item !== "Birth Control Pills" && findItem) {
 		return await interaction
 			.editReply({
 				content: `You already own **${itemLowercase}**!`,
@@ -148,7 +163,7 @@ module.exports.run = async ({
 					where: { memberid: interaction.member.id, item: item },
 				})
 
-				if (newfindItem) return
+				if (item !== "Birth Control Pills" && newfindItem) return
 
 				const command = i.customId
 
@@ -283,7 +298,7 @@ module.exports.run = async ({
 						where: { memberid: interaction.member.id, item: item },
 					})
 
-					if (newfindItem) return
+					if (item !== "Birth Control Pills" && newfindItem) return
 
 					const command = i.customId
 
@@ -395,7 +410,7 @@ module.exports.run = async ({
 						where: { memberid: interaction.member.id, item: item },
 					})
 
-					if (newfindItem) return
+					if (item !== "Birth Control Pills" && newfindItem) return
 
 					const command = i.customId
 
@@ -531,7 +546,7 @@ module.exports.run = async ({
 						where: { memberid: interaction.member.id, item: item },
 					})
 
-					if (newfindItem) return
+					if (item !== "Birth Control Pills" && newfindItem) return
 
 					const command = i.customId
 

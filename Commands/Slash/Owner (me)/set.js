@@ -87,6 +87,13 @@ module.exports.data = new SlashCommandBuilder()
 					.setDescription("bail bonds")
 					.setRequired(true)
 			)
+			.addIntegerOption((option) =>
+				option
+					.setName("birthcontrolpills")
+					.setDescription("birth control pills")
+					.setMinValue(0)
+					.setRequired(true)
+			)
 	)
 	.addSubcommand((subcommand) =>
 		subcommand
@@ -258,6 +265,8 @@ module.exports.run = async ({
 			const newsickle = interaction.options.getBoolean("sickle")
 			const newwife = interaction.options.getBoolean("wife")
 			const newbailbonds = interaction.options.getBoolean("bailbonds")
+			const newbirthcontrolpills =
+				interaction.options.getInteger("birthcontrolpills")
 
 			const findDebitcard = await Items.findOne({
 				where: { memberid: member.id, item: "Debit Card" },
@@ -279,6 +288,9 @@ module.exports.run = async ({
 			})
 			const findBailbonds = await Items.findOne({
 				where: { memberid: member.id, item: "Bail Bonds" },
+			})
+			const findBirthcontrolpills = await Items.findAll({
+				where: { memberid: member.id, item: "Birth Control Pills" },
 			})
 
 			if (newdebitcard === true) {
@@ -389,6 +401,34 @@ module.exports.run = async ({
 				if (findBailbonds) {
 					await Items.destroy({
 						where: { memberid: member.id, item: "Bail Bonds" },
+					})
+				}
+			}
+
+			if (newbirthcontrolpills > 0) {
+				if (findBirthcontrolpills) {
+					await Items.destroy({
+						where: {
+							memberid: member.id,
+							item: "Birth Control Pills",
+						},
+					})
+				}
+
+				for (let i = 0; i < newbirthcontrolpills; i++) {
+					await Items.create({
+						memberid: member.id,
+						itemid: "101",
+						item: "Birth Control Pills",
+					})
+				}
+			} else if (newbirthcontrolpills === 0) {
+				if (findBirthcontrolpills) {
+					await Items.destroy({
+						where: {
+							memberid: member.id,
+							item: "Birth Control Pills",
+						},
 					})
 				}
 			}
@@ -547,13 +587,15 @@ module.exports.run = async ({
 		case "children": {
 			const amount = interaction.options.getInteger("number")
 
-			const getUser = await Fricking.findOne({ where: { memberid: member.id } })
+			const getUser = await Fricking.findOne({
+				where: { memberid: member.id },
+			})
 
 			if (!getUser) {
 				await Fricking.create({
 					memberid: member.id,
 					consent: false,
-					children: 0
+					children: 0,
 				})
 			}
 

@@ -75,6 +75,12 @@ module.exports.run = async ({
 	const findSickle = await Items.findOne({
 		where: { memberid: interaction.member.id, item: "Sickle" },
 	})
+	const findFalsifiedCollegeDegree = await Items.findOne({
+		where: {
+			memberid: interaction.member.id,
+			item: "Falsified College Degree",
+		},
+	})
 
 	let result
 
@@ -111,7 +117,11 @@ module.exports.run = async ({
 
 	let coins_earned = Math.floor(Math.random() * 35) + 66
 
-	if (findHammer && findSickle) {
+	if (findHammer && findFalsifiedCollegeDegree) {
+		coins_earned = Math.floor(Math.random() * 20) + 481
+	} else if (!findHammer && !findFalsifiedCollegeDegree) {
+		coins_earned = Math.floor(Math.random() * 35) + 466
+	} else if (findHammer && findSickle) {
 		coins_earned = Math.floor(Math.random() * 20) + 131
 	} else if (findHammer && !findSickle) {
 		coins_earned = Math.floor(Math.random() * 20) + 81

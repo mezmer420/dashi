@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
+const sequelize = require("sequelize")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("inventory")
@@ -34,12 +35,14 @@ module.exports.run = async ({
 
 	const member = interaction.options.getMember("user") || interaction.member
 
-	const data = await Items.findAll({ where: { memberid: member.id } })
+	const onetimeitemsdata = await Items.findAll({
+		where: { memberid: member.id, itemid: { [sequelize.Op.not]: "101" } },
+	})
 
-	let items = []
+	let onetimeitems = []
 
-	for (let obj of data) {
-		items.push(obj)
+	for (let obj of onetimeitemsdata) {
+		onetimeitems.push(obj)
 	}
 
 	const Embed = new EmbedBuilder()
@@ -49,17 +52,35 @@ module.exports.run = async ({
 			member.user.displayAvatarURL({ size: 4096, dynamic: true })
 		)
 
-	items = items.sort(function (b, a) {
+	onetimeitems = onetimeitems.sort(function (b, a) {
 		return b.itemid - a.itemid
 	})
 
 	let desc = ""
 
-	for (let i = 0; i < items.length; i++) {
-		const itemname = items[i].item
+	for (let i = 0; i < onetimeitems.length; i++) {
+		const itemname = onetimeitems[i].item
 
 		desc += `**${itemname}**\n`
 	}
+
+	const stockableitemsdata = await Items.findAll({
+		where: { memberid: member.id, itemid: "101" },
+	})
+
+	let stockableitems = []
+
+	for (let obj of stockableitemsdata) {
+		stockableitems.push(obj)
+	}
+
+	if (stockableitems.length > 0) {
+		desc += `**Birth Control Pills** \`x${stockableitems.length}\``
+	}
+
+	// stockableitems = stockableitems.sort(function (b, a) {
+	// 	return b.itemid - a.itemid
+	// })
 
 	if (!desc) {
 		return await interaction

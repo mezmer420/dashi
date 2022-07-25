@@ -10,13 +10,18 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The item to purchase")
 			.setRequired(true)
 			.addChoices(
-				{ name: "debit card", value: "Debit Card" },
-				{ name: "motorcycle", value: "Motorcycle" },
-				{ name: "superbike", value: "Superbike" },
-				{ name: "hammer", value: "Hammer" },
-				{ name: "sickle", value: "Sickle" },
-				{ name: "wife", value: "Wife" },
-				{ name: "bail bonds", value: "Bail Bonds" }
+				{ name: "Debit Card", value: "Debit Card" },
+				{ name: "Motorcycle", value: "Motorcycle" },
+				{ name: "Superbike", value: "Superbike" },
+				{ name: "Hammer", value: "Hammer" },
+				{ name: "Sickle", value: "Sickle" },
+				{ name: "Wife", value: "Wife" },
+				{
+					name: "Falsified College Degree",
+					value: "Falsified College Degree",
+				},
+				{ name: "Bail Bonds", value: "Bail Bonds" },
+				{ name: "Holdup Equipment", value: "Holdup Equipment" }
 			)
 	)
 
@@ -94,7 +99,17 @@ module.exports.run = async ({
 		maxprice = 950
 		price = 1000
 		sellprice = Math.floor(Math.random() * 200) + 751
+	} else if (item === "Falsified College Degree") {
+		minprice = 37500
+		maxprice = 45000
+		price = 50000
+		sellprice = Math.floor(Math.random() * 350) + 150
 	} else if (item === "Bail Bonds") {
+		minprice = 1500
+		maxprice = 1850
+		price = 2000
+		sellprice = Math.floor(Math.random() * 350) + 150
+	} else if (item === "Holdup Equipment") {
 		minprice = 1500
 		maxprice = 1850
 		price = 2000
