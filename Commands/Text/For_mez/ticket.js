@@ -1,16 +1,9 @@
-const {
-	EmbedBuilder,
-	ActionRowBuilder,
-	ButtonBuilder,
-	ChannelType,
-} = require("discord.js")
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
 
 const openticketid = "982689993195667527"
 
 module.exports = {
 	callback: async (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-
 		if (message.author.id !== "527285622809952256") {
 			return message
 				.reply(

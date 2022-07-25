@@ -1,9 +1,7 @@
-const { ChannelType, EmbedBuilder } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	callback: async (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-
 		if (message.author.id !== "527285622809952256") {
 			return message
 				.reply(

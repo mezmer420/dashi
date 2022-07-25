@@ -1,9 +1,5 @@
-const { ChannelType } = require("discord.js")
-
 module.exports = {
 	callback: (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-
 		if (
 			message.author.id !== "527285622809952256" && // mezmer
 			message.author.id !== "826841451945787412" // choc

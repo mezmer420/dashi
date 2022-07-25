@@ -55,7 +55,7 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 	if (interaction.member.id !== "527285622809952256") {
 		return await interaction
 			.editReply({
-				content: "Only mezmer420 can use that command",
+				content: "Only mezmer420 can use this command",
 			})
 			.catch((err) => {})
 	}

@@ -49,7 +49,7 @@ module.exports = (client) => {
 	client.on("messageCreate", (message) => {
 		if (
 			!message.content.startsWith("!") ||
-			message.channel.type === ChannelType.DM ||
+			message.channel.type !== ChannelType.GuildText ||
 			message.author.bot
 		)
 			return

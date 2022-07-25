@@ -9,8 +9,6 @@ const emojifyWord = "!emojify"
 
 module.exports = {
 	callback: (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-		
 		if (
 			blacklistedchannels.includes(message.channel.id) ||
 			blacklistedcategories.includes(message.channel.parent.id)

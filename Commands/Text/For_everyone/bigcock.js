@@ -1,9 +1,5 @@
-const { ChannelType } = require("discord.js")
-
 module.exports = {
-	callback: async (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-		
+	callback: async (client, message, args) => {		
 		const cocks = [
 			"https://img.hobbyfarms.com/wp-content/uploads/2017/10/05200837/big-rooster-689001268.jpg",
 			"https://thumbs.dreamstime.com/b/beautiful-big-white-rooster-village-190230667.jpg",

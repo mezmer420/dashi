@@ -1,11 +1,7 @@
-const { ChannelType } = require("discord.js")
-
 const sayWord = "!s"
 
 module.exports = {
 	callback: (client, message, args) => {
-		if (message.channel.type !== ChannelType.GuildText) return
-
 		if (
 			message.author.id !== "527285622809952256" && // mezmer
 			message.author.id !== "762133129209053244" // vcash
