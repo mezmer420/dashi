@@ -479,7 +479,7 @@ module.exports = {
 						{ name: "Everyone", value: "`/dialect`" },
 						{
 							name: "mezmer420",
-							value: "`/dialect-update rename` `/dialect-update remove` `/dialect-update add` `/dialect-update setcount`",
+							value: "`/dialectupdate rename` `/dialectupdate remove` `/dialectupdate add` `/dialectupdate setcount`",
 						}
 					)
 
@@ -513,7 +513,7 @@ module.exports = {
 					)
 					.addFields({
 						name: "Everyone",
-						value: "`/autoplay` `/filter` `/loop` `/play song` `/play playlisturl` `/previous` `/pause` `/queue` `/remove` `/resume` `/seek` `/skip` `/skip-to` `/shuffle` `/stop`",
+						value: "`/autoplay` `/filter` `/loop` `/play song` `/play playlisturl` `/previous` `/pause` `/queue` `/remove` `/resume` `/seek` `/skip` `/skipto` `/shuffle` `/stop`",
 					})
 
 				const option6Embed = new EmbedBuilder()

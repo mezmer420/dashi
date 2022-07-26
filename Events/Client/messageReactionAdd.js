@@ -35,7 +35,7 @@ module.exports = {
 			// 				// )
 			// 				.addFields({
 			// 					name: "Commands",
-			// 					value: "`/play song` `/play playlisturl` `/stop` `/queue` `/pause` `/resume` `/loop` `/autoplay` `/skip` `/skip-to` `/previous` `/remove` `/shuffle` `/seek` `/filter`",
+			// 					value: "`/play song` `/play playlisturl` `/stop` `/queue` `/pause` `/resume` `/loop` `/autoplay` `/skip` `/skipto` `/previous` `/remove` `/shuffle` `/seek` `/filter`",
 			// 					inline: false,
 			// 				})
 			// 				.setFooter({
@@ -47,6 +47,10 @@ module.exports = {
 			// 	// reaction.message.pin().catch((err) => {
 			// 	// 	console.log(err)
 			// 	// })
+			// }
+
+			// if (reaction.message.id === "1001331019766566952") {
+			// 	reaction.message.react("👎")
 			// }
 
 			if (reaction.message.id === "964363343789961267") {
