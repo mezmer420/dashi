@@ -1,4 +1,4 @@
-const { ChannelType } = require("discord.js")
+const { ChannelType, MessageType } = require("discord.js")
 
 module.exports = async ({ client }) => {
 	client.on("messageCreate", async (message) => {
@@ -9,6 +9,13 @@ module.exports = async ({ client }) => {
 		)
 			return
 		if (message.author.id === "956345939130482750") return
+
+		const current = new Date()
+		console.log(current.toLocaleString())
+
+		console.log(
+			`#${message.channel.name}, ${message.author.username}: ${message.content}`
+		)
 
 		message.delete().catch((err) => {})
 	})
