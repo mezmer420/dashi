@@ -125,7 +125,6 @@ module.exports.Spam = database.define("spam", {
 
 module.exports.Fricking = database.define("fricking", {
 	memberid: Sequelize.STRING,
-	consent: Sequelize.BOOLEAN,
 	children: Sequelize.INTEGER,
 })
 
