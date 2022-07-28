@@ -546,7 +546,7 @@ module.exports = {
 					.addFields(
 						{
 							name: "Everyone",
-							value: "`/consent status` `/consent toggle` `/frick` `/leaderboard children` `/rape`",
+							value: "`/frick` `/leaderboard children` `/rape`",
 						},
 						{ name: "mezmer420", value: "`/set children`" }
 					)
