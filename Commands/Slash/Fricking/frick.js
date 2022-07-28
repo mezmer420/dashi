@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
@@ -59,7 +59,6 @@ module.exports.run = async ({
 	if (!getTargetUser) {
 		getTargetUser = await Fricking.create({
 			memberid: targetMember.id,
-			consent: false,
 			children: 0,
 		})
 	}
@@ -71,7 +70,6 @@ module.exports.run = async ({
 	if (!getUser) {
 		getUser = await Fricking.create({
 			memberid: interaction.member.id,
-			consent: false,
 			children: 0,
 		})
 	}
@@ -85,49 +83,121 @@ module.exports.run = async ({
 			.catch((err) => {})
 	}
 
-	if (getTargetUser.consent === false) {
-		return await interaction
-			.editReply({
-				content: `*${targetMember.displayName}* denied to give consent!`,
-			})
-			.catch((err) => {})
-	}
-
-	const existingTargetChildren = getTargetUser.children
-
-	await Fricking.update(
-		{ children: existingTargetChildren + 1 },
-		{ where: { memberid: targetMember.id } }
-	)
-
-	const existingUserChildren = getUser.children
-
-	await Fricking.update(
-		{ children: existingUserChildren + 1 },
-		{ where: { memberid: interaction.member.id } }
-	)
-
-	await frickingCooldown.create({
-		id: interaction.member.id,
-		expiry: new Date().getTime() + 60000 * 30,
-	})
-
-	const genders = ["boy", "girl"]
-	const gender = genders[Math.floor(Math.random() * genders.length)]
-
-	await interaction
+	const sentMessageUser = await interaction
 		.editReply({
-			content: `You just fricked <@${targetMember.id}>! You are both now the parents of a baby ${gender}!`,
+			content: "Awaiting consent...",
 		})
 		.catch((err) => {})
 
-	if (targetMember.user.bot) return
-
-	await targetMember
-		.send(
-			`**${Member.user.username}** just fricked you! You are both now the parents of a baby ${gender}!`
-		)
+	await interaction.channel
+		.send({
+			content: `<@${targetMember.id}> Frick attempt!`,
+		})
 		.catch((err) => {
 			console.log(err)
 		})
+
+	let rowTarget = new ActionRowBuilder().addComponents(
+		new ButtonBuilder()
+			.setCustomId(`consent-${targetMember.id}`)
+			.setLabel("Give consent")
+			.setStyle("Primary"),
+		new ButtonBuilder()
+			.setCustomId(`deny-${targetMember.id}`)
+			.setLabel("Deny consent")
+			.setStyle("Danger")
+	)
+
+	const sentMessageTarget = await interaction.followUp({
+		content: `<@${targetMember.id}>\nDo you consent to sex with <@${interaction.member.id}>? (30 seconds to answer)`,
+		components: [rowTarget],
+	})
+
+	const filterTarget = (i) => {
+		const buttonId = i.customId
+		const [command, memberId] = buttonId.split("-")
+
+		return i.user.id === memberId
+	}
+
+	const collectorTarget =
+		await sentMessageTarget.createMessageComponentCollector({
+			filterTarget,
+			time: 30000,
+		})
+
+	collectorTarget.on("collect", async (i) => {
+		await i.deferUpdate().catch((err) => {})
+
+		if (i.user.id !== targetMember.id) return
+
+		const buttonId = i.customId
+		const [command, memberId] = buttonId.split("-")
+
+		if (command === "consent") {
+			const existingTargetChildren = getTargetUser.children
+
+			await Fricking.update(
+				{ children: existingTargetChildren + 1 },
+				{ where: { memberid: targetMember.id } }
+			)
+
+			const existingUserChildren = getUser.children
+
+			await Fricking.update(
+				{ children: existingUserChildren + 1 },
+				{ where: { memberid: interaction.member.id } }
+			)
+
+			await frickingCooldown.create({
+				id: interaction.member.id,
+				expiry: new Date().getTime() + 60000 * 30,
+			})
+
+			const genders = ["boy", "girl"]
+			const gender = genders[Math.floor(Math.random() * genders.length)]
+
+			await interaction
+				.followUp({
+					content: `You just fricked <@${targetMember.id}>! You are both now the parents of a baby ${gender}!`,
+				})
+				.catch((err) => {})
+		} else if (command === "deny") {
+			await sentMessageUser
+				.edit({
+					content: `<@${targetMember.id}> denied consent`,
+				})
+				.catch((err) => {})
+
+			await interaction
+				.followUp({
+					content: `*${targetMember.displayName}* denied to give consent`,
+				})
+				.catch((err) => {})
+		}
+
+		rowTarget.components[0].setDisabled(true)
+		rowTarget.components[1].setDisabled(true)
+
+		return await sentMessageTarget
+			.edit({
+				content: `<@${targetMember.id}>\nDo you consent to sex with <@${interaction.member.id}>? (30 seconds to answer)`,
+				components: [rowTarget],
+			})
+			.catch((err) => {})
+	})
+
+	collectorTarget.on("end", async (collected, reason) => {
+		if (reason === "time") {
+			rowTarget.components[0].setDisabled(true)
+			rowTarget.components[1].setDisabled(true)
+
+			return await sentMessageTarget
+				.edit({
+					content: `<@${targetMember.id}>\nDo you consent to sex with <@${interaction.member.id}>? (time up)`,
+					components: [rowTarget],
+				})
+				.catch((err) => {})
+		}
+	})
 }

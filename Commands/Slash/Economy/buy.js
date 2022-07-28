@@ -22,7 +22,7 @@ module.exports.data = new SlashCommandBuilder()
 				},
 				{ name: "Bail Bonds", value: "Bail Bonds" },
 				{ name: "Holdup Equipment", value: "Holdup Equipment" },
-				{ name: "Birth Control Pills", value: "Birth Control Pills" }
+				// { name: "Birth Control Pills", value: "Birth Control Pills" }
 			)
 	)
 
@@ -98,10 +98,11 @@ module.exports.run = async ({
 	} else if (item === "Holdup Equipment") {
 		price = 2000
 		itemId = "9"
-	} else if (item === "Birth Control Pills") {
-		price = 1000
-		itemId = "101"
 	}
+	// else if (item === "Birth Control Pills") {
+	// 	price = 1000
+	// 	itemId = "101"
+	// }
 
 	if (item !== "Birth Control Pills" && findItem) {
 		return await interaction

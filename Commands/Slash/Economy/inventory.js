@@ -64,19 +64,19 @@ module.exports.run = async ({
 		desc += `**${itemname}**\n`
 	}
 
-	const stockableitemsdata = await Items.findAll({
-		where: { memberid: member.id, itemid: "101" },
-	})
+	// const stockableitemsdata = await Items.findAll({
+	// 	where: { memberid: member.id, itemid: "101" },
+	// })
 
-	let stockableitems = []
+	// let stockableitems = []
 
-	for (let obj of stockableitemsdata) {
-		stockableitems.push(obj)
-	}
+	// for (let obj of stockableitemsdata) {
+	// 	stockableitems.push(obj)
+	// }
 
-	if (stockableitems.length > 0) {
-		desc += `**Birth Control Pills** \`x${stockableitems.length}\``
-	}
+	// if (stockableitems.length > 0) {
+	// 	desc += `**Birth Control Pills** \`x${stockableitems.length}\``
+	// }
 
 	// stockableitems = stockableitems.sort(function (b, a) {
 	// 	return b.itemid - a.itemid

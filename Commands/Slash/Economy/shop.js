@@ -85,9 +85,13 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 					name: "**About**",
 					value: "Cost and info below each item. To buy, type `/buy`. Stockable items are not sellable.",
 				},
+				// {
+				// 	name: "Birth Control Pills",
+				// 	value: "`1000 Dashcoins` Protects against getting impregnated if you are raped",
+				// }
 				{
-					name: "Birth Control Pills",
-					value: "`1000 Dashcoins` Protects against getting impregnated if you are raped",
+					name: "Noting here rn check back later :/",
+					value: "`0 Dashcoins` qwertyuioplkjhgfdsazxcvbnm",
 				}
 			)
 			break
