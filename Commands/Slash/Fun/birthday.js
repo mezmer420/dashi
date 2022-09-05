@@ -209,6 +209,11 @@ module.exports.run = async ({
 					User: interaction.member.id,
 				},
 			})
+                        
+                        let dayordays = "days";
+                          if (remDays === 1) {
+                          dayordays = "day";
+                        }
 
 			if (data) {
 				await Birthday.update(
@@ -226,6 +231,18 @@ module.exports.run = async ({
 						},
 					}
 				)
+                        return await interaction
+          .editReply({
+            embeds: [
+              new EmbedBuilder()
+                .setColor(client.config.Bot.BotColor)
+                .setDescription(
+                  `✅ - Changed it, I'll wish ${interaction.user}'s **${age}** birthday in **${remDays}** ${dayordays}, on **${Month}/${Day}/${wishYear}**`
+                ),
+            ],
+          })
+          .catch((err) => {});
+
 			} else {
 				await Birthday.create({
 					Guild: interaction.guild.id,
@@ -234,11 +251,6 @@ module.exports.run = async ({
 					Month: Month,
 					Year: Year,
 				})
-			}
-
-			let dayordays = "days"
-			if (remDays === 1) {
-				dayordays = "day"
 			}
 
 			return await interaction
