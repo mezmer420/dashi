@@ -7,7 +7,7 @@ const {
 
 const wait = require("node:timers/promises").setTimeout
 
-module.exports = async ({ client, Dialects, Systems }) => {
+module.exports.run = async ({ client, Dialects, Systems }) => {
 	client.on("messageCreate", async (message) => {
 		const getDialects = await Systems.findOne({
 			where: { system: "Dialects" },
@@ -76,12 +76,28 @@ module.exports = async ({ client, Dialects, Systems }) => {
 			speedyDialectPhrases.push(obj.phrase)
 		}
 
+		const vchocDialectData = await Dialects.findAll({
+			where: { dialectid: "6" },
+		})
+		let vchocDialectPhrases = []
+		for (let obj of vchocDialectData) {
+			vchocDialectPhrases.push(obj.phrase)
+		}
+
+		const ballsDialectData = await Dialects.findAll({
+			where: { dialectid: "7" },
+		})
+		let ballsDialectPhrases = []
+		for (let obj of ballsDialectData) {
+			ballsDialectPhrases.push(obj.phrase)
+		}
+
 		if (vcashDialectPhrases.includes(message.content)) {
 			const getvcashDialectPhrase = await Dialects.findOne({
 				where: { dialectid: "1", phrase: message.content },
 			})
 
-			TypeWaitSend(`${getvcashDialectPhrase.dialectname}`)
+			TypeWaitSend(getvcashDialectPhrase.dialectname)
 
 			if (message.channel.id !== "945527434655187006") {
 				const vcashDialectPhraseOldCount = getvcashDialectPhrase.count
@@ -95,7 +111,7 @@ module.exports = async ({ client, Dialects, Systems }) => {
 				where: { dialectid: "2", phrase: message.content },
 			})
 
-			TypeWaitSend(`${getmezmerDialectPhrase.dialectname}`)
+			TypeWaitSend(getmezmerDialectPhrase.dialectname)
 
 			if (message.channel.id !== "945527434655187006") {
 				const mezmerDialectPhraseOldCount = getmezmerDialectPhrase.count
@@ -109,7 +125,7 @@ module.exports = async ({ client, Dialects, Systems }) => {
 				where: { dialectid: "3", phrase: message.content },
 			})
 
-			TypeWaitSend(`${getchocDialectPhrase.dialectname}`)
+			TypeWaitSend(getchocDialectPhrase.dialectname)
 
 			if (message.channel.id !== "945527434655187006") {
 				const chocDialectPhraseOldCount = getchocDialectPhrase.count
@@ -123,7 +139,7 @@ module.exports = async ({ client, Dialects, Systems }) => {
 				where: { dialectid: "4", phrase: message.content },
 			})
 
-			TypeWaitSend(`${getdeltaDialectPhrase.dialectname}`)
+			TypeWaitSend(getdeltaDialectPhrase.dialectname)
 
 			if (message.channel.id !== "945527434655187006") {
 				const deltaDialectPhraseOldCount = getdeltaDialectPhrase.count
@@ -137,13 +153,41 @@ module.exports = async ({ client, Dialects, Systems }) => {
 				where: { dialectid: "5", phrase: message.content },
 			})
 
-			TypeWaitSend(`${getspeedyDialectPhrase.dialectname}`)
+			TypeWaitSend(getspeedyDialectPhrase.dialectname)
 
 			if (message.channel.id !== "945527434655187006") {
 				const speedyDialectPhraseOldCount = getspeedyDialectPhrase.count
 				await Dialects.update(
 					{ count: speedyDialectPhraseOldCount + 1 },
 					{ where: { dialectid: "5", phrase: message.content } }
+				)
+			}
+		} else if (vchocDialectPhrases.includes(message.content)) {
+			const getvchocDialectPhrase = await Dialects.findOne({
+				where: { dialectid: "6", phrase: message.content },
+			})
+
+			TypeWaitSend(getvchocDialectPhrase.dialectname)
+
+			if (message.channel.id !== "945527434655187006") {
+				const vchocDialectPhraseOldCount = getvchocDialectPhrase.count
+				await Dialects.update(
+					{ count: vchocDialectPhraseOldCount + 1 },
+					{ where: { dialectid: "6", phrase: message.content } }
+				)
+			}
+		} else if (ballsDialectPhrases.includes(message.content)) {
+			const getballsDialectPhrase = await Dialects.findOne({
+				where: { dialectid: "7", phrase: message.content },
+			})
+
+			TypeWaitSend(getballsDialectPhrase.dialectname)
+
+			if (message.channel.id !== "945527434655187006") {
+				const ballsDialectPhraseOldCount = getballsDialectPhrase.count
+				await Dialects.update(
+					{ count: ballsDialectPhraseOldCount + 1 },
+					{ where: { dialectid: "7", phrase: message.content } }
 				)
 			}
 		}

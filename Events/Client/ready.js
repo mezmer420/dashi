@@ -16,6 +16,7 @@ const {
 	Fricking,
 	frickingCooldown,
 	Suppress,
+	Counting,
 } = require("../../database")
 
 module.exports = {
@@ -39,6 +40,7 @@ module.exports = {
 		await Fricking.sync()
 		await frickingCooldown.sync()
 		await Suppress.sync()
+		await Counting.sync()
 
 		console.log("Database synced")
 
@@ -76,7 +78,11 @@ module.exports = {
 		for (const file of utilityFiles) {
 			const event = require(`../../Utilities/${file}`)
 
-			event({
+			// if (event.eoic_only) {
+			// 	if
+			// }
+
+			event.run({
 				client,
 				Systems,
 				basicxp,
@@ -95,6 +101,7 @@ module.exports = {
 				Fricking,
 				frickingCooldown,
 				Suppress,
+				Counting,
 			})
 		}
 
@@ -162,6 +169,7 @@ module.exports = {
 		// Fricking.destroy({ truncate: true }).then(console.log("Fricking destroyed"))
 		// frickingCooldown.destroy({ truncate: true }).then(console.log("frickingCooldown destroyed"))
 		// Suppress.destroy({ truncate: true }).then(console.log("Suppress destroyed"))
+		// Counting.destroy({ truncate: true }).then(console.log("Counting destroyed"))
 
 		// Items.destroy({where: {item: "Birth Control Pills"}})
 

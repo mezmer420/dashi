@@ -1,8 +1,10 @@
 const blacklistedchannels = [
+	"990813253707911268", // dashi changelog
 	"995386274091380826", // #talk-to-dashi
 	"948675276466958336", // #images
 	"950419717779238993", // #videos
 	"995520187870756905", // #serious
+	"1003814223845015702", // #counting
 	"949118223805210674", // #roleplay
 	"964714582402826280", // #fun-questions
 	"973334244178919504", // #france

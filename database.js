@@ -140,3 +140,7 @@ module.exports.frickingCooldown = database.define("frickingcooldown", {
 module.exports.Suppress = database.define("suppress", {
 	memberid: Sequelize.STRING,
 })
+
+module.exports.Counting = database.define("counting", {
+	number: Sequelize.INTEGER,
+})

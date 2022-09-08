@@ -2,10 +2,11 @@ const { ChannelType } = require("discord.js")
 
 const blacklistedchannels = [
 	"945527434655187006", // #spam
+	"1003814223845015702", // #counting
 	"947275856919810048", // #unpure
 	// "969027553878749204", // #nerd
-	"970812606287859722", // #weeb
-	"970859343849349160", // #og
+	// "970812606287859722", // #weeb
+	// "970859343849349160", // #og
 	"964714582402826280", // #fun-questions
 	"983507823965114378", // #bot-suggestions
 	"992630810186367016", // #song-requests
@@ -15,9 +16,7 @@ const {
 	blacklistedcategories,
 } = require("../blacklisted-channels-and-categories")
 
-const wait = require("node:timers/promises").setTimeout
-
-module.exports = async ({ client, basicxp, Systems }) => {
+module.exports.run = async ({ client, basicxp, Systems }) => {
 	client.on("messageCreate", async (message) => {
 		const getXP = await Systems.findOne({
 			where: { system: "XP" },

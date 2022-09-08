@@ -47,22 +47,20 @@ module.exports = (client) => {
 	console.log("Successfully loaded text (!) commands.")
 
 	client.on("messageCreate", (message) => {
-		if (
-			!message.content.startsWith("!") ||
-			message.channel.type !== ChannelType.GuildText ||
-			message.author.bot
-		)
-			return
+		if (!message.content.startsWith("!") || message.author.bot) return
 
 		const args = message.content.slice(1).split(/ +/)
 		const commandName = args.shift().toLowerCase()
 
 		if (!commands[commandName]) return
 
-		try {
-			commands[commandName].callback(client, message, ...args)
-		} catch (error) {
-			console.error(error)
-		}
+		if (!commands[commandName].dm && message.channel.type !== ChannelType.GuildText) return
+		if (commands[commandName].dm &&	message.channel.type !== ChannelType.DM) return
+
+			try {
+				commands[commandName].callback(client, message, ...args)
+			} catch (error) {
+				console.error(error)
+			}
 	})
 }

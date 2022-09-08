@@ -16,6 +16,7 @@ const {
 	Fricking,
 	frickingCooldown,
 	Suppress,
+	Counting,
 } = require("../../database")
 
 const { commands } = require("../../slash-register")
@@ -64,7 +65,24 @@ module.exports = {
 				Fricking,
 				frickingCooldown,
 				Suppress,
+				Counting,
 				defaultColor,
+			}).catch(async (err) => {
+				console.log(err)
+
+				await interaction
+					.editReply({
+						content: "⚠ | An error executing the command occured",
+					})
+					.catch((err) => {
+						console.log(err)
+					})
+
+				return interaction.channel
+					.send("<@527285622809952256> lol fix this")
+					.catch((err) => {
+						console.log(err)
+					})
 			})
 		} else if (interaction.isButton()) {
 			// const button_id = interaction.customId
@@ -627,6 +645,82 @@ module.exports = {
 					})
 					.catch((err) => {})
 			}
+		} else if (interaction.isUserContextMenuCommand()) {
+			const name = interaction.commandName
+			const commandMethod = commands.get(name)
+
+			if (!commandMethod) return
+
+			commandMethod({
+				client,
+				interaction,
+				Systems,
+				basicxp,
+				Dialects,
+				Infraction,
+				Economy,
+				Items,
+				dailyCooldown,
+				workCooldown,
+				begCooldown,
+				robCooldown,
+				Waifus,
+				Birthday,
+				Spam,
+				Fricking,
+				frickingCooldown,
+				Suppress,
+				Counting,
+				defaultColor,
+			}).catch(async (err) => {
+				console.log(err)
+
+				return await interaction
+					.editReply({
+						content: "⚠ | An error executing the command occured",
+					})
+					.catch((err) => {
+						console.log(err)
+					})
+			})
+		} else if (interaction.isMessageContextMenuCommand()) {
+			const name = interaction.commandName
+			const commandMethod = commands.get(name)
+
+			if (!commandMethod) return
+
+			commandMethod({
+				client,
+				interaction,
+				Systems,
+				basicxp,
+				Dialects,
+				Infraction,
+				Economy,
+				Items,
+				dailyCooldown,
+				workCooldown,
+				begCooldown,
+				robCooldown,
+				Waifus,
+				Birthday,
+				Spam,
+				Fricking,
+				frickingCooldown,
+				Suppress,
+				Counting,
+				defaultColor,
+			}).catch(async (err) => {
+				console.log(err)
+
+				return await interaction
+					.editReply({
+						content: "⚠ | An error executing the command occured",
+					})
+					.catch((err) => {
+						console.log(err)
+					})
+			})
 		}
 	},
 }

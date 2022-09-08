@@ -99,6 +99,10 @@ module.exports = {
 							.catch((err) => {})
 					}
 
+					case "deez": {
+						return TypeWaitSend("nuts")
+					}
+
 					case "69": {
 						return TypeWaitSend("nice")
 					}
@@ -152,10 +156,6 @@ module.exports = {
 						return TypeWaitSend(
 							"what Master presented as part of his AP Seminar score"
 						)
-					}
-
-					case "deez": {
-						return TypeWaitSend("nutz")
 					}
 
 					case "caught": {

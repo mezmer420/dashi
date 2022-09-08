@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js")
 
-module.exports = async ({ client, Systems }) => {
+module.exports.run = async ({ client, Systems }) => {
 	const errChannel = "995340958096969869" // dashi anti-crash log dump
 
 	const me = await client.users

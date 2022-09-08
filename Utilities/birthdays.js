@@ -1,11 +1,11 @@
 const { EmbedBuilder } = require("discord.js")
 const cron = require("node-cron")
 
-module.exports = async ({ client, Systems, Birthday }) => {
+module.exports.run = async ({ client, Systems, Birthday }) => {
 	const Guilds = client.guilds.cache
 
 	cron.schedule(
-		`0 8 * * *`,
+		"0 8 * * *",
 		() => {
 			Guilds.forEach(async (g) => {
 				const data = await Birthday.findAll({ where: { Guild: g.id } })
@@ -13,7 +13,7 @@ module.exports = async ({ client, Systems, Birthday }) => {
 				if (!data) return
 
 				data.forEach(async (b) => {
-					const Channel = await client.channels.cache.get(
+					const announcements = await client.channels.cache.get(
 						"946442711936938034"
 					)
 
@@ -40,10 +40,10 @@ module.exports = async ({ client, Systems, Birthday }) => {
 						const getBirthdays = await Systems.findOne({
 							where: { system: "Birthdays" },
 						})
-					
+
 						if (getBirthdays.online === false) return
 
-						Channel.send({
+						announcements.send({
 							content: `@everyone`,
 							embeds: [Embed],
 						})

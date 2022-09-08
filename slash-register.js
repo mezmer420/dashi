@@ -5,6 +5,7 @@ const fs = require("node:fs")
 
 let commands = []
 let commandList = new Map()
+let rawCommands = []
 
 module.exports = async (updateCommands) => {
 	handleCommands = (commandFolders, path) => {
@@ -16,8 +17,11 @@ module.exports = async (updateCommands) => {
 			for (const file of commandFiles) {
 				const command = require(`${path}/${folder}/${file}`)
 
+				// console.log(command)
+
 				commandList.set(command.data.name, command.run)
 				commands.push(command.data.toJSON())
+				rawCommands.push(command)
 			}
 		}
 	}
@@ -53,3 +57,4 @@ module.exports = async (updateCommands) => {
 }
 
 module.exports.commands = commandList
+module.exports.rawCommands = rawCommands

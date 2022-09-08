@@ -1,6 +1,6 @@
 const { ChannelType, EmbedBuilder } = require("discord.js")
 
-module.exports = async ({ client, Systems, Infraction }) => {
+module.exports.run = async ({ client, Systems, Infraction }) => {
 	client.on("messageCreate", async (message) => {
 		const getMessageFilterandAutoWarn = await Systems.findOne({
 			where: { system: "Message Filter & Auto Warn" },

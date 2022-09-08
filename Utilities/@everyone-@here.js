@@ -1,6 +1,6 @@
 const { ChannelType } = require("discord.js")
 
-module.exports = async ({ client }) => {
+module.exports.run = async ({ client }) => {
 	client.on("messageCreate", async (message) => {
 		if (message.channel.type === ChannelType.DM) return
 
@@ -9,6 +9,12 @@ module.exports = async ({ client }) => {
 			message.author.id === "826841451945787412" || // choc
 			message.author.id === "956345939130482750" || // dashi
 			message.author.id === "969084144141344788" // boomer
+		)
+			return
+
+		if (
+			message.author.id === "762133129209053244" && // vcash
+			message.channel.id === "946442711936938034" // in #announcements
 		)
 			return
 

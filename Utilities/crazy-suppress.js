@@ -5,7 +5,7 @@ const { ChannelType } = require("discord.js")
 // 	blacklistedcategories,
 // } = require("../blacklisted-channels-and-categories")
 
-module.exports = async ({ client, Systems, Suppress }) => {
+module.exports.run = async ({ client, Systems, Suppress }) => {
 	client.on("messageCreate", async (message) => {
 		const getCrazySuppress = await Systems.findOne({
 			where: { system: "Crazy Suppress" },
