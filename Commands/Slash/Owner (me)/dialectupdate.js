@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("dialectupdate")
@@ -18,7 +17,15 @@ module.exports.data = new SlashCommandBuilder()
 						{ name: "mezmer dialect", value: "2" },
 						{ name: "choc dialect", value: "3" },
 						{ name: "delta dialect", value: "4" },
-						{ name: "speedy dialect", value: "5" }
+						{ name: "speedy dialect", value: "5" },
+						{
+							name: "vchoc dialect",
+							value: "6",
+						},
+						{
+							name: "balls dialect",
+							value: "7",
+						}
 					)
 			)
 			.addStringOption((option) =>
@@ -42,7 +49,15 @@ module.exports.data = new SlashCommandBuilder()
 						{ name: "mezmer dialect", value: "2" },
 						{ name: "choc dialect", value: "3" },
 						{ name: "delta dialect", value: "4" },
-						{ name: "speedy dialect", value: "5" }
+						{ name: "speedy dialect", value: "5" },
+						{
+							name: "vchoc dialect",
+							value: "6",
+						},
+						{
+							name: "balls dialect",
+							value: "7",
+						}
 					)
 			)
 			.addStringOption((option) =>
@@ -66,7 +81,15 @@ module.exports.data = new SlashCommandBuilder()
 						{ name: "mezmer dialect", value: "2" },
 						{ name: "choc dialect", value: "3" },
 						{ name: "delta dialect", value: "4" },
-						{ name: "speedy dialect", value: "5" }
+						{ name: "speedy dialect", value: "5" },
+						{
+							name: "vchoc dialect",
+							value: "6",
+						},
+						{
+							name: "balls dialect",
+							value: "7",
+						}
 					)
 			)
 			.addStringOption((option) =>
@@ -90,7 +113,15 @@ module.exports.data = new SlashCommandBuilder()
 						{ name: "mezmer dialect", value: "2" },
 						{ name: "choc dialect", value: "3" },
 						{ name: "delta dialect", value: "4" },
-						{ name: "speedy dialect", value: "5" }
+						{ name: "speedy dialect", value: "5" },
+						{
+							name: "vchoc dialect",
+							value: "6",
+						},
+						{
+							name: "balls dialect",
+							value: "7",
+						}
 					)
 			)
 			.addStringOption((option) =>
@@ -106,6 +137,8 @@ module.exports.data = new SlashCommandBuilder()
 					.setRequired(true)
 			)
 	)
+
+module.exports.category = "Owner"
 
 module.exports.run = async ({ client, interaction, Dialects }) => {
 	if (interaction.member.id !== "527285622809952256") {
@@ -152,6 +185,10 @@ module.exports.run = async ({ client, interaction, Dialects }) => {
 					dialectName = "delta airlines dialect"
 				} else if (dialectId === "5") {
 					dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+				} else if (dialectId === "6") {
+					dialectName = "vchoc dialect"
+				} else if (dialectId === "7") {
+					dialectName = "balls dialect"
 				}
 
 				await Dialects.create({
@@ -201,6 +238,10 @@ module.exports.run = async ({ client, interaction, Dialects }) => {
 					dialectName = "delta airlines dialect"
 				} else if (dialectId === "5") {
 					dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+				} else if (dialectId === "6") {
+					dialectName = "vchoc dialect"
+				} else if (dialectId === "7") {
+					dialectName = "balls dialect"
 				}
 
 				return await interaction
@@ -242,6 +283,10 @@ module.exports.run = async ({ client, interaction, Dialects }) => {
 					dialectName = "delta airlines dialect"
 				} else if (dialectId === "5") {
 					dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+				} else if (dialectId === "6") {
+					dialectName = "vchoc dialect"
+				} else if (dialectId === "7") {
+					dialectName = "balls dialect"
 				}
 
 				return await interaction
@@ -282,6 +327,10 @@ module.exports.run = async ({ client, interaction, Dialects }) => {
 					dialectName = "delta airlines dialect"
 				} else if (dialectId === "5") {
 					dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+				} else if (dialectId === "6") {
+					dialectName = "vchoc dialect"
+				} else if (dialectId === "7") {
+					dialectName = "balls dialect"
 				}
 
 				return await interaction

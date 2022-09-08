@@ -1,5 +1,8 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActivityType } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActivityType,
+} = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("setpresence")
@@ -45,6 +48,8 @@ module.exports.data = new SlashCommandBuilder()
 					.setRequired(true)
 			)
 	)
+
+module.exports.category = "Owner"
 
 module.exports.run = async ({ client, interaction }) => {
 	if (interaction.member.id !== "527285622809952256") {

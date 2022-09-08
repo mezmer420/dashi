@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("deposit")
@@ -10,6 +9,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The amount to deposit")
 			.setRequired(false)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 	const getEconomy = await Systems.findOne({

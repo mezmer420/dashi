@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
 const {
+	SlashCommandBuilder,
 	ActionRowBuilder,
 	EmbedBuilder,
 	SelectMenuBuilder,
@@ -8,6 +8,8 @@ const {
 module.exports.data = new SlashCommandBuilder()
 	.setName("help")
 	.setDescription("Provides first aid")
+
+module.exports.category = "Info"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const dashi = await client.users.fetch("956345939130482750")

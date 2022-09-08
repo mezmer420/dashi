@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("say")
@@ -15,6 +15,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The channel to say in")
 			.setRequired(false)
 	)
+
+module.exports.category = "Owner"
 
 module.exports.run = async ({ client, interaction }) => {
 	if (interaction.member.id !== "527285622809952256") {

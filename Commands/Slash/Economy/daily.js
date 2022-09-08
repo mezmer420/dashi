@@ -1,9 +1,11 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("daily")
 	.setDescription("Get 200 Dashcoins for free every 16 hours")
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,
@@ -57,10 +59,10 @@ module.exports.run = async ({
 		})
 	}
 
-	const coins_earned = 200
+	const coinsEarned = 200
 
 	await Economy.update(
-		{ wallet: getUser.wallet + coins_earned },
+		{ wallet: getUser.wallet + coinsEarned },
 		{ where: { id: interaction.member.id } }
 	)
 

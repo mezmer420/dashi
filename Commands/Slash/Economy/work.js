@@ -1,11 +1,17 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 const ms = require("ms")
 const wait = require("node:timers/promises").setTimeout
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("work")
 	.setDescription("Work for Dashcoins; default earned is 65-100")
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,
@@ -58,7 +64,7 @@ module.exports.run = async ({
 		})
 	}
 
-	const randomvalue = Math.floor(Math.random() * 100)
+	const randomValue = Math.floor(Math.random() * 100)
 
 	const findWife = await Items.findOne({
 		where: { memberid: interaction.member.id, item: "Wife" },
@@ -85,11 +91,11 @@ module.exports.run = async ({
 	let result
 
 	if (findWife) {
-		if (randomvalue < 5) {
+		if (randomValue < 5) {
 			result = "bad day"
 		}
 	} else if (!findWife) {
-		if (randomvalue < 10) {
+		if (randomValue < 10) {
 			result = "bad day"
 		}
 	}
@@ -115,18 +121,18 @@ module.exports.run = async ({
 			.catch((err) => {})
 	}
 
-	let coins_earned = Math.floor(Math.random() * 35) + 66
+	let coinsEarned = Math.floor(Math.random() * 35) + 66
 
-	if (findHammer && findFalsifiedCollegeDegree) {
-		coins_earned = Math.floor(Math.random() * 20) + 481
-	} else if (!findHammer && !findFalsifiedCollegeDegree) {
-		coins_earned = Math.floor(Math.random() * 35) + 466
-	} else if (findHammer && findSickle) {
-		coins_earned = Math.floor(Math.random() * 20) + 131
-	} else if (findHammer && !findSickle) {
-		coins_earned = Math.floor(Math.random() * 20) + 81
-	} else if (!findHammer && findSickle) {
-		coins_earned = Math.floor(Math.random() * 35) + 116
+	if (findFalsifiedCollegeDegree && findHammer) {
+		coinsEarned = Math.floor(Math.random() * 20) + 481
+	} else if (findFalsifiedCollegeDegree && !findHammer) {
+		coinsEarned = Math.floor(Math.random() * 35) + 466
+	} else if (findSickle && findHammer) {
+		coinsEarned = Math.floor(Math.random() * 20) + 131
+	} else if (findSickle && !findHammer) {
+		coinsEarned = Math.floor(Math.random() * 35) + 116
+	} else if (findHammer) {
+		coinsEarned = Math.floor(Math.random() * 20) + 81
 	}
 
 	const emojisAll = [
@@ -419,7 +425,7 @@ module.exports.run = async ({
 				.catch((err) => {})
 
 			await Economy.update(
-				{ wallet: getUser.wallet + coins_earned },
+				{ wallet: getUser.wallet + coinsEarned },
 				{ where: { id: interaction.member.id } }
 			)
 
@@ -438,7 +444,7 @@ module.exports.run = async ({
 
 			return await i
 				.reply({
-					content: `You earned **${coins_earned}** Dashcoins:tm:!`,
+					content: `You earned **${coinsEarned}** Dashcoins:tm:!`,
 				})
 				.catch((err) => {})
 		} else {
@@ -499,10 +505,10 @@ module.exports.run = async ({
 				})
 				.catch((err) => {})
 
-			coins_earned = Math.round(coins_earned * 0.15)
+			coinsEarned = Math.round(coinsEarned * 0.15)
 
 			await Economy.update(
-				{ wallet: getUser.wallet + coins_earned },
+				{ wallet: getUser.wallet + coinsEarned },
 				{ where: { id: interaction.member.id } }
 			)
 
@@ -521,7 +527,7 @@ module.exports.run = async ({
 
 			return await i
 				.followUp({
-					content: `You earned **${coins_earned}** Dashcoins:tm:!`,
+					content: `You earned **${coinsEarned}** Dashcoins:tm:!`,
 				})
 				.catch((err) => {})
 		}
@@ -546,10 +552,10 @@ module.exports.run = async ({
 				})
 				.catch((err) => {})
 
-			coins_earned = Math.round(coins_earned * 0.15)
+			coinsEarned = Math.round(coinsEarned * 0.15)
 
 			await Economy.update(
-				{ wallet: getUser.wallet + coins_earned },
+				{ wallet: getUser.wallet + coinsEarned },
 				{ where: { id: interaction.member.id } }
 			)
 
@@ -568,7 +574,7 @@ module.exports.run = async ({
 
 			return await interaction
 				.followUp({
-					content: `You earned **${coins_earned}** Dashcoins:tm:!`,
+					content: `You earned **${coinsEarned}** Dashcoins:tm:!`,
 				})
 				.catch((err) => {})
 		}

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("spam")
@@ -15,6 +15,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("Optional message to send")
 			.setRequired(false)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction, Spam }) => {
 	if (interaction.channel.id !== "945527434655187006") {

@@ -1,5 +1,9 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("buy")
@@ -21,10 +25,12 @@ module.exports.data = new SlashCommandBuilder()
 					value: "Falsified College Degree",
 				},
 				{ name: "Bail Bonds", value: "Bail Bonds" },
-				{ name: "Holdup Equipment", value: "Holdup Equipment" },
+				{ name: "Holdup Equipment", value: "Holdup Equipment" }
 				// { name: "Birth Control Pills", value: "Birth Control Pills" }
 			)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,

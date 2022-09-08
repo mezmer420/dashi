@@ -1,10 +1,11 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const os = require("os")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("ping")
 	.setDescription("Pong!")
+
+module.exports.category = "Info"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	interaction.channel

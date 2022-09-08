@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const fetch = require("node-fetch")
 
 module.exports.data = new SlashCommandBuilder()
@@ -11,6 +10,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The pokémon to search for")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const pokemon = interaction.options.getString("pokémon")

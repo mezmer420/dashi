@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("waifu")
@@ -12,6 +11,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("User to view the avatar of")
 			.setRequired(false)
 	)
+
+module.exports.category = "Waifus"
 
 module.exports.run = async ({ client, interaction, Systems, Waifus }) => {
 	const getWaifus = await Systems.findOne({

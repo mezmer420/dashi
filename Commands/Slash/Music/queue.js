@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("queue")
@@ -13,6 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setMinValue(1)
 			.setRequired(false)
 	)
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 	const getMusic = await Systems.findOne({
@@ -102,7 +103,9 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 		return Math.round(x / 2) * 2
 	}
 
-	let progressforBar = round2((queue.currentTime / currentSong.duration) * 100)
+	let progressforBar = round2(
+		(queue.currentTime / currentSong.duration) * 100
+	)
 
 	progressforBar = progressforBar / 2
 

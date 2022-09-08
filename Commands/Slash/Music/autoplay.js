@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("autoplay")
 	.setDescription("Toggle autoplay; auto adds new songs if queue empty")
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({

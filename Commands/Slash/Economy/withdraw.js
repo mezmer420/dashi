@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("withdraw")
@@ -12,6 +11,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setMaxValue(5000)
 			.setRequired(true)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 	const getEconomy = await Systems.findOne({
@@ -56,9 +57,17 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 		{ where: { id: interaction.member.id } }
 	)
 
+	let DashcoinorDashcoins = "Dashcoins"
+
+	if (amount === 1) {
+		DashcoinorDashcoins = "Dashcoin"
+	}
+
 	const Embed = new EmbedBuilder()
 		.setTitle("💸 Coin withdrawal complete 💸")
-		.setDescription(`**${amount}** Dashcoins:tm: withdrawn from your bank!`)
+		.setDescription(
+			`**${amount}** ${DashcoinorDashcoins}:tm: withdrawn from your bank!`
+		)
 		.setColor("Green")
 		.setThumbnail(
 			interaction.member.user.displayAvatarURL({

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("pay")
@@ -18,6 +17,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setMaxValue(5000)
 			.setRequired(true)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 	const getEconomy = await Systems.findOne({

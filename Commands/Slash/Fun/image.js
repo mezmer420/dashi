@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 // https://api.jeyy.xyz/docs#/
 
@@ -352,6 +352,8 @@ module.exports.data = new SlashCommandBuilder()
 					.setRequired(true)
 			)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const image = interaction.options.getAttachment("image")

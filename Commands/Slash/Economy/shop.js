@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("shop")
@@ -14,6 +13,8 @@ module.exports.data = new SlashCommandBuilder()
 				{ name: "Stockable Itmes", value: "stockable" }
 			)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 	const getEconomy = await Systems.findOne({
@@ -65,7 +66,7 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 				},
 				{
 					name: "Falsified College Degree",
-					value: "`50000 Dashcoins` Max Dashcoins:tm: earned from working increased to 500",
+					value: "`50000 Dashcoins` Because we all know you're too dum to get a real college degree. Max Dashcoins:tm: earned from working increased to 500",
 				},
 				{
 					name: "Bail Bonds",
@@ -73,7 +74,7 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 				},
 				{
 					name: "Holdup Equipment",
-					value: "`2000 Dashcoins` Increases your chances of a successful heist"
+					value: "`2000 Dashcoins` Increases your chances of a successful heist",
 				}
 			)
 			break

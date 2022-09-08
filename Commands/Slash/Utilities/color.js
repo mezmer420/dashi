@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("color")
 	.setDescription("Gives a random color")
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const colors = [
@@ -4437,4 +4438,5 @@ module.exports.run = async ({ client, interaction }) => {
 		.editReply({
 			content: `Color: ${randomcolor.color}\nHex: ${randomcolor.code.hex}`,
 		})
-		.catch((err) => {})}
+		.catch((err) => {})
+}

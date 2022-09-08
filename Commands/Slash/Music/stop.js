@@ -1,9 +1,15 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("stop")
 	.setDescription("Stops the music bot and clears the queue")
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({

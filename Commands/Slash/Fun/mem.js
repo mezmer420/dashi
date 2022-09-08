@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("mem")
 	.setDescription("Sends a mem")
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const num = Math.floor(Math.random() * (500 - 1) + 1)

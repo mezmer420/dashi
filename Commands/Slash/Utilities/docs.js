@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const Docs = require("discord.js-docs")
 
 module.exports.data = new SlashCommandBuilder()
@@ -11,6 +10,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("Search the official Discord.JS documentation")
 			.setRequired(true)
 	)
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const query = interaction.options.getString("search-query")

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("kill")
@@ -9,6 +9,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The person to kill")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const target = interaction.options.getMember("victim")
@@ -207,7 +209,11 @@ module.exports.run = async ({ client, interaction }) => {
 		`While performing colonoscopy on an elephant, ${target} gets their head stuck in the elephants rectum and chokes.`,
 	]
 
+	const kill = kills[Math.floor(Math.random() * kills.length)]
+
 	await interaction
-		.editReply(kills[Math.floor(Math.random() * kills.length)])
+		.editReply({
+			content: kill,
+		})
 		.catch((err) => {})
 }

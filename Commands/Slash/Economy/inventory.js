@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const sequelize = require("sequelize")
 
 module.exports.data = new SlashCommandBuilder()
@@ -13,6 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("User to check the balance of")
 			.setRequired(false)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,

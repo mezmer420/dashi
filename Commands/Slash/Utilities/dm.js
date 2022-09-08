@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("dm")
@@ -15,6 +15,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The message to DM")
 			.setRequired(true)
 	)
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const user = interaction.options.getMember("user")

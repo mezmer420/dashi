@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("filter")
@@ -35,6 +34,8 @@ module.exports.data = new SlashCommandBuilder()
 				{ name: "Vibrato", value: "vibrato" } // custom
 			)
 	)
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({

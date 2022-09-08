@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("systems")
 	.setDescription("View systems statuses")
+
+module.exports.category = "Info"
 
 module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 	const xpData = await Systems.findOne({

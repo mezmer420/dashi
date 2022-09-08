@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
@@ -10,6 +10,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The user to heck")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const victim = interaction.options.getMember("target")

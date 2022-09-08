@@ -1,10 +1,16 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 const Sequelize = require("sequelize")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("breakup")
 	.setDescription("Break up with your current waifu")
+
+module.exports.category = "Waifus"
 
 module.exports.run = async ({ client, interaction, Waifus, defaultColor }) => {
 	const getUser = await Waifus.findOne({

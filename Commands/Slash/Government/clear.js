@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("clear")
@@ -17,6 +16,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("Delete a specific member's messages")
 			.setRequired(false)
 	)
+
+module.exports.category = "Government"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const number = interaction.options.getInteger("number")

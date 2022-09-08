@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("embed")
@@ -194,6 +193,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("URL for footer icon; footertext MUST be included")
 			.setRequired(false)
 	)
+
+module.exports.category = "Government"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const targetchannel = interaction.options.getChannel("channel")

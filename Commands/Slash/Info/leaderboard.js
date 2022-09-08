@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("leaderboard")
@@ -19,6 +18,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setName("children")
 			.setDescription("Sort users by their children")
 	)
+
+module.exports.category = "Info"
 
 module.exports.run = async ({
 	client,
@@ -156,7 +157,7 @@ module.exports.run = async ({
 			}
 
 			const data = await basicxp.findAll({})
-			
+
 			let members = []
 
 			for (let obj of data) {

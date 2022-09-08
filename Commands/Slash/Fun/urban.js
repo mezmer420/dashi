@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const axios = require("axios")
 
 module.exports.data = new SlashCommandBuilder()
@@ -13,6 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The search term")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const query = interaction.options.getString("search-query")
@@ -39,6 +40,9 @@ module.exports.run = async ({ client, interaction }) => {
 			.catch((err) => {})
 	}
 
+	const example =
+		answer.example.length > 0 ? trim(answer.example) : "(None provided)"
+
 	const Embed = new EmbedBuilder()
 		.setTitle(answer.word)
 		.setURL(answer.permalink)
@@ -46,7 +50,7 @@ module.exports.run = async ({ client, interaction }) => {
 		.setThumbnail("https://i.imgur.com/VFXr0ID.jpg")
 		.addFields(
 			{ name: "Definition", value: trim(answer.definition) },
-			{ name: "Example", value: trim(answer.example) },
+			{ name: "Example", value: example },
 			{
 				name: "Ratings",
 				value: `👍 ${answer.thumbs_up} || 👎 ${answer.thumbs_down}`,

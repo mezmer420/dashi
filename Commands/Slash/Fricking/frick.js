@@ -1,5 +1,9 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
@@ -8,6 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 	.addUserOption((option) =>
 		option.setName("user").setDescription("User to frick").setRequired(true)
 	)
+
+module.exports.category = "Fricking"
 
 module.exports.run = async ({
 	client,
@@ -194,7 +200,7 @@ module.exports.run = async ({
 
 			return await sentMessageTarget
 				.edit({
-					content: `<@${targetMember.id}>\nDo you consent to sex with <@${interaction.member.id}>? (time up)`,
+					content: `<@${targetMember.id}>\nDo you consent to sex with <@${interaction.member.id}>? (30 seconds to answer)`,
 					components: [rowTarget],
 				})
 				.catch((err) => {})

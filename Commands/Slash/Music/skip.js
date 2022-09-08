@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("skip")
 	.setDescription("Skips the current song")
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 	const getMusic = await Systems.findOne({

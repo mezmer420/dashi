@@ -1,8 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("coinflip")
 	.setDescription("Flip a coin")
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const outcomes = ["heads", "tails"]

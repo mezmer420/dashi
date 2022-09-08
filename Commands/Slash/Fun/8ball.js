@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("8ball")
@@ -10,6 +9,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The question you want to ask the magic 8ball")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const inquiry = interaction.options.getString("question")

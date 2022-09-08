@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("warn")
@@ -16,6 +15,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("Reason of the warn")
 			.setRequired(true)
 	)
+
+module.exports.category = "Government"
 
 module.exports.run = async ({ client, interaction, Infraction }) => {
 	const member = interaction.options.getMember("member")

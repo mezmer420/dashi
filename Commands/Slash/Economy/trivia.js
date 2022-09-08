@@ -1,5 +1,9 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 const fetch = require("node-fetch")
 
 module.exports.data = new SlashCommandBuilder()
@@ -68,6 +72,8 @@ module.exports.data = new SlashCommandBuilder()
 				{ name: "Hard", value: "&difficulty=hard" }
 			)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 	const category = interaction.options.getString("category") || ""
@@ -222,23 +228,23 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			})
 
 			if (getEconomy.online === true) {
-				let coins_earned
+				let coinsEarned
 
 				if (questionData.difficulty === "easy") {
-					coins_earned = 10
+					coinsEarned = 10
 				} else if (questionData.difficulty === "medium") {
-					coins_earned = 20
+					coinsEarned = 20
 				} else if (questionData.difficulty === "hard") {
-					coins_earned = 30
+					coinsEarned = 30
 				}
 
 				await Economy.update(
-					{ wallet: getUser.wallet + coins_earned },
+					{ wallet: getUser.wallet + coinsEarned },
 					{ where: { id: interaction.member.id } }
 				)
 
 				return await i
-					.reply(`You got **${coins_earned}** Dashcoins:tm:`)
+					.reply(`You got **${coinsEarned}** Dashcoins:tm:`)
 					.catch((err) => {})
 			} else if (getEconomy.online === false) {
 				return await i

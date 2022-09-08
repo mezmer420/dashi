@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("dialect")
@@ -17,11 +16,27 @@ module.exports.data = new SlashCommandBuilder()
 				{
 					name: "speedy dialect uwu owu uwo ow- -w- -wu uWu",
 					value: "5",
+				},
+				{
+					name: "vchoc dialect",
+					value: "6",
+				},
+				{
+					name: "balls dialect",
+					value: "7",
 				}
 			)
 	)
 
-module.exports.run = async ({ client, interaction, Systems, Dialects }) => {
+module.exports.category = "Info"
+
+module.exports.run = async ({
+	client,
+	interaction,
+	Systems,
+	Dialects,
+	defaultColor,
+}) => {
 	const getDialects = await Systems.findOne({
 		where: { system: "Dialects" },
 	})
@@ -52,6 +67,10 @@ module.exports.run = async ({ client, interaction, Systems, Dialects }) => {
 			dialectName = "delta airlines dialect"
 		} else if (dialectId === "5") {
 			dialectName = "speedy dialect uwu owu uwo ow- -w- -wu uWu"
+		} else if (dialectId === "6") {
+			dialectName = "vchoc dialect"
+		} else if (dialectId === "7") {
+			dialectName = "balls dialect"
 		}
 
 		return await interaction
@@ -118,6 +137,10 @@ module.exports.run = async ({ client, interaction, Systems, Dialects }) => {
 	} else if (dialectId === "4") {
 		Embed.setColor("Purple")
 	} else if (dialectId === "5") {
+		Embed.setColor("Purple")
+	} else if (dialectId === "6") {
+		Embed.setColor("Orange")
+	} else if (dialectId === "7") {
 		Embed.setColor("Purple")
 	}
 

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 const { createWorker } = require("tesseract.js")
 
 module.exports.data = new SlashCommandBuilder()
@@ -10,6 +10,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The image you want to be converted to text")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const image = interaction.options.getAttachment("image")

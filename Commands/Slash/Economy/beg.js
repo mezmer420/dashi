@@ -1,9 +1,11 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("beg")
 	.setDescription("Beg for Dashcoins; cooldown 1 min")
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,
@@ -76,56 +78,56 @@ module.exports.run = async ({
 	// 		})
 	// 		.catch((err) => {})
 	// } else if (getUser.wallet < 1000 && getUser.bank < 1000) {
-		const randomvalue = Math.floor(Math.random() * 100)
+	const randomValue = Math.floor(Math.random() * 100)
 
-		if (randomvalue >= 20) {
-			const coins_earned = Math.floor(Math.random() * 5) + 5
+	if (randomValue >= 20) {
+		const coinsEarned = Math.floor(Math.random() * 5) + 5
 
-			await Economy.update(
-				{ wallet: getUser.wallet + coins_earned },
-				{ where: { id: interaction.member.id } }
-			)
+		await Economy.update(
+			{ wallet: getUser.wallet + coinsEarned },
+			{ where: { id: interaction.member.id } }
+		)
 
-			await begCooldown.create({
-				id: interaction.member.id,
-				expiry: new Date().getTime() + 30000 * 2,
+		await begCooldown.create({
+			id: interaction.member.id,
+			expiry: new Date().getTime() + 30000 * 2,
+		})
+
+		return await interaction
+			.editReply({
+				content: `You recieved **${coinsEarned}** Dashcoins:tm:!`,
 			})
+			.catch((err) => {})
+	} else if (10 <= randomValue && randomValue < 20) {
+		const coinsEarned = Math.floor(Math.random() * 50) + 100
 
-			return await interaction
-				.editReply({
-					content: `You recieved **${coins_earned}** Dashcoins:tm:!`,
-				})
-				.catch((err) => {})
-		} else if (10 <= randomvalue && randomvalue < 20) {
-			const coins_earned = Math.floor(Math.random() * 50) + 100
+		await Economy.update(
+			{ wallet: getUser.wallet + coinsEarned },
+			{ where: { id: interaction.member.id } }
+		)
 
-			await Economy.update(
-				{ wallet: getUser.wallet + coins_earned },
-				{ where: { id: interaction.member.id } }
-			)
+		await begCooldown.create({
+			id: interaction.member.id,
+			expiry: new Date().getTime() + 30000 * 2,
+		})
 
-			await begCooldown.create({
-				id: interaction.member.id,
-				expiry: new Date().getTime() + 30000 * 2,
+		return await interaction
+			.editReply({
+				content: `Woah, was that MrBeast? You recieved **${coinsEarned}** Dashcoins:tm:!`,
 			})
+			.catch((err) => {})
+	} else if (randomValue < 10) {
+		await begCooldown.create({
+			id: interaction.member.id,
+			expiry: new Date().getTime() + 30000 * 2,
+		})
 
-			return await interaction
-				.editReply({
-					content: `Woah, was that MrBeast? You recieved **${coins_earned}** Dashcoins:tm:!`,
-				})
-				.catch((err) => {})
-		} else if (randomvalue < 10) {
-			await begCooldown.create({
-				id: interaction.member.id,
-				expiry: new Date().getTime() + 30000 * 2,
+		return await interaction
+			.editReply({
+				content:
+					"Unfortunately, nobody donated you anything. Better luck next time.",
 			})
-
-			return await interaction
-				.editReply({
-					content:
-						"Unfortunately, nobody donated you anything. Better luck next time.",
-				})
-				.catch((err) => {})
+			.catch((err) => {})
 		// }
 	}
 }

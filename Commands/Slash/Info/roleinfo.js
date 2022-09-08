@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("roleinfo")
@@ -10,6 +9,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The role to view info of")
 			.setRequired(true)
 	)
+
+module.exports.category = "Info"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const role = interaction.options.getRole("role")

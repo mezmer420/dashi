@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("diceroll")
@@ -11,6 +11,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setMaxValue(5)
 			.setRequired(false)
 	)
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const dice = interaction.options.getInteger("dice") || 1

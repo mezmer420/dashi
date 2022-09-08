@@ -1,5 +1,9 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js")
+const {
+	SlashCommandBuilder,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+} = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("discard")
@@ -14,6 +18,8 @@ module.exports.data = new SlashCommandBuilder()
 				value: "Birth Control Pills",
 			})
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,

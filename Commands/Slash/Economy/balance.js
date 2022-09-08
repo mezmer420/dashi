@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("balance")
@@ -12,6 +11,8 @@ module.exports.data = new SlashCommandBuilder()
 			)
 			.setRequired(false)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,
@@ -42,7 +43,11 @@ module.exports.run = async ({
 	const Embed = new EmbedBuilder()
 		.setTitle(`💰 ${member.displayName}'s Balance`)
 		.setDescription(
-			`**Wallet:** \`${getUser.wallet}\` Dashcoins:tm:\n**Bank:** \`${getUser.bank}\` Dashcoins:tm:\n——————————\n**Net:** \`${getUser.wallet + getUser.bank}\` Dashcoins:tm:`
+			`**Wallet:** \`${getUser.wallet}\` Dashcoins:tm:\n**Bank:** \`${
+				getUser.bank
+			}\` Dashcoins:tm:\n——————————\n**Net:** \`${
+				getUser.wallet + getUser.bank
+			}\` Dashcoins:tm:`
 		)
 		.setColor(defaultColor)
 		.setThumbnail(

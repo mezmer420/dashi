@@ -1,8 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("resume")
 	.setDescription("Resumes the music")
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({

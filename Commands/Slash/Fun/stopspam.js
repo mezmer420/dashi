@@ -1,8 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("stopspam")
 	.setDescription("Stop the existing spam")
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction, Spam }) => {
 	if (interaction.channel.id !== "945527434655187006") {
@@ -16,7 +18,7 @@ module.exports.run = async ({ client, interaction, Spam }) => {
 				setTimeout(() => interaction.delete().catch((err) => {}), 6000)
 			})
 	}
-	
+
 	const getSpam = await Spam.findOne({ where: { active: true } })
 
 	if (!getSpam) {

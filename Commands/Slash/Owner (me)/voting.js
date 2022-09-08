@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("voting")
@@ -45,6 +45,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("Reaction emoji 5")
 			.setRequired(false)
 	)
+
+module.exports.category = "Owner"
 
 module.exports.run = async ({ client, interaction }) => {
 	if (interaction.member.id !== "527285622809952256") {

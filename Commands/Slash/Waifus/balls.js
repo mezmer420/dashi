@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("balls")
 	.setDescription("Gives a random ball")
+
+module.exports.category = "Waifus"
 
 module.exports.run = async ({ client, interaction, Systems, Waifus }) => {
 	const getWaifus = await Systems.findOne({
@@ -17,8 +18,9 @@ module.exports.run = async ({ client, interaction, Systems, Waifus }) => {
 			})
 			.catch((err) => {})
 	}
-	
+
 	const balls = ["Basketball", "Football", "Baseball", "Golf Ball"]
+
 	const ball = balls[Math.floor(Math.random() * balls.length)]
 
 	const Embed = new EmbedBuilder()
@@ -57,7 +59,15 @@ module.exports.run = async ({ client, interaction, Systems, Waifus }) => {
 		.editReply({
 			embeds: [Embed],
 		})
-		.catch((err) => {})
+		.catch(async (err) => {
+			console.log(err)
+
+			return await interaction
+				.editReply({
+					content: "❌ | An error occured",
+				})
+				.catch((err) => {})
+		})
 
 	sentInteraction.react("❤️").catch((err) => {})
 

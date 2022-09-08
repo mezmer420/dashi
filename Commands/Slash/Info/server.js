@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, ChannelType } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder, ChannelType } = require("discord.js")
 const moment = require("moment")
 
 module.exports.data = new SlashCommandBuilder()
@@ -12,8 +11,10 @@ module.exports.data = new SlashCommandBuilder()
 		subcommand.setName("icon").setDescription("View this server's icon")
 	)
 
+module.exports.category = "Info"
+
 module.exports.run = async ({ client, interaction, defaultColor }) => {
-	const guild = client.guilds.resolve("939674946379083847")
+	const guild = client.guilds.resolve(interaction.guildId)
 
 	const icon = guild.iconURL({ size: 4096, dynamic: true })
 

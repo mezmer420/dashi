@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("timer")
@@ -18,6 +17,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("What to remind you about")
 			.setRequired(true)
 	)
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const time = interaction.options.getInteger("seconds")

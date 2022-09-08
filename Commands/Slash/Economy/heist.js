@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const ms = require("ms")
 
 module.exports.data = new SlashCommandBuilder()
@@ -11,6 +10,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The user you want to heist")
 			.setRequired(true)
 	)
+
+module.exports.category = "Economy"
 
 module.exports.run = async ({
 	client,
@@ -105,12 +106,12 @@ module.exports.run = async ({
 		return await interaction
 			.editReply({
 				content:
-					"Bruh the person you're trying to rob has less than 100 Dashcoins:tm: in their bank.",
+					"Bruh the person you're trying to heist has less than 100 Dashcoins:tm: in their bank.",
 			})
 			.catch((err) => {})
 	}
 
-	const randomvalue = Math.floor(Math.random() * 100)
+	const randomValue = Math.floor(Math.random() * 100)
 
 	const findHoldupequipment = await Items.findOne({
 		where: { memberid: interaction.member.id, item: "Holdup Equipment" },
@@ -121,15 +122,15 @@ module.exports.run = async ({
 
 	chance = findHoldupequipment ? 65 : 40
 
-	if (randomvalue >= chance) {
+	if (randomValue >= chance) {
 		outcome = "caught"
-	} else if (randomvalue < chance) {
+	} else if (randomValue < chance) {
 		outcome = "success"
 	}
 
 	if (outcome === "caught") {
-		const coins_fined = Math.round(getUser.bank * 0.1)
-		const newrobberBank = getUser.bank - coins_fined
+		const coinsFined = Math.round(getUser.bank * 0.1)
+		const newrobberBank = getUser.bank - coinsFined
 
 		await Economy.update(
 			{ bank: newrobberBank },
@@ -185,7 +186,7 @@ module.exports.run = async ({
 			const caughtEmbed = new EmbedBuilder()
 				.setTitle("👮 Heist Foiled 🚨")
 				.setDescription(
-					`**${interaction.member.displayName}** attempted to heist **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coins_fined}** Dashcoins:tm: and is in jail for **15** minutes.`
+					`**${interaction.member.displayName}** attempted to heist **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coinsFined}** Dashcoins:tm: and is in jail for **30** minutes.`
 				)
 				.setColor("Red")
 				.setThumbnail(
@@ -203,7 +204,7 @@ module.exports.run = async ({
 
 			interaction.member
 				.send(
-					`You were caught by the police. You were fined **${coins_fined}** Dashcoins:tm: and since you have bail bonds, you are unable to work, beg, or rob for **15** minutes.`
+					`You were caught by the police. You were fined **${coinsFined}** Dashcoins:tm: and since you have bail bonds, you are unable to work, beg, or rob/heist for **30** minutes.`
 				)
 				.catch((err) => {
 					console.log(err)
@@ -228,9 +229,9 @@ module.exports.run = async ({
 			})
 
 			const caughtEmbed = new EmbedBuilder()
-				.setTitle("👮 Robbery Foiled 🚨")
+				.setTitle("👮 Heist Foiled 🚨")
 				.setDescription(
-					`**${interaction.member.displayName}** attempted to rob **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coins_fined}** Dashcoins:tm: and is in jail for **30** minutes.`
+					`**${interaction.member.displayName}** attempted to heist **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coinsFined}** Dashcoins:tm: and is in jail for **60** minutes.`
 				)
 				.setColor("Red")
 				.setThumbnail(
@@ -248,7 +249,7 @@ module.exports.run = async ({
 
 			interaction.member
 				.send(
-					`You were caught by the police. You were fined **${coins_fined}** Dashcoins:tm: and you are unable to work, beg, or rob for **30** minutes.`
+					`You were caught by the police. You were fined **${coinsFined}** Dashcoins:tm: and you are unable to work, beg, or rob/heist for **60** minutes.`
 				)
 				.catch((err) => {
 					console.log(err)
@@ -265,9 +266,9 @@ module.exports.run = async ({
 				console.log(err)
 			})
 	} else if (outcome === "success") {
-		const coins_robbed = Math.round(memberBank.bank * 0.1)
-		const newrobberBank = getUser.bank + coins_robbed
-		const newvictimBank = memberBank.bank - coins_robbed
+		const coinsRobbed = Math.round(memberBank.bank * 0.1)
+		const newrobberBank = getUser.bank + coinsRobbed
+		const newvictimBank = memberBank.bank - coinsRobbed
 
 		await Economy.update(
 			{ bank: newvictimBank },
@@ -287,7 +288,7 @@ module.exports.run = async ({
 		const successEmbed = new EmbedBuilder()
 			.setTitle("💸 Heist Successful 💸")
 			.setDescription(
-				`**${interaction.member.displayName}** has heisted **${coins_robbed}** Dashcoins:tm: from **${member.displayName}**!`
+				`**${interaction.member.displayName}** has heisted **${coinsRobbed}** Dashcoins:tm: from **${member.displayName}**!`
 			)
 			.setColor("Green")
 			.setThumbnail(
@@ -307,7 +308,7 @@ module.exports.run = async ({
 
 		return member
 			.send(
-				`**${interaction.member.displayName}** heisted **${coins_robbed}** Dashcoins:tm: from you!`
+				`**${interaction.member.displayName}** heisted **${coinsRobbed}** Dashcoins:tm: from you!`
 			)
 			.catch((err) => {
 				console.log(err)

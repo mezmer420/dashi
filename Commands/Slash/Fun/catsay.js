@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("catsay")
@@ -9,6 +9,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The text to say")
 			.setRequired(true)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const text = interaction.options.getString("text")

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 function toOrdinalSuffix(num) {
 	const int = parseInt(num),
@@ -50,6 +49,8 @@ module.exports.data = new SlashCommandBuilder()
 	.addSubcommand((subcommand) =>
 		subcommand.setName("list").setDescription("Lists all birthdays")
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({
 	client,
@@ -182,7 +183,7 @@ module.exports.run = async ({
 			const firstDate = new Date(currentYear, Month, Day)
 			const secondDate = new Date(currentYear, currentMonth, currentDate)
 
-			const diffDays = Math.round((firstDate - secondDate) / oneDay) - 3
+			const diffDays = Math.round((firstDate - secondDate) / oneDay)
 
 			let dayCount = 365
 

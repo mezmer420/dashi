@@ -1,8 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("shuffle")
 	.setDescription("Shuffles the queue")
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({
@@ -44,20 +46,22 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 
 	if (queue.songs.length === 1) {
 		return await interaction
-		.editReply({
-			content: "There are no songs in the queue to shuffle",
-		})
-		.catch((err) => {})
-		.then((interaction) => {
-			setTimeout(() => interaction.delete().catch((err) => {}), 15000)
-		})
+			.editReply({
+				content: "There are no songs in the queue to shuffle",
+			})
+			.catch((err) => {})
+			.then((interaction) => {
+				setTimeout(() => interaction.delete().catch((err) => {}), 15000)
+			})
 	}
 
 	await queue.shuffle()
 
 	await interaction
 		.editReply({
-			content: `The queue of ${queue.songs.length - 1} songs has been shuffled!`,
+			content: `The queue of ${
+				queue.songs.length - 1
+			} songs has been shuffled!`,
 		})
 		.catch((err) => {})
 		.then((interaction) => {

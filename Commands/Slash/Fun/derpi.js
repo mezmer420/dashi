@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const fetch = require("node-fetch")
 const config = require("../../../config.json")
 
@@ -36,6 +35,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The fifth search tag")
 			.setRequired(false)
 	)
+
+module.exports.category = "Fun"
 
 module.exports.run = async ({ client, interaction }) => {
 	const tag1 = interaction.options.getString("search-tag-1")
@@ -76,7 +77,7 @@ module.exports.run = async ({ client, interaction }) => {
 		if (!response.ok) {
 			return await interaction
 				.editReply({
-					conten: "❌ | An error occured",
+					content: "❌ | An error occured",
 				})
 				.catch((err) => {})
 		}

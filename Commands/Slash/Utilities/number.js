@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("number")
@@ -15,6 +15,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The second number")
 			.setRequired(true)
 	)
+
+module.exports.category = "Utilities"
 
 module.exports.run = async ({ client, interaction }) => {
 	const num1 = interaction.options.getInteger("number1")

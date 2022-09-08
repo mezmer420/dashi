@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 
 module.exports.data = new SlashCommandBuilder()
 	.setName("play")
@@ -30,6 +29,8 @@ module.exports.data = new SlashCommandBuilder()
 					.setRequired(true)
 			)
 	)
+
+module.exports.category = "Music"
 
 module.exports.run = async ({ client, interaction, Systems }) => {
 	const getMusic = await Systems.findOne({
@@ -92,7 +93,9 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 		}
 
 		if (interaction.guild.members.me.voiceChannel !== undefined) {
-			await interaction.guild.members.me.voiceChannel.leave().catch((err) => {})
+			await interaction.guild.members.me.voiceChannel
+				.leave()
+				.catch((err) => {})
 		}
 	}
 
@@ -118,11 +121,15 @@ module.exports.run = async ({ client, interaction, Systems }) => {
 				setTimeout(() => interaction.delete().catch((err) => {}), 10000)
 			})
 
-		return await client.distube.play(interaction.member.voice.channel, query, {
-			member: interaction.member,
-			textChannel: interaction.channel,
-			// message,
-		})
+		return await client.distube.play(
+			interaction.member.voice.channel,
+			query,
+			{
+				member: interaction.member,
+				textChannel: interaction.channel,
+				// message,
+			}
+		)
 
 		// const searchResult = await client.player.search(query, {
 		// 	requestedBy: interaction.user,

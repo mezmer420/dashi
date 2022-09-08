@@ -1,6 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder } = require("discord.js")
-
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
 const wait = require("node:timers/promises").setTimeout
 
 module.exports.data = new SlashCommandBuilder()
@@ -14,6 +12,8 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("User to view the avatar of")
 			.setRequired(false)
 	)
+
+module.exports.category = "Info"
 
 module.exports.run = async ({ client, interaction, basicxp }) => {
 	const member = interaction.options.getMember("user") || interaction.member
