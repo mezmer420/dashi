@@ -10,6 +10,7 @@ Created by mezmer420#7301
 - Chat bot currently doesn't work
 - Ticket channel transcripts not currently working
 - "RawMessage" context command still work-in-progress
+- If you work then immediately use daily while your work minigame is still in progress, then finish the work minigame, you'll lose the coins you got from daily
 
 ## Features:
 
