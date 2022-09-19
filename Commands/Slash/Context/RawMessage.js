@@ -19,7 +19,7 @@ module.exports.run = async ({ client, interaction }) => {
 
 	const target = await interaction.channel.messages.fetch(targetId)
 
-	console.log(target)
+	// console.log(target)
 
 	const content =
 		target.content.length > 0 ? `content: ${target.content}` : "no content"

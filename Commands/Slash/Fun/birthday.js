@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder } = require("@discordjs/builders")
+const { EmbedBuilder } = require("discord.js")
 
 function toOrdinalSuffix(num) {
 	const int = parseInt(num),
@@ -49,8 +50,6 @@ module.exports.data = new SlashCommandBuilder()
 	.addSubcommand((subcommand) =>
 		subcommand.setName("list").setDescription("Lists all birthdays")
 	)
-
-module.exports.category = "Fun"
 
 module.exports.run = async ({
 	client,
@@ -183,7 +182,7 @@ module.exports.run = async ({
 			const firstDate = new Date(currentYear, Month, Day)
 			const secondDate = new Date(currentYear, currentMonth, currentDate)
 
-			const diffDays = Math.round((firstDate - secondDate) / oneDay)
+			const diffDays = Math.round((firstDate - secondDate) / oneDay) - 3
 
 			let dayCount = 365
 
@@ -210,11 +209,8 @@ module.exports.run = async ({
 					User: interaction.member.id,
 				},
 			})
-                        
-                        let dayordays = "days";
-                          if (remDays === 1) {
-                          dayordays = "day";
-                        }
+
+			let dayordays = remDays === 1 ? "day" : "days"
 
 			if (data) {
 				await Birthday.update(
@@ -232,18 +228,17 @@ module.exports.run = async ({
 						},
 					}
 				)
-                        return await interaction
-          .editReply({
-            embeds: [
-              new EmbedBuilder()
-                .setColor(client.config.Bot.BotColor)
-                .setDescription(
-                  `✅ - Changed it, I'll wish ${interaction.user}'s **${age}** birthday in **${remDays}** ${dayordays}, on **${Month}/${Day}/${wishYear}**`
-                ),
-            ],
-          })
-          .catch((err) => {});
-
+				return await interaction
+					.editReply({
+						embeds: [
+							new EmbedBuilder()
+								.setColor(defaultColor)
+								.setDescription(
+									`✅ - Changed your birthday, I'll wish ${interaction.user}'s **${age}** birthday in **${remDays}** ${dayordays}, on **${Month}/${Day}/${wishYear}**`
+								),
+						],
+					})
+					.catch((err) => {})
 			} else {
 				await Birthday.create({
 					Guild: interaction.guild.id,
@@ -252,19 +247,19 @@ module.exports.run = async ({
 					Month: Month,
 					Year: Year,
 				})
-			}
 
-			return await interaction
-				.editReply({
-					embeds: [
-						new EmbedBuilder()
-							.setColor(defaultColor)
-							.setDescription(
-								`✅ - Got it, I'll wish ${interaction.user}'s **${age}** birthday in **${remDays}** ${dayordays}, on **${Month}/${Day}/${wishYear}**`
-							),
-					],
-				})
-				.catch((err) => {})
+				return await interaction
+					.editReply({
+						embeds: [
+							new EmbedBuilder()
+								.setColor(defaultColor)
+								.setDescription(
+									`✅ - Got it, I'll wish ${interaction.user}'s **${age}** birthday in **${remDays}** ${dayordays}, on **${Month}/${Day}/${wishYear}**`
+								),
+						],
+					})
+					.catch((err) => {})
+			}
 		}
 
 		case "remove": {

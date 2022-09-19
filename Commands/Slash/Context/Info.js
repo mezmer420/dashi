@@ -27,23 +27,14 @@ module.exports.run = async ({ client, interaction, Infraction }) => {
 	const joinedts = new Date(target.joinedTimestamp + 5 * 3600000)
 	const joinedtime = joinedts.toLocaleString()
 
-	let nick = target.nickname
-
-	if (!nick) {
-		nick = `${target.user.username}`
-	}
+	const nick = target.nickname ? target.nickname : target.user.username
 
 	const boostingts = new Date(target.premiumSinceTimestamp + 6 * 3600000)
-	let boostingtime = boostingts.toLocaleString()
+	const boostingtime = target.premiumSinceTimestamp
+		? boostingts.toLocaleString()
+		: "Not boosting"
 
-	if (!target.premiumSinceTimestamp) {
-		boostingtime = "Not boosting"
-	}
-
-	let bot = "No"
-	if (target.user.bot === true) {
-		bot = "Yes"
-	}
+	const bot = target.user.bot === true ? "Yes" : "No"
 
 	const infractiondata = await Infraction.findAll({
 		where: { memberid: target.id },

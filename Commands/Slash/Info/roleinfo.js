@@ -15,19 +15,9 @@ module.exports.category = "Info"
 module.exports.run = async ({ client, interaction, defaultColor }) => {
 	const role = interaction.options.getRole("role")
 
-	let displayed
-	if (role.hoist === true) {
-		displayed = "Yes"
-	} else if (role.hoist === false) {
-		displayed = "No"
-	}
+	const displayed = role.hoist === true ? "Yes" : "No"
 
-	let mentionable
-	if (role.mentionable === true) {
-		mentionable = "Yes"
-	} else if (role.mentionable === false) {
-		mentionable = "No"
-	}
+	const mentionable = role.mentionable === true ? "Yes" : "No"
 
 	const createdts = new Date(role.createdTimestamp + 6 * 3600000)
 	const createdtime = createdts.toLocaleString()
