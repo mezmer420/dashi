@@ -92,10 +92,23 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 	}
 
 	const base = await fetch(
-		`https://the-trivia-api.com/api/questions?${category}limit=1${difficulty}`
+		`https://the-trivia-api.com/api/questions?${category}limit=5${difficulty}`
 	)
 	const data = await base.json()
-	const questionData = data[0]
+
+	let questionData = data[0]
+	if (questionData.question.length > 80) {
+		questionData = data[1]
+	}
+	if (questionData.question.length > 80) {
+		questionData = data[2]
+	}
+	if (questionData.question.length > 80) {
+		questionData = data[3]
+	}
+	if (questionData.question.length > 80) {
+		questionData = data[4]
+	}
 
 	// console.log(questionData)
 
@@ -203,7 +216,7 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			let choiceArr = []
 
 			for (let i = 0; i < rowComponents.length; i++) {
-				const answer = rowComponents[i].customId
+				const answer = rowComponents[i].data.custom_id
 
 				const answerPos = answer.indexOf(ans)
 
@@ -265,7 +278,7 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			let correctArr = []
 
 			for (let i = 0; i < rowComponents.length; i++) {
-				const answer = rowComponents[i].customId
+				const answer = rowComponents[i].data.custom_id
 
 				const answerPos = answer.indexOf(ans)
 				const correctPos = answer.indexOf(correctAnswer)
@@ -278,7 +291,7 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			const correctPos = correctArr.indexOf(0)
 
 			rowComponents[choicePos].setStyle("Danger")
-			rowComponents[correctPos].setStyle("SUCCESS")
+			rowComponents[correctPos].setStyle("Success")
 
 			return await response
 				.edit({
