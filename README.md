@@ -9,6 +9,7 @@ Created by mezmer420#7301
 
 - Chat bot currently doesn't work
 - Ticket channel transcripts not currently working
+- "RawMessage" context command still work-in-progress
 
 ## Features:
 
