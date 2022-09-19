@@ -5,7 +5,12 @@ A multi-function Discord bot created with Discord.js V14. Single guild bot. Feat
 
 Created by mezmer420#7301
 
-## Current Features:
+## Known Issues:
+
+- Chat bot currently doesn't work
+- Ticket channel transcripts not currently working
+
+## Features:
 
 - "Dialect" responses
 - General repsonses
