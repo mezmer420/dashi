@@ -1,5 +1,10 @@
 {
 	"token": "",
 	"derpibooruAPItoken": "",
+	"DBD": "",
+
+	"client_id": "",
+	"client_secret": "",
+
 	"defaultColor": "#9BDBF5"
 }
