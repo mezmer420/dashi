@@ -1,6 +1,6 @@
 const { ChannelType } = require("discord.js")
-const Chat = require("easy-discord-chatbot")
-const chat = new Chat({ name: "dashi" })
+const Chatbot = require("discord-chatbot")
+const chatbot = new Chatbot({ name: "dashi", gender: "Female" })
 const wait = require("node:timers/promises").setTimeout
 
 module.exports.run = async ({ client }) => {
@@ -22,15 +22,17 @@ module.exports.run = async ({ client }) => {
 		}
 
 		try {
-			const reply = await chat.chat(message.content)
+			const reply = await chatbot.chat(message.content)
 
 			await wait(Math.floor(Math.random() * 3001) + 0)
-	
-			if(!message) return
-	
+
+			if (!message) return
+
 			TypeWaitSend(reply)
 		} catch (err) {
-			message.reply("The chat API failed to return a response or is currently down")
+			message.reply(
+				"The chat API failed to return a response or is currently down"
+			)
 		}
 	})
 }
