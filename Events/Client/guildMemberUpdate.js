@@ -2,27 +2,19 @@ const { EmbedBuilder, MessageSelectMenu } = require("discord.js")
 
 module.exports = {
 	name: "guildMemberUpdate",
-	async execute(client, oldMember, newMember, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, oldMember, newMember, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
 
 		if (oldMember.nickname !== newMember.nickname) {
-			let oldnickname = oldMember.nickname
-			let newnickname = newMember.nickname
+			const oldNickname = oldMember.nickname ?? oldMember.user.username
+			const newNickname = newMember.nickname ?? newMember.user.username
 
-			if (!oldnickname) {
-				oldnickname = oldMember.user.username
-			}
-
-			if (!newnickname) {
-				newnickname = newMember.user.username
-			}
-
-			const nicknameEmbed = new EmbedBuilder()
+			const embed = new EmbedBuilder()
 				.setTitle(`${newMember.user.tag}`)
 				.setDescription(`<@${newMember.user.id}>`)
 				.addFields({
 					name: "📝 Member Nickname Changed",
-					value: `**${oldnickname}** -> **${newnickname}**`
+					value: `**${oldNickname}** -> **${newNickname}**`,
 				})
 				.setColor(defaultColor)
 				.setTimestamp()
@@ -35,29 +27,11 @@ module.exports = {
 
 			return logs
 				.send({
-					embeds: [nicknameEmbed],
+					embeds: [embed],
 				})
 				.catch((err) => {
 					console.log(err)
 				})
 		}
-
-		// else if(oldMember.displayAvatarURL() !== newMember.displayAvatarURL()){
-		//     console.log("new displayavatar")
-		//     const avatarEmbed = new EmbedBuilder()
-		//     .setTitle(`${newMember.user.tag}`)
-		//     .setDescription(`<@${newMember.user.id}>`)
-		//     .addField("✈️ Member Avatar Changed", `${oldMember.displayAvatarURL()} -> ${newMember.displayAvatarURL()}`)
-		//     .setColor(defaultColor)
-		//     .setTimestamp()
-		//     .setThumbnail(`${newMember.displayAvatarURL()}`)
-
-		//     return logs.send({
-		//         embeds: [avatarEmbed]
-		//     })
-		//     .catch((err) => {
-		//         console.log(err)
-		//     })
-		// }
 	},
 }

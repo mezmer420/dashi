@@ -2,19 +2,22 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "emojiCreate",
-	async execute(client, emoji, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, emoji, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
+		const auditLog = await emoji.guild.fetchAuditLogs()
+		const logEntry = auditLog.entries.first()
+		const { executor } = logEntry
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("🆕 Emoji Created")
 			.setDescription(
-				`Emoji: <:${emoji.name}:${emoji.id}>\nID: **${emoji.id}**`
+				`Emoji: <:${emoji.name}:${emoji.id}>\nID: **${emoji.id}**\nCreated by: <@${executor.id}>`
 			)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

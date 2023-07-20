@@ -2,36 +2,39 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "guildScheduledEventCreate",
-	async execute(client, guildScheduledEvent, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
-		const anno = await client.channels.cache.get("946442711936938034")
+	async run(
+		client,
+		guildScheduledEvent,
+		defaultColor,
+		logChannel,
+		announcementsChannel
+	) {
+		const logs = await client.channels.cache.get(logChannel)
+		const anno = await client.channels.cache.get(announcementsChannel)
 
-		const startts = new Date(
+		const startTime = new Date(
 			guildScheduledEvent.scheduledStartTimestamp + 3600000
-		)
-		const endts = new Date(
+		).toLocaleString()
+		const endTime = new Date(
 			guildScheduledEvent.scheduledEndTimestamp + 3600000
-		)
+		).toLocaleString()
 
-		const starttime = startts.toLocaleString()
-		const endtime = endts.toLocaleString()
-
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("🎉 New Event")
 			.setDescription(
-				`Event Name: **${guildScheduledEvent.name}**\nStarts At: **${starttime} EST**\nEnds At: **${endtime} EST**`
+				`Event Name: **${guildScheduledEvent.name}**\nStarts At: **${startTime} EST**\nEnds At: **${endTime} EST**`
 			)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})
 
 		// anno.send({
-		// 	embeds: [Embed],
+		// 	embeds: [embed],
 		// }).catch((err) => {
 		// 	console.log(err)
 		// })

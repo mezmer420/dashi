@@ -2,17 +2,22 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "channelDelete",
-	async execute(client, channel, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, channel, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
+		const auditLog = await channel.guild.fetchAuditLogs()
+		const logEntry = auditLog.entries.first()
+		const { executor } = logEntry
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("👋 Channel Deleted")
-			.setDescription(`Name: **#${channel.name}**`)
+			.setDescription(
+				`Name: **#${channel.name}**\nDeleted by: <@${executor.id}>`
+			)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

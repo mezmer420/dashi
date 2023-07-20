@@ -2,12 +2,12 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "playSong",
-	async execute(client, queue, song, defaultColor) {
-		const songrequests = await client.channels.cache.get(
+	async run(client, queue, song, defaultColor) {
+		const songRequests = await client.channels.cache.get(
 			"992630810186367016"
 		)
 
-		songrequests
+		songRequests
 			.send({
 				embeds: [
 					new EmbedBuilder()

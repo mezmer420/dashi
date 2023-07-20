@@ -2,19 +2,17 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "roleDelete",
-	async execute(client, role, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, role, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("👋 Role Deleted")
-			.setDescription(
-				`Role Name: **${role.name}**`
-			)
+			.setDescription(`Role Name: **${role.name}**`)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

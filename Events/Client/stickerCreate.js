@@ -2,19 +2,17 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "stickerCreate",
-	async execute(client, sticker, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, sticker, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("🆕 Sticker Created")
-			.setDescription(
-				`Sticker Name: **${sticker.name}**`
-			)
+			.setDescription(`Sticker Name: **${sticker.name}**`)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

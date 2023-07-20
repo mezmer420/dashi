@@ -2,31 +2,40 @@ const { EmbedBuilder, ChannelType } = require("discord.js")
 
 module.exports = {
 	name: "channelCreate",
-	async execute(client, channel, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, channel, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
+		const auditLog = await channel.guild.fetchAuditLogs()
+		const logEntry = auditLog.entries.first()
+		const { executor } = logEntry
 
-		let channeltype
-		let channelnsfw = channel.nsfw
+		let channelType
+		let channelNsfw = channel.nsfw
 
-		if (channel.type === ChannelType.GuildCategory) {
-			channeltype = "GuildCategory"
-			channelnsfw = "N/A"
-		} else if (channel.type === ChannelType.GuildVoice) {
-			channeltype = "GuildVoice"
-		} else if (channel.type === ChannelType.GuildText) {
-			channeltype = "GuildText"
+		switch (channel.type) {
+			case ChannelType.GuildCategory:
+				channelType = "GuildCategory"
+				channelNsfw = "N/A"
+				break
+			case ChannelType.GuildVoice:
+				channelType = "GuildVoice"
+				break
+			case ChannelType.GuildText:
+				channelType = "GuildText"
+				break
+			default:
+				channelType = "Unknown"
 		}
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle("🆕 Channel Created")
 			.setDescription(
-				`Channel Name: **#${channel.name}**\nID: **${channel.id}**\nType: **${channeltype}**\nNSFW: **${channelnsfw}**`
+				`Channel Name: **#${channel.name}**\nID: **${channel.id}**\nType: **${channelType}**\nNSFW: **${channelNsfw}**\nCreated by: <@${executor.id}>`
 			)
 			.setColor(defaultColor)
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

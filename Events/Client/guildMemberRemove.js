@@ -2,10 +2,10 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "guildMemberRemove",
-	async execute(client, member, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, member, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle(`👋 Member Left — ${member.user.tag}`)
 			.setDescription(
 				`<@${member.user.id}> left or was kicked/banned from the server`
@@ -18,7 +18,7 @@ module.exports = {
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

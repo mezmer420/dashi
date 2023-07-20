@@ -2,18 +2,19 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	name: "guildMemberAdd",
-	async execute(client, member, defaultColor) {
-		const logs = await client.channels.cache.get("955948174894325782")
+	async run(client, member, defaultColor, logChannel) {
+		const logs = await client.channels.cache.get(logChannel)
 
-		const createdts = new Date(member.user.createdTimestamp + 5 * 3600000)
-		const createdtime = createdts.toLocaleString()
+		const createdTime = new Date(
+			member.user.createdTimestamp + 5 * 3600000
+		).toLocaleString()
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setTitle(`🛬 Member Joined — ${member.user.tag}`)
 			.setDescription(`<@${member.user.id}> joined the server`)
 			.addFields({
 				name: "Account Created at",
-				value: `${createdtime}`,
+				value: `${createdTime}`,
 			})
 			.setColor("Green")
 			.setThumbnail(
@@ -23,7 +24,7 @@ module.exports = {
 			.setTimestamp()
 
 		logs.send({
-			embeds: [Embed],
+			embeds: [embed],
 		}).catch((err) => {
 			console.log(err)
 		})

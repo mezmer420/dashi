@@ -17,9 +17,8 @@ const {
 	frickingCooldown,
 	Suppress,
 	Counting,
+	chatPrompt,
 } = require("../../database")
-
-const { commands } = require("../../slash-register")
 
 const {
 	EmbedBuilder,
@@ -28,63 +27,98 @@ const {
 	ChannelType,
 } = require("discord.js")
 
-const everyoneid = "939674946379083847"
-const categoryid = "991803066686898246"
-const openticketid = "982689993195667527"
-const transcriptsid = "991804401033416774"
+const mezmer420 = "527285622809952256"
+const everyoneId = "939674946379083847"
 
 module.exports = {
 	name: "interactionCreate",
-	async execute(client, interaction, defaultColor) {
+	async run(
+		client,
+		interaction,
+		defaultColor,
+		logChannel,
+		announcementsChannel
+	) {
 		if (interaction.isChatInputCommand()) {
-			await interaction.deferReply().catch((err) => {
-				console.log(err)
-			})
-
 			const name = interaction.commandName
-			const commandMethod = commands.get(name)
 
-			if (!commandMethod) return
-
-			commandMethod({
-				client,
-				interaction,
-				Systems,
-				basicxp,
-				Dialects,
-				Infraction,
-				Economy,
-				Items,
-				dailyCooldown,
-				workCooldown,
-				begCooldown,
-				robCooldown,
-				Waifus,
-				Birthday,
-				Spam,
-				Fricking,
-				frickingCooldown,
-				Suppress,
-				Counting,
-				defaultColor,
-			}).catch(async (err) => {
-				console.log(err)
-
+			if (name === "say") {
 				await interaction
-					.editReply({
-						content: "⚠ | An error executing the command occured",
-					})
+					.deferReply({ ephemeral: true })
 					.catch((err) => {
 						console.log(err)
 					})
+			} else {
+				await interaction.deferReply().catch((err) => {
+					console.log(err)
+				})
+			}
 
-				return interaction.channel
-					.send("<@527285622809952256> lol fix this")
-					.catch((err) => {
-						console.log(err)
+			const command = client.commands.get(name)
+
+			if (!command) return
+
+			if (
+				command.category === "mezmer420" &&
+				interaction.member.id !== mezmer420
+			) {
+				return await interaction
+					.editReply({
+						content: "Only mezmer420 can use this command!",
 					})
-			})
+					.catch((err) => {})
+			}
+
+			command
+				.run({
+					client,
+					interaction,
+					
+					Systems,
+					basicxp,
+					Dialects,
+					Infraction,
+					Economy,
+					Items,
+					dailyCooldown,
+					workCooldown,
+					begCooldown,
+					robCooldown,
+					Waifus,
+					Birthday,
+					Spam,
+					Fricking,
+					frickingCooldown,
+					Suppress,
+					Counting,
+					chatPrompt,
+
+					defaultColor,
+					logChannel,
+					announcementsChannel,
+				})
+				.catch(async (err) => {
+					console.log(err)
+
+					await interaction
+						.editReply({
+							content: "⚠ | An error running the command occured",
+						})
+						.catch((err) => {
+							console.log(err)
+						})
+
+					return interaction.channel
+						.send(`<@${mezmer420}> lol fix this`)
+						.catch((err) => {
+							console.log(err)
+						})
+				})
 		} else if (interaction.isButton()) {
+			const categoryId = "991803066686898246"
+			const openTicketId = "982689993195667527"
+			const transcriptsId = "1094667051563491439"
+
 			// const button_id = interaction.customId
 			// const [command, id] = button_id.split("-")
 
@@ -110,7 +144,7 @@ module.exports = {
 					.create({
 						name: `${customId + "-" + ID}`,
 						type: ChannelType.GuildText,
-						parent: categoryid,
+						parent: categoryId,
 						permissionOverwrites: [
 							{
 								id: member.id,
@@ -120,16 +154,16 @@ module.exports = {
 									"ReadMessageHistory",
 								],
 							},
+							// {
+							// 	id: "967441142360723466",
+							// 	allow: [
+							// 		"SendMessages",
+							// 		"ViewChannel",
+							// 		"ReadMessageHistory",
+							// 	],
+							// },
 							{
-								id: "950173176246177823",
-								allow: [
-									"SendMessages",
-									"ViewChannel",
-									"ReadMessageHistory",
-								],
-							},
-							{
-								id: everyoneid,
+								id: everyoneId,
 								deny: [
 									"SendMessages",
 									"ViewChannel",
@@ -148,7 +182,7 @@ module.exports = {
 							type: customId,
 						})
 
-						const Embed = new EmbedBuilder()
+						const embed = new EmbedBuilder()
 							.setColor(defaultColor)
 							.setAuthor({
 								name: `Ticket: ${ID}`,
@@ -187,7 +221,7 @@ module.exports = {
 
 						const sentMessage = await channel
 							.send({
-								embeds: [Embed],
+								embeds: [embed],
 								components: [Buttons],
 							})
 							.catch((err) => {
@@ -212,9 +246,9 @@ module.exports = {
 								}
 							})
 
-						await channel
-							.send("<@&950173176246177823>")
-							.catch((err) => {})
+						// await channel
+						// 	.send("<@&967441142360723466>")
+						// 	.catch((err) => {})
 
 						await interaction
 							.editReply({
@@ -246,7 +280,7 @@ module.exports = {
 						.catch((err) => {})
 
 					return interaction.channel
-						.send("<@527285622809952256> delete this DB entru")
+						.send(`<@${mezmer420}> delete this DB entry`)
 						.catch((err) => {})
 				}
 
@@ -358,10 +392,11 @@ module.exports = {
 								})
 						}
 
-						// const attachment = await discordTranscripts.createTranscript(channel, {
-						// 	limit: -1,
-						// 	fileName: `${getTicket.type} - ${getTicket.ticketid}.html`,
-						// })
+						const attachment =
+							await discordTranscripts.createTranscript(channel, {
+								limit: -1,
+								fileName: `${getTicket.type} - ${getTicket.ticketid}.html`,
+							})
 
 						await Tickets.update(
 							{ closed: true },
@@ -372,30 +407,30 @@ module.exports = {
 							getTicket.memberid
 						)
 
-						// const Message = await guild.channels.cache
-						// 	.get(transcriptsid)
-						// 	.send({
-						// 		embeds: [
-						// 			Embed.setAuthor({
-						// 				name: MEMBER.user.tag,
-						// 				iconURL: MEMBER.user.displayAvatarURL({
-						// 					size: 4096,
-						// 					dynamic: true,
-						// 				}),
-						// 			}).setTitle(
-						// 				`Report Type: ${getTicket.type}\nID: ${getTicket.ticketid}`
-						// 			),
-						// 		],
-						// 		files: [attachment],
-						// 	})
+						const Message = await guild.channels.cache
+							.get(transcriptsId)
+							.send({
+								embeds: [
+									Embed.setAuthor({
+										name: MEMBER.user.tag,
+										iconURL: MEMBER.user.displayAvatarURL({
+											size: 4096,
+											dynamic: true,
+										}),
+									}).setTitle(
+										`Report Type: ${getTicket.type}\nID: ${getTicket.ticketid}`
+									),
+								],
+								files: [attachment],
+							})
 
 						await interaction.editReply({
 							content: "Done",
-							// embeds: [
-							// 	Embed.setDescription(
-							// 		`The transcript is now saved [TRANSCRIPT](${Message.url})`
-							// 	),
-							// ],
+							embeds: [
+								Embed.setDescription(
+									`The transcript is now saved [TRANSCRIPT](${Message.url})`
+								),
+							],
 						})
 
 						await channel.send(
@@ -473,7 +508,7 @@ module.exports = {
 			//         content: "Kicked the user"
 			//     })
 			// }
-		} else if (interaction.isSelectMenu()) {
+		} else if (interaction.isStringSelectMenu()) {
 			const { guild, member, customId, channel, values } = interaction
 
 			if (customId === "help") {
@@ -510,7 +545,7 @@ module.exports = {
 					.setColor(defaultColor)
 					.setTitle("💸 Economy System")
 					.setDescription(
-						"Rather advanced economy system with a wide array of options.\n\n"
+						"Advanced economy system with a wide array of options.\n\n"
 					)
 					.addFields(
 						{
@@ -527,7 +562,7 @@ module.exports = {
 					.setColor(defaultColor)
 					.setTitle("🎵 Music System")
 					.setDescription(
-						"Rather advanced music system that gets the job done.\n\n"
+						"Advanced music system with several options.\n\n"
 					)
 					.addFields({
 						name: "Everyone",
@@ -590,137 +625,168 @@ module.exports = {
 						"Integral core system that ensures it's impossible to crash dashi.\n\n"
 					)
 
-				let Embeds = []
+				let embeds = []
 
 				values.forEach(async (value) => {
 					if (value.includes("XP")) {
-						Embeds.push(option1Embed)
+						embeds.push(option1Embed)
 					}
 
 					if (value.includes("Dialects")) {
-						Embeds.push(option2Embed)
+						embeds.push(option2Embed)
 					}
 
 					if (value.includes("General Responses")) {
-						Embeds.push(option3Embed)
+						embeds.push(option3Embed)
 					}
 
 					if (value.includes("Economy")) {
-						Embeds.push(option4Embed)
+						embeds.push(option4Embed)
 					}
 
 					if (value.includes("Music")) {
-						Embeds.push(option5Embed)
+						embeds.push(option5Embed)
 					}
 
 					if (value.includes("Waifus")) {
-						Embeds.push(option6Embed)
+						embeds.push(option6Embed)
 					}
 
 					if (value.includes("Birthdays")) {
-						Embeds.push(option7Embed)
+						embeds.push(option7Embed)
 					}
 
 					if (value.includes("Fricking")) {
-						Embeds.push(option8Embed)
+						embeds.push(option8Embed)
 					}
 
 					if (value.includes("Message Filter & Auto Warn")) {
-						Embeds.push(option9Embed)
+						embeds.push(option9Embed)
 					}
 
 					if (value.includes("Crazy Suppress")) {
-						Embeds.push(option10Embed)
+						embeds.push(option10Embed)
 					}
 
 					if (value.includes("Anti-crash")) {
-						Embeds.push(option11Embed)
+						embeds.push(option11Embed)
 					}
 				})
 
 				return await interaction
 					.reply({
-						embeds: Embeds,
+						embeds: embeds,
 						ephemeral: true,
 					})
 					.catch((err) => {})
 			}
 		} else if (interaction.isUserContextMenuCommand()) {
-			const name = interaction.commandName
-			const commandMethod = commands.get(name)
-
-			if (!commandMethod) return
-
-			commandMethod({
-				client,
-				interaction,
-				Systems,
-				basicxp,
-				Dialects,
-				Infraction,
-				Economy,
-				Items,
-				dailyCooldown,
-				workCooldown,
-				begCooldown,
-				robCooldown,
-				Waifus,
-				Birthday,
-				Spam,
-				Fricking,
-				frickingCooldown,
-				Suppress,
-				Counting,
-				defaultColor,
-			}).catch(async (err) => {
+			await interaction.deferReply().catch((err) => {
 				console.log(err)
-
-				return await interaction
-					.editReply({
-						content: "⚠ | An error executing the command occured",
-					})
-					.catch((err) => {
-						console.log(err)
-					})
 			})
+
+			const name = interaction.commandName
+			const command = client.commands.get(name)
+
+			if (!command) return
+
+			command
+				.run({
+					client,
+					interaction,
+
+					Systems,
+					basicxp,
+					Dialects,
+					Infraction,
+					Economy,
+					Items,
+					dailyCooldown,
+					workCooldown,
+					begCooldown,
+					robCooldown,
+					Waifus,
+					Birthday,
+					Spam,
+					Fricking,
+					frickingCooldown,
+					Suppress,
+					Counting,
+					chatPrompt,
+
+					defaultColor,
+					logChannel,
+					announcementsChannel,
+				})
+				.catch(async (err) => {
+					console.log(err)
+
+					return await interaction
+						.editReply({
+							content: "⚠ | An error running the command occured",
+						})
+						.catch((err) => {
+							console.log(err)
+						})
+				})
 		} else if (interaction.isMessageContextMenuCommand()) {
 			const name = interaction.commandName
-			const commandMethod = commands.get(name)
 
-			if (!commandMethod) return
-
-			commandMethod({
-				client,
-				interaction,
-				Systems,
-				basicxp,
-				Dialects,
-				Infraction,
-				Economy,
-				Items,
-				dailyCooldown,
-				workCooldown,
-				begCooldown,
-				robCooldown,
-				Waifus,
-				Birthday,
-				Spam,
-				Fricking,
-				frickingCooldown,
-				Suppress,
-				Counting,
-				defaultColor,
-			}).catch(async (err) => {
-				console.log(err)
-
-				return await interaction
-					.editReply({
-						content: "⚠ | An error executing the command occured",
-					})
+			if (name === "ImageSauce") {
+				await interaction.deferReply().catch((err) => {
+					console.log(err)
+				})
+			} else {
+				await interaction
+					.deferReply({ ephemeral: true })
 					.catch((err) => {
 						console.log(err)
 					})
-			})
+			}
+
+			const command = client.commands.get(name)
+
+			if (!command) return
+
+			command
+				.run({
+					client,
+					interaction,
+
+					Systems,
+					basicxp,
+					Dialects,
+					Infraction,
+					Economy,
+					Items,
+					dailyCooldown,
+					workCooldown,
+					begCooldown,
+					robCooldown,
+					Waifus,
+					Birthday,
+					Spam,
+					Fricking,
+					frickingCooldown,
+					Suppress,
+					Counting,
+					chatPrompt,
+
+					defaultColor,
+					logChannel,
+					announcementsChannel,
+				})
+				.catch(async (err) => {
+					console.log(err)
+
+					return await interaction
+						.editReply({
+							content: "⚠ | An error running the command occured",
+						})
+						.catch((err) => {
+							console.log(err)
+						})
+				})
 		}
 	},
 }

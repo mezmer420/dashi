@@ -1,11 +1,11 @@
 module.exports = {
 	name: "voiceStateUpdate",
-	async execute(client, oldState, newState, defaultColor) {
+	async run(client, oldState, newState, defaultColor) {
 		if (oldState.channelId && !newState.channelId) {
 			// Bot was disconnected?
 			if (newState.id !== client.user.id) return
 
-			const queue = await client.distube.getQueue("939674946379083847")
+			const queue = await client.distube.getQueue(newState.guild.id)
 
 			if (!queue) return
 
@@ -15,11 +15,11 @@ module.exports = {
 				return
 			}
 
-            const songrequests = await client.channels.cache.get(
+			const songRequests = await client.channels.cache.get(
 				"992630810186367016"
 			)
 
-			songrequests
+			songRequests
 				.send("I was manually disconnected; the queue has been cleared")
 				.catch((err) => {})
 				.then((msg) => {

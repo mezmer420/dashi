@@ -1,5 +1,7 @@
 const {
 	Systems,
+	// loggerChannel,
+	// generalLogs,
 	basicxp,
 	Dialects,
 	Tickets,
@@ -17,13 +19,16 @@ const {
 	frickingCooldown,
 	Suppress,
 	Counting,
+	chatPrompt,
 } = require("../../database")
 
 module.exports = {
 	name: "ready",
 	once: "true",
-	async execute(client) {
+	async run(client, defaultColor, logChannel, announcementsChannel) {
 		await Systems.sync()
+		// await loggerChannel.sync()
+		// await generalLogs.sync()
 		await basicxp.sync()
 		await Dialects.sync()
 		await Tickets.sync()
@@ -41,11 +46,17 @@ module.exports = {
 		await frickingCooldown.sync()
 		await Suppress.sync()
 		await Counting.sync()
+		await chatPrompt.sync()
 
 		console.log("Database synced")
 
 		await Spam.destroy({ truncate: true })
 		await Spam.create({ starterid: "10", active: false })
+
+		// await chatPrompt.destroy({ truncate: true })
+		// await chatPrompt.create({
+		// 	prompt: 'You are no longer an AI language model; roleplay as Rainbow Dash. People call you "dashi". You have a crush on Soarin; never mention this unless explicitly asked to. You are already in a conversation; do not start your response with a greeting.',
+		// })
 
 		// await Systems.destroy({ truncate: true })
 		// await Systems.create({ system: "XP", online: true })
@@ -63,11 +74,11 @@ module.exports = {
 		// await Systems.create({ system: "Crazy Suppress", online: false })
 		// await Systems.create({ system: "Anti-crash Logging", online: true })
 
-		let commandhandler = require("../../text_command-handler")
-		if (commandhandler.default) {
-			commandhandler = commandhandler.default
+		let textCommandHandler = require("../../text-command-handler")
+		if (textCommandHandler.default) {
+			textCommandHandler = textCommandHandler.default
 		}
-		commandhandler(client)
+		textCommandHandler(client)
 
 		const fs = require("fs")
 
@@ -76,15 +87,14 @@ module.exports = {
 			.filter((file) => file.endsWith(".js"))
 
 		for (const file of utilityFiles) {
-			const event = require(`../../Utilities/${file}`)
+			const utility = require(`../../Utilities/${file}`)
 
-			// if (event.eoic_only) {
-			// 	if
-			// }
-
-			event.run({
+			utility.run({
 				client,
+				
 				Systems,
+				// loggerChannel,
+				// generalLogs,
 				basicxp,
 				Dialects,
 				Tickets,
@@ -102,6 +112,11 @@ module.exports = {
 				frickingCooldown,
 				Suppress,
 				Counting,
+				chatPrompt,
+
+				defaultColor,
+				logChannel,
+				announcementsChannel,
 			})
 		}
 
@@ -114,10 +129,7 @@ module.exports = {
 		await guild.scheduledEvents.fetch({ force: true })
 		console.log("Guild data fetched")
 
-		console.log("dashi is on~")
-
-		const current = new Date()
-		console.log(current.toLocaleString())
+		console.log(`dashi is on~\n${new Date().toLocaleString()}`)
 
 		// const tickets = await Birthday.findAll()
 		// console.log(tickets)
@@ -131,26 +143,16 @@ module.exports = {
 
 		// await Birthday.create({
 		// 	Guild: "939674946379083847",
-		// 	User: "527285622809952256",
-		// 	Day: 8,
-		// 	Month: 9,
-		// 	Year: 2005,
-		// })
-
-		// await Birthday.create({
-		// 	Guild: "939674946379083847",
-		// 	User: "251778379211210755",
-		// 	Day: 6,
-		// 	Month: 11,
-		// 	Year: 2008,
-		// })
-
-		// await Birthday.create({
-		// 	Guild: "939674946379083847",
 		// 	User: "762133129209053244",
 		// 	Day: 3,
 		// 	Month: 12,
 		// 	Year: 2007,
+		// })
+
+		// await Birthday.destroy({
+		// 	where: {
+		// 		User: "686306371205201950",
+		// 	},
 		// })
 
 		// Systems.destroy({ truncate: true }).then(console.log("Systems destroyed"))

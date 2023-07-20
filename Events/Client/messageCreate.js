@@ -1,20 +1,20 @@
 const { ChannelType } = require("discord.js")
 
 const {
-	blacklistedchannels,
-	blacklistedcategories,
+	blacklistedChannels,
+	blacklistedCategories,
 } = require("../../blacklisted-channels-and-categories")
 
 const wait = require("node:timers/promises").setTimeout
 
 module.exports = {
 	name: "messageCreate",
-	async execute(client, message, defaultColor) {
+	async run(client, message, defaultColor) {
 		const args = message.content.split(/ +/)
 		const firstWord = args.shift().toLowerCase()
 		const lowercase = message.content.toLowerCase()
 
-		async function TypeWaitSend(str) {
+		async function typeWaitSend(str) {
 			await message.channel.sendTyping().catch((err) => {
 				console.log(err)
 			})
@@ -28,15 +28,19 @@ module.exports = {
 
 		if (message.channel.type === ChannelType.GuildText) {
 			if (!message.author.bot) {
+				// if (message.channel.id === "975235909861654538z" && message.author.id === "251778379211210755") {
+				// 	message.channel.send("https://s3.amazonaws.com/media.thecrimson.com/photos/2020/11/06/010534_1346719.gif")
+				// }
+
 				if (
-					blacklistedchannels.includes(message.channel.id) ||
-					blacklistedcategories.includes(message.channel.parent.id)
+					blacklistedChannels.includes(message.channel.id) ||
+					blacklistedCategories.includes(message.channel.parent.id)
 				)
 					return
 
-				if (message.content === "<@956345939130482750>") {
+				if (message.content === `<@${client.user.id}>`) {
 					return message
-						.reply("Hmm? If it's help you want, try using `/help`")
+						.reply("Huh? If it's help you want, try using `/help`")
 						.catch((err) => {})
 				}
 
@@ -49,45 +53,38 @@ module.exports = {
 				if (getGeneralresponses.online === false) return
 
 				// all caps
-				function isUpper(string) {
-					return !/[a-z]/.test(string) && /[A-Z]/.test(string)
-				}
+				const isUpper = (string) => /^[A-Z]+$/.test(string)
+				const hasSymbols = (string) =>
+					/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(string)
 
-				function hasSymbols(string) {
-					return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(string)
-				}
-
-				if (
-					isUpper(message.content) == true &&
-					hasSymbols(message.content) == false
-				) {
-					return TypeWaitSend("Keep your voice down!")
+				if (isUpper(message.content) && !hasSymbols(message.content)) {
+					return typeWaitSend("Keep your voice down!")
 				}
 
 				switch (lowercase) {
 					case "rainbow dash": {
-						return TypeWaitSend("best pony")
+						return typeWaitSend("best pony")
 					}
 
 					case "ding": {
-						return TypeWaitSend("dong")
+						return typeWaitSend("dong")
 					}
 
 					case "dad": {
-						return TypeWaitSend("is gone")
+						return typeWaitSend("is gone")
 					}
 
 					case "mom": {
-						return TypeWaitSend("?? what's that")
+						return typeWaitSend("?? what's that")
 					}
 
 					case "bruh":
 					case "mug": {
-						return TypeWaitSend("moment")
+						return typeWaitSend("moment")
 					}
 
 					case "cock": {
-						return TypeWaitSend("cock moment")
+						return typeWaitSend("cock moment")
 					}
 
 					case "hold up":
@@ -100,11 +97,11 @@ module.exports = {
 					}
 
 					case "deez": {
-						return TypeWaitSend("nuts")
+						return typeWaitSend("nuts")
 					}
 
 					case "69": {
-						return TypeWaitSend("nice")
+						return typeWaitSend("nice")
 					}
 				}
 
@@ -112,9 +109,9 @@ module.exports = {
 					case "why": {
 						if (message.author.id === "527285622809952256") return
 						if (!message.content.startsWith("why not")) {
-							return TypeWaitSend("why not")
+							return typeWaitSend("why not")
 						} else {
-							return TypeWaitSend("because why")
+							return typeWaitSend("because why")
 						}
 					}
 
@@ -135,87 +132,82 @@ module.exports = {
 					case "bruh": {
 						if (lowercase === "bruh") return
 
-						return TypeWaitSend("bruh moment")
+						return typeWaitSend("bruh moment")
 					}
 
 					case "mug": {
 						if (lowercase === "mug") return
 
-						return TypeWaitSend("mug moment")
+						return typeWaitSend("mug moment")
 					}
 
 					case "k": {
-						return TypeWaitSend("lack care")
+						return typeWaitSend("lack care")
 					}
 
 					case "kk": {
-						return TypeWaitSend("lack care (x2)")
+						return typeWaitSend("lack care (x2)")
 					}
 
 					case "kkk": {
-						return TypeWaitSend(
+						return typeWaitSend(
 							"what Master presented as part of his AP Seminar score"
 						)
 					}
 
 					case "caught": {
-						return TypeWaitSend(
+						return typeWaitSend(
 							'Caught in 8K UHD surround sound 16 Gigs ram, HDR GEFORCE RTX, TI-80 texas insturments, Triple A duracell battery ultrapower100 Cargador Compatible iPhone 1A 5 W 1400 + Cable 100% 1 Metro Blanco Compatible iPhone 5 5 C 5S 6 SE 6S 7 8 X XR XS XS MAX GoPro hero 1 2 terrabyte xbox series x Dell UltraSharp 49 Curved Monitor - U4919DW Sony HDC-3300R 2/3" CCD HD Super Motion Color Camera, 1080p Resolution Toshiba EM131A5C-SS Microwave Oven with Smart Sensor, Easy Clean Interior, ECO Mode and Sound On/Off, 1.2 Cu. ft, Stainless Steel HP LaserJet Pro M404n Monochrome Laser Printer with Built-in Ethernet (W1A52A) GE Voluson E10 Ultrasound Machine LG 23 Cu. Ft. Smart Wi-Fi Enabled InstaView Door-in-Door Counter-Depth Refrigerator with Craft Ice Maker GFW850SPNRS GE 28" Air, Moto G4 SAMSUNG 85-inch Class Crystal UHD TU-8000 Series - 4K UHD HDR Smart TV with Alexa Built-in (UN85TU8000FXZA, 2020 Model) GE 38846 Premium Slim LED Light Bar, 18 Inch Under Cabinet Fixture, Plug-In, Convertible to Direct Wire, Linkable 628 Lumens, 3000K Soft Warm White, High/Off/Low, Easy to Install, 18 Ft Bissell Cleanview Swivel Pet Upright Bagless Vacuum Cleaner Trane20,000-Watt 1-Phase LPG/NG Liquid Cooled Whole House Standby Generator'
 						)
 					}
 
 					case "goodnight": {
-						return TypeWaitSend(
+						return typeWaitSend(
 							"goodnight 😴 🛌 💤 🌛 don't let the bed bugs bite"
 						)
 					}
 
 					case "silly": {
-						return TypeWaitSend(
+						return typeWaitSend(
 							"silly qilly willy rilly tilly yilly pilly dilly filly gilly hilly jilly killy lilly zilly xilly cilly villy billy nilly milly"
 						)
 					}
 
 					case "😮": {
-						return TypeWaitSend("why 😮")
+						return typeWaitSend("why 😮")
 					}
 
 					case "boner": {
-						return TypeWaitSend(
+						return typeWaitSend(
 							"what you get from going to your favorite site"
 						)
 					}
 
 					case "i like turtles": {
-						return TypeWaitSend("i like trains")
+						return typeWaitSend("i like trains")
 					}
 
 					case "i like trains": {
-						return TypeWaitSend("i like turtles")
+						return typeWaitSend("i like turtles")
 					}
 
 					case "yuri": {
-						return TypeWaitSend("vcashy waifu")
+						return typeWaitSend("vcashy waifu")
 					}
 				}
 
 				if (message.content.startsWith("r/")) {
-					const reddit = "r/"
-					for (var i = 0; i < reddit.length; i++) {
-						const index = lowercase.indexOf(reddit[i])
-						if (index !== -1) {
-							const subreddit = message.content.slice(
-								index + reddit[i].length + 1
-							)
+					const subreddit = message.content
+						.slice(2)
+						.trim()
+						.split(" ")[0]
 
-							if (!subreddit) return
+					if (subreddit) {
+						const redditUrl = `https://www.reddit.com/r/${subreddit}/`
 
-							return message.channel
-								.send(`https://www.reddit.com/r/${subreddit}/`)
-								.catch((err) => {
-									console.log(err)
-								})
-						}
+						message.channel.send(redditUrl).catch((err) => {
+							console.log(err)
+						})
 					}
 				} else if (message.content.startsWith("R/")) {
 					return message.channel
@@ -224,74 +216,71 @@ module.exports = {
 				}
 
 				// obsessed with d
-				const ddd = ["ddd"]
-				for (var i = 0; i < ddd.length; i++) {
-					const index = lowercase.indexOf(ddd[i])
-					if (index !== -1) {
-						return TypeWaitSend("obsessed with d")
-					}
+				if (lowercase.includes("ddd")) {
+					return typeWaitSend("obsessed with d")
 				}
 
 				// egghead dashi
-				const alot = ["alot"]
-				for (var i = 0; i < alot.length; i++) {
-					const index = lowercase.indexOf(alot[i])
-					if (index !== -1) {
-						message.channel.sendTyping().catch((err) => {
-							console.log(err)
-						})
+				if (lowercase.includes("alot")) {
+					await message.channel.sendTyping().catch((err) => {
+						console.log(err)
+					})
 
-						await wait(Math.floor(Math.random() * 0) + 1001)
+					await wait(Math.floor(Math.random() * 0) + 1001)
 
-						return message.reply("a lot*").catch((err) => {})
-					}
+					return message.reply("a lot*").catch((err) => {})
 				}
 
-				// // dad bot (anywhere in message)
-				// if(lowercase.startsWith("im ") || lowercase.startsWith("i'm ")){
-				//     if(!lowercase.startsWith("im im") && !lowercase.startsWith("i'm i'm") && !lowercase.startsWith("i'm im") && !lowercase.startsWith("im i'm")){
-				//         let imWord
-				//         if(lowercase.startsWith("im ")){
-				//             imWord = "im "
-				//         } else if(lowercase.startsWith("i'm ")){
-				//             imWord = "i'm "
-				//         }
+				// dad bot (anywhere in message)
+				if (
+					lowercase.startsWith("im ") ||
+					lowercase.startsWith("i'm ")
+				) {
+					if (
+						!/(im\s+im|i'm\s+i'm|i'm\s+im|im\s+i'm)/i.test(
+							lowercase
+						)
+					) {
+						const name = message.content
+							.split(" ")
+							.slice(1)
+							.join(" ")
 
-				//         const name = message.content.slice(imWord[i].length)
-				//         if(!name) return
+						if (!name) return
 
-				//         message.channel.sendTyping()
-				//         .catch((err) => {
-				//             console.log(err)
-				//         })
-
-				//         await wait(Math.floor(Math.random() * 0) + 1001)
-
-				//         message.channel.send(`hi ${name}, i'm dashi!`)
-				//         .catch((err) => {
-				//             console.log(err)
-				//         })
-				//     }
-
-				//     else if(lowercase.startsWith("im im") || lowercase.startsWith("i'm i'm") || lowercase.startsWith("i'm im") || lowercase.startsWith("im i'm")){
-				//         message.channel.sendTyping()
-				//         .catch((err) => {
-				//             console.log(err)
-				//         })
-
-				//         await wait(Math.floor(Math.random() * 0) + 1001)
-
-				//         message.reply("lol nice try :)")
-				//         .catch((err) => {})
-				//     }
-				// }
+						await message.channel.sendTyping().catch((err) => {
+							console.log(err)
+						})
+						await wait(Math.floor(Math.random() * 0) + 1001)
+						await message.channel
+							.send(`hi ${name}, i'm dashi!`)
+							.catch((err) => {
+								console.log(err)
+							})
+					} else if (
+						lowercase === "i'm dashi" ||
+						lowercase === "im dashi"
+					) {
+						await message.channel.sendTyping().catch((err) => {
+							console.log(err)
+						})
+						await wait(Math.floor(Math.random() * 0) + 1001)
+						await message.reply("no, I am").catch((err) => {})
+					} else {
+						await message.channel.sendTyping().catch((err) => {
+							console.log(err)
+						})
+						await wait(Math.floor(Math.random() * 0) + 1001)
+						await message.reply("lol nice try").catch((err) => {})
+					}
+				}
 			} else if (message.author.bot) {
-				if (blacklistedchannels.includes(message.channel.id)) return
+				if (blacklistedChannels.includes(message.channel.id)) return
 
 				if (message.author.id === "975952163090071553") {
 					// vcashcarbot
 					return
-				} else if (message.author.id === "956345939130482750") {
+				} else if (message.author.id === client.user.id) {
 					// dashi (self reply xd)
 					return
 				} else if (message.author.id === "969084144141344788") {
@@ -344,12 +333,9 @@ module.exports = {
 					// 	return message.reply("uwu owo").catch((err) => {})
 					// }
 
-					const badWord = ["fuck", "bitch", "damn", "shit"]
-					for (var i = 0; i < badWord.length; i++) {
-						const index = lowercase.indexOf(badWord[i])
-						if (index !== -1) {
-							return message.reply("language!").catch((err) => {})
-						}
+					const badWords = ["fuck", "bitch", "damn", "shit"]
+					if (badWords.some((word) => lowercase.includes(word))) {
+						return message.reply("language!").catch((err) => {})
 					}
 				}
 			}
