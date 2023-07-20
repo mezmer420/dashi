@@ -1,6 +1,6 @@
 const fs = require("fs")
 
-module.exports = (client, defaultColor) => {
+module.exports = (client, defaultColor, logChannel, announcementsChannel) => {
 	const clientEventFiles = fs
 		.readdirSync("./Events/Client/")
 		.filter((file) => file.endsWith(".js"))
@@ -9,10 +9,23 @@ module.exports = (client, defaultColor) => {
 		const event = require(`../Events/Client/${file}`)
 
 		if (event.once) {
-			client.once(event.name, (...args) => event.execute(client, ...args))
+			client.once(event.name, (...args) =>
+				event.run(
+					...args,
+					defaultColor,
+					logChannel,
+					announcementsChannel
+				)
+			)
 		} else {
 			client.on(event.name, (...args) =>
-				event.execute(client, ...args, defaultColor)
+				event.run(
+					client,
+					...args,
+					defaultColor,
+					logChannel,
+					announcementsChannel
+				)
 			)
 		}
 	}

@@ -1,6 +1,6 @@
 const fs = require("fs")
 
-module.exports = (client, defaultColor) => {
+module.exports = (client, defaultColor, logChannel, announcementsChannel) => {
 	const distubeEventFiles = fs
 		.readdirSync("./Events/Distube/")
 		.filter((file) => file.endsWith(".js"))
@@ -9,7 +9,13 @@ module.exports = (client, defaultColor) => {
 		const event = require(`../Events/Distube/${file}`)
 
 		client.distube.on(event.name, (...args) =>
-			event.execute(client, ...args, defaultColor)
+			event.run(
+				client,
+				...args,
+				defaultColor,
+				logChannel,
+				announcementsChannel
+			)
 		)
 	}
 }
