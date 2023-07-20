@@ -2,6 +2,7 @@ const { DisTube } = require("distube")
 const { SpotifyPlugin } = require("@distube/spotify")
 const { SoundCloudPlugin } = require("@distube/soundcloud")
 const { YtDlpPlugin } = require("@distube/yt-dlp")
+const { youtubeCookie } = require("./config.json")
 
 module.exports = (client) => {
 	client.distube = new DisTube(client, {
@@ -15,6 +16,7 @@ module.exports = (client) => {
 		emitNewSongOnly: true,
 		leaveOnEmpty: false,
 		leaveOnStop: false,
+		youtubeCookie: youtubeCookie,
 		customFilters: {
 			"8d": "apulsator=hz=0.09",
 			cursed: "vibrato=f=6.5,tremolo,aresample=48000,asetrate=48000*1.25",
@@ -28,5 +30,6 @@ module.exports = (client) => {
 			quality: "highestaudio",
 			highWaterMark: 1 << 25,
 		},
+		nsfw: true,
 	})
 }

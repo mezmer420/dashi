@@ -1,8 +1,4 @@
-const current = new Date()
-console.log(current.toLocaleString())
-
-const EventEmitter = require("events")
-EventEmitter.setMaxListeners(0)
+console.log(new Date().toLocaleString())
 
 const { Client, Partials, ActivityType } = require("discord.js")
 const client = new Client({
@@ -29,21 +25,24 @@ const client = new Client({
 })
 
 require("./client.distube")(client)
+require("./commands-register")(client, true)
 
-require("./slash-register")(true)
-
-const config = require("./config.json")
-
-const defaultColor = config.defaultColor
+const {
+	token,
+	defaultColor,
+	logChannel,
+	announcementsChannel,
+} = require("./config.json")
 
 const fs = require("fs")
 
 const eventHandlers = fs
 	.readdirSync("./Event_handlers")
 	.filter((file) => file.endsWith(".js"))
+	.map((file) => require(`./Event_handlers/${file}`))
 
-for (file of eventHandlers) {
-	require(`./Event_handlers/${file}`)(client, defaultColor)
-}
+eventHandlers.forEach((handler) =>
+	handler(client, defaultColor, logChannel, announcementsChannel)
+)
 
-client.login(config.token)
+client.login(token)

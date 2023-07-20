@@ -15,6 +15,21 @@ module.exports.Systems = database.define("systems", {
 	online: Sequelize.BOOLEAN,
 })
 
+// module.exports.loggerChannel = database.define("loggerchannel", {
+// 	Channel: Sequelize.STRING,
+// })
+
+// module.exports.generalLogs = database.define("generallogs", {
+// 	MemberRole: Sequelize.BOOLEAN,
+// 	MemberNick: Sequelize.BOOLEAN,
+// 	ChannelTopic: Sequelize.BOOLEAN,
+// 	MemberBoost: Sequelize.BOOLEAN,
+// 	RoleStatus: Sequelize.BOOLEAN,
+// 	ChannelStatus: Sequelize.BOOLEAN,
+// 	EmojiStatus: Sequelize.BOOLEAN,
+// 	MemberStatus: Sequelize.BOOLEAN,
+// })
+
 module.exports.basicxp = database.define("basicxp", {
 	memberid: Sequelize.STRING,
 	xp: Sequelize.INTEGER,
@@ -143,4 +158,8 @@ module.exports.Suppress = database.define("suppress", {
 
 module.exports.Counting = database.define("counting", {
 	number: Sequelize.INTEGER,
+})
+
+module.exports.chatPrompt = database.define("chatPrompt", {
+	prompt: Sequelize.STRING,
 })
