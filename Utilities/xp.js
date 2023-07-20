@@ -2,18 +2,19 @@ const { ChannelType } = require("discord.js")
 
 const blacklistedchannels = [
 	"945527434655187006", // #spam
-	"1003814223845015702", // #counting
-	"947275856919810048", // #unpure
+	// "1003814223845015702", // #counting
+	// "965445390465892432", // #talking-in-gif-only
+	// "947275856919810048", // #unpure
 	// "969027553878749204", // #nerd
 	// "970812606287859722", // #weeb
 	// "970859343849349160", // #og
-	"964714582402826280", // #fun-questions
-	"983507823965114378", // #bot-suggestions
+	// "964714582402826280", // #fun-questions
+	// "983507823965114378", // #bot-suggestions
 	"992630810186367016", // #song-requests
 ]
 
 const {
-	blacklistedcategories,
+	blacklistedCategories,
 } = require("../blacklisted-channels-and-categories")
 
 module.exports.run = async ({ client, basicxp, Systems }) => {
@@ -29,7 +30,7 @@ module.exports.run = async ({ client, basicxp, Systems }) => {
 		if (message.channel.id === "945527434655187006") return
 		if (
 			blacklistedchannels.includes(message.channel.id) ||
-			blacklistedcategories.includes(message.channel.parent.id) ||
+			blacklistedCategories.includes(message.channel.parent.id) ||
 			message.channel.type === "GUILD_PUBLIC_THREAD"
 		)
 			return
@@ -91,26 +92,23 @@ module.exports.run = async ({ client, basicxp, Systems }) => {
 			}
 		}
 
-		let XPtoaddUncurved
-		let XPtoadd
+		let XPToAdd
 
 		if (message.content.length < 2) {
-			XPtoaddUncurved = Math.floor(Math.random() * 3) + 1 // 1-3
+			XPToAdd = Math.floor(Math.random() * 3) + 1 // 1–3
 		} else if (message.content.length <= 5) {
-			XPtoaddUncurved = Math.floor(Math.random() * 7) + 1 // 1-7
+			XPToAdd = Math.floor(Math.random() * 7) + 1 // 1–7
 		} else if (message.content.length <= 10) {
-			XPtoaddUncurved = Math.floor(Math.random() * 15) + 6 // 5-20
+			XPToAdd = Math.floor(Math.random() * 15) + 6 // 5–20
 		} else if (message.content.length > 10) {
-			XPtoaddUncurved = Math.floor(Math.random() * 25) + 9 // 8-33
+			XPToAdd = Math.floor(Math.random() * 25) + 9 // 8–33
 		}
 
 		if (message.channel.id !== "939674946953682976") {
 			// not #general
-			XPtoadd = Math.round(XPtoaddUncurved * 1.3)
-		} else {
-			XPtoadd = XPtoaddUncurved
+			XPToAdd = Math.round(XPToAdd * 1.3)
 		}
 
-		addXP(member.id, XPtoadd, message)
+		addXP(member.id, XPToAdd, message)
 	})
 }

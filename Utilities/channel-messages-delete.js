@@ -8,7 +8,7 @@ module.exports.run = async ({ client }) => {
 			message.channel.id !== "992630810186367016" // #song-requests
 		)
 			return
-		if (message.author.id === "956345939130482750") return
+		if (message.author.id === client.user.id) return
 
 		const current = new Date()
 		console.log(current.toLocaleString())

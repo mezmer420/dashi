@@ -2,12 +2,12 @@ const { EmbedBuilder } = require("discord.js")
 const cron = require("node-cron")
 
 module.exports.run = async ({ client, Systems, Birthday }) => {
-	const Guilds = client.guilds.cache
+	const guilds = client.guilds.cache
 
 	cron.schedule(
 		"0 8 * * *",
 		() => {
-			Guilds.forEach(async (g) => {
+			guilds.forEach(async (g) => {
 				const data = await Birthday.findAll({ where: { Guild: g.id } })
 
 				if (!data) return
@@ -17,36 +17,37 @@ module.exports.run = async ({ client, Systems, Birthday }) => {
 						"946442711936938034"
 					)
 
-					const Member =
+					const member =
 						g.members.cache.get(b.User) || "Unknown User #0000"
-					const Day = b.Day
-					const Month = b.Month
-					const Year = b.Year
+					const day = b.Day
+					const month = b.Month
+					const year = b.Year
 
 					const date = new Date()
 					const currentDay = date.getDate()
 					const currentMonth = date.getMonth() + 1
 					const currentYear = date.getFullYear()
 
-					const age = currentYear - Year
+					const age = currentYear - year
 
-					const Embed = new EmbedBuilder()
+					const embed = new EmbedBuilder()
 						.setColor("#9BDBF5")
 						.setDescription(
-							`Today is ${Member}'s birthday! (${age})! 🎂`
+							`Today is ${member}'s birthday! (${age})! 🎂`
 						)
 
-					if (Month === currentMonth && Day === currentDay) {
+					if (month === currentMonth && day === currentDay) {
 						const getBirthdays = await Systems.findOne({
 							where: { system: "Birthdays" },
 						})
 
 						if (getBirthdays.online === false) return
 
-						announcements.send({
-							content: `@everyone`,
-							embeds: [Embed],
-						})
+						announcements
+							.send({
+								content: `@everyone`,
+								embeds: [embed],
+							})
 							.catch((err) => {
 								console.log(err)
 							})

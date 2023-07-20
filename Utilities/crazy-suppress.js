@@ -1,8 +1,8 @@
 const { ChannelType } = require("discord.js")
 
 // const {
-// 	blacklistedchannels,
-// 	blacklistedcategories,
+// 	blacklistedChannels,
+// 	blacklistedCategories,
 // } = require("../blacklisted-channels-and-categories")
 
 module.exports.run = async ({ client, Systems, Suppress }) => {
@@ -15,8 +15,8 @@ module.exports.run = async ({ client, Systems, Suppress }) => {
 
 		if (message.channel.type === ChannelType.DM) return
 		// if (
-		// 	blacklistedchannels.includes(message.channel.id) ||
-		// 	blacklistedcategories.includes(message.channel.parent.id)
+		// 	blacklistedChannels.includes(message.channel.id) ||
+		// 	blacklistedCategories.includes(message.channel.parent.id)
 		// )
 		// 	return
 

@@ -4,7 +4,7 @@ module.exports.run = async ({ client }) => {
 	client.on("messageCreate", async (message) => {
 		if (message.channel.type !== ChannelType.DM) return
 
-		if (message.author.id === "956345939130482750") return
+		if (message.author.id === client.user.id) return
 		if (
 			message.author.id === "527285622809952256" &&
 			message.content.toLowerCase() !== "!test"

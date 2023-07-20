@@ -1,6 +1,6 @@
 const { ChannelType, EmbedBuilder } = require("discord.js")
 
-module.exports.run = async ({ client, Systems, Infraction }) => {
+module.exports.run = async ({ client, Systems, Infraction, logChannel }) => {
 	client.on("messageCreate", async (message) => {
 		const getMessageFilterandAutoWarn = await Systems.findOne({
 			where: { system: "Message Filter & Auto Warn" },
@@ -11,7 +11,7 @@ module.exports.run = async ({ client, Systems, Infraction }) => {
 		if (message.channel.type === ChannelType.DM) return
 		if (
 			message.author.id === "527285622809952256" || // mezmer
-			message.author.id === "956345939130482750" // dashi
+			message.author.id === client.user.id // dashi
 		)
 			return
 
@@ -33,15 +33,15 @@ module.exports.run = async ({ client, Systems, Infraction }) => {
 		const member = message.member
 		const user = message.author
 
-		const currenttime = Date.now()
+		const currentTime = Date.now()
 
-		const randomid = Math.floor(Math.random() * 8989000) + 1010000
+		const randomId = Math.floor(Math.random() * 8989000) + 1010000
 
 		await Infraction.create({
 			memberid: member.id,
-			infractionid: randomid,
-			warnerid: "956345939130482750",
-			time: currenttime,
+			infractionid: randomId,
+			warnerid: client.user.id,
+			time: currentTime,
 			nature: "Bad word usage",
 		})
 
@@ -53,26 +53,26 @@ module.exports.run = async ({ client, Systems, Infraction }) => {
 				console.log(err)
 			})
 
-		const Embed = new EmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setColor("Red")
 			.setAuthor({
 				name: `${user.tag} has been warned`,
 				iconURL: member.displayAvatarURL(),
 			})
 			.setDescription(
-				`Reason: **Bad word usage**\nMessage content: ${message.content}\nIssued By: <@956345939130482750>`
+				`Reason: **Bad word usage**\nMessage content: ${message.content}\nIssued By: <@${client.user.id}>`
 			)
 			.setThumbnail(
 				"https://images.emojiterra.com/twitter/v14.0/512px/26a0.png"
 			)
-			.setFooter({ text: `Infraction ID: ${randomid}` })
+			.setFooter({ text: `Infraction ID: ${randomId}` })
 			.setTimestamp()
 
-		const logs = await client.channels.cache.get("955948174894325782")
+		const logs = await client.channels.cache.get(logChannel)
 
 		return logs
 			.send({
-				embeds: [Embed],
+				embeds: [embed],
 			})
 			.catch((err) => {
 				console.log(err)
