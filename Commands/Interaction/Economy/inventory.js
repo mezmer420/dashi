@@ -88,7 +88,7 @@ module.exports.run = async ({
 
 	await interaction
 		.editReply({
-			embeds: [Embed],
+			embeds: [embed],
 		})
 		.catch((err) => {})
 }

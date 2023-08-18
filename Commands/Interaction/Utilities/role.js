@@ -47,7 +47,7 @@ module.exports.run = async ({ client, interaction }) => {
 		interaction.member.id !== "527285622809952256" && // mezmer
 		interaction.member.id !== "762133129209053244" && // vcash
 		interaction.member.id !== "826841451945787412" && // choc
-		interaction.member.id !== "251778379211210755" && // liverpool
+		interaction.member.id !== "1030771237808517170" && // tree
 		interaction.member.id !== "691727350051635262" // speedy
 	) {
 		return await interaction
@@ -79,9 +79,9 @@ module.exports.run = async ({ client, interaction }) => {
 	} else if (interaction.member.id === "826841451945787412") {
 		// choc
 		roleID = "1113946752769331270"
-	} else if (interaction.member.id === "251778379211210755") {
-		// liverpool
-		roleID = "1113945267641778236"
+	} else if (interaction.member.id === "1030771237808517170") {
+		// tree
+		roleID = "1141429591710376057"
 	} else if (interaction.member.id === "691727350051635262") {
 		// speedy
 		roleID = "1113945400802549791"

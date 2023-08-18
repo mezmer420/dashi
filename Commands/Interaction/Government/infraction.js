@@ -60,16 +60,27 @@ module.exports.run = async ({
 			.catch((err) => {})
 	}
 
-	// if (
-	// 	interaction.member.id === "826841451945787412" && // choc
-	// 	getInfraction.memberid === "826841451945787412" // choc
-	// ) {
-	// 	return await interaction
-	// 		.editReply({
-	// 			content: "nice try choc :)",
-	// 		})
-	// 		.catch((err) => {})
-	// }
+	if (
+		interaction.member.id === "826841451945787412" && // choc
+		getInfraction.memberid === "826841451945787412" // choc
+	) {
+		return await interaction
+			.editReply({
+				content: "nice try choc",
+			})
+			.catch((err) => {})
+	}
+
+	if (
+		interaction.member.id === "762133129209053244" && // vcash
+		getInfraction.memberid === "762133129209053244" // vcash
+	) {
+		return await interaction
+			.editReply({
+				content: "nice try vcash",
+			})
+			.catch((err) => {})
+	}
 
 	const logs = await client.channels.cache.get("955948174894325782")
 
