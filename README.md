@@ -1,14 +1,13 @@
 # dashi
 ## _Yet Another Discord Bot_
 
-A multi-function Discord bot created with discord.js v14. Single guild bot. Features include unique phrase responses ("dialects"), text and interaction commands, an economy system, reaction roles, music features, and more.
+Multi-function Discord bot created with discord.js v14. Single guild bot. Features include unique phrase responses ("dialects"), text and interaction commands, an economy system, reaction roles, music features, and more.
 
 Created by mezmer420#7301
 
 ## Known Issues:
 
 - Birthday system calculates ages 14 and under wrong
-- "RawMessage" context command still work-in-progress
 - If you work then immediately use daily while your work minigame is still in progress, then finish the work minigame, you'll lose the coins you got from daily
 
 ## Features:
@@ -69,4 +68,4 @@ Created by mezmer420#7301
     "tesseract.js": "^4.1.1",
     "ytdl-core": "^4.11.5"
     
-*WARNING: A purpose-built bot for one guild only!* I didn't bother making it multi-guild compatible as I never intended it ever be used outside of my own server. Not recommended to copy this project for your own use; instead feel free to browse the code for inspiration and take stuff you like.
+*NOTICE: A purpose-built bot for one guild only!* I didn't bother making it multi-guild compatible as I never intended it ever be used outside of my own server. Not recommended to copy this project for your own use; instead feel free to browse the code for inspiration and take stuff you like.
