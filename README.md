@@ -36,36 +36,7 @@ Created by mezmer420#7301
 
 ## Dependencies:
 
-    "@discordjs/opus": "^0.9.0",
-    "@discordjs/voice": "^0.16.0",
-    "@distube/soundcloud": "^1.3.3",
-    "@distube/spotify": "^1.5.1",
-    "@distube/yt-dlp": "^1.1.3",
-    "@distube/ytdl-core": "^4.11.17",
-    "@iamtraction/google-translate": "^2.0.1",
-    "clear-screen": "^1.0.0",
-    "dbd-dark-dashboard": "^1.6.62",
-    "discord-api-types": "^0.37.51",
-    "discord-chatbot": "^2.1.0",
-    "discord-dashboard": "^2.3.62",
-    "discord-html-transcripts": "^3.1.5",
-    "discord.js": "^14.12.1",
-    "discord.js-docs": "^0.3.0",
-    "distube": "^4.0.6",
-    "ffmpeg-static": "^5.1.0",
-    "formidable": "^3.5.0",
-    "i": "^0.3.7",
-    "libsodium-wrappers": "^0.7.11",
-    "moment": "^2.29.4",
-    "node-cron": "^3.0.2",
-    "npm": "^9.8.1",
-    "ns": "^1.0.2",
-    "openai": "^3.3.0",
-    "reconlx": "^2.5.6",
-    "sequelize": "^6.32.1",
-    "sqlite3": "^5.1.6",
-    "superagent": "^8.0.9",
-    "tesseract.js": "^4.1.1",
-    "ytdl-core": "^4.11.5"
+See `src/package.json`
     
-*NOTICE: A purpose-built bot for one guild only!* I didn't bother making it multi-guild compatible as I never intended it ever be used outside of my own server. Not recommended to copy this project for your own use; instead feel free to browse the code for inspiration and take stuff you like.
+## NOTICE:
+**A purpose-built bot for one guild only!** I didn't bother making it multi-guild compatible as I never intended it ever be used outside of my own server. Not recommended to copy this project for your own use; instead feel free to browse the code for inspiration and take stuff you like.
