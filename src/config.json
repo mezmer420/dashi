@@ -1,0 +1,19 @@
+{
+	"token": "",
+	"derpibooruAPItoken": "",
+	"openWeatherMapAPIKey": "",
+	"DBD": "",
+
+	"openAIOrganizationId": "",
+	"openAIKey": "",
+
+	"youtubeCookie": "",
+
+	"clientId": "",
+	"clientSecret": "",
+
+	"defaultColor": "#9BDBF5",
+
+	"logChannel": "955948174894325782",
+	"announcementsChannel": "946442711936938034"
+}
