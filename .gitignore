@@ -129,3 +129,4 @@ dist
 # Other
 Unused Files/
 database.sqlite
+.traineddata
