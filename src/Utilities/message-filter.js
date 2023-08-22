@@ -16,7 +16,7 @@ module.exports.run = async ({ client, Systems, Infraction, logChannel }) => {
 			return
 
 		const lowercase = message.content.toLowerCase()
-		const blacklistedPhrases = ["nigger", "nigga", "polack"]
+		const blacklistedPhrases = ["polack"]
 
 		const contains = blacklistedPhrases.some((element) => {
 			if (lowercase.includes(element)) {
