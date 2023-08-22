@@ -128,5 +128,5 @@ dist
 
 # Other
 Unused Files/
-.sqlite
-.traineddata
+*.sqlite
+*.traineddata
