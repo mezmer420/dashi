@@ -2,40 +2,38 @@ module.exports.run = async ({ client }) => {
 	async function checkForActivity() {
 		const channel = await client.channels.cache.get("939674946953682976")
 
-		if (channel) {
-			channel.messages
-				.fetch({ limit: 1 })
-				.then((messages) => {
-					const lastMessage = messages.first()
-					const responses = [
-						"https://tenor.com/view/dead-chat-dead-chat-skeleton-gif-25954239",
-						"https://tenor.com/view/dead-chat-xd-dead-chat-gif-22992239",
-						"https://tenor.com/view/dead-group-chat-gif-24956654",
-						"https://tenor.com/view/googas-wet-wet-cat-dead-chat-dead-chat-xd-gif-20820186",
-						"https://tenor.com/view/rip-chat-chat-dead-dead-chat-inactive-gif-18754855",
-						"https://tenor.com/view/dead-chat-xd-gif-25076264",
-						"https://tenor.com/view/minecraft-dead-chat-dead-chat-xd-gif-24629150",
-					]
+		if (!channel) return
 
-					if (responses.includes(lastMessage.content)) return
+		channel.messages
+			.fetch({ limit: 1 })
+			.then((messages) => {
+				const lastMessage = messages.first()
+				const responses = [
+					"https://tenor.com/view/dead-chat-dead-chat-skeleton-gif-25954239",
+					"https://tenor.com/view/dead-chat-xd-dead-chat-gif-22992239",
+					"https://tenor.com/view/dead-group-chat-gif-24956654",
+					"https://tenor.com/view/googas-wet-wet-cat-dead-chat-dead-chat-xd-gif-20820186",
+					"https://tenor.com/view/rip-chat-chat-dead-dead-chat-inactive-gif-18754855",
+					"https://tenor.com/view/dead-chat-xd-gif-25076264",
+					"https://tenor.com/view/minecraft-dead-chat-dead-chat-xd-gif-24629150",
+				]
 
-					const timeSinceLastMessage =
-						Date.now() - lastMessage.createdTimestamp
+				if (responses.includes(lastMessage.content)) return
 
-					// if the last message is older than 18 hours
-					if (timeSinceLastMessage > 60 * 60 * 18 * 1000) {
-						// console.log(timeSinceLastMessage)
+				const timeSinceLastMessage =
+					Date.now() - lastMessage.createdTimestamp
 
-						const response =
-							responses[
-								Math.floor(Math.random() * responses.length)
-							]
+				// if the last message is older than 18 hours
+				if (timeSinceLastMessage > 60 * 60 * 18 * 1000) {
+					// console.log(timeSinceLastMessage)
 
-						channel.send(response)
-					}
-				})
-				.catch(console.error)
-		}
+					const response =
+						responses[Math.floor(Math.random() * responses.length)]
+
+					channel.send(response)
+				}
+			})
+			.catch(console.error)
 
 		const intervalTime =
 			Math.floor(

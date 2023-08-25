@@ -202,12 +202,12 @@ module.exports.run = async ({
 									`You just purchased **${itemLowercase}** for ${price} Dashcoins:tm: from your wallet! Your new wallet balance is ${newBalance} Dashcoins:tm:.`
 								)
 								.setColor(defaultColor)
-								.setThumbnail(
-									interaction.member.user.displayAvatarURL({
-										size: 4096,
-										dynamic: true,
-									})
-								),
+								// .setThumbnail(
+								// 	interaction.member.user.displayAvatarURL({
+								// 		size: 4096,
+								// 		dynamic: true,
+								// 	})
+								// ),
 						],
 					})
 					.catch((err) => {})
@@ -231,12 +231,12 @@ module.exports.run = async ({
 					`You don't have enough Dashcoins:tm: in your wallet! You need **${coinsToGo}** Dashcoins:tm: more in your wallet.`
 				)
 				.setColor(defaultColor)
-				.setThumbnail(
-					interaction.member.user.displayAvatarURL({
-						size: 4096,
-						dynamic: true,
-					})
-				)
+				// .setThumbnail(
+				// 	interaction.member.user.displayAvatarURL({
+				// 		size: 4096,
+				// 		dynamic: true,
+				// 	})
+				// )
 
 			return await interaction
 				.editReply({
@@ -337,11 +337,11 @@ module.exports.run = async ({
 										`You just purchased **${itemLowercase}** for ${price} Dashcoins:tm: from your bank! Your new bank balance is ${newBalance} Dashcoins:tm:.`
 									)
 									.setColor(defaultColor)
-									.setThumbnail(
-										interaction.member.user.displayAvatarURL(
-											{ size: 4096, dynamic: true }
-										)
-									),
+									// .setThumbnail(
+									// 	interaction.member.user.displayAvatarURL(
+									// 		{ size: 4096, dynamic: true }
+									// 	)
+									// ),
 							],
 						})
 						.catch((err) => {})
@@ -449,11 +449,11 @@ module.exports.run = async ({
 										`You just purchased **${itemLowercase}** for ${price} Dashcoins:tm: from your wallet! Your new wallet balance is ${newBalance} Dashcoins:tm:.`
 									)
 									.setColor(defaultColor)
-									.setThumbnail(
-										interaction.member.user.displayAvatarURL(
-											{ size: 4096, dynamic: true }
-										)
-									),
+									// .setThumbnail(
+									// 	interaction.member.user.displayAvatarURL(
+									// 		{ size: 4096, dynamic: true }
+									// 	)
+									// ),
 							],
 						})
 						.catch((err) => {})
@@ -478,12 +478,12 @@ module.exports.run = async ({
 						`You don't have enough Dashcoins:tm: in your wallet or bank! You need **${walletCoinsToGo}** Dashcoins:tm: more in your wallet **or** **${bankCoinsToGo}** Dashcoins:tm: more in your bank.`
 					)
 					.setColor(defaultColor)
-					.setThumbnail(
-						interaction.member.user.displayAvatarURL({
-							size: 4096,
-							dynamic: true,
-						})
-					)
+					// .setThumbnail(
+					// 	interaction.member.user.displayAvatarURL({
+					// 		size: 4096,
+					// 		dynamic: true,
+					// 	})
+					// )
 
 				return await interaction
 					.editReply({
@@ -585,11 +585,11 @@ module.exports.run = async ({
 										`You just purchased **${itemLowercase}** for ${price} Dashcoins:tm: from your wallet! Your new wallet balance is ${newBalance} Dashcoins:tm:.`
 									)
 									.setColor(defaultColor)
-									.setThumbnail(
-										interaction.member.user.displayAvatarURL(
-											{ size: 4096, dynamic: true }
-										)
-									),
+									// .setThumbnail(
+									// 	interaction.member.user.displayAvatarURL(
+									// 		{ size: 4096, dynamic: true }
+									// 	)
+									// ),
 							],
 						})
 						.catch((err) => {})
@@ -613,12 +613,12 @@ module.exports.run = async ({
 						`You don't have enough Dashcoins:tm: in your wallet! You need **${coinsToGo}** Dashcoins:tm: more in your wallet.`
 					)
 					.setColor(defaultColor)
-					.setThumbnail(
-						interaction.member.user.displayAvatarURL({
-							size: 4096,
-							dynamic: true,
-						})
-					)
+					// .setThumbnail(
+					// 	interaction.member.user.displayAvatarURL({
+					// 		size: 4096,
+					// 		dynamic: true,
+					// 	})
+					// )
 
 				return await interaction
 					.editReply({

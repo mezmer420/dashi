@@ -185,12 +185,12 @@ module.exports.run = async ({
 					`**${interaction.member.displayName}** attempted to heist **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coinsFined}** Dashcoins:tm: and is in jail for **30** minutes.`
 				)
 				.setColor("Red")
-				.setThumbnail(
-					member.user.displayAvatarURL({
-						size: 4096,
-						dynamic: true,
-					})
-				)
+				// .setThumbnail(
+				// 	member.user.displayAvatarURL({
+				// 		size: 4096,
+				// 		dynamic: true,
+				// 	})
+				// )
 
 			await interaction
 				.editReply({
@@ -230,12 +230,12 @@ module.exports.run = async ({
 					`**${interaction.member.displayName}** attempted to heist **${member.displayName}** and was caught by the police! **${interaction.member.displayName}** was fined **${coinsFined}** Dashcoins:tm: and is in jail for **60** minutes.`
 				)
 				.setColor("Red")
-				.setThumbnail(
-					member.user.displayAvatarURL({
-						size: 4096,
-						dynamic: true,
-					})
-				)
+				// .setThumbnail(
+				// 	member.user.displayAvatarURL({
+				// 		size: 4096,
+				// 		dynamic: true,
+				// 	})
+				// )
 
 			await interaction
 				.editReply({
@@ -287,12 +287,12 @@ module.exports.run = async ({
 				`**${interaction.member.displayName}** has heisted **${coinsRobbed}** Dashcoins:tm: from **${member.displayName}**!`
 			)
 			.setColor("Green")
-			.setThumbnail(
-				member.user.displayAvatarURL({
-					size: 4096,
-					dynamic: true,
-				})
-			)
+			// .setThumbnail(
+			// 	member.user.displayAvatarURL({
+			// 		size: 4096,
+			// 		dynamic: true,
+			// 	})
+			// )
 
 		await interaction
 			.editReply({

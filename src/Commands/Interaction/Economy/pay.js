@@ -86,9 +86,9 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			`**${interaction.member.displayName}** has sent **${amount}** ${dashcoinOrDashcoins}:tm: to **${member.displayName}**!`
 		)
 		.setColor("Green")
-		.setThumbnail(
-			member.user.displayAvatarURL({ size: 4096, dynamic: true })
-		)
+		// .setThumbnail(
+		// 	member.user.displayAvatarURL({ size: 4096, dynamic: true })
+		// )
 
 	await interaction
 		.editReply({

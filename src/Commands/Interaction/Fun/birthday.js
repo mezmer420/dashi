@@ -78,39 +78,10 @@ module.exports.run = async ({
 			const date = new Date()
 			const currentYear = date.getFullYear()
 			const currentMonth = date.getMonth() + 1
-			const currentDate = date.getDay()
-
+			const currentDay = date.getDate()
 			const day = interaction.options.getInteger("day")
 			const month = interaction.options.getInteger("month")
 			const year = interaction.options.getInteger("year")
-
-			if (month > 12 || month < 1) {
-				return await interaction
-					.editReply({
-						embeds: [
-							new EmbedBuilder()
-								.setColor("Red")
-								.setDescription(
-									"Your birth month value should be from `1` to `12`!"
-								),
-						],
-					})
-					.catch((err) => {})
-			}
-
-			if (day > 31 || day < 1) {
-				return await interaction
-					.editReply({
-						embeds: [
-							new EmbedBuilder()
-								.setColor("Red")
-								.setDescription(
-									"Your birth day value should be from `1` to `31`!"
-								),
-						],
-					})
-					.catch((err) => {})
-			}
 
 			if (year >= currentYear - 10) {
 				return await interaction
@@ -178,12 +149,16 @@ module.exports.run = async ({
 					.catch((err) => {})
 			}
 
+			const firstDate = new Date(currentYear, month - 1, day)
+			const secondDate = new Date(
+				currentYear,
+				currentMonth - 1,
+				currentDay
+			)
+
 			const oneDay = 24 * 60 * 60 * 1000
 
-			const firstDate = new Date(currentYear, month, day)
-			const secondDate = new Date(currentYear, currentMonth, currentDate)
-
-			const diffDays = Math.round((firstDate - secondDate) / oneDay) - 3
+			const diffDays = Math.round((firstDate - secondDate) / oneDay)
 
 			let dayCount = 365
 
@@ -191,13 +166,10 @@ module.exports.run = async ({
 				dayCount = 366
 			}
 
-			let remDays
-			let wishYear
+			let remDays = diffDays
+			let wishYear = currentYear
 
-			if (diffDays > 0) {
-				remDays = diffDays
-				wishYear = currentYear
-			} else {
+			if (diffDays <= 0) {
 				remDays = diffDays + dayCount
 				wishYear = currentYear + 1
 			}
@@ -263,6 +235,87 @@ module.exports.run = async ({
 			}
 		}
 
+		case "list": {
+			let data = await Birthday.findAll({
+				where: { Guild: interaction.guild.id },
+			})
+
+			const date = new Date()
+			const currentYear = date.getFullYear()
+			const currentMonth = date.getMonth() + 1
+			const currentDay = date.getDate()
+
+			let index = 1
+
+			data = data.sort(
+				(a, b) =>
+					new Date(`${a.Year} ${a.Month} ${a.Date}`) -
+					new Date(`${b.Year} ${b.Month} ${b.Date}`)
+			)
+
+			const birthdayData = data
+				.map((d) => {
+					const firstDate = new Date(currentYear, d.Month - 1, d.Day)
+					const secondDate = new Date(
+						currentYear,
+						currentMonth - 1,
+						currentDay
+					)
+
+					const oneDay = 24 * 60 * 60 * 1000
+
+					const diffDays = Math.round(
+						(firstDate - secondDate) / oneDay
+					)
+
+					let wishYear = currentYear
+
+					if (diffDays <= 0) {
+						wishYear = currentYear + 1
+					}
+
+					const currentAge = wishYear - d.Year - 1
+					const newAge = wishYear - d.Year
+
+					return `**${index++}.** \`${d.Month}/${d.Day}/${
+						d.Year
+					}\` - ${client.users.cache.get(
+						d.User
+					)} (${currentAge} -> ${newAge})`
+				})
+				.join("\n")
+
+			if (!birthdayData) {
+				return await interaction
+					.editReply({
+						embeds: [
+							new EmbedBuilder()
+								.setColor("Red")
+								.setDescription(
+									`Couldn't find any birthday data`
+								),
+						],
+					})
+					.catch((err) => {})
+			}
+
+			const embed = new EmbedBuilder()
+				.setColor(defaultColor)
+				.setTitle("🎂 Birthdays List 🎉")
+				.setThumbnail(
+					"https://berkscountyliving.com/downloads/18196/download/iStock-918933880.jpg?cb=1155e4a7652ab617e102986ad35ab972"
+				)
+				.setDescription(`${birthdayData}`)
+				.setFooter({ text: "Sorted by upcoming" })
+				.setTimestamp()
+
+			return await interaction
+				.editReply({
+					embeds: [embed],
+				})
+				.catch((err) => {})
+		}
+
 		case "remove": {
 			const data = await Birthday.findOne({
 				where: {
@@ -303,65 +356,6 @@ module.exports.run = async ({
 					})
 					.catch((err) => {})
 			}
-		}
-
-		case "list": {
-			let data = await Birthday.findAll({
-				where: { Guild: interaction.guild.id },
-			})
-
-			const date = new Date()
-			const currentYear = date.getFullYear()
-
-			let index = 1
-
-			data = data.sort(
-				(a, b) =>
-					new Date(`${a.Year} ${a.Month} ${a.Date}`) -
-					new Date(`${b.Year} ${b.Month} ${b.Date}`)
-			)
-
-			const birthdayData = data
-				.map((d) => {
-					return `**${index++}.** \`${d.Month}/${d.Day}/${
-						d.Year
-					}\` - ${client.users.cache.get(d.User)} (${
-						currentYear - d.Year - 1
-					} -> ${currentYear - d.Year})`
-				})
-				.join("\n")
-
-			if (!birthdayData) {
-				return await interaction
-					.editReply({
-						embeds: [
-							new EmbedBuilder()
-								.setColor("Red")
-								.setDescription(
-									`Couldn't find any birthday data`
-								),
-						],
-					})
-					.catch((err) => {})
-			}
-
-			// console.log(data)
-
-			const embed = new EmbedBuilder()
-				.setColor(defaultColor)
-				.setTitle("🎂 Birthdays List 🎉")
-				.setThumbnail(
-					"https://berkscountyliving.com/downloads/18196/download/iStock-918933880.jpg?cb=1155e4a7652ab617e102986ad35ab972"
-				)
-				.setDescription(`${birthdayData}`)
-				.setFooter({ text: "Sorted by upcoming" })
-				.setTimestamp()
-
-			return await interaction
-				.editReply({
-					embeds: [embed],
-				})
-				.catch((err) => {})
 		}
 	}
 }

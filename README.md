@@ -7,7 +7,6 @@ Created by mezmer420#7301
 
 ## Known Issues:
 
-- Birthday system calculates ages 14 and under wrong
 - If you work then immediately use daily while your work minigame is still in progress, then finish the work minigame, you'll lose the coins you got from daily
 
 ## Features:

@@ -219,12 +219,12 @@ module.exports.run = async ({
 							`You just sold **${itemLowercase}** for ${sellPrice} Dashcoins:tm:! Your new wallet balance is ${newBalance} Dashcoins:tm:.`
 						)
 						.setColor(defaultColor)
-						.setThumbnail(
-							interaction.member.user.displayAvatarURL({
-								size: 4096,
-								dynamic: true,
-							})
-						),
+						// .setThumbnail(
+						// 	interaction.member.user.displayAvatarURL({
+						// 		size: 4096,
+						// 		dynamic: true,
+						// 	})
+						// ),
 				],
 			})
 			.catch((err) => {})

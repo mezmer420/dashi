@@ -63,12 +63,12 @@ module.exports.run = async ({ client, interaction, Systems, Economy }) => {
 			`**${amount}** ${dashcoinOrDashcoins}:tm: withdrawn from your bank!`
 		)
 		.setColor("Green")
-		.setThumbnail(
-			interaction.member.user.displayAvatarURL({
-				size: 4096,
-				dynamic: true,
-			})
-		)
+		// .setThumbnail(
+		// 	interaction.member.user.displayAvatarURL({
+		// 		size: 4096,
+		// 		dynamic: true,
+		// 	})
+		// )
 
 	await interaction
 		.editReply({
