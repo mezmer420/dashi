@@ -17,37 +17,16 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The channel to send to")
 			.setRequired(false)
 	)
-	.addStringOption((option) =>
-		option
-			.setName("emoji1")
-			.setDescription("Reaction emoji 1")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("emoji2")
-			.setDescription("Reaction emoji 2")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("emoji3")
-			.setDescription("Reaction emoji 3")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("emoji4")
-			.setDescription("Reaction emoji 4")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("emoji5")
-			.setDescription("Reaction emoji 5")
-			.setRequired(false)
-	)
 	.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+
+for (i = 1; i <= 5; i++) {
+	module.exports.data.addStringOption((option) =>
+		option
+			.setName(`emoji${i}`)
+			.setDescription(`Reaction emoji ${i}`)
+			.setRequired(false)
+	)
+}
 
 module.exports.run = async ({ client, interaction }) => {
 	const whatever = interaction.options.getString("message")
@@ -68,11 +47,9 @@ module.exports.run = async ({ client, interaction }) => {
 		.then(async (msg) => {
 			await msg.react(emoji1).catch((err) => {})
 			await msg.react(emoji2).catch((err) => {})
+
 			if (emoji3) {
 				await msg.react(emoji3).catch((err) => {})
-			}
-			if (emoji4) {
-				await msg.react(emoji4).catch((err) => {})
 			}
 			if (emoji4) {
 				await msg.react(emoji4).catch((err) => {})

@@ -17,68 +17,38 @@ module.exports.data = new SlashCommandBuilder()
 			.setDescription("The 2nd thing to choose from")
 			.setRequired(true)
 	)
-	.addStringOption((option) =>
+
+function toOrdinalSuffix(num) {
+	const int = parseInt(num),
+		digits = [int % 10, int % 100],
+		ordinals = ["st", "nd", "rd", "th"],
+		oPattern = [1, 2, 3, 4],
+		tPattern = [11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+	return oPattern.includes(digits[0]) && !tPattern.includes(digits[1])
+		? int + ordinals[digits[0] - 1]
+		: int + ordinals[3]
+}
+
+for (let i = 3; i <= 10; i++) {
+	module.exports.data.addStringOption((option) =>
 		option
-			.setName("3rd")
-			.setDescription("The 3rd thing to choose from")
+			.setName(`${toOrdinalSuffix(i)}`)
+			.setDescription(`The ${toOrdinalSuffix(i)} thing to choose from`)
 			.setRequired(false)
 	)
-	.addStringOption((option) =>
-		option
-			.setName("4th")
-			.setDescription("The 4th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("5th")
-			.setDescription("The 5th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("6th")
-			.setDescription("The 6th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("7th")
-			.setDescription("The 7th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("8th")
-			.setDescription("The 8th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("9th")
-			.setDescription("The 9th thing to choose from")
-			.setRequired(false)
-	)
-	.addStringOption((option) =>
-		option
-			.setName("10th")
-			.setDescription("The 10th thing to choose from")
-			.setRequired(false)
-	)
+}
 
 module.exports.run = async ({ client, interaction }) => {
-	const responseValues = [
-		interaction.options.getString("1st"),
-		interaction.options.getString("2nd"),
-		interaction.options.getString("3rd"),
-		interaction.options.getString("4th"),
-		interaction.options.getString("5th"),
-		interaction.options.getString("6th"),
-		interaction.options.getString("7th"),
-		interaction.options.getString("8th"),
-		interaction.options.getString("9th"),
-		interaction.options.getString("10th"),
-	].filter(Boolean)
+	let responseValues = []
+
+	for (let i = 1; i <= 10; i++) {
+		const option = interaction.options.getString(`${toOrdinalSuffix(i)}`)
+
+		if (option) {
+			responseValues.push(option)
+		}
+	}
 
 	const response =
 		responseValues[Math.floor(Math.random() * responseValues.length)]

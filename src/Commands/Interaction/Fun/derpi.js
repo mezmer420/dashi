@@ -7,70 +7,39 @@ module.exports.category = "Fun"
 module.exports.data = new SlashCommandBuilder()
 	.setName("derpi")
 	.setDescription("Pick a random pony image from Derpibooru!")
-	.addSubcommand((subcommand) =>
+	.addSubcommand((subcommand) => {
 		subcommand
 			.setName("tag-search")
 			.setDescription("Search by tags")
 			.addStringOption((option) =>
 				option
 					.setName("search-tag-1")
-					.setDescription("The first search tag")
+					.setDescription("The 1st search tag")
 					.setRequired(true)
 			)
-			.addStringOption((option) =>
+
+		function toOrdinalSuffix(num) {
+			const int = parseInt(num),
+				digits = [int % 10, int % 100],
+				ordinals = ["st", "nd", "rd", "th"],
+				oPattern = [1, 2, 3, 4],
+				tPattern = [11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+			return oPattern.includes(digits[0]) && !tPattern.includes(digits[1])
+				? int + ordinals[digits[0] - 1]
+				: int + ordinals[3]
+		}
+
+		for (let i = 2; i <= 10; i++) {
+			subcommand.addStringOption((option) =>
 				option
-					.setName("search-tag-2")
-					.setDescription("The second search tag")
+					.setName(`search-tag-${i}`)
+					.setDescription(`The ${toOrdinalSuffix(i)} search tag`)
 					.setRequired(false)
 			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-3")
-					.setDescription("The third search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-4")
-					.setDescription("The fourth search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-5")
-					.setDescription("The fifth search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-6")
-					.setDescription("The sixth search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-7")
-					.setDescription("The seventh search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-8")
-					.setDescription("The eighth search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-9")
-					.setDescription("The ninth search tag")
-					.setRequired(false)
-			)
-			.addStringOption((option) =>
-				option
-					.setName("search-tag-10")
-					.setDescription("The tenth search tag")
-					.setRequired(false)
-			)
+		}
+
+		subcommand
 			.addStringOption((option) =>
 				option
 					.setName("filter")
@@ -96,7 +65,9 @@ module.exports.data = new SlashCommandBuilder()
 					.setMaxValue(10)
 					.setRequired(false)
 			)
-	)
+
+		return subcommand
+	})
 	.addSubcommand((subcommand) =>
 		subcommand
 			.setName("id-search")
