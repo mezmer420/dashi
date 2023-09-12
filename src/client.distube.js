@@ -2,8 +2,7 @@ const { DisTube } = require("distube")
 const { SpotifyPlugin } = require("@distube/spotify")
 const { SoundCloudPlugin } = require("@distube/soundcloud")
 const { YtDlpPlugin } = require("@distube/yt-dlp")
-let { youtubeCookie } = process.env
-youtubeCookie = JSON.parse(youtubeCookie)
+const youtubeCookie = JSON.parse(process.env.youtubeCookie)
 
 module.exports = (client) => {
 	client.distube = new DisTube(client, {
