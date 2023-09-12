@@ -80,7 +80,7 @@ module.exports = {
 		// 		console.log("Error giving role: ", err)
 		// 	})
 		// }
-		else if (reaction.message.id === "995384674383843358") {
+		else if (reaction.message.id === "1150967763075092533") {
 			// reaction.message.pin().catch((err) => {
 			// 	console.log(err)
 			// })

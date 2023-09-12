@@ -28,11 +28,11 @@ module.exports.run = async ({ client, interaction, Systems, defaultColor }) => {
 			.catch((err) => {})
 	}
 
-	if (interaction.channel.id !== "992630810186367016") {
+	if (interaction.channel.id !== "1150910175516041266") {
 		return await interaction
 			.editReply({
 				content:
-					"You can only use that command in <#992630810186367016>! (this message will autodelete)",
+					"You can only use that command in <#1150910175516041266>! (this message will autodelete)",
 			})
 			.catch((err) => {})
 			.then((interaction) => {

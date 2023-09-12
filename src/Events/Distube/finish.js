@@ -4,7 +4,7 @@ module.exports = {
 	name: "finish",
 	async run(client, queue, defaultColor) {
 		const songRequests = await client.channels.cache.get(
-			"992630810186367016"
+			"1150910175516041266"
 		)
 
 		songRequests

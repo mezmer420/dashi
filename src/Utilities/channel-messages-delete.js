@@ -5,7 +5,7 @@ module.exports.run = async ({ client }) => {
 		if (message.channel.type === ChannelType.DM) return
 		if (
 			message.channel.id !== "990813253707911268" && // dashi changelog
-			message.channel.id !== "992630810186367016" // #song-requests
+			message.channel.id !== "1150910175516041266" // #song-requests
 		)
 			return
 		if (message.author.id === client.user.id) return

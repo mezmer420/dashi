@@ -61,7 +61,7 @@ module.exports.run = async (client, message, args) => {
 		// .addField("User: Hydra#1214")
 		.setTimestamp()
 
-	const musicEmbed = new EmbedBuilder()
+	const oldMusicEmbed = new EmbedBuilder()
 		.setAuthor({
 			name: "dashi",
 			iconURL: client.user.displayAvatarURL({
@@ -81,9 +81,31 @@ module.exports.run = async (client, message, args) => {
 			text: "Supported platforms for /play song (using a URL):\nYouTube, SoundCloud, Spotify, Facebook, Vimeo",
 		})
 
+	const musicEmbed = new EmbedBuilder()
+		.setAuthor({
+			name: "dashi",
+			iconURL: client.user.displayAvatarURL({
+				size: 4096,
+				dynamic: true,
+			}),
+		})
+		.setColor("#C04BF7")
+		.setTitle("🎵 Music System 🎵")
+		// .setDescription(
+		// 	"I can play videos up to an hour in length"
+		// )
+		.addFields({
+			name: "Commands",
+			value: "`/play song` `/play playlisturl` `/stop` `/queue` `/pause` `/resume` `/loop` `/autoplay` `/skip` `/skipto` `/previous` `/remove` `/shuffle` `/seek` `/filter`",
+			inline: false,
+		})
+		.setFooter({
+			text: "Supported platforms for /play song (using a URL):\nYouTube, Spotify, SoundCloud",
+		})
+
 	message.channel
 		.send({
-			embeds: [embed3],
+			embeds: [musicEmbed],
 		})
 		.catch((err) => {
 			console.log(err)

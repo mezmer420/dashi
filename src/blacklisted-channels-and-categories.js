@@ -6,7 +6,7 @@ const blacklistedChannels = [
 	// "1003814223845015702", // #counting
 	// "965445390465892432", // #talking-in-gif-only
 	// "949118223805210674", // #roleplay
-	"992630810186367016", // #song-requests
+	"1150910175516041266", // #song-requests
 ]
 
 const blacklistedCategories = [

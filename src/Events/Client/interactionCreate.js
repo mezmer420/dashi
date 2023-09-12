@@ -517,7 +517,7 @@ module.exports = {
 					.setTitle("⭐ XP System")
 					.setDescription(
 						"Rewards the most active members.\n\n"
-						// All human members gain a certain amount of XP for every message they sent, outside of <#945527434655187006>, <#947275856919810048>, <#970812606287859722>, <#970859343849349160>, <#964714582402826280>, <#983507823965114378>, <#992630810186367016>, and any category not <#939674946953682974> or <#939674946953682975>. The logic that goes into determining how much XP to give for a message shall remain a mystery.
+						// All human members gain a certain amount of XP for every message they sent, outside of <#945527434655187006>, <#947275856919810048>, <#970812606287859722>, <#970859343849349160>, <#964714582402826280>, <#983507823965114378>, <#1150910175516041266>, and any category not <#939674946953682974> or <#939674946953682975>. The logic that goes into determining how much XP to give for a message shall remain a mystery.
 					)
 					.addFields(
 						{ name: "Everyone", value: "`/leaderboard rank`" },
